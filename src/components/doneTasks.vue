@@ -14,10 +14,10 @@ export default {
     },
     methods: {
         undo(e) {
-            this.$parent.undo(e)
+            this.$emit('undo', e)
         },
         remove(e) {
-            this.$parent.remove(e)
+            this.$emit('remove', e)
         }
     }
 }

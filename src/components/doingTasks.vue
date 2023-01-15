@@ -12,10 +12,10 @@ export default {
     },
     methods: {
         done(e) {
-            setTimeout(() => e.done = true, 500)
+            setTimeout(() => this.$emit('done', e), 500)
         },
         remove(e) {
-            this.$parent.remove(e)
+            this.$emit('remove', e)
         }
     },
 

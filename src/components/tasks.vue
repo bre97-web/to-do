@@ -85,6 +85,9 @@ export default {
         undo(e) {
             setTimeout(() => e.done = false, 500)
         },
+        edit(e, text) {
+            e.text = text
+        },
 
         
 
@@ -115,11 +118,11 @@ export default {
 
 
     <div class="mt-10 mb-20 flex flex-col items-center justify-center gap-10">
-        <search :tasks="tasks" :keyWord="keyWord"></search>
+        <search :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit"></search>
 
-        <doing :tasks="tasks"></doing>
+        <doing :tasks="tasks" @remove="remove" @done="done"></doing>
 
-        <done :tasks="tasks"></done>
+        <done :tasks="tasks" @remove="remove" @undo="undo"></done>
 
         <div class="fixed bottom-5 w-full z-20">
             <div class="lg:max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2">
