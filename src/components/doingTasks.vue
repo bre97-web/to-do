@@ -1,8 +1,16 @@
 <script>
+
+// import Edit from './editTask.vue'
+
 export default {
     props: {
         tasks: {
             required: true
+        }
+    },
+    data() {
+        return {
+            isModifying: false,
         }
     },
     computed: {
@@ -16,14 +24,21 @@ export default {
         },
         remove(e) {
             this.$emit('remove', e)
-        }
+        },
+        edit(e, text) {
+            this.isModifying = false
+            this.$emit('edit', e, text)
+        },
     },
+    components: {
+        // edit: Edit,
+    }
 
 }
 </script>
 
 <template>
-    <ul class="p-5 border rounded-xl shadow-sm flex flex-col gap-4 flex-wrap font-regular w-5/6 sm:rounded-xl lg:max-w-2xl mx-auto">    
+    <ul class="p-5 border rounded-xl flex flex-col gap-4 flex-wrap font-regular w-5/6 sm:rounded-xl lg:max-w-2xl mx-auto">    
         <p class="pt-2 pl-4 font-bold text-2xl">
             Today's Tasks
         </p>
@@ -33,9 +48,20 @@ export default {
                 {{e.text}}
             </p>
             <div class="flex-none flex gap-2 ">
-                <button @click="remove(e)" class="h-10 w-20 flex items-center justify-center rounded-full hover:bg-red-50 active:bg-red-500 active:text-white">Delete</button>
+                <!--REMOVE-->
+                <button @click="remove(e)" class="w-14 h-10 sm:w-28 flex gap-2 items-center justify-center rounded-full hover:bg-red-50 focus:ring active:bg-red-500 active:text-white">
+                    <i class="bi bi-archive"></i>
+                    <p class="hidden sm:block">
+                        Delete
+                    </p>
+                </button>
+                <!-- <button @click="this.isModifying = true" class="w-14 h-10 flex gap-2 items-center justify-center rounded-full hover:bg-red-50 focus:ring active:bg-red-500 active:text-white">
+                    <i class="bi bi-info-lg"></i>
+                </button>
+                <edit @apply="edit" :task="e" :modifying="isModifying" :class="{'hidden':!isModifying}"></edit> -->
             </div>
         </li>
         <li v-if="doTasks.length == 0" class="pt-4 pb-4 pl-4">All did it!</li>        <!-- <li v-else-if="keyWord !== '' && tasks.length == 0" class="pt-4 pb-4 pl-4">No Result</li> -->
     </ul>
 </template>
+

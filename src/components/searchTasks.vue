@@ -77,7 +77,9 @@ export default {
                     ?
                 </p>
                 
-                <button @click="add" class="border w-20 h-10 rounded-md shadow hover:shadow-md active:shadow-xl">Create</button>
+                <button @click="add" class="border w-20 h-10 rounded-md flex items-center justify-center gap-2 shadow hover:shadow-md active:shadow-xl">
+                    <p>Create</p>
+                </button>
             </div>
             
             <!-- Edit Suggests -->
@@ -89,7 +91,9 @@ export default {
                     </mark> 
                     ?
                 </p>
-                <button @click="openEditor" class="border w-20 h-10 rounded-md shadow hover:shadow-md active:shadow-xl">Edit</button>
+                <button @click="this.isModifying = true" class="border w-20 h-10 rounded-md flex items-center justify-center gap-2 shadow hover:shadow-md active:shadow-xl">
+                    <p>Edit</p>
+                </button>
                 <edit @apply="edit" :task="focusTasks[focusTasks.length - 1]" :modifying="isModifying" :class="{'hidden':!isModifying}"></edit>
             </div>
         </div>
@@ -105,8 +109,19 @@ export default {
                 </p>
     
                 <div class="flex-none flex gap-2">
-                    <button @click="remove(e)" class="h-10 w-20 flex items-center justify-center rounded-full hover:bg-red-50 active:bg-red-500 active:text-white">Delete</button>
-                    <button v-if="e.done" @click="undo(e)" class="h-10 w-20 flex items-center justify-center rounded-full hover:bg-blue-50 active:bg-blue-500 focus:ring active:text-white">Undo</button>
+                    <button @click="remove(e)" class="w-14 h-10 sm:w-28 flex gap-2 items-center justify-center rounded-full hover:bg-red-50 focus:ring active:bg-red-500 active:text-white">
+                        <i class="bi bi-archive"></i>
+                        <p class="hidden sm:block">
+                            Delete
+                        </p>
+                    </button>
+                    <button v-if="e.done" @click="undo(e)" class="w-14 h-10 sm:w-28 flex gap-2 items-center justify-center rounded-full hover:bg-blue-50 focus:ring active:bg-blue-500 active:text-white">
+                        <i class="bi bi-layer-forward"></i>
+                        <p class="hidden sm:block">
+                            Undo
+                        </p>
+                    </button>
+
                 </div>
 
             </div>

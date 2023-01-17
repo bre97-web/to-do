@@ -117,23 +117,28 @@ export default {
 <template>
 
 
-    <div class="mt-10 mb-20 flex flex-col items-center justify-center gap-10">
+    <div id="pp" class="mt-10 mb-20 flex flex-col items-center justify-center gap-10">
         <search :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit"></search>
 
-        <doing :tasks="tasks" @remove="remove" @done="done"></doing>
+        <doing :tasks="tasks" @remove="remove" @done="done" @edit="edit"></doing>
 
         <done :tasks="tasks" @remove="remove" @undo="undo"></done>
 
-        <div class="fixed bottom-5 w-full z-20">
-            <div class="lg:max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2">
-                <input @keydown.enter="add"   class="outline-none rounded-md border shadow-md bg-white w-1/2 h-10 focus:ring" type="text" placeholder="Search or add a task" v-model="keyWord">
-                <button @click="add"          class="font-bold rounded-md border shadow-md bg-white w-14 h-10 hover:shadow-lg focus:ring active:bg-gray-100">Add</button>
-                <select v-model="sortType" class="outline-none font-medium rounded-md border w-18 h-10 hover:shadow-lg focus:ring">
-                    <option value="1">Earliest</option>
-                    <option value="2">Latest</option>
-                </select>
-            </div>
+        <div class="fixed bottom-5 w-full z-20 lg:max-w-4xl  mx-auto flex flex-wrap items-center justify-center gap-2">
+            <div></div>
+            <input @keydown.enter="add"   class="outline-none rounded-md border shadow-md bg-white w-1/2 h-10 focus:ring" type="text" placeholder="Search or add a task" v-model="keyWord">
+            <button @click="add"          class="font-bold rounded-md border shadow-md bg-white w-14 h-10 hover:shadow-lg focus:ring active:bg-gray-100">Add</button>
+            <select v-model="sortType" class="outline-none font-medium rounded-md border w-18 h-10 hover:shadow-lg focus:ring">
+                <option value="1">Earliest</option>
+                <option value="2">Latest</option>
+            </select>
         </div>
     </div>
 
 </template>
+
+<style scoped lang="css">
+    :nth-child(1) {
+        @apply shadow-md;
+    }
+</style>
