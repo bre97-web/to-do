@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap-icons": "^1.10.3",
+    "@material/web": "^1.0.0-pre.1",
+    "material-icons": "^1.13.1",
     "moment": "^2.29.4",
     "vue": "^3.2.45"
   },

@@ -1,10 +1,13 @@
+
+// Vue
 import { createApp } from 'vue'
 import App from './App.vue'
 
 // TailwindCSS
 import './assets/index.css'
 
-// BootstrapIcons
-import "./assets/font/bootstrap-icons.css";
+// Material Icons
+import 'material-icons/iconfont/material-icons.css'
 
-createApp(App).mount('#app')
+const vm = createApp(App)
+vm.mount('#app')
