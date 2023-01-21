@@ -1,42 +1,35 @@
 <script>
 
 import roundedButton from './button/roundedButton.vue'
-import Task from './task.vue'
+import task from './task.vue'
 
 
 export default {
     props: {
         tasks: {
             required: true,
+        },
+        forceVisible: {
+            required: false,
+            type:Boolean,
+            default: false,
         }
     },
     computed: {
         doneTasks() {
-            var e = this.tasks.filter(p => p.done)
-            return e
-        },
-    },
-    methods: {
-        undo(e) {
-            this.$emit('undo', e)
-        },
-        remove(e) {
-            this.$emit('remove', e)
-        },
-        edit(e, task) {
-            this.$emit('edit', e, task)
+            return this.tasks.filter(p => p.done)
         },
     },
     components: {
         roundedButton,
-        task: Task,
+        task,
     }
 }
 </script>
 
 <template>
 
-    <div v-if="doneTasks.length != 0" class="panel">
+    <div v-show="forceVisible || doneTasks.length != 0" class="panel">
 
         <!-- Title -->
         <p class="font-bold text-2xl">
@@ -44,13 +37,15 @@ export default {
         </p>
 
         <!-- Tasks -->
-        <ul class="flex flex-wrap gap-2 flex-col lg:flex-row">
+        <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doneTasks" :key="e.id"
-                :task="e" @remove="remove" @edit="edit"  @undo="undo"
-                :hasRemove="true" :hasUndo="true" :hasEdit="true">
+                :task="e"
+                :hasRemove="true" :hasUndo="true" :hasEdit="true" :hasPin="true">
             </task>
-        </ul>
+        </TransitionGroup>
+
+        <p v-if="doneTasks.length == 0" class="text-gray-400">Nothing</p>
     </div>
 
 </template>

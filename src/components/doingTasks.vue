@@ -1,7 +1,7 @@
 <script>
 
-import Edit from './editTask.vue'
-import Task from './task.vue'
+import edit from './editTask.vue'
+import task from './task.vue'
 
 export default {
     props: {
@@ -9,31 +9,15 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-
-        }
-    },
     computed: {
         doTasks() {
             return this.tasks.filter(p => !p.done)
         },
     },
-    methods: {
-        done(e) {
-            setTimeout(() => this.$emit('done', e), 500)
-        },
-        remove(e) {
-            this.$emit('remove', e)
-        },
-        edit(e, task) {
-            this.$emit('edit', e, task)
-        },
-    },
     components: {
-        edit: Edit,
-        task: Task,
-    }
+        edit,
+        task,
+    },
 
 }
 </script>
@@ -48,16 +32,16 @@ export default {
         </p>
         
         <!-- Tasks -->
-        <ul class="flex flex-wrap gap-2 flex-col lg:flex-row">
+        <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doTasks" :key="e.id"
-                :task="e" @remove="remove" @done="done" @edit="edit" 
-                :hasRemove="true" :hasDone="true" :hasEdit="true">
+                :task="e"
+                :hasRemove="true" :hasDone="true" :hasEdit="true" :hasPin="true">
             </task>
-        </ul>
+        </TransitionGroup>
 
         <!-- 'All did it' if tasks is done -->
-        <p v-if="doTasks.length == 0">All did it!</p>
+        <p v-if="doTasks.length == 0" class="text-gray-400">All did it!</p>
 
     </div>
 

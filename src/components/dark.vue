@@ -15,6 +15,6 @@ function dark() {
 
 <template>
     <div>
-        <button @click="dark()" class="flex-none border h-10 w-28 rounded-md bg-black text-white dark:bg-white dark:text-black">Dark Mode</button>
+        <button @click="dark()" class="focus:ring-0 flex-none border h-10 w-28 rounded-md bg-black text-white dark:bg-white dark:text-black">Dark Mode</button>
     </div>
 </template>

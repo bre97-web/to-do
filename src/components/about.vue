@@ -15,6 +15,7 @@ export default {
 <style scoped lang="css">
     a {
         @apply underline text-blue-500 hover:text-blue-900;
+        @apply dark:hover:text-blue-100;
     }
     * {
         transition: all 0.1s;

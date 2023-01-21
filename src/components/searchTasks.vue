@@ -1,16 +1,12 @@
 <script>
 
 import roundedButton from './button/roundedButton.vue'
-import Edit from './editTask.vue'
-import Task from './task.vue'
+import edit from './editTask.vue'
+import task from './task.vue'
+
+import PubSub from 'pubsub-js'
 
 export default {
-    emits: ['add', 'remove', 'done', 'undo', 'edit'],
-    data() {
-        return {
-            isModifying: false,
-        }
-    },
     props: {
         tasks: {
             required: true
@@ -18,6 +14,15 @@ export default {
         keyWord: {
             required: true,
             type: String
+        },
+        forceVisible: {
+            required: false,
+            type:Boolean,
+            default: false,
+        },
+        'showEdit': {
+            type:Boolean,
+            default: true,
         },
     },
     computed: {
@@ -27,56 +32,54 @@ export default {
     },
     methods: {
         add() {
-            this.$emit('add', this.keyWord)
+            PubSub.publish('add')
         },
         remove(e) {
-            this.$emit('remove', e)
+            PubSub.publish('remove', e)
         },
-        done(e) {
-            this.$emit('done', e)
+        edit(e) {
+            PubSub.publish('edit', e)
         },
-        undo(e) {
-            this.$emit('undo', e)
-        },
-        edit(e, task) {
-            this.$emit('edit', e, task)
-        },
-
     },
     components: {
-        edit: Edit,
+        edit,
         roundedButton,
-        task: Task,
+        task,
     }
 }
 </script>
 
 <template>
 
-    <div v-if="keyWord !== ''" class="panel">
-        
-        <!-- Title -->
-        <p class="font-bold text-2xl">
-            Search
-            <mark class="underline">
-                {{keyWord}}
-            </mark>
+    <div>
+        <!-- Title when keyWord is null -->
+        <p v-show="forceVisible && keyWord === ''" class="panel font-bold text-2xl">
+            You have not input
         </p>
 
-        <!-- Tasks -->
-        <ul class="flex gap-2 flex-col">
+        <div v-if="keyWord !== ''" class="panel">
             
-            <!-- 'No Result' if focusTasks is null -->
-            <p v-if="focusTasks.length == 0" class="text-gray-500 pb-4 pl-4">No Result</p>
+            <!-- Title -->
+            <p class="font-bold text-2xl break-all">
+                Search
+                <mark class="underline">
+                    {{keyWord}}
+                </mark>
+            </p>
     
+            <!-- 'No Result' if focusTasks is null -->
+            <p v-if="focusTasks.length == 0" class="text-gray-400">No Result</p>
+            
+            
+            
             <!-- Suggests -->
-            <div v-if="keyWord !== ''" class="flex gap-2 flex-col items-end justify-center pb-4 pl-4">
+            <div v-if="keyWord !== ''" class="flex gap-2 flex-col items-center self-end justify-center pb-4 pl-4">
                 
                 <!-- Create suggests -->
                 <div v-if="tasks.length == 0 || focusTasks.length == 0" class="flex flex-col items-end gap-2">
                     <p class="inline-block">
                         Do you want to create: 
-                        <mark class="inline-block underline font-bold">
+                        <mark class="inline-block underline font-bold break-all">
                             {{keyWord}}
                         </mark> 
                         ?
@@ -91,7 +94,7 @@ export default {
                 <div v-if="focusTasks.length <= 5 && focusTasks.length != 0" class="flex flex-col gap-2 items-end">
                     <p class="inline-block">
                         Do you want to edit: 
-                        <mark class="inline-block underline font-bold">
+                        <mark class="inline-block underline font-bold break-all">
                             {{focusTasks[focusTasks.length - 1].text}}
                         </mark> 
                         ?
@@ -105,22 +108,23 @@ export default {
                             <p>Delete</p>
                         </button>
                     </div>
-                    <edit @apply="edit" :task="focusTasks[focusTasks.length - 1]" :class="{'hidden':!focusTasks[focusTasks.length - 1].isModifying}"></edit>
+                    
                 </div>
             </div>
-    
-            <!-- Search results -->
+                
             <!-- Tasks -->
-            <task
-                v-for="e in focusTasks"  :key="e.id"
-                :task="e" @remove="remove" @edit="edit" @done="done"  @undo="undo"
-                :hasRemove="true" :hasDone="true" :hasUndo="true" :hasEdit="true">
-            </task>
-            
-        </ul>
-
-
+            <!-- Search results -->
+            <ul class="flex gap-2 flex-col">
+                <task
+                    v-for="e in focusTasks"  :key="e.id"
+                    :task="e"
+                    :hasRemove="true" :hasDone="true" :hasUndo="true" :hasEdit="true" :hasPin="true"
+                    :showEdit="showEdit">
+                </task>
+            </ul>
+        </div>
     </div>
+    
 
 </template>
 

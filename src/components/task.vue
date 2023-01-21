@@ -1,7 +1,9 @@
 <script>
 
 import roundedButton from './button/roundedButton.vue'
-import Edit from './editTask.vue'
+import edit from './editTask.vue'
+
+import PubSub from 'pubsub-js'
 
 export default {
     props: {
@@ -22,24 +24,35 @@ export default {
             type:Boolean,
             default: false,
         },
+        'hasPin': {
+            type:Boolean,
+            default: false,
+        },
+        'showEdit': {
+            type:Boolean,
+            default: true,
+        },
     },
     methods: {
-        remove(e) {
-            this.$emit('remove', e)
-        },
         done(e) {
-            this.$emit('done', e)
+            PubSub.publish('done', e)
         },
         undo(e) {
-            this.$emit('undo', e)
+            PubSub.publish('undo', e)
         },
-        edit(e, task) {
-            this.$emit('edit', e, task)
-        }
+        remove(e) {
+            PubSub.publish('remove', e)
+        },
+        pin(e) {
+            PubSub.publish('pin', e)
+        },
+        unpin(e) {
+            PubSub.publish('unpin', e)
+        },
     },
         
     components: {
-        edit: Edit,
+        edit,
         roundedButton,
     }
 
@@ -47,30 +60,49 @@ export default {
 </script>
 
 <template>
-    <li class="border rounded-md flex flex-wrap gap-2 flex-row lg:flex-col items-center justify-start p-2">
-        <div class="flex-grow flex flex-row gap-2 items-center justify-center lg:self-start">
-            <!-- Done button -->
-            <input type="radio" v-if="hasDone && !task.done" @click="done(task)" :name="task.id" value="1" class="flex-none w-5 h-5 border border-black">
+    <div>
+        <li class="border rounded-md flex flex-wrap flex-row md:flex-col items-center justify-start p-2 pl-4">
             
-            <!-- Tasks text -->
-            <p class="flex-grow font-medium" :class="{'line-through':task.done}">
-                {{task.text}}
-            </p>
-        </div>    
-        
-        <!-- Buttons -->
-        <div class="flex-none flex gap-2 lg:self-start">
-            <!--REMOVE-->
-            <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
-    
-            <!-- Undo -->
-            <roundedButton v-if="hasUndo" @click="undo(task)" value="Undo" icon="restore_outline" type="safe"></roundedButton>
+            <div class="flex flex-row flex-shrink flex-grow items-center justify-start self-start gap-5 md:max-w-sm">
+                
+                <!-- Done button -->
+                <input type="radio" v-if="hasDone && !task.done" @click="done(task)" :name="task.id" value="1" class="flex-none self-start mt-2 w-5 h-5 border border-black">
+                
+                
+                <div class="flex flex-row gap-2 items-center justify-center text-ellipsis break-all">
+                    
+                    <!-- Tasks text and notes -->
+                    <p class="flex-grow font-medium" :class="{'line-through':task.done}">
+                        <strong>{{task.text}}</strong>
+                        <p>{{task.notes}}</p>
+                    </p>
+                    
+                </div>    
 
-            <!-- Let isModifying is true -->
-            <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
+            </div>
             
-            <!-- EDIT Panel -->
-            <edit @apply="edit" :task="task" :class="{'hidden':!task.isModifying}"></edit>
-        </div> 
-    </li>
+            <!-- Buttons -->
+            <div class="flex flex-wrap flex-shrink-0 gap-2 justify-center items-center md:self-end">
+                
+                <!--REMOVE-->
+                <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
+                
+                <!-- Undo -->
+                <roundedButton v-if="hasUndo" @click="undo(task)" value="Undo" icon="restore_outline" type="safe"></roundedButton>
+                
+                <!-- Let isModifying is true -->
+                <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
+                
+                <!-- Pin -->
+                <roundedButton v-show="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="medium" class=""></roundedButton>
+                <roundedButton v-show="hasPin && task.pin" @click="unpin(task)" icon="favorite" type="love"></roundedButton>
+
+                    
+            </div> 
+            
+        </li>
+        
+        <!-- EDIT Panel -->
+        <edit v-if="hasEdit && showEdit && task.isModifying" :task="task"></edit>
+    </div>
 </template>
