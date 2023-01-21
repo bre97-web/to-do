@@ -4,6 +4,7 @@ import Edit from './editTask.vue'
 import Task from './task.vue'
 
 export default {
+    emits: ['remove', 'done', 'edit'],
     props: {
         tasks: {
             required: true
@@ -21,7 +22,7 @@ export default {
     },
     methods: {
         done(e) {
-            setTimeout(() => this.$emit('done', e), 500)
+            this.$emit('done', e)
         },
         remove(e) {
             this.$emit('remove', e)
@@ -48,7 +49,7 @@ export default {
         </p>
         
         <!-- Tasks -->
-        <ul class="flex flex-wrap gap-2 flex-col lg:flex-row">
+        <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doTasks" :key="e.id"
                 :task="e" @remove="remove" @done="done" @edit="edit" 
@@ -57,7 +58,7 @@ export default {
         </ul>
 
         <!-- 'All did it' if tasks is done -->
-        <p v-if="doTasks.length == 0">All did it!</p>
+        <p v-if="doTasks.length == 0" class="text-gray-400">All did it!</p>
 
     </div>
 

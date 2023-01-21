@@ -5,15 +5,20 @@ import Task from './task.vue'
 
 
 export default {
+    emits: ['remove', 'undo', 'edit'],
     props: {
         tasks: {
             required: true,
+        },
+        forceVisible: {
+            required: false,
+            type:Boolean,
+            default: false,
         }
     },
     computed: {
         doneTasks() {
-            var e = this.tasks.filter(p => p.done)
-            return e
+            return this.tasks.filter(p => p.done)
         },
     },
     methods: {
@@ -36,7 +41,7 @@ export default {
 
 <template>
 
-    <div v-if="doneTasks.length != 0" class="panel">
+    <div v-if="forceVisible || doneTasks.length != 0" class="panel">
 
         <!-- Title -->
         <p class="font-bold text-2xl">
@@ -44,13 +49,15 @@ export default {
         </p>
 
         <!-- Tasks -->
-        <ul class="flex flex-wrap gap-2 flex-col lg:flex-row">
+        <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doneTasks" :key="e.id"
                 :task="e" @remove="remove" @edit="edit"  @undo="undo"
                 :hasRemove="true" :hasUndo="true" :hasEdit="true">
             </task>
         </ul>
+
+        <p v-if="doneTasks.length == 0" class="text-gray-400">Nothing</p>
     </div>
 
 </template>

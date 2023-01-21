@@ -6,11 +6,6 @@ import Task from './task.vue'
 
 export default {
     emits: ['add', 'remove', 'done', 'undo', 'edit'],
-    data() {
-        return {
-            isModifying: false,
-        }
-    },
     props: {
         tasks: {
             required: true
@@ -19,6 +14,16 @@ export default {
             required: true,
             type: String
         },
+        forceVisible: {
+            required: false,
+            type:Boolean,
+            default: false,
+        }
+    },
+    data() {
+        return {
+            isModifying: false,
+        }
     },
     computed: {
         focusTasks() {
@@ -53,6 +58,10 @@ export default {
 
 <template>
 
+    <p v-if="forceVisible && keyWord === ''" class="panel font-bold text-2xl">
+        You have not input
+    </p>
+    
     <div v-if="keyWord !== ''" class="panel">
         
         <!-- Title -->
@@ -67,7 +76,7 @@ export default {
         <ul class="flex gap-2 flex-col">
             
             <!-- 'No Result' if focusTasks is null -->
-            <p v-if="focusTasks.length == 0" class="text-gray-500 pb-4 pl-4">No Result</p>
+            <p v-if="focusTasks.length == 0" class="text-gray-400">No Result</p>
     
             <!-- Suggests -->
             <div v-if="keyWord !== ''" class="flex gap-2 flex-col items-end justify-center pb-4 pl-4">

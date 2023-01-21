@@ -4,6 +4,7 @@ import roundedButton from './button/roundedButton.vue'
 import Edit from './editTask.vue'
 
 export default {
+    emits: ['remove', 'done', 'undo', 'edit'],
     props: {
         'task':{},
         'hasRemove': {
@@ -47,8 +48,8 @@ export default {
 </script>
 
 <template>
-    <li class="border rounded-md flex flex-wrap gap-2 flex-row lg:flex-col items-center justify-start p-2">
-        <div class="flex-grow flex flex-row gap-2 items-center justify-center lg:self-start">
+    <li class="border rounded-md flex flex-wrap gap-2 flex-row md:flex-col items-center justify-start p-2">
+        <div class="flex-grow flex flex-row gap-2 items-center justify-center md:self-start">
             <!-- Done button -->
             <input type="radio" v-if="hasDone && !task.done" @click="done(task)" :name="task.id" value="1" class="flex-none w-5 h-5 border border-black">
             
@@ -59,7 +60,7 @@ export default {
         </div>    
         
         <!-- Buttons -->
-        <div class="flex-none flex gap-2 lg:self-start">
+        <div class="flex-none flex gap-2 self-end">
             <!--REMOVE-->
             <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
     
