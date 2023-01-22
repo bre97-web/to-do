@@ -11,6 +11,7 @@ export default {
             text: this.task.text,
             date: this.task.date,
             done: this.task.done,
+            pin: this.task.pin,
             default: this.task,
         }
     },
@@ -25,23 +26,24 @@ export default {
                 return 
             }
 
-            this.task.isModifying = false
-
             this.$emit('apply', this.task, {
-                id: this.id,
+                id:   this.id,
                 text: this.text,
                 date: this.date,
                 done: this.done,
+                pin:  this.pin,
+                isModifying: false,
             })
         },
         /**
          * 取消所有操作，还原数据并执行'apply'事件
          */
         cancel() {
-            this.id = this.default.id
+            this.id   = this.default.id
             this.text = this.default.text
             this.date = this.default.date
-            this.done = this.task.done
+            this.done = this.default.done
+            this.pin  = this.default.pin
             this.commit()
         }
     }
@@ -57,7 +59,7 @@ export default {
         <div class="noAnimation fixed top-0 left-0 bg-black w-screen h-screen opacity-25 z-30"></div>
         
         <!-- Dialog Window -->
-        <dialog open class="fixed top-1 sm:top-20 lg:top-40 left-0 w-3/4 max-w-lg min-h-0 flex flex-col items-start justify-between gap-2 rounded-3xl shadow-xl pl-4 z-30 bg-white dark:bg-slate-800 text-black dark:text-white">
+        <dialog open class="fixed top-1 sm:top-20 lg:top-40 left-0 w-3/4 max-w-lg flex flex-col items-start justify-between gap-2 rounded-3xl shadow-xl pl-4 z-30 bg-white dark:bg-slate-800 text-black dark:text-white">
             
             <header class="">
                 <p class="font-bold text-2xl">Task Editor</p>
@@ -91,7 +93,16 @@ export default {
                                 <label>Done</label>
                             </td>
                             <td>
-                                <input v-model="done" type="checkbox" class="block h-10 w-10">
+                                <input v-model="done" type="checkbox" name="done" class="block h-10 w-10">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Pin</label>
+                            </td>
+                            <td>
+                                <input v-model="pin" type="checkbox" name="pin" class="block h-10 w-10">
                             </td>
                         </tr>
                         

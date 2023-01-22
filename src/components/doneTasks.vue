@@ -5,7 +5,7 @@ import Task from './task.vue'
 
 
 export default {
-    emits: ['remove', 'undo', 'edit'],
+    emits: ['remove', 'undo', 'edit', 'pin', 'unpin'],
     props: {
         tasks: {
             required: true,
@@ -31,6 +31,12 @@ export default {
         edit(e, task) {
             this.$emit('edit', e, task)
         },
+        pin(e) {
+            this.$emit('pin', e)
+        },
+        unpin(e) {
+            this.$emit('unpin', e)
+        },
     },
     components: {
         roundedButton,
@@ -52,7 +58,7 @@ export default {
         <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doneTasks" :key="e.id"
-                :task="e" @remove="remove" @edit="edit"  @undo="undo"
+                :task="e" @remove="remove" @edit="edit" @undo="undo" @pin="pin" @unpin="unpin"
                 :hasRemove="true" :hasUndo="true" :hasEdit="true">
             </task>
         </ul>

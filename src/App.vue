@@ -6,6 +6,7 @@ import dark from './components/dark.vue'
 import navRail from './components/navRail.vue'
 import doneTasks from './components/doneTasks.vue'
 import searchTasks from './components/searchTasks.vue'
+import pinTasks from './components/pinTasks.vue'
 import moment from 'moment'
 
 console.log(`
@@ -21,7 +22,7 @@ console.log(`
  * 返回UNIX时间戳
  */
 function id() {
-    return moment().format('X')
+    return moment().format('x')
 }
 function date() {
     return moment().format('YYYY-MM-DD')
@@ -42,6 +43,7 @@ export default {
             
             pageList: [
                 "Overview",
+                "Pin",
                 "Done",
                 "Search",
             ],
@@ -74,16 +76,13 @@ export default {
                 return
             }
 
-            if(text == undefined) {
-                console.log(12);
-            }
-
             this.tasks.push({
                 id: id(),
                 text: text,
                 date: date(),
                 done:false,
                 isModifying: false,
+                pin: false,
             })
 
             this.clearKeyWord()
@@ -104,9 +103,18 @@ export default {
          * @param {Object} task 
          */
         edit(e, task) {
+            e.id   = task.id
             e.text = task.text
             e.date = task.date
             e.done = task.done
+            e.pin  = task.pin
+            e.isModifying = task.isModifying
+        },
+        pin(e) {
+            e.pin = true
+        },
+        unpin(e) {
+            e.pin = false
         },
 
         
@@ -136,6 +144,7 @@ export default {
         navRail,
         doneTasks,
         searchTasks,
+        pinTasks,
     }
 }
 </script>
@@ -160,11 +169,13 @@ export default {
         <div class="flex-grow flex-shrink w-full h-full xl:max-w-3xl self-start">
 
             <!-- Overview page is Default, it is controlled by navRail -->
-            <overview v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @edit="edit" @done="done" @undo="undo"></overview>
+            <overview v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord" @pin="pin" @unpin="unpin" @add="add" @remove="remove" @edit="edit" @done="done" @undo="undo"></overview>
             
-            <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks" @remove="remove" @done="done" @undo="undo" @edit="edit"></doneTasks>
+            <pinTasks v-else-if="'Pin' === pageFocus" :forceVisible="true" :tasks="tasks" @pin="pin" @unpin="unpin"></pinTasks>
+
+            <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks" @remove="remove" @done="done" @undo="undo" @edit="edit" @pin="pin" @unpin="unpin"></doneTasks>
             
-            <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit"></searchTasks>
+            <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit" @pin="pin" @unpin="unpin"></searchTasks>
 
         </div>
 

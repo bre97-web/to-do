@@ -2,11 +2,12 @@
 import DoingTasks from './doingTasks.vue'
 import DoneTasks from './doneTasks.vue'
 import SearchTasks from './searchTasks.vue'
+import PinTasks from './pinTasks.vue'
 import Dark from './dark.vue'
 
 
 export default {
-    emits: ['add', 'remove', 'done', 'undo', 'edit'],
+    emits: ['add', 'remove', 'done', 'undo', 'edit', 'pin', 'unpin'],
     props: ['tasks', 'keyWord'],
     data() {
         return {
@@ -43,12 +44,19 @@ export default {
         edit(e, task) {
             this.$emit('edit', e, task)
         },
+        pin(e) {
+            this.$emit('pin', e)
+        },
+        unpin(e) {
+            this.$emit('unpin', e)
+        },
     },
     components: {
         done: DoneTasks,
         doing: DoingTasks,
         search: SearchTasks,
         dark: Dark,
+        pin: PinTasks,
     }
 }
 
@@ -57,11 +65,13 @@ export default {
 <template>
     <div>
         
-        <search :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit"></search>
+        <search :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit" @pin="pin" @unpin="unpin"></search>
 
-        <doing :tasks="tasks" @remove="remove" @done="done" @edit="edit"></doing>
+        <pin :tasks="tasks" @pin="pin" @unpin="unpin"></pin>
 
-        <done :tasks="tasks" @remove="remove" @undo="undo" @edit="edit"></done>
+        <doing :tasks="tasks" @remove="remove" @done="done" @edit="edit" @pin="pin" @unpin="unpin"></doing>
+
+        <done :tasks="tasks" @remove="remove" @undo="undo" @edit="edit" @pin="pin" @unpin="unpin"></done>
     </div>
 
 </template>

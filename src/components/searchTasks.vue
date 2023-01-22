@@ -5,7 +5,7 @@ import Edit from './editTask.vue'
 import Task from './task.vue'
 
 export default {
-    emits: ['add', 'remove', 'done', 'undo', 'edit'],
+    emits: ['add', 'remove', 'done', 'undo', 'edit', 'pin', 'unpin'],
     props: {
         tasks: {
             required: true
@@ -45,6 +45,12 @@ export default {
         },
         edit(e, task) {
             this.$emit('edit', e, task)
+        },
+        pin(e) {
+            this.$emit('pin', e)
+        },
+        unpin(e) {
+            this.$emit('unpin', e)
         },
 
     },
@@ -122,7 +128,7 @@ export default {
             <!-- Tasks -->
             <task
                 v-for="e in focusTasks"  :key="e.id"
-                :task="e" @remove="remove" @edit="edit" @done="done"  @undo="undo"
+                :task="e" @remove="remove" @edit="edit" @done="done"  @undo="undo" @pin="pin" @unpin="unpin"
                 :hasRemove="true" :hasDone="true" :hasUndo="true" :hasEdit="true">
             </task>
             

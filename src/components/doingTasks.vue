@@ -4,7 +4,7 @@ import Edit from './editTask.vue'
 import Task from './task.vue'
 
 export default {
-    emits: ['remove', 'done', 'edit'],
+    emits: ['remove', 'done', 'edit', 'pin', 'unpin'],
     props: {
         tasks: {
             required: true
@@ -30,6 +30,12 @@ export default {
         edit(e, task) {
             this.$emit('edit', e, task)
         },
+        pin(e) {
+            this.$emit('pin', e)
+        },
+        unpin(e) {
+            this.$emit('unpin', e)
+        },
     },
     components: {
         edit: Edit,
@@ -52,7 +58,7 @@ export default {
         <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doTasks" :key="e.id"
-                :task="e" @remove="remove" @done="done" @edit="edit" 
+                :task="e" @remove="remove" @done="done" @edit="edit" @pin="pin" @unpin="unpin"
                 :hasRemove="true" :hasDone="true" :hasEdit="true">
             </task>
         </ul>
