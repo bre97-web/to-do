@@ -7,7 +7,9 @@ import navRail from './components/navRail.vue'
 import doneTasks from './components/doneTasks.vue'
 import searchTasks from './components/searchTasks.vue'
 import pinTasks from './components/pinTasks.vue'
+import helper from './components/helper.vue'
 import moment from 'moment'
+import { helperNameMap } from '@vue/compiler-core'
 
 console.log(`
 ///////////           ///////
@@ -39,14 +41,24 @@ export default {
             
             keyWord: '',
 
+            /**
+             * tasks保存了任务，其位于localStorage的tasks
+             */
             tasks: JSON.parse(localStorage.getItem('tasks')) || [],
             
+            /**
+             * pageList是页面上的侧栏名称
+             */
             pageList: [
                 "Overview",
                 "Pin",
                 "Done",
                 "Search",
+                "Help",
             ],
+            /**
+             * pageFocus是页面当前展示的页面名称
+             */
             pageFocus: 'Overview',
        }
     },
@@ -137,20 +149,21 @@ export default {
 
     },
     components: {
-        overview,
-        now,
-        about,
-        dark,
-        navRail,
-        doneTasks,
-        searchTasks,
-        pinTasks,
-    }
+    overview,
+    now,
+    about,
+    dark,
+    navRail,
+    doneTasks,
+    searchTasks,
+    pinTasks,
+    helper,
+}
 }
 </script>
 
 <template>
-    <div class="flex w-full min-h-screen flex-col xl:flex-row items-center justify-between pb-20 md:mt-16 dark:bg-gray-900 dark:text-white">
+    <div class="flex w-full min-h-screen flex-col xl:flex-row items-center justify-between pb-20 mt-16 dark:bg-gray-900 dark:text-white">
         <div class="xl:top-16 sticky flex flex-col gap-10 self-start w-5/6 max-w-3xl mx-auto xl:mx-0 xl:w-64 pt-10 xl:pl-5 xl:pr-5">
 
             <!-- Time -->
@@ -177,6 +190,7 @@ export default {
             
             <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord" @add="add" @remove="remove" @done="done" @undo="undo" @edit="edit" @pin="pin" @unpin="unpin"></searchTasks>
 
+            <helper v-else-if="'Help' === pageFocus"></helper>
         </div>
 
 
@@ -189,27 +203,18 @@ export default {
     </div>
 
     <!-- TopBar on md -->
-    <div class="bar fixed top-0 pl-10 pr-10 hidden md:flex">
+    <div class="bg-blue-500 h-16 w-full z-20 mx-auto flex flex-wrap items-center justify-center gap-2 fixed top-0 pl-5 pr-5">
         <div class="flex-grow flex items-center justify-center gap-2">
-            <input @keydown.enter="add(this.keyWord)"   class="max-w-lg w-1/2 h-10 rounded-md outline-none border md:border-none shadow md:shadow-none hover:shadow-md active:shadow-md focus:ring p-5 dark:bg-black dark:text-white" type="text" placeholder="Search or add a task" v-model="keyWord">
+            <input @keydown.enter="add(this.keyWord)"   class="max-w-lg w-full h-10 rounded-md outline-none shadow p-2 focus:ring dark:ring-white dark:bg-black dark:text-white" type="text" placeholder="Search or add a task" v-model="keyWord">
             <button @click="add(this.keyWord)" type="normal" class="font-bold">Add</button>
-            <select v-model="sortType" class="outline-none font-medium rounded-md border w-18 h-10 hover:shadow-lg focus:ring dark:bg-black dark:text-white dark:border-none">
+            <select v-model="sortType" class="hidden sm:block outline-none font-medium rounded-md border h-10 dark:bg-black dark:text-white dark:border-none">
                 <option value="1">Earliest</option>
                 <option value="2">Latest</option>
             </select>
         </div>
 
-        <dark></dark>
+        <dark class="hidden sm:block"></dark>
 
-    </div>
-    <!-- BotBar under md -->
-    <div class="bar fixed bottom-0 md:hidden">
-        <input @keydown.enter="add(this.keyWord)"   class="max-w-lg outline-none w-1/2 h-10 rounded-md border md:border-none shadow md:shadow-none hover:shadow-md active:shadow-md focus:ring p-5 dark:bg-black dark:text-white" type="text" placeholder="Search or add a task" v-model="keyWord">
-        <button @click="add(this.keyWord)" type="normal" class="font-bold border md:border-none">Add</button>
-        <select v-model="sortType" class="outline-none font-medium rounded-md border w-18 h-10 hover:shadow-lg focus:ring dark:bg-black dark:text-white">
-            <option value="1">Earliest</option>
-            <option value="2">Latest</option>
-        </select>
     </div>
 
 
@@ -220,10 +225,6 @@ export default {
 <style lang="css">
     ::-webkit-scrollbar {
         display: none;
-    }
-
-    .bar {
-        @apply md:bg-blue-500 h-16 w-full z-20 mx-auto flex flex-wrap items-center justify-center gap-2;
     }
 
     .panel {
