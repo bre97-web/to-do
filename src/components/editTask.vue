@@ -1,10 +1,13 @@
 <script>
+
+import PubSub from 'pubsub-js'
+
 export default {
-    props: ['task'],
-    /**
-     * apply用于提交对prop task的修改
-     */
-    emits:['apply'],
+    props: {
+        task: {
+            required: true,
+        },
+    },
     data() {
         return {
             id: this.task.id,
@@ -12,13 +15,12 @@ export default {
             date: this.task.date,
             done: this.task.done,
             pin: this.task.pin,
-            default: this.task,
         }
     },
 
     methods: {
         /**
-         * 执行'apply'事件
+         * 执行'edit'订阅。
          */
         commit() {
 
@@ -26,24 +28,27 @@ export default {
                 return 
             }
 
-            this.$emit('apply', this.task, {
-                id:   this.id,
-                text: this.text,
-                date: this.date,
-                done: this.done,
-                pin:  this.pin,
-                isModifying: false,
+            PubSub.publish('edit', {
+                e:this.task, 
+                task: {
+                    id: this.id,
+                    text: this.text,
+                    date: this.date,
+                    done: this.done,
+                    pin: this.pin,
+                    isModifying: false,
+                }
             })
         },
         /**
-         * 取消所有操作，还原数据并执行'apply'事件
+         * 取消所有操作，还原数据并执行'edit'订阅。
          */
         cancel() {
-            this.id   = this.default.id
-            this.text = this.default.text
-            this.date = this.default.date
-            this.done = this.default.done
-            this.pin  = this.default.pin
+            this.id   = this.task.id
+            this.text = this.task.text
+            this.date = this.task.date
+            this.done = this.task.done
+            this.pin  = this.task.pin
             this.commit()
         }
     }

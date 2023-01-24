@@ -1,18 +1,12 @@
 <script>
 
-import Edit from './editTask.vue'
-import Task from './task.vue'
+import edit from './editTask.vue'
+import task from './task.vue'
 
 export default {
-    emits: ['remove', 'done', 'edit', 'pin', 'unpin'],
     props: {
         tasks: {
             required: true
-        }
-    },
-    data() {
-        return {
-
         }
     },
     computed: {
@@ -20,26 +14,9 @@ export default {
             return this.tasks.filter(p => !p.done)
         },
     },
-    methods: {
-        done(e) {
-            this.$emit('done', e)
-        },
-        remove(e) {
-            this.$emit('remove', e)
-        },
-        edit(e, task) {
-            this.$emit('edit', e, task)
-        },
-        pin(e) {
-            this.$emit('pin', e)
-        },
-        unpin(e) {
-            this.$emit('unpin', e)
-        },
-    },
     components: {
-        edit: Edit,
-        task: Task,
+        edit,
+        task,
     }
 
 }
@@ -58,8 +35,8 @@ export default {
         <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doTasks" :key="e.id"
-                :task="e" @remove="remove" @done="done" @edit="edit" @pin="pin" @unpin="unpin"
-                :hasRemove="true" :hasDone="true" :hasEdit="true">
+                :task="e"
+                :hasRemove="true" :hasDone="true" :hasEdit="true" :hasPin="true">
             </task>
         </ul>
 

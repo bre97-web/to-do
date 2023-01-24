@@ -1,11 +1,12 @@
 <script>
 
 import roundedButton from './button/roundedButton.vue'
-import Edit from './editTask.vue'
-import Task from './task.vue'
+import edit from './editTask.vue'
+import task from './task.vue'
+
+import PubSub from 'pubsub-js'
 
 export default {
-    emits: ['add', 'remove', 'done', 'undo', 'edit', 'pin', 'unpin'],
     props: {
         tasks: {
             required: true
@@ -18,12 +19,7 @@ export default {
             required: false,
             type:Boolean,
             default: false,
-        }
-    },
-    data() {
-        return {
-            isModifying: false,
-        }
+        },
     },
     computed: {
         focusTasks() {
@@ -32,32 +28,19 @@ export default {
     },
     methods: {
         add() {
-            this.$emit('add', this.keyWord)
+            PubSub.publish('add')
         },
         remove(e) {
-            this.$emit('remove', e)
+            PubSub.publish('remove', e)
         },
-        done(e) {
-            this.$emit('done', e)
+        edit(e) {
+            PubSub.publish('edit', e)
         },
-        undo(e) {
-            this.$emit('undo', e)
-        },
-        edit(e, task) {
-            this.$emit('edit', e, task)
-        },
-        pin(e) {
-            this.$emit('pin', e)
-        },
-        unpin(e) {
-            this.$emit('unpin', e)
-        },
-
     },
     components: {
-        edit: Edit,
+        edit,
         roundedButton,
-        task: Task,
+        task,
     }
 }
 </script>
@@ -120,7 +103,7 @@ export default {
                             <p>Delete</p>
                         </button>
                     </div>
-                    <edit @apply="edit" :task="focusTasks[focusTasks.length - 1]" :class="{'hidden':!focusTasks[focusTasks.length - 1].isModifying}"></edit>
+                    <edit v-if="focusTasks[focusTasks.length - 1].isModifying" :task="focusTasks[focusTasks.length - 1]"></edit>
                 </div>
             </div>
     
@@ -128,8 +111,8 @@ export default {
             <!-- Tasks -->
             <task
                 v-for="e in focusTasks"  :key="e.id"
-                :task="e" @remove="remove" @edit="edit" @done="done"  @undo="undo" @pin="pin" @unpin="unpin"
-                :hasRemove="true" :hasDone="true" :hasUndo="true" :hasEdit="true">
+                :task="e"
+                :hasRemove="true" :hasDone="true" :hasUndo="true" :hasEdit="true" :hasPin="true">
             </task>
             
         </ul>

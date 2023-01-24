@@ -1,10 +1,11 @@
 <script>
 
 import roundedButton from './button/roundedButton.vue'
-import Edit from './editTask.vue'
+import edit from './editTask.vue'
+
+import PubSub from 'pubsub-js'
 
 export default {
-    emits: ['remove', 'done', 'undo', 'edit', 'pin', 'unpin'],
     props: {
         'task':{},
         'hasRemove': {
@@ -23,30 +24,31 @@ export default {
             type:Boolean,
             default: false,
         },
+        'hasPin': {
+            type:Boolean,
+            default: false,
+        },
     },
     methods: {
-        remove(e) {
-            this.$emit('remove', e)
-        },
         done(e) {
-            this.$emit('done', e)
+            PubSub.publish('done', e)
         },
         undo(e) {
-            this.$emit('undo', e)
+            PubSub.publish('undo', e)
         },
-        edit(e, task) {
-            this.$emit('edit', e, task)
+        remove(e) {
+            PubSub.publish('remove', e)
         },
         pin(e) {
-            this.$emit('pin', e)
+            PubSub.publish('pin', e)
         },
         unpin(e) {
-            this.$emit('unpin', e)
+            PubSub.publish('unpin', e)
         },
     },
         
     components: {
-        edit: Edit,
+        edit,
         roundedButton,
     }
 
@@ -68,7 +70,7 @@ export default {
             </div>    
             
             <!-- Buttons -->
-            <div class="flex-none flex gap-2 self-end">
+            <div class=" flex flex-wrap gap-2 self-end">
                 
                 <!--REMOVE-->
                 <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
@@ -80,14 +82,14 @@ export default {
                 <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
                 
                 <!-- Pin -->
-                <roundedButton v-if="!task.pin" @click="pin(task)" icon="favorite_outline" type="info"></roundedButton>
-                <roundedButton v-else @click="unpin(task)" icon="favorite" type="info"></roundedButton>
+                <roundedButton v-if="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="info"></roundedButton>
+                <roundedButton v-else-if="hasPin" @click="unpin(task)" icon="favorite" type="info"></roundedButton>
                 
             </div> 
             
         </li>
         
         <!-- EDIT Panel -->
-        <edit v-if="hasEdit" @apply="edit" :task="task" :class="{'hidden':!task.isModifying}"></edit>
+        <edit v-if="hasEdit && task.isModifying" :task="task"></edit>
     </div>
 </template>
