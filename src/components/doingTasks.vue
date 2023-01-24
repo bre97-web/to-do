@@ -17,7 +17,7 @@ export default {
     components: {
         edit,
         task,
-    }
+    },
 
 }
 </script>
@@ -32,13 +32,13 @@ export default {
         </p>
         
         <!-- Tasks -->
-        <ul class="flex flex-wrap gap-2 flex-col md:flex-row">
+        <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
                 v-for="e in doTasks" :key="e.id"
                 :task="e"
                 :hasRemove="true" :hasDone="true" :hasEdit="true" :hasPin="true">
             </task>
-        </ul>
+        </TransitionGroup>
 
         <!-- 'All did it' if tasks is done -->
         <p v-if="doTasks.length == 0" class="text-gray-400">All did it!</p>

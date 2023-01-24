@@ -70,6 +70,10 @@ export default {
              * pageFocus是页面当前展示的页面名称。
              */
             pageFocus: 'Overview',
+            /**
+             * 用于页面中的动画切换效果。位于Transition名为page。
+             */
+            isTablePage: true,
        }
     },
     watch: {
@@ -86,6 +90,17 @@ export default {
         sortType: {
             handler() {
                 this.sort(this.tasks)
+            }
+        },
+
+        /**
+         * 监测pageFocus的更改，当pageFocus发生变化时将isTablePage设为false，定时器0.24s之后将isTablePage设为true。
+         */
+        pageFocus: {
+            handler() {
+                this.isTablePage = false
+                // 设为0.24s防止页面切换时闪烁
+                setTimeout(() => this.isTablePage = true, 240)
             }
         }
     },
@@ -198,7 +213,7 @@ export default {
 </script>
 
 <template>
-    <div class="mt-16 ">
+    <div class="mt-16">
         
         <header class="fixed top-0 h-16 w-full z-20">
             <!-- TopBar on md -->
@@ -230,21 +245,22 @@ export default {
     
     
     
-    
             <!-- Pages -->
-            <div class="flex-grow flex-shrink w-full h-full xl:max-w-3xl self-start">
-    
-                <!-- Overview page is Default, it is controlled by navRail -->
-                <overview v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord"></overview>
-                
-                <pinTasks v-else-if="'Pin' === pageFocus" :forceVisible="true" :tasks="tasks"></pinTasks>
-    
-                <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks"></doneTasks>
-                
-                <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord"></searchTasks>
-    
-                <helper v-else-if="'Help' === pageFocus"></helper>
-            </div>
+            <Transition name="page" appear>
+                <div v-show="isTablePage" class="relative flex-grow flex-shrink w-full h-full xl:max-w-3xl 2xl:max-w-4xl self-start">
+                    
+                    <!-- Overview page is Default, it is controlled by navRail -->
+                    <overview v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord"></overview>
+                    
+                    <pinTasks v-else-if="'Pin' === pageFocus" :forceVisible="true" :tasks="tasks"></pinTasks>
+        
+                    <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks"></doneTasks>
+                    
+                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord"></searchTasks>
+        
+                    <helper v-else-if="'Help' === pageFocus"></helper>
+                </div>
+            </Transition>
 
             <div class="xl:top-16 sticky self-start w-64 pt-10 hidden xl:block">
                 <about></about>
@@ -288,16 +304,22 @@ export default {
         @apply dark:text-white dark:ring-white;
     }
     button[type=risk] {
-        @apply hover:bg-red-50 active:bg-red-500 active:text-white p-5;
+        @apply hover:bg-red-100 active:bg-red-500 active:text-white p-5;
         @apply dark:hover:bg-red-900 dark:active:bg-red-500;
     }
     button[type=safe] {
-        @apply hover:bg-green-50 active:bg-green-500 active:text-white p-5;
+        @apply hover:bg-green-100 active:bg-green-500 active:text-white p-5;
         @apply dark:hover:bg-green-900 dark:active:bg-green-500;
     }
     button[type=info] {
-        @apply hover:bg-yellow-50 active:bg-yellow-500 p-5;
+        @apply hover:bg-yellow-100 active:bg-yellow-500 p-5;
         @apply dark:hover:bg-yellow-900 dark:active:bg-yellow-500;
+    }
+    button[type=love] {
+        @apply hover:bg-red-100 dark:hover:bg-gray-800 p-5 text-red-500;
+    }
+    button[type=medium] {
+        @apply hover:bg-gray-100 dark:hover:bg-gray-800 p-5;
     }
     button[type=normal] {
         @apply rounded-md shadow hover:shadow-md active:shadow-xl p-5;
@@ -308,10 +330,40 @@ export default {
     .sticky {
         position: static;
     }
-
     @media (min-width:1280px) {
         .sticky {
             position: sticky;
         }
+    }
+
+
+    /**
+        用于本文件的页面切换效果。
+    */
+    .page-leave-active {
+        animation: table 0.25s;
+    }
+    @keyframes table {
+        from {
+            opacity: 0;
+            left: 20px;
+        } to {
+            opacity: 1;
+            left: 0px;
+        }
+    }
+
+
+    /**
+        用于几个Tasks的Transition标签的动画效果。
+    */
+    .list-enter-active,
+    .list-leave-active {
+        transition: all 0.5s ease;
+    }
+    .list-enter-from,
+    .list-leave-to {
+        opacity: 0;
+        transform: translateX(10px);
     }
 </style>

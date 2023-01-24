@@ -47,7 +47,7 @@ export default {
 
 <template>
 
-    <p v-if="forceVisible && keyWord === ''" class="panel font-bold text-2xl">
+    <p v-show="forceVisible && keyWord === ''" class="panel font-bold text-2xl">
         You have not input
     </p>
     

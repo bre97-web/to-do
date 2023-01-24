@@ -70,7 +70,7 @@ export default {
             </div>    
             
             <!-- Buttons -->
-            <div class=" flex flex-wrap gap-2 self-end">
+            <div class="flex flex-wrap gap-2 self-end">
                 
                 <!--REMOVE-->
                 <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
@@ -82,9 +82,10 @@ export default {
                 <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
                 
                 <!-- Pin -->
-                <roundedButton v-if="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="info"></roundedButton>
-                <roundedButton v-else-if="hasPin" @click="unpin(task)" icon="favorite" type="info"></roundedButton>
-                
+                <roundedButton v-show="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="medium" class=""></roundedButton>
+                <roundedButton v-show="hasPin && task.pin" @click="unpin(task)" icon="favorite" type="love"></roundedButton>
+
+                    
             </div> 
             
         </li>
