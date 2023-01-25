@@ -53,6 +53,7 @@ export default {
 
             /**
              * tasks保存了任务，其位于localStorage的tasks。
+             * 若要修改tasks里的属性，请定位到add方法。
              */
             tasks: JSON.parse(localStorage.getItem('tasks')) || [],
             
@@ -114,9 +115,30 @@ export default {
             }
 
             this.tasks.push({
+                /**
+                 * id根据当前系统时间的UNIX时间戳。
+                 */
                 id: id(),
-                text: this.keyWord,
+
+                /**
+                 * text来自用户从输入框中键入的keyWord。
+                 * 截取到第一个句号、点号、逗号、感叹号、冒号、问号。
+                 */
+                text: this.keyWord.split(/[.。,，!！;:：?？]/)[0],
+
+                /**
+                 * notes来自用户从输入框中键入的完整的keyWord。
+                 */
+                notes: this.keyWord,
+
+                /**
+                 * date根据是同当前时间得到一个YYYY-MM-DD格式的日期。
+                 */
                 date: date(),
+
+                /**
+                 * 默认值为false。
+                 */
                 done:false,
                 isModifying: false,
                 pin: false,
@@ -142,6 +164,7 @@ export default {
 
             //this.tasks[index].id   = task.id
             this.tasks[index].text = task.text
+            this.tasks[index].notes = task.notes
             this.tasks[index].date = task.date
             this.tasks[index].done = task.done
             this.tasks[index].pin  = task.pin
@@ -256,7 +279,7 @@ export default {
         
                     <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks"></doneTasks>
                     
-                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord"></searchTasks>
+                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord" :showEdit="true"></searchTasks>
         
                     <helper v-else-if="'Help' === pageFocus"></helper>
                 </div>

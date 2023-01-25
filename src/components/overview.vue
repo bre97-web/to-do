@@ -22,7 +22,7 @@ export default {
 <template>
     <div>
         
-        <search :tasks="tasks" :keyWord="keyWord"></search>
+        <search :tasks="tasks" :keyWord="keyWord" :showEdit="false"></search>
 
         <pin :tasks="tasks"></pin>
 

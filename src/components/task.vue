@@ -28,6 +28,10 @@ export default {
             type:Boolean,
             default: false,
         },
+        'showEdit': {
+            type:Boolean,
+            default: true,
+        },
     },
     methods: {
         done(e) {
@@ -57,20 +61,28 @@ export default {
 
 <template>
     <div>
-        <li class="border rounded-md flex flex-wrap gap-2 flex-row md:flex-col items-center justify-start p-2">
-            <div class="flex-grow flex flex-row gap-2 items-center justify-center md:self-start">
+        <li class="border rounded-md flex flex-wrap flex-row md:flex-col items-center justify-start p-2 pl-4">
+            
+            <div class="flex flex-row flex-shrink flex-grow items-center justify-start self-start gap-5 md:max-w-sm">
+                
                 <!-- Done button -->
-                <input type="radio" v-if="hasDone && !task.done" @click="done(task)" :name="task.id" value="1" class="flex-none w-5 h-5 border border-black">
+                <input type="radio" v-if="hasDone && !task.done" @click="done(task)" :name="task.id" value="1" class="flex-none self-start mt-2 w-5 h-5 border border-black">
                 
-                <!-- Tasks text -->
-                <p class="flex-grow font-medium" :class="{'line-through':task.done}">
-                    {{task.text}}
-                </p>
                 
-            </div>    
+                <div class="flex flex-row gap-2 items-center justify-center text-ellipsis break-all">
+                    
+                    <!-- Tasks text and notes -->
+                    <p class="flex-grow font-medium" :class="{'line-through':task.done}">
+                        <strong>{{task.text}}</strong>
+                        <p>{{task.notes}}</p>
+                    </p>
+                    
+                </div>    
+
+            </div>
             
             <!-- Buttons -->
-            <div class="flex flex-wrap gap-2 self-end">
+            <div class="flex flex-wrap flex-shrink-0 gap-2 justify-center items-center md:self-end">
                 
                 <!--REMOVE-->
                 <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
@@ -91,6 +103,6 @@ export default {
         </li>
         
         <!-- EDIT Panel -->
-        <edit v-if="hasEdit && task.isModifying" :task="task"></edit>
+        <edit v-if="hasEdit && showEdit && task.isModifying" :task="task"></edit>
     </div>
 </template>

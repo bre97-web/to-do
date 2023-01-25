@@ -12,6 +12,7 @@ export default {
         return {
             id: this.task.id,
             text: this.task.text,
+            notes: this.task.notes,
             date: this.task.date,
             done: this.task.done,
             pin: this.task.pin,
@@ -38,6 +39,7 @@ export default {
                     task: {
                         id: this.id,
                         text: this.text,
+                        notes: this.notes,
                         date: this.date,
                         done: this.done,
                         pin: this.pin,
@@ -53,6 +55,7 @@ export default {
         cancel() {
             this.id   = this.task.id
             this.text = this.task.text
+            this.notes = this.task.notes
             this.date = this.task.date
             this.done = this.task.done
             this.pin  = this.task.pin
@@ -89,6 +92,17 @@ export default {
                                 </td>
                                 <td>
                                     <input v-model="text" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td>
+                                    <label>Notes</label>
+                                </td>
+                                <td>
+                                    <input v-model="notes" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
                                 </td>
                             </tr>
         
