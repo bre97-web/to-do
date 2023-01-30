@@ -4,7 +4,7 @@ import roundedButton from './button/roundedButton.vue'
 import edit from './editTask.vue'
 import task from './task.vue'
 
-import PubSub from 'pubsub-js'
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -31,15 +31,7 @@ export default {
         },
     },
     methods: {
-        add() {
-            PubSub.publish('add')
-        },
-        remove(e) {
-            PubSub.publish('remove', e)
-        },
-        edit(e) {
-            PubSub.publish('edit', e)
-        },
+        ...mapActions(['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit']),
     },
     components: {
         edit,
@@ -85,7 +77,7 @@ export default {
                         ?
                     </p>
                     
-                    <button @click="add" type="normal">
+                    <button @click="add(keyWord)" type="normal">
                         <p>Create</p>
                     </button>
                 </div>

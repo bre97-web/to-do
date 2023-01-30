@@ -3,7 +3,7 @@
 import roundedButton from './button/roundedButton.vue'
 import edit from './editTask.vue'
 
-import PubSub from 'pubsub-js'
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -34,21 +34,7 @@ export default {
         },
     },
     methods: {
-        done(e) {
-            PubSub.publish('done', e)
-        },
-        undo(e) {
-            PubSub.publish('undo', e)
-        },
-        remove(e) {
-            PubSub.publish('remove', e)
-        },
-        pin(e) {
-            PubSub.publish('pin', e)
-        },
-        unpin(e) {
-            PubSub.publish('unpin', e)
-        },
+        ...mapActions(['remove', 'done', 'undo', 'pin', 'unpin']),    
     },
         
     components: {
@@ -88,13 +74,13 @@ export default {
                 <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
                 
                 <!-- Undo -->
-                <roundedButton v-if="hasUndo" @click="undo(task)" value="Undo" icon="restore_outline" type="safe"></roundedButton>
+                <roundedButton v-if="hasUndo" v-show="task.done" @click="undo(task)" :disabled="!task.done" value="Undo" icon="restore_outline" type="safe"></roundedButton>
                 
                 <!-- Let isModifying is true -->
                 <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
                 
                 <!-- Pin -->
-                <roundedButton v-show="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="medium" class=""></roundedButton>
+                <roundedButton v-show="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="medium"></roundedButton>
                 <roundedButton v-show="hasPin && task.pin" @click="unpin(task)" icon="favorite" type="love"></roundedButton>
 
                     

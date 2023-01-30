@@ -9,9 +9,7 @@ import searchTasks from './components/searchTasks.vue'
 import pinTasks from './components/pinTasks.vue'
 import helper from './components/helper.vue'
 
-import moment from 'moment'
-import PubSub from 'pubsub-js'
-
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 console.log(`
 ///////////           ///////
@@ -22,20 +20,7 @@ console.log(`
 `);
 
 
-/**
- * @returns 返回UNIX时间戳。
- * @see 被方法add调用，作为tasks.id。
- */
-function id() {
-    return moment().format('x')
-}
-/**
- * @returns 返回一个YYYY-MM-DD格式的日期。
- * @see 被方法add调用，作为tasks.date
- */
-function date() {
-    return moment().format('YYYY-MM-DD')
-}
+
 
 export default {
     data() {
@@ -50,12 +35,6 @@ export default {
              * 用于搜索和添加功能。创建task时依赖keyWord的值。
              */
             keyWord: '',
-
-            /**
-             * tasks保存了任务，其位于localStorage的tasks。
-             * 若要修改tasks里的属性，请定位到add方法。
-             */
-            tasks: JSON.parse(localStorage.getItem('tasks')) || [],
             
             /**
              * pageList是页面上的侧栏名称。
@@ -77,12 +56,15 @@ export default {
             isTablePage: true,
        }
     },
+    computed: {
+        ...mapState({'tasks':'list'}),
+    },
     watch: {
         tasks: {
             immediate: false,
             deep: true,
-            handler(v) {
-                localStorage.setItem('tasks', JSON.stringify(v))
+            handler() {
+                this.SAVE()
             }
         },
         /**
@@ -105,80 +87,10 @@ export default {
             }
         }
     },
-    methods: {
-        /**
-         * **添加一个任务到tasks**，配置自动完成。
-         */
-        add() {
-            if(this.keyWord == null || this.keyWord === '') {
-                return
-            }
-
-            this.tasks.push({
-                /**
-                 * id根据当前系统时间的UNIX时间戳。
-                 */
-                id: id(),
-
-                /**
-                 * text来自用户从输入框中键入的keyWord。
-                 * 截取到第一个句号、点号、逗号、感叹号、冒号、问号。
-                 */
-                text: this.keyWord.split(/[.。,，!！;:：?？]/)[0],
-
-                /**
-                 * notes来自用户从输入框中键入的完整的keyWord。
-                 */
-                notes: this.keyWord,
-
-                /**
-                 * date根据是同当前时间得到一个YYYY-MM-DD格式的日期。
-                 */
-                date: date(),
-
-                /**
-                 * 默认值为false。
-                 */
-                done:false,
-                isModifying: false,
-                pin: false,
-            })
-
-            this.clearKeyWord()
-        },
+    methods: {        
+        ...mapActions(['add']),
+        ...mapMutations(['SAVE']),
         
-        remove(_, e) {
-            this.tasks = this.tasks.filter((p) => p !== e)
-        },
-        done(_, e) {
-            e.done = true
-        },
-        undo(_, e) {
-            e.done = false
-        },
-        /**
-         * 修改e的值，数据来源于task。不会修改e.id。
-         */
-        edit(_, {e,task}) {
-            var index = this.tasks.indexOf(e)
-
-            //this.tasks[index].id   = task.id
-            this.tasks[index].text = task.text
-            this.tasks[index].notes = task.notes
-            this.tasks[index].date = task.date
-            this.tasks[index].done = task.done
-            this.tasks[index].pin  = task.pin
-            this.tasks[index].isModifying = task.isModifying
-        },
-        pin(_, e) {
-            e.pin = true
-        },
-        unpin(_, e) {
-            e.pin = false
-        },
-
-        
-
         clearKeyWord() {
             this.keyWord = ''
         },
@@ -194,32 +106,6 @@ export default {
             this.pageFocus = v
         },
 
-    },
-    mounted() {
-
-        /**
-         * 添加关于操作tasks的订阅。
-         */
-        this.addPubId = PubSub.subscribe('add', this.add)
-        this.donePubId = PubSub.subscribe('done', this.done)
-        this.undoPubId = PubSub.subscribe('undo', this.undo)
-        this.removePubId = PubSub.subscribe('remove', this.remove)
-        this.editPubId = PubSub.subscribe('edit', this.edit)
-        this.pinPubId = PubSub.subscribe('pin', this.pin)
-        this.unpinPubId = PubSub.subscribe('unpin', this.unpin)
-    },
-    beforeDestroy() {
-
-        /**
-         * 销毁关于tasks的订阅。
-         */
-        PubSub.unsubscribe(this.addPubId)
-        PubSub.unsubscribe(this.donePubId)
-        PubSub.unsubscribe(this.undoPubId)
-        PubSub.unsubscribe(this.removePubId)
-        PubSub.unsubscribe(this.editPubId)
-        PubSub.unsubscribe(this.pinPubId)
-        PubSub.unsubscribe(this.undoPubId)
     },
     components: {
         overview,
@@ -242,8 +128,8 @@ export default {
             <!-- TopBar on md -->
             <div class="bg-blue-500 h-full flex flex-wrap items-center justify-center gap-2  pl-5 pr-5">
                 <div class="flex-grow flex items-center justify-center gap-2">
-                    <input @keydown.enter="add()"   class="max-w-lg w-full h-10 rounded-md outline-none shadow p-2 focus:ring dark:ring-white dark:bg-black dark:text-white" type="text" placeholder="Search or add a task" v-model="keyWord">
-                    <button @click="add()" type="normal" class="font-bold">Add</button>
+                    <input @keydown.enter="add(keyWord)"   class="max-w-lg w-full h-10 rounded-md outline-none shadow p-2 focus:ring dark:ring-white dark:bg-black dark:text-white" type="text" placeholder="Search or add a task" v-model="keyWord">
+                    <button @click="add(keyWord)" type="normal" class="font-bold">Add</button>
                     <select v-model="sortType" class="hidden sm:block outline-none font-medium rounded-md border h-10 dark:bg-black dark:text-white dark:border-none">
                         <option value="1">Earliest</option>
                         <option value="2">Latest</option>
