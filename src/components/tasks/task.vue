@@ -1,9 +1,8 @@
 <script>
 
-import roundedButton from './button/roundedButton.vue'
 import edit from './editTask.vue'
 
-import PubSub from 'pubsub-js'
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -34,26 +33,11 @@ export default {
         },
     },
     methods: {
-        done(e) {
-            PubSub.publish('done', e)
-        },
-        undo(e) {
-            PubSub.publish('undo', e)
-        },
-        remove(e) {
-            PubSub.publish('remove', e)
-        },
-        pin(e) {
-            PubSub.publish('pin', e)
-        },
-        unpin(e) {
-            PubSub.publish('unpin', e)
-        },
+        ...mapActions('tasksStore', ['remove', 'done', 'undo', 'pin', 'unpin']),    
     },
         
     components: {
         edit,
-        roundedButton,
     }
 
 }
@@ -85,18 +69,32 @@ export default {
             <div class="flex flex-wrap flex-shrink-0 gap-2 justify-center items-center md:self-end">
                 
                 <!--REMOVE-->
-                <roundedButton v-if="hasRemove" @click="remove(task)" value="Remove" icon="delete_outline" type="risk"></roundedButton>
-                
-                <!-- Undo -->
-                <roundedButton v-if="hasUndo" @click="undo(task)" value="Undo" icon="restore_outline" type="safe"></roundedButton>
-                
-                <!-- Let isModifying is true -->
-                <roundedButton v-if="hasEdit" @click="task.isModifying = true" value="Edit" icon="info_outline" type="info"></roundedButton>
-                
-                <!-- Pin -->
-                <roundedButton v-show="hasPin && !task.pin" @click="pin(task)" icon="favorite_outline" type="medium" class=""></roundedButton>
-                <roundedButton v-show="hasPin && task.pin" @click="unpin(task)" icon="favorite" type="love"></roundedButton>
+                <button v-if="hasRemove" @click="remove(task)" type="risk" class="flex flex-row items-center">
+                    <i class="material-icons flex-none self-center w-2 mr-4">delete_outline</i> 
+                    <p class="hidden">Remove</p>
+                </button>
 
+                <!-- Undo -->
+                <button v-if="hasUndo" v-show="task.done" @click="undo(task)" :disabled="!task.done" type="safe" class="flex flex-row items-center">
+                    <i class="material-icons flex-none self-center w-2 mr-4">restore_outline</i> 
+                    <p class="hidden">Undo</p>
+                </button>
+
+                <!-- Let isModifying is true -->
+                <button v-if="hasEdit" @click="task.isModifying = true" type="info" class="flex flex-row items-center">
+                    <i class="material-icons flex-none self-center w-2 mr-4">info_outline</i> 
+                    <p class="hidden">Edit</p>
+                </button>
+
+                <!-- Pin -->
+                <button v-show="hasPin && !task.pin" @click="pin(task)" type="medium" class="flex flex-row items-center">
+                    <i class="material-icons flex-none self-center w-2 mr-4">favorite_outline</i> 
+                    <p class="hidden">Pin</p>
+                </button>
+                <button v-show="hasPin && task.pin" @click="unpin(task)" type="love" class="flex flex-row items-center">
+                    <i class="material-icons flex-none self-center w-2 mr-4">favorite</i> 
+                    <p class="hidden">Unpin</p>
+                </button>
                     
             </div> 
             

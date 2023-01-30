@@ -12,5 +12,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  // server: {
+  //   open: true,
+  //   cors: true,
+  //   proxy: {
+  //     '/api': 'http://localhost/'
+  //   },
+  // },
+
   base: 'To-Do',
 })

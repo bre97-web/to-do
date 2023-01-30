@@ -1,6 +1,6 @@
 <script>
 
-import PubSub from 'pubsub-js'
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -22,19 +22,16 @@ export default {
     },
 
     methods: {
+        ...mapActions('tasksStore', ['edit']),
+
         /**
-         * 执行'edit'订阅。
+         * 执行edit。
          */
         commit() {
-
-            if(this.text == '' || this.text.length < 1) {
-                return 
-            }
-
             this.isShow = false
 
             setTimeout(() => {
-                PubSub.publish('edit', {
+                this.edit({
                     e:this.task, 
                     task: {
                         id: this.id,
@@ -46,11 +43,11 @@ export default {
                         isModifying: false,
                     }
                 })
-                
-            }, 250);
+            }, 250)
+            
         },
         /**
-         * 取消所有操作，还原数据并执行'edit'订阅。
+         * 取消所有操作，还原数据并执行edit。
          */
         cancel() {
             this.id   = this.task.id
