@@ -30,7 +30,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit']),
+        ...mapActions('tasksStore', ['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit']),
     },
     components: {
         edit,

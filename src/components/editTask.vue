@@ -22,7 +22,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(['edit']),
+        ...mapActions('tasksStore', ['edit']),
 
         /**
          * 执行edit。

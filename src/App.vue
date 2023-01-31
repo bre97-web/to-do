@@ -57,7 +57,9 @@ export default {
        }
     },
     computed: {
-        ...mapState({'tasks':'list'}),
+        ...mapState('tasksStore', {
+            tasks: state => state.list
+        }),
     },
     watch: {
         tasks: {
@@ -88,8 +90,8 @@ export default {
         }
     },
     methods: {        
-        ...mapActions(['add']),
-        ...mapMutations(['SAVE']),
+        ...mapActions('tasksStore', ['add']),
+        ...mapMutations('tasksStore', ['SAVE']),
         
         clearKeyWord() {
             this.keyWord = ''
