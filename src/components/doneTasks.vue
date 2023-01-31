@@ -1,6 +1,5 @@
 <script>
 
-import roundedButton from './button/roundedButton.vue'
 import task from './task.vue'
 
 
@@ -21,7 +20,6 @@ export default {
         },
     },
     components: {
-        roundedButton,
         task,
     }
 }
