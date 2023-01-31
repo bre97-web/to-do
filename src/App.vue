@@ -1,15 +1,14 @@
 <script>
-import overview from './components/overview.vue'
 import now from './components/time.vue'
 import about from './components/about.vue'
-import dark from './components/dark.vue'
+import dark from './components/dark/dark.vue'
 import navRail from './components/navRail.vue'
-import doneTasks from './components/doneTasks.vue'
-import searchTasks from './components/searchTasks.vue'
-import pinTasks from './components/pinTasks.vue'
+import searchTasks from './components/tasks/searchTasks.vue'
 import helper from './components/helper.vue'
 
-import { mapState, mapActions, mapMutations } from 'vuex'
+import taskPanel from './components/tasks/taskPanel.vue'
+
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 console.log(`
 ///////////           ///////
@@ -60,6 +59,7 @@ export default {
         ...mapState('tasksStore', {
             tasks: state => state.list
         }),
+        ...mapGetters('tasksStore', ['getPinned', 'getDone', 'getDoing']),
     },
     watch: {
         tasks: {
@@ -110,15 +110,13 @@ export default {
 
     },
     components: {
-        overview,
         now,
         about,
         dark,
         navRail,
-        doneTasks,
         searchTasks,
-        pinTasks,
         helper,
+        taskPanel,
     },
 }
 </script>
@@ -143,7 +141,7 @@ export default {
 
         </header>
 
-        <body class="min-h-screen flex flex-col xl:flex-row items-center justify-between dark:bg-gray-900 dark:text-white">
+        <main class="min-h-screen flex flex-col xl:flex-row items-center justify-between dark:bg-gray-900 dark:text-white">
             <div class="xl:top-16 sticky flex flex-col gap-10 self-start w-5/6 max-w-3xl mx-auto xl:mx-0 xl:w-64 pt-10 xl:pl-5 xl:pr-5">
     
                 <!-- Time -->
@@ -160,14 +158,92 @@ export default {
             <Transition name="page" appear>
                 <div v-show="isTablePage" class="relative flex-grow flex-shrink w-full h-full xl:max-w-3xl 2xl:max-w-4xl self-start">
                     
+                    <!-- This is the OVERVIEW panel -->
                     <!-- Overview page is Default, it is controlled by navRail -->
-                    <overview v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord"></overview>
+                    <div v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord">
+                        
+
+                        
+                        <searchTasks :tasks="tasks" :keyWord="keyWord"></searchTasks>
+
+                        <!-- PIN -->
+                        <taskPanel :tasks="getPinned" :hasPin="true">
+                            <template v-slot:title>
+                                <p class="font-bold text-2xl">Pin</p>
+                            </template>
+
+                            <template v-slot:alt>
+                                <p v-show="getPinned.length == 0">Nothing.</p>
+                            </template>
+                        </taskPanel>
+
+
+
+
+
+                        <!-- DOING -->
+                        <taskPanel :tasks="getDoing" :forceVisible="true" :hasPin="true" :hasEdit="true" :hasRemove="true" :hasDone="true">
+                            <template v-slot:title>
+                                <p class="font-bold text-2xl">Today's Tasks</p>
+                            </template>
+
+                            <template v-slot:alt>
+                                <p v-show="getDoing.length == 0">All did it!</p>
+                            </template>
+                        </taskPanel>
+            
+
+
+
+
+                        <!-- DONE -->
+                        <taskPanel :tasks="getDone" :hasPin="true" :hasUndo="true" :hasRemove="true">
+                            <template v-slot:title>
+                                <p class="font-bold text-2xl">Done</p>
+                            </template>
+
+                            <template v-slot:alt>
+                                <p v-show="getDone.length == 0">Nothing.</p>
+                            </template>
+                        </taskPanel>
+
+
+                    </div>
                     
-                    <pinTasks v-else-if="'Pin' === pageFocus" :forceVisible="true" :tasks="tasks"></pinTasks>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <taskPanel v-else-if="'Pin' === pageFocus" :tasks="getPinned" :forceVisible="true" :hasPin="true">
+                        <template v-slot:title>
+                            <p class="font-bold text-2xl">Pin</p>
+                        </template>
+
+                        <template v-slot:alt>
+                            <p v-show="getPinned.length == 0">Nothing.</p>
+                        </template>
+                    </taskPanel>
         
-                    <doneTasks v-else-if="'Done' === pageFocus" :forceVisible="true" :tasks="tasks"></doneTasks>
-                    
-                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord" :showEdit="true"></searchTasks>
+                    <taskPanel v-else-if="'Done' === pageFocus" :tasks="getDone" :forceVisible="true" :hasPin="true" :hasUndo="true" :hasRemove="true">
+                        <template v-slot:title>
+                            <p class="font-bold text-2xl">Done</p>
+                        </template>
+
+                        <template v-slot:alt>
+                            <p v-show="getDone.length == 0">Nothing.</p>
+                        </template>
+                    </taskPanel>
+
+                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord"></searchTasks>
         
                     <helper v-else-if="'Help' === pageFocus"></helper>
                 </div>
@@ -176,7 +252,7 @@ export default {
             <div class="xl:top-16 sticky self-start w-64 pt-10 hidden xl:block">
                 <about></about>
             </div>
-        </body>
+        </main>
 
         <footer>
             

@@ -22,6 +22,11 @@ const Tasks = {
     state: {
         list: JSON.parse(localStorage.getItem('tasks')) || [],
     },
+    getters: {
+        getPinned: (state) => state.list.filter(e => e.pin),
+        getDoing:   (state) => state.list.filter(e => !e.done),
+        getDone:   (state) => state.list.filter(e => e.done),
+    },
     actions: {
         add(miniStore, keyWord) {
             if(keyWord == null || keyWord === '') {
@@ -31,9 +36,9 @@ const Tasks = {
             miniStore.commit('ADD', keyWord)
         },
         remove(miniStore, e) {
-            var list = miniStore.state.list.filter((p) => p !== e)
+            var index = miniStore.state.list.indexOf(e)
 
-            miniStore.commit('REMOVE', list)
+            miniStore.commit('REMOVE', e)
         },
         done(miniStore, e) {
             var index = miniStore.state.list.indexOf(e)
@@ -107,8 +112,8 @@ const Tasks = {
                 pin: false,
             })
         },
-        REMOVE(state, index) {
-            state.list.splice(index, 1)
+        REMOVE(state, e) {
+            state.list = state.list.filter(p => p !== e)
         },
         DONE(state, index) {
             state.list[index].done = true
