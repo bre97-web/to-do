@@ -1,3 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+
+@layer components {
+    * {
+        @apply ring-black dark:ring-white;
+    }
+
+    i {
+        @apply select-none;
+    }
+
+    nav {
+        @apply fixed right-5 bottom-5;
+    }
+
+    header {
+        @apply z-50 max-h-16 w-screen;
+    }
+    main {
+        @apply min-h-screen pt-16 px-4 bg-transparent dark:bg-gray-900;
+    }
+    footer {
+        @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white;
+    }
+
+    label {
+        @apply flex flex-row items-center justify-center gap-2;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-extrabold;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        @apply text-black dark:text-white
+    }
+    
+    header h1 {
+        @apply text-xl;
+    }
+    header p {
+        @apply text-gray-500 dark:text-gray-300;
+    }
+    .topBar {
+        @apply border-b dark:border-none backdrop-blur-lg text-black dark:text-white bg-white dark:bg-transparent bg-opacity-25 flex items-center justify-start w-screen;
+    }
+    header.topBar {
+        @apply fixed top-0 right-0;
+    }
+    header.topBar input {
+        @apply outline-none border dark:border-none rounded-md hover:shadow focus:ring px-4 py-2 bg-white dark:bg-gray-700;
+    }
+
+
+
+    ul.tasks {
+        @apply flex flex-col p-4 rounded-md;
+    }
+    ul.tasks li {
+        @apply relative px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow;
+    }
+
+}

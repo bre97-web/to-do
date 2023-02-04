@@ -1,4 +1,3 @@
-import { createStore } from "vuex"
 
 import moment from 'moment'
 
@@ -21,16 +20,19 @@ const Tasks = {
     namespaced: true,
     state: {
         list: JSON.parse(localStorage.getItem('tasks')) || [],
+        keyWord: '',
     },
     getters: {
         getPinned: (state) => state.list.filter(e => e.pin),
         getDoing:   (state) => state.list.filter(e => !e.done),
         getDone:   (state) => state.list.filter(e => e.done),
+        get: (state) => state.list,
+        getKeyWord: (state) => state.keyWord,
     },
     actions: {
         add(miniStore, keyWord) {
             if(keyWord == null || keyWord === '') {
-                return
+                return null
             }
             
             miniStore.commit('ADD', keyWord)
@@ -58,7 +60,14 @@ const Tasks = {
                 return 
             }
             
-            var index = miniStore.state.list.indexOf(e)
+            // var index = miniStore.state.list.indexOf(e)
+            for(var index = 0; index < miniStore.state.list.length; index ++) {
+                if(miniStore.state.list[index].id == e.id) break
+            }
+
+            if(index == -1) {
+                return
+            }
 
             miniStore.commit('EDIT', {
                 index, 
@@ -75,6 +84,9 @@ const Tasks = {
             var index = miniStore.state.list.indexOf(e)
             
             miniStore.commit('UNPIN', index)
+        },
+        setKeyWord(miniStore, v) {
+            miniStore.commit('SETKEYWORD', v)
         },
     },
     mutations: {
@@ -138,6 +150,10 @@ const Tasks = {
         },
         SAVE(state) {
             localStorage.setItem('tasks', JSON.stringify(state.list))
+        },
+
+        SETKEYWORD(state, v) {
+            state.keyWord = v
         },
     },
 }
