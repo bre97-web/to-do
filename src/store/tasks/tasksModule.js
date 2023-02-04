@@ -1,4 +1,3 @@
-import { createStore } from "vuex"
 
 import moment from 'moment'
 
@@ -26,6 +25,7 @@ const Tasks = {
         getPinned: (state) => state.list.filter(e => e.pin),
         getDoing:   (state) => state.list.filter(e => !e.done),
         getDone:   (state) => state.list.filter(e => e.done),
+        getAll: (state) => state.list,
     },
     actions: {
         add(miniStore, keyWord) {

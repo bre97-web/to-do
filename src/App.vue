@@ -2,11 +2,6 @@
 import now from './components/time.vue'
 import about from './components/about.vue'
 import dark from './components/dark/dark.vue'
-import navRail from './components/navRail.vue'
-import searchTasks from './components/tasks/searchTasks.vue'
-import helper from './components/helper.vue'
-
-import taskPanel from './components/tasks/taskPanel.vue'
 
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
@@ -49,10 +44,6 @@ export default {
              * pageFocus是页面当前展示的页面名称。
              */
             pageFocus: 'Overview',
-            /**
-             * 用于页面中的动画切换效果。位于Transition名为page。
-             */
-            isTablePage: true,
        }
     },
     computed: {
@@ -77,17 +68,6 @@ export default {
                 this.sort(this.tasks)
             }
         },
-
-        /**
-         * 监测pageFocus的更改，当pageFocus发生变化时将isTablePage设为false，定时器0.24s之后将isTablePage设为true。
-         */
-        pageFocus: {
-            handler() {
-                this.isTablePage = false
-                // 设为0.24s防止页面切换时闪烁
-                setTimeout(() => this.isTablePage = true, 240)
-            }
-        }
     },
     methods: {        
         ...mapActions('tasksStore', ['add']),
@@ -108,15 +88,17 @@ export default {
             this.pageFocus = v
         },
 
+        push(to) {
+            this.$router.push(to)
+        },
+    },
+    mounted() {
+
     },
     components: {
         now,
         about,
         dark,
-        navRail,
-        searchTasks,
-        helper,
-        taskPanel,
     },
 }
 </script>
@@ -148,106 +130,58 @@ export default {
                 <now></now>
     
                 <!-- Nav Rail -->
-                <navRail @setPage="setPageFocus" :list="pageList" :focus="pageFocus"></navRail>
+                <div class="flex flex-wrap gap-1 font-medium flex-row xl:flex-col">
+
+
+                    <button @click="setPageFocus('Overview');push({
+                        path: '/',
+                    })" class="rounded-md pr-5 mr-5 flex gap-4 place-content-start focus:ring-0 hover:bg-gray-50 dark:hover:bg-gray-800" :class="{'font-bold bg-gray-100 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 ':pageFocus === 'Overview'}">
+                        <div class="w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-100 relative left-0 opacity-0" :class="{'opacity-100 left-1':pageFocus === 'Overview'}"></div>
+                        Overview
+                    </button>
+
+                    <button @click="setPageFocus('Pin');push({
+                        path: '/pin',
+                    })" class="rounded-md pr-5 mr-5 flex gap-4 place-content-start focus:ring-0 hover:bg-gray-50 dark:hover:bg-gray-800" :class="{'font-bold bg-gray-100 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 ':pageFocus === 'Pin'}">
+                        <div class="w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-100 relative left-0 opacity-0" :class="{'opacity-100 left-1':pageFocus === 'Pin'}"></div>
+                        Pin
+                    </button>
+
+                    <button @click="setPageFocus('Done');push({
+                        path: '/done',
+                    })" class="rounded-md pr-5 mr-5 flex gap-4 place-content-start focus:ring-0 hover:bg-gray-50 dark:hover:bg-gray-800" :class="{'font-bold bg-gray-100 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 ':pageFocus === 'Done'}">
+                        <div class="w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-100 relative left-0 opacity-0" :class="{'opacity-100 left-1':pageFocus === 'Done'}"></div>
+                        Done
+                    </button>
+
+                    <button @click="setPageFocus('Search');push({
+                        name: 'search',
+                    })" class="rounded-md pr-5 mr-5 flex gap-4 place-content-start focus:ring-0 hover:bg-gray-50 dark:hover:bg-gray-800" :class="{'font-bold bg-gray-100 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 ':pageFocus === 'Search'}">
+                        <div class="w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-100 relative left-0 opacity-0" :class="{'opacity-100 left-1':pageFocus === 'Search'}"></div>
+                        Search
+                    </button>
+
+                    <button @click="setPageFocus('Help');push({
+                        path: '/helper',
+                    })" class="rounded-md pr-5 mr-5 flex gap-4 place-content-start focus:ring-0 hover:bg-gray-50 dark:hover:bg-gray-800" :class="{'font-bold bg-gray-100 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 ':pageFocus === 'Help'}">
+                        <div class="w-1 h-4 rounded-full bg-blue-500 dark:bg-blue-100 relative left-0 opacity-0" :class="{'opacity-100 left-1':pageFocus === 'Help'}"></div>
+                        Helper
+                    </button>
+
+
+                </div>
 
             </div>
     
     
     
             <!-- Pages -->
-            <Transition name="page" appear>
-                <div v-show="isTablePage" class="relative flex-grow flex-shrink w-full h-full xl:max-w-3xl 2xl:max-w-4xl self-start">
-                    
-                    <!-- This is the OVERVIEW panel -->
-                    <!-- Overview page is Default, it is controlled by navRail -->
-                    <div v-if="'Overview' === pageFocus" :tasks="tasks" :keyWord="keyWord">
-                        
-
-                        
-                        <searchTasks :tasks="tasks" :keyWord="keyWord"></searchTasks>
-
-                        <!-- PIN -->
-                        <taskPanel :tasks="getPinned" :hasPin="true">
-                            <template v-slot:title>
-                                <p class="font-bold text-2xl">Pin</p>
-                            </template>
-
-                            <template v-slot:alt>
-                                <p v-show="getPinned.length == 0">Nothing.</p>
-                            </template>
-                        </taskPanel>
-
-
-
-
-
-                        <!-- DOING -->
-                        <taskPanel :tasks="getDoing" :forceVisible="true" :hasPin="true" :hasEdit="true" :hasRemove="true" :hasDone="true">
-                            <template v-slot:title>
-                                <p class="font-bold text-2xl">Today's Tasks</p>
-                            </template>
-
-                            <template v-slot:alt>
-                                <p v-show="getDoing.length == 0">All did it!</p>
-                            </template>
-                        </taskPanel>
-            
-
-
-
-
-                        <!-- DONE -->
-                        <taskPanel :tasks="getDone" :hasPin="true" :hasUndo="true" :hasRemove="true">
-                            <template v-slot:title>
-                                <p class="font-bold text-2xl">Done</p>
-                            </template>
-
-                            <template v-slot:alt>
-                                <p v-show="getDone.length == 0">Nothing.</p>
-                            </template>
-                        </taskPanel>
-
-
-                    </div>
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <taskPanel v-else-if="'Pin' === pageFocus" :tasks="getPinned" :forceVisible="true" :hasPin="true">
-                        <template v-slot:title>
-                            <p class="font-bold text-2xl">Pin</p>
-                        </template>
-
-                        <template v-slot:alt>
-                            <p v-show="getPinned.length == 0">Nothing.</p>
-                        </template>
-                    </taskPanel>
-        
-                    <taskPanel v-else-if="'Done' === pageFocus" :tasks="getDone" :forceVisible="true" :hasPin="true" :hasUndo="true" :hasRemove="true">
-                        <template v-slot:title>
-                            <p class="font-bold text-2xl">Done</p>
-                        </template>
-
-                        <template v-slot:alt>
-                            <p v-show="getDone.length == 0">Nothing.</p>
-                        </template>
-                    </taskPanel>
-
-                    <searchTasks v-else-if="'Search' === pageFocus" :forceVisible="true" :tasks="tasks" :keyWord="keyWord"></searchTasks>
-        
-                    <helper v-else-if="'Help' === pageFocus"></helper>
-                </div>
-            </Transition>
+            <div class="relative flex-grow flex-shrink w-full h-full xl:max-w-3xl 2xl:max-w-4xl self-start">
+                
+                <Transition name="list">
+                    <router-view :keyWord="keyWord"></router-view>
+                </Transition>
+            </div>
 
             <div class="xl:top-16 sticky self-start w-64 pt-10 hidden xl:block">
                 <about></about>
@@ -271,9 +205,8 @@ export default {
     }
 
     .panel {
-        @apply mt-10 mb-20 m-10 p-5 border rounded-xl flex flex-col items-start justify-center gap-4;
-        @apply md:max-w-3xl md:mx-auto;
-        @apply lg:max-w-4xl;
+        @apply m-10 p-5 border rounded-xl flex flex-col items-start justify-center gap-4;
+        @apply lg:max-w-4xl lg:mx-auto lg:w-full;
         @apply xl:border-none xl:w-full xl:p-0 xl:max-w-none;
     }
     .panel ul {
