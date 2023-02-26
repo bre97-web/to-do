@@ -10,73 +10,50 @@ export default {
     },
     data() {
         return {
-            id: this.task.id,
-            text: this.task.text,
-            notes: this.task.notes,
-            date: this.task.date,
-            done: this.task.done,
-            pin: this.task.pin,
-
-            isShow: true,
+            tmp: {
+                id: this.task.id,
+                text: this.task.text,
+                notes: this.task.notes,
+                date: this.task.date,
+                done: this.task.done,
+                pin: this.task.pin,
+            },
         }
     },
-
     methods: {
-        ...mapActions('tasksStore', ['edit']),
+        ...mapActions('TasksStore', ['edit']),
 
         /**
          * 执行edit。
          */
         commit() {
-            this.isShow = false
-
             setTimeout(() => {
-                this.edit({
-                    e:this.task, 
-                    task: {
-                        id: this.id,
-                        text: this.text,
-                        notes: this.notes,
-                        date: this.date,
-                        done: this.done,
-                        pin: this.pin,
-                        isModifying: false,
-                    }
-                })
+                this.edit({e:this.task, task:this.tmp})
+                this.close()
             }, 250)
+            
             
         },
         /**
-         * 取消所有操作，还原数据并执行edit。
+         * 取消所有操作，执行edit。
          */
         cancel() {
-            this.id   = this.task.id
-            this.text = this.task.text
-            this.notes = this.task.notes
-            this.date = this.task.date
-            this.done = this.task.done
-            this.pin  = this.task.pin
-            this.commit()
+            this.close()
+        },
+        close() {
+            this.$router.back()
         }
     }
 }
 </script>
 
 <template>
-
-
-    <div>
-        <!-- Mask-->
-        <Transition name="mask" appear>
-            <div v-show="isShow" class="bg-black opacity-50 noAnimation fixed top-0 left-0 w-screen h-screen z-30"></div>
-
-        </Transition>
-
+    <div class="fixed left-0 top-0 w-full h-full z-50 bg-white dark:bg-gray-900">
         <transition name="body" appear>
             <!-- Dialog Window -->
-            <dialog open v-show="isShow" class="fixed top-40 left-0 w-3/4 max-w-lg flex flex-col items-start justify-between gap-2 rounded-3xl shadow-xl pl-4 z-30 bg-white dark:bg-slate-800 text-black dark:text-white">
+            <dialog open class="w-full md:max-w-md lg:max-w-lg xl:max-w-xl flex flex-col items-start justify-between gap-2 bg-transparent text-black dark:text-white">
                 
-                <header class="">
+                <header>
                     <p class="font-bold text-2xl">Task Editor</p>
                 </header>
     
@@ -88,7 +65,7 @@ export default {
                                     <label>Text</label>
                                 </td>
                                 <td>
-                                    <input v-model="text" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
+                                    <input v-model="tmp.text" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
                                 </td>
                             </tr>
 
@@ -99,7 +76,7 @@ export default {
                                     <label>Notes</label>
                                 </td>
                                 <td>
-                                    <input v-model="notes" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
+                                    <input v-model="tmp.notes" type="text" minlength="1" maxlength="999" class="border outline-none w-full h-10">
                                 </td>
                             </tr>
         
@@ -110,7 +87,7 @@ export default {
                                     <label>Date</label>
                                 </td>
                                 <td>
-                                    <input v-model="date" type="date" class="border outline-none w-full h-10">
+                                    <input v-model="tmp.date" type="date" class="border outline-none w-full h-10">
                                 </td>
                             </tr>
                             
@@ -119,7 +96,7 @@ export default {
                                     <label>Done</label>
                                 </td>
                                 <td>
-                                    <input v-model="done" type="checkbox" name="done" class="block h-10 w-10">
+                                    <input v-model="tmp.done" type="checkbox" name="done" class="block h-10 w-10">
                                 </td>
                             </tr>
     
@@ -128,7 +105,7 @@ export default {
                                     <label>Pin</label>
                                 </td>
                                 <td>
-                                    <input v-model="pin" type="checkbox" name="pin" class="block h-10 w-10">
+                                    <input v-model="tmp.pin" type="checkbox" name="pin" class="block h-10 w-10">
                                 </td>
                             </tr>
                             
@@ -140,7 +117,7 @@ export default {
                                     <label class="text-gray-400">TimeId</label>
                                 </td>
                                 <td>
-                                    <input v-model="id" type="text" disabled class="border outline-none w-full h-10">
+                                    <input v-model="tmp.id" type="text" disabled class="border outline-none w-full h-10">
                                 </td>
                             </tr>
                         </tbody>
@@ -165,6 +142,16 @@ export default {
 <style scoped lang="css">
     input {
         @apply rounded-md bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-none;
+    }
+
+    button {
+        @apply rounded-full py-2 px-4 text-black dark:text-white;
+    }
+    button[type='risk'] {
+        @apply hover:bg-red-500 dark:bg-red-900 bg-opacity-25;
+    }
+    button[type='safe'] {
+        @apply hover:bg-green-500 dark:bg-green-900 bg-opacity-25;
     }
 
     .noAnimation {

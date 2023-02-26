@@ -1,59 +1,50 @@
 <script>
-
-import edit from '../components/tasks/editTask.vue'
 import task from '../components/tasks/task.vue'
 
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-    props: {
-        keyWord: {
-            required: true,
-            type: String
-        },
-    },
     computed: {
         focusTasks() {
-            return this.getAll.filter(p => p.text.indexOf(this.keyWord) !== -1)
+            return this.get.filter(p => p.text.indexOf(this.getKeyWord) !== -1)
         },
 
-        ...mapGetters('tasksStore', ['getAll']),
+        ...mapGetters('TasksStore', ['get', 'getKeyWord']),
 
     },
     methods: {
-        ...mapActions('tasksStore', ['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit']),
+        ...mapActions('TasksStore', ['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit', 'setKeyWord']),
     },
     components: {
-        edit,
         task,
     },
 }
 </script>
 
 <template>
-    <div v-if="keyWord !== ''" class="panel">
+    <div v-if="getKeyWord !== ''" class="panel">
         <!-- Title -->
         <p class="font-bold text-2xl break-all">
             Search
             <mark class="underline">
-                {{keyWord}}
+                {{getKeyWord}}
             </mark>
         </p>
 
         <!-- Suggests -->
-        <div v-if="keyWord !== ''" class="flex gap-2 flex-col items-center self-end justify-center pb-4 pl-4">
+        <div v-if="getKeyWord !== ''" class="flex gap-2 flex-col items-center self-end justify-center pb-4 pl-4">
             
             <!-- Create suggests -->
-            <div v-if="getAll.length == 0 || focusTasks.length == 0" class="flex flex-col items-end gap-2">
+            <div v-if="get.length == 0 || focusTasks.length == 0" class="flex flex-col items-end gap-2">
                 <p class="inline-block">
                     Do you want to create: 
                     <mark class="inline-block underline font-bold break-all">
-                        {{keyWord}}
+                        {{getKeyWord}}
                     </mark> 
                     ?
                 </p>
                 
-                <button @click="add(keyWord)" type="normal">
+                <button @click="add(getKeyWord)" type="normal">
                     <p>Create</p>
                 </button>
             </div>
@@ -85,7 +76,7 @@ export default {
         <!-- Tasks -->
         <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-2 flex-col md:flex-row">
             <task 
-                v-for="e in getAll" :key="e.id"
+                v-for="e in get" :key="e.id"
                 :task="e"
                 :hasRemove="true" :hasDone="true" :hasEdit="true" :hasPin="true" :showEdit="false">
             </task>

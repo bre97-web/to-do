@@ -1,40 +1,41 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
-import overview from '../pages/overview.vue'
-import search from '../pages/search.vue'
-import fullSearch from '../pages/fullSearch.vue'
-import done from '../pages/done.vue'
-import doing from '../pages/doing.vue'
-import pin from '../pages/pin.vue'
-import helper from '../pages/helper.vue'
-
 const routes = [
     {
-        name: 'search',
-        path: '/search',
-        component: fullSearch,
+        path: '/',
+        component: () => import('../views/home.vue'),
     },
     {
-        path: '/',
-        component: overview,
+        path: '/search',
+        component: () => import('../views/fullSearch.vue'),
     },
     {
         path: '/pin',
-        component: pin,
+        component: () => import('../views/pin.vue'),
     },
     {
         path: '/done',
-        component: done,
+        component: () => import('../views/done.vue'),
     },
     {
         path: '/helper',
-        component: helper,
+        component: () => import('../views/helper.vue'),
+    },
+    {
+        path: '/edit',
+        component: () => import('../views/edit.vue'),
+        props($route) {
+            return {
+                task: JSON.parse($route.query.task),
+            }
+        }
     },
 ]
 
 const Router = createRouter({
     history: createWebHashHistory(),
     routes,
+    linkExactActiveClass: 'active',
 })
 
 export default Router

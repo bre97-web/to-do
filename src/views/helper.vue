@@ -1,12 +1,5 @@
-<script>
-export default {
-
-}
-</script>
-
-
 <template>
-    <div class="panel">
+    <div>
         <header>
             <p class="text-2xl font-bold">
                 Help
@@ -42,5 +35,4 @@ export default {
     li h1 {
         @apply font-bold;
     }
-
 </style>
