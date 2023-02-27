@@ -148,10 +148,10 @@ export default {
         @apply rounded-full py-2 px-4 text-black dark:text-white;
     }
     button[type='risk'] {
-        @apply hover:bg-red-500 dark:bg-red-900 bg-opacity-25;
+        @apply hover:bg-red-100 dark:hover:bg-red-900;
     }
     button[type='safe'] {
-        @apply hover:bg-green-500 dark:bg-green-900 bg-opacity-25;
+        @apply hover:bg-green-100 dark:hover:bg-green-900;
     }
 
     .noAnimation {
