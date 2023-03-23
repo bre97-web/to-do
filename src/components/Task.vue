@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import useList from '../hooks/useList'
 
 const props = defineProps({
     'title':{

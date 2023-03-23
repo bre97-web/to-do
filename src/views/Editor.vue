@@ -27,7 +27,9 @@ import {
 import {
     useRouter
 } from 'vue-router'
-import useList from '../hooks/useList'
+import { 
+    useList, useInnerList
+} from '../hooks/useList'
 
 const router = useRouter()
 
@@ -36,7 +38,6 @@ const task = reactive({
     ...JSON.parse(props.task),
 })
 
-watch(task, () => console.log(task))
 
 const submit = () => {
     var taskList = useList()

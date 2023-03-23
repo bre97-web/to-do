@@ -6,6 +6,10 @@ const routes = [
         component: () => import('../views/Tasks.vue'),
     },
     {
+        path: '/me',
+        component: () => import('../views/Me.vue')
+    },
+    {
         path: '/Edit',
         component: () => import('../views/Editor.vue'),
         props: r => ({
