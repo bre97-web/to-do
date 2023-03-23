@@ -5,7 +5,7 @@ import search from './search.vue'
 import pin from './pin.vue'
 import { mapActions, mapGetters } from 'vuex'
 
-import now from '../components/time.vue'
+import now from '../components/Time.vue'
 
 export default {
     components: {

@@ -1,7 +1,14 @@
 <template>
     <div>
-        <ul>
-            <li v-for="e in list.getValues()">{{ e }}</li>
+
+        <header>
+            <h1>{{ props.title }}</h1>
+            <p>{{ props.subtitle }}</p>
+        </header>
+
+
+        <ul class="tasks">
+            <slot></slot>
         </ul>
     </div>
 </template>
@@ -9,10 +16,21 @@
 <script setup>
 import useList from '../hooks/useList'
 
-const list = useList()
+const props = defineProps({
+    'title':{
+        type: String,
+        required: true,
+        default: ''
+    },
+    'subtitle':{
+        type: String,
+        required: true,
+        default: ''
+    }
+})
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
