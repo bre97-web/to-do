@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 /test
+
+# Material Web
+src/assets/bundle.js

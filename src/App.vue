@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-transparent dark:bg-gray-900">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
 
@@ -17,7 +17,7 @@
                             @click="dark.set({
                                 isDark: !dark.get().current.isDark
                             })" 
-                            :selected="dark.isDark">
+                            :selected="dark.get().current.isDark">
                         </md-switch>
                     </label>
                 </div>
@@ -25,9 +25,6 @@
         </header>
 
         <main>
-
-            <Tasks></Tasks>
-
             <div>
                 <router-view></router-view>
             </div>
@@ -35,9 +32,24 @@
 
         <!-- Create feature -->
         <nav>
-            <md-fab-extended @click="open = true" label="Create">
-                <i class="material-icons" slot="icon">create</i>
-            </md-fab-extended>
+            <div class="fab">
+                <md-fab-extended :class="{'opacity-0': location != '/'}" @click="open = true" label="Create">
+                    <i class="material-icons" slot="icon">create</i>
+                </md-fab-extended>
+            </div>
+            <div class="navigation">
+                <div>
+                    <md-navigation-bar class="lg:max-w-lg flex mx-auto">
+                        <md-navigation-tab @click="push('/')" label="Home">
+                            <i class="material-icons" slot="icon">home</i>
+                        </md-navigation-tab>
+                        
+                        <md-navigation-tab @click="push('/me')" label="Me">
+                            <i class="material-icons" slot="icon">home</i>
+                        </md-navigation-tab>
+                    </md-navigation-bar>
+                </div>
+            </div>
         </nav>
 
         <footer>
@@ -51,11 +63,13 @@
 
 <script setup>
 import {
-    reactive, ref, provide
+    reactive, ref, provide, watch
 } from 'vue'
+import {
+    useRouter
+} from 'vue-router'
 
 import useDark from './hooks/useDark'
-import Tasks from './views/Tasks.vue'
 
 const dark = useDark()
 
@@ -66,6 +80,12 @@ provide('createDialog', {
     close
 })
 
+const router = reactive(useRouter())
+const location = ref(router.options.history.location)
+const push = (path) => router.push({
+    path: path
+})
+watch(router, () => location.value = router.options.history.location)
 
 </script>
 
