@@ -44,6 +44,9 @@
                         <md-standard-icon-button @click="moveToFocus(e)">
                             <i class="material-icons">favorite_outlined</i>
                         </md-standard-icon-button>
+                        <md-standard-icon-button @click="push('/Edit', e)">
+                            <i class="material-icons">edit</i>
+                        </md-standard-icon-button>
                     </div>
                 </li>
             </template>
@@ -82,12 +85,20 @@
 import {
     reactive, ref, provide, inject, onMounted, onBeforeMount, 
 } from 'vue'
+import { useRouter } from 'vue-router';
 import Task from '../components/Task.vue'
 import Creator from '../components/Creator.vue'
 import useList from '../hooks/useList'
 
 
+const router = useRouter()
 
+const push = (path, e) => router.push({
+    path: path,
+    query: {
+        task: JSON.stringify(e) 
+    }
+})
 
 
 const taskList = useList()

@@ -16,8 +16,11 @@
         @apply hidden;
     }
 
-    nav {
-        @apply fixed right-5 bottom-5;
+    nav .fab {
+        @apply fixed right-5 bottom-24;
+    }
+    nav .navigation {
+        @apply fixed right-0 bottom-0 w-full;
     }
 
     header {
@@ -27,7 +30,7 @@
         @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto pt-24;
     }
     footer {
-        @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white;
+        @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white pb-24;
     }
 
     label {
