@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-transparent dark:bg-gray-900">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
 
@@ -52,7 +52,6 @@ import {
 } from 'vue'
 
 import useDark from './hooks/useDark'
-import Tasks from './views/Tasks.vue'
 
 const dark = useDark()
 
