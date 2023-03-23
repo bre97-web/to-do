@@ -17,6 +17,7 @@ import './assets/index.css'
  * Google's Material Design Icons
  */
 import 'material-icons/iconfont/material-icons.css'
+import 'material-icons/css/material-icons.css'
 
 // Import Google's Material Design 3 Web Components
 // Import Google's formatted js

@@ -11,9 +11,15 @@
 
                 <!-- Settings and other buttons -->
                 <div class="flex flex-row items-center justify-between">
-                    <md-outlined-icon-button>
-                        <i class="material-icons" slot="icon">group</i>
-                    </md-outlined-icon-button>
+                    <label>
+                        Dark
+                        <md-switch 
+                            @click="dark.set({
+                                isDark: !dark.get().current.isDark
+                            })" 
+                            :selected="dark.isDark">
+                        </md-switch>
+                    </label>
                 </div>
             </div>
         </header>
@@ -27,11 +33,10 @@
             </div>
         </main>
 
+        <!-- Create feature -->
         <nav>
-            <md-fab-extended @click="dark.set({
-                isDark: !dark.get().current.isDark
-            })" label="Dark">
-                <i class="material-icons" slot="icon">group</i>
+            <md-fab-extended label="Create">
+                <i class="material-icons" slot="icon">create</i>
             </md-fab-extended>
         </nav>
 
