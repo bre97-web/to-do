@@ -3,8 +3,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// Store
-import Store from './store/index'
 
 import Router from './router/index'
 
@@ -29,4 +27,4 @@ import './assets/bundle'
 
 
 const app = createApp(App)
-app.use(Store).use(Router).mount('#app')
+app.use(Router).mount('#app')

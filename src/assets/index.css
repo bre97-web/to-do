@@ -72,5 +72,14 @@
     ul.tasks li {
         @apply relative px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow;
     }
+    ul.tasks li .buttonGroup {
+        @apply hidden;
+    }
+    ul.tasks li:hover .buttonGroup {
+        @apply block;
+    }
+    ul.tasks li:hover .buttonGroup * {
+        @apply text-black dark:text-white;
+    }
 
 }

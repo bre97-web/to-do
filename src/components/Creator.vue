@@ -28,25 +28,24 @@ import {
 } from 'vue'
 import useList from '../hooks/useList';
 
+const list = useList()
 
 
 const dialog = inject('createDialog')
 
-const task = reactive({
+const task = {
     title: '',
     subtitle: '',
-})
+}
 
 /**
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
  */
 const submit = () => {
-    const list = useList()
-
     list.push(task)
+    list.save()
 
     clear()
-
     dialog.close()
 }
 const cancel = () => {

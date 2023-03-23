@@ -25,9 +25,6 @@
         </header>
 
         <main>
-
-            <Tasks></Tasks>
-
             <div>
                 <router-view></router-view>
             </div>
