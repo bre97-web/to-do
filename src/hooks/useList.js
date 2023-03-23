@@ -1,6 +1,6 @@
 
 import {
-    reactive,
+    reactive, onBeforeUpdate
 } from 'vue'
 import moment from "moment"
 
@@ -54,6 +54,7 @@ export default function useList() {
 
         TASKS.list[index] = e
     }
+    const save = () => localStorage.setItem('tasks', JSON.stringify(TASKS))
 
     return {
         get,
@@ -64,5 +65,6 @@ export default function useList() {
         push,
         remove,
         edit,
+        save,
     }
 }
