@@ -6,6 +6,18 @@ const routes = [
         component: () => import('../views/home.vue'),
     },
     {
+        path: '/menu',
+        component: () => import('../views/menu.vue'),
+    },
+    {
+        path: '/settings',
+        component: () => import('../views/settings.vue'),
+    },
+    {
+        path: '/create',
+        component: () => import('../views/create.vue')
+    },
+    {
         path: '/search',
         component: () => import('../views/fullSearch.vue'),
     },

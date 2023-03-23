@@ -5,26 +5,27 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "md": "npx rollup -p @rollup/plugin-node-resolve ./src/assets/material-web.js > ./src/assets/bundle.js"
   },
   "dependencies": {
-    "@material/web": "^1.0.0-pre.1",
-    "axios": "^1.2.5",
-    "material-icons": "^1.13.1",
+    "@material/web": "^1.0.0-pre.5",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "material-icons": "^1.13.3",
     "moment": "^2.29.4",
-    "pubsub-js": "^1.9.4",
-    "vue": "^3.2.45",
+    "pubsub": "^3.2.1",
+    "vue": "^3.2.47",
     "vue-router": "^4.1.6",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "rollup": "^3.20.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "autoprefixer": "^10.4.13",
-    "express": "^4.18.2",
-    "nodemon": "^2.0.20",
+    "vite": "^4.2.0",
+    "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4",
-    "vite": "^4.0.0"
+    "tailwindcss": "^3.2.7",
+    "express": "^4.18.2"
   }
 }
