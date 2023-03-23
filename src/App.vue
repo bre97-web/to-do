@@ -35,7 +35,7 @@
 
         <!-- Create feature -->
         <nav>
-            <md-fab-extended label="Create">
+            <md-fab-extended @click="open = true" label="Create">
                 <i class="material-icons" slot="icon">create</i>
             </md-fab-extended>
         </nav>
@@ -50,11 +50,21 @@
 </template>
 
 <script setup>
-import useDark from './hooks/useDark'
+import {
+    reactive, ref, provide
+} from 'vue'
 
+import useDark from './hooks/useDark'
 import Tasks from './views/Tasks.vue'
 
 const dark = useDark()
+
+var open = ref(false)
+const close = () => open.value = false
+provide('createDialog', {
+    open,
+    close
+})
 
 
 </script>
