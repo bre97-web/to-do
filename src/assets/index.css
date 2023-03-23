@@ -26,6 +26,10 @@
         @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white;
     }
 
+    label {
+        @apply flex flex-row items-center justify-center gap-2;
+    }
+
     h1,
     h2,
     h3,
