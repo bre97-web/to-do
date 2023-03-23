@@ -12,6 +12,10 @@
         @apply select-none;
     }
 
+    ::-webkit-scrollbar {
+        @apply hidden;
+    }
+
     nav {
         @apply fixed right-5 bottom-5;
     }
@@ -20,7 +24,7 @@
         @apply z-50 max-h-16 w-screen;
     }
     main {
-        @apply min-h-screen pt-16 px-4 bg-transparent dark:bg-gray-900;
+        @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto pt-24;
     }
     footer {
         @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white;
@@ -67,16 +71,26 @@
 
 
     ul.tasks {
-        @apply flex flex-col p-4 rounded-md;
+        @apply flex flex-col gap-1 py-4 rounded-md;
     }
     ul.tasks li {
-        @apply relative px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow;
+        @apply relative flex items-center justify-start px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow overflow-clip;
+    }
+    ul.tasks li:hover::after {
+        @apply block;
+    }
+    ul.tasks li::after {
+        content: '';
+        @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-200 dark:to-gray-500 w-full max-w-xs h-full select-none pointer-events-none z-0;
+    }
+    ul.tasks li div.desc {
+        @apply flex flex-col;
     }
     ul.tasks li .buttonGroup {
-        @apply hidden;
+        @apply hidden absolute right-5;
     }
     ul.tasks li:hover .buttonGroup {
-        @apply block;
+        @apply block z-50;
     }
     ul.tasks li:hover .buttonGroup * {
         @apply text-black dark:text-white;

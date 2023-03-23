@@ -15,6 +15,14 @@ const createIndex = () => moment().format('x')
  */
 const createDate = () => moment().format('YYYY-MM-DD')
 
+
+
+
+
+/**
+ * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是TASKS。
+ * @see **注意，useList()为每一个实例变量创建一个只属于自己的对象tasks，tasks一般基于TASKS而来**
+ */
 const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
     list: [
         {
@@ -27,13 +35,38 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
 })
 
 
+
 export default function useList() {
+
+    const tasks = reactive({
+        list: [],
+    })
+
+    /**
+     * useList会为每一个实例变量创建一个tasks，通过get、push等所有方法操作的是全局的TASKS，如果需要操作useList()为每一个实例变量创建的tasks请调用getTasks()
+     */
+    const getTasks = () => {
+        return {
+            get: () => tasks,
+            getValues: () => tasks.list,
+            push: (e) => {
+                tasks.list.push({
+                    ...e,
+                    date: createDate(),
+                    index: createIndex(),
+                })
+            },
+            remove: (e) => tasks.list = tasks.list.filter(element => e.index != element.index),
+            init: (item) => tasks.list = JSON.parse(localStorage.getItem(item)),
+        }
+    }
+    
 
     const get = () => TASKS
     const getValues = () => TASKS.list
     const length = () => TASKS.list.length
-    const add = () => push()
-    const put = () => push()
+    const add = (e) => push(e)
+    const put = (e) => push(e)
     const push = (e) => {
         TASKS.list.push({
             ...e,
@@ -42,6 +75,7 @@ export default function useList() {
         })
     }
     const remove = (e) => TASKS.list = TASKS.list.filter(element => e.index != element.index)
+    const removeAll = () => TASKS.list = []
     const edit = (e) => {
         var targetIndex = e.index
         var index = null
@@ -57,6 +91,7 @@ export default function useList() {
     const save = () => localStorage.setItem('tasks', JSON.stringify(TASKS))
 
     return {
+        getTasks,
         get,
         getValues,
         length,
@@ -64,6 +99,7 @@ export default function useList() {
         put,
         push,
         remove,
+        removeAll,
         edit,
         save,
     }
