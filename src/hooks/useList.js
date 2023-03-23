@@ -1,6 +1,6 @@
 
 import {
-    reactive, onBeforeUpdate
+    ref, reactive, onBeforeUpdate, watch
 } from 'vue'
 import moment from "moment"
 
@@ -38,13 +38,14 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
 
 export default function useList() {
 
-    const tasks = reactive({
+    var tasks = reactive({
         list: [],
     })
 
     /**
      * useList会为每一个实例变量创建一个tasks，通过get、push等所有方法操作的是全局的TASKS，如果需要操作useList()为每一个实例变量创建的tasks请调用getTasks()
      */
+    var item = ref('')
     const getTasks = () => {
         return {
             get: () => tasks,
@@ -57,9 +58,20 @@ export default function useList() {
                 })
             },
             remove: (e) => tasks.list = tasks.list.filter(element => e.index != element.index),
-            init: (item) => tasks.list = JSON.parse(localStorage.getItem(item)),
+            init: (e) => item = e
         }
     }
+
+    watch(item, () => {
+        tasks = reactive(JSON.parse(localStorage.getItem(item)) || {
+            list: [],
+        })
+    })
+    watch(tasks, () => {
+        console.log(item);
+        localStorage.setItem(item, JSON.stringify(tasks))
+    })
+    watch(TASKS, () => save())
     
 
     const get = () => TASKS

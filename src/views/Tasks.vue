@@ -127,7 +127,8 @@ const moveToFocus = (e) => {
  * 当Vue即将挂载前获取所有还未初始化的useList()实例变量的局部成员tasks
  */
 onBeforeMount(() => {
-    // binList.getTasks().push({title:'123'})
+    binList.getTasks().init('bin')
+    focusList.getTasks().init('focus')
 })
 
 </script>
