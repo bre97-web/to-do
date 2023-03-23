@@ -34,8 +34,21 @@
     h6 {
         @apply font-extrabold;
     }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        @apply text-black dark:text-white
+    }
+    
     header h1 {
         @apply text-xl;
+    }
+    header p {
+        @apply text-gray-500 dark:text-gray-300;
     }
     .topBar {
         @apply border-b dark:border-none backdrop-blur-lg text-black dark:text-white bg-white dark:bg-transparent bg-opacity-25 flex items-center justify-start w-screen;
@@ -45,6 +58,15 @@
     }
     header.topBar input {
         @apply outline-none border dark:border-none rounded-md hover:shadow focus:ring px-4 py-2 bg-white dark:bg-gray-700;
+    }
+
+
+
+    ul.tasks {
+        @apply flex flex-col p-4 rounded-md;
+    }
+    ul.tasks li {
+        @apply relative px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow;
     }
 
 }
