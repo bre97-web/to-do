@@ -32,9 +32,22 @@
 
         <!-- Create feature -->
         <nav>
-            <md-fab-extended @click="open = true" label="Create">
-                <i class="material-icons" slot="icon">create</i>
-            </md-fab-extended>
+            <div class="fab">
+                <md-fab-extended @click="open = true" label="Create">
+                    <i class="material-icons" slot="icon">create</i>
+                </md-fab-extended>
+            </div>
+            <div class="navigation">
+                <md-navigation-bar>
+                    <md-navigation-tab label="Home">
+                        <i class="material-icons" slot="icon">home</i>
+                    </md-navigation-tab>
+
+                    <md-navigation-tab label="Me">
+                        <i class="material-icons" slot="icon">home</i>
+                    </md-navigation-tab>
+                </md-navigation-bar>
+            </div>
         </nav>
 
         <footer>
