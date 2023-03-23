@@ -12,12 +12,24 @@
                 </li>
             </template>
         </Task>
+
+
+        <Creator></Creator>
     </div>
 </template>
 
 <script setup>
+import {
+    reactive, ref, provide, inject
+} from 'vue'
 import Task from '../components/Task.vue'
+import Creator from '../components/Creator.vue'
+
 import useList from '../hooks/useList'
+
+
+
+
 
 const list = useList()
 </script>
