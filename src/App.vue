@@ -19,6 +19,9 @@
         </header>
 
         <main>
+
+            <Task></Task>
+
             <div>
                 <router-view></router-view>
             </div>
@@ -43,6 +46,8 @@
 
 <script setup>
 import useDark from './hooks/useDark'
+
+import Task from './components/Task.vue'
 
 const dark = useDark()
 
