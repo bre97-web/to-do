@@ -1,6 +1,6 @@
 
 import {
-    ref, reactive, onBeforeUpdate, watch
+    ref, reactive, onBeforeUpdate, watch, onBeforeMount
 } from 'vue'
 import moment from "moment"
 
@@ -21,7 +21,6 @@ const createDate = () => moment().format('YYYY-MM-DD')
 
 /**
  * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是TASKS。
- * @see **注意，useList()为每一个实例变量创建一个只属于自己的对象tasks，tasks一般基于TASKS而来**
  */
 const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
     list: [
@@ -34,46 +33,48 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
     ],
 })
 
+/**
+ * 操作tasks请调用useInnerList()
+ */
+function useInnerList(item) {
 
-
-export default function useList() {
-
-    var tasks = reactive({
-        list: [],
-    })
-
-    /**
-     * useList会为每一个实例变量创建一个tasks，通过get、push等所有方法操作的是全局的TASKS，如果需要操作useList()为每一个实例变量创建的tasks请调用getTasks()
-     */
-    var item = ref('')
-    const getTasks = () => {
-        return {
-            get: () => tasks,
-            getValues: () => tasks.list,
-            push: (e) => {
-                tasks.list.push({
-                    ...e,
-                    date: createDate(),
-                    index: createIndex(),
-                })
-            },
-            remove: (e) => tasks.list = tasks.list.filter(element => e.index != element.index),
-            init: (e) => item = e
-        }
+    if(item == '' || typeof item == 'undefined') {
+        return undefined
     }
 
-    watch(item, () => {
-        tasks = reactive(JSON.parse(localStorage.getItem(item)) || {
-            list: [],
-        })
+    var tasks = reactive(JSON.parse(localStorage.getItem(item)) || {
+        list: []
     })
-    watch(tasks, () => {
-        console.log(item);
-        localStorage.setItem(item, JSON.stringify(tasks))
-    })
-    watch(TASKS, () => save())
-    
 
+    
+    const get = () => tasks
+    const getValues = () => tasks.list
+    const push = (e) => {
+        tasks.list.push({
+            ...e,
+            date: createDate(),
+            index: createIndex(),
+        })
+    }
+    const remove = (e) => tasks.list = tasks.list.filter(element => e.index != element.index)
+    /**
+     * 请不要在这里中设置watch
+     */
+    const save = () => localStorage.setItem(item, JSON.stringify(tasks))
+
+    watch(tasks, () => save())
+
+    return {
+        get,
+        getValues,
+        push,
+        remove,
+        save
+    }
+}
+
+
+function useList() {
     const get = () => TASKS
     const getValues = () => TASKS.list
     const length = () => TASKS.list.length
@@ -103,7 +104,6 @@ export default function useList() {
     const save = () => localStorage.setItem('tasks', JSON.stringify(TASKS))
 
     return {
-        getTasks,
         get,
         getValues,
         length,
@@ -115,4 +115,9 @@ export default function useList() {
         edit,
         save,
     }
+}
+
+export {
+    useList,
+    useInnerList,
 }

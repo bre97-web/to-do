@@ -3,7 +3,7 @@
 
         <Task title="Focus" subtitle="使用固定按钮将任务钉至此处">
             <template #>
-                <li v-for="e in focusList.getTasks().getValues()" :key="e.index">
+                <li v-for="e in focusList.getValues()" :key="e.index">
 
                     <md-checkbox @click="moveToBin(e)"></md-checkbox>
 
@@ -54,7 +54,7 @@
 
         <Task title="Recycle Bin" subtitle="完成的任务会在这里">
             <template #>
-                <li v-for="e in binList.getTasks().getValues()" class="line-through italic" :key="e.index">
+                <li v-for="e in binList.getValues()" class="line-through italic" :key="e.index">
                     <div class="desc">
                         <h1>
                             {{ e.title }}
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="flex flex-row gap-2 py-2 buttonGroup">
-                        <md-standard-icon-button @click="binList.getTasks().remove(e)">
+                        <md-standard-icon-button @click="removeBin(e)">
                             <i class="material-icons">delete_forever</i>
                         </md-standard-icon-button>
                         <md-standard-icon-button @click="moveToTasks(e)">
@@ -83,12 +83,14 @@
 
 <script setup>
 import {
-    reactive, ref, provide, inject, onMounted, onBeforeMount, 
+    reactive, ref, provide, inject, onMounted, onBeforeMount, watch
 } from 'vue'
 import { useRouter } from 'vue-router';
 import Task from '../components/Task.vue'
 import Creator from '../components/Creator.vue'
-import useList from '../hooks/useList'
+import { 
+    useList, useInnerList
+} from '../hooks/useList'
 
 
 const router = useRouter()
@@ -102,8 +104,14 @@ const push = (path, e) => router.push({
 
 
 const taskList = useList()
-const binList  = useList()
-const focusList = useList()
+/**
+ * 当Vue即将挂载前获取所有还未初始化的useList()实例变量的局部成员tasks
+ */
+const binList  = useInnerList('bin')
+const focusList = useInnerList('focus')
+
+
+
 
 
 /**
@@ -111,10 +119,9 @@ const focusList = useList()
  * @param {Object} e 需要被移动到Bin的元素
  */
 const moveToBin = (e) => {
-    setTimeout(() => {
-        taskList.remove(e)
-    }, 500);
-    binList.getTasks().push(e)
+    taskList.remove(e)
+    focusList.remove(e)
+    binList.push(e)
 }
 /**
  * 将元素e保存到tasks，并将e从当前bin中删除
@@ -122,24 +129,24 @@ const moveToBin = (e) => {
  */
 const moveToTasks = (e) => {
     taskList.push(e)
-    binList.getTasks().remove(e)
-    focusList.getTasks().remove(e)
+    binList.remove(e)
+    focusList.remove(e)
 }
 
 const moveToPin = (e) => {}
 const moveToFocus = (e) => {
-    setTimeout(() => {
-        taskList.remove(e)
-    }, 500);
-    focusList.getTasks().push(e)
+    taskList.remove(e)
+    focusList.push(e)
 }
 
-/**
- * 当Vue即将挂载前获取所有还未初始化的useList()实例变量的局部成员tasks
- */
-onBeforeMount(() => {
-    binList.getTasks().init('bin')
-    focusList.getTasks().init('focus')
+const removeTask = (e) => taskList.remove(e)
+const removeFocus = (e) => focusList.remove(e)
+const removeBin = (e) => {
+    binList.remove(e)
+}
+
+watch(taskList.get(), () => {
+    taskList.save()
 })
 
 </script>

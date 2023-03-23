@@ -16,15 +16,27 @@
         @apply hidden;
     }
 
+    nav,
+    nav * {
+        @apply z-50;
+    }
     nav .fab {
-        @apply fixed right-5 bottom-24;
+        @apply fixed right-5 bottom-24 lg:bottom-5;
+    }
+    nav .fab * {
+        transition: all 1s;
+        @apply z-50;
     }
     nav .navigation {
-        @apply fixed right-0 bottom-0 w-full;
+        @apply fixed right-0 bottom-0 w-full lg:bottom-5 z-40;
+    }
+    nav .navigation div {
+        @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip shadow-md;
     }
 
     header {
         @apply z-50 max-h-16 w-screen;
+        transition: none;
     }
     main {
         @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto pt-24;
@@ -97,6 +109,13 @@
     }
     ul.tasks li:hover .buttonGroup * {
         @apply text-black dark:text-white;
+    }
+
+    ul.list {
+        @apply flex flex-row gap-2;
+    }
+    ul.list li {
+        @apply rounded-md bg-blue-500 text-white font-bold p-4;
     }
 
 }

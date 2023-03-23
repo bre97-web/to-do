@@ -12,7 +12,6 @@
         <div class="flex flex-col gap-2">
             <md-filled-text-field :value="task.title" @input="task.title = $event.target.value" label="Title"></md-filled-text-field>
             <md-filled-text-field :value="task.subtitle" @input="task.subtitle = $event.target.value" label="Subtitle"></md-filled-text-field>
-
         </div>
 
         <md-text-button @click="cancel" label="Cancel" slot="footer"></md-text-button>
@@ -24,7 +23,9 @@
 import {
     reactive, ref, provide, inject
 } from 'vue'
-import useList from '../hooks/useList';
+import { 
+    useList, useInnerList
+} from '../hooks/useList'
 
 const list = useList()
 
