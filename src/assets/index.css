@@ -35,7 +35,7 @@
     }
 
     main {
-        @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto pt-24;
+        @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto;
     }
     footer {
         @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white pb-24;
@@ -90,7 +90,7 @@
         @apply flex flex-col gap-1 py-4 rounded-md;
     }
     ul.tasks li {
-        @apply relative flex items-center justify-start px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow overflow-clip;
+        @apply relative flex items-center justify-start px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow overflow-clip w-full;
     }
     ul.tasks li:hover::after {
         @apply block;
