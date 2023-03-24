@@ -17,7 +17,7 @@
                         <li class="list">
                             待办
                             {{ tasks.taskList.getValues().length }}
-                            <div class="list-inner-page">
+                            <div v-if="tasks.taskList.getValues().length != 0" class="list-inner-page">
                                 <ul class="tasks">
                                     <li v-for="e in tasks.taskList.getValues()">{{ e.title }}</li>
                                 </ul>
@@ -27,7 +27,7 @@
                         <li class="list">
                             已完成
                             {{ tasks.binList.getValues().length }}
-                            <div class="list-inner-page">
+                            <div v-if="tasks.binList.getValues().length != 0" class="list-inner-page">
                                 <ul class="tasks">
                                     <li v-for="e in tasks.binList.getValues()">{{ e.title }}</li>
                                 </ul>
