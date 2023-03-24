@@ -24,7 +24,6 @@
         @apply fixed right-5 bottom-24 lg:bottom-5;
     }
     nav .fab * {
-        transition: all 1s;
         @apply z-50;
     }
     nav .navigation {
