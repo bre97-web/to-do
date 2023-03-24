@@ -5,37 +5,43 @@
             <h1 class="underline underline-offset-1"><mark>{{ props.input }}</mark></h1>
         </header>
 
-        <Task title="" subtitle="">
-            <template #>
-                <li v-for="e in get" :key="e.index">
 
-                    <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
+        <main>
+            <Task title="" subtitle="">
+                <template #>
+                    <li v-for="e in get" :key="e.index">
 
-                    <div class="desc">
-                        <h1>
-                            {{ e.title }}
-                        </h1>
-                        <p>
-                            {{ e.subtitle }}
-                        </p>
-                    </div>
+                        <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
-                    <div class="flex flex-row gap-2 py-2 buttonGroup">
-                        <md-standard-icon-button @click="tasks.moveToFocus(e)">
-                            <i class="material-icons">favorite</i>
-                        </md-standard-icon-button>
-                        <md-standard-icon-button @click="push('/Edit', e)">
-                            <i class="material-icons">edit</i>
-                        </md-standard-icon-button>
-                        <md-standard-icon-button @click="tasks.removeBin(e)">
-                            <i class="material-icons">delete_forever</i>
-                        </md-standard-icon-button>
-                    </div>
-                </li>
-            </template>
-        </Task>
+                        <div class="desc">
+                            <h1>
+                                {{ e.title }}
+                            </h1>
+                            <p>
+                                {{ e.subtitle }}
+                            </p>
+                        </div>
 
-        <footer class="bg-transparent dark:bg-transparent p-0">
+                        <div class="flex flex-row gap-2 py-2 buttonGroup">
+                            <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                                <i class="material-icons">favorite</i>
+                            </md-standard-icon-button>
+                            <md-standard-icon-button @click="push('/Edit', e)">
+                                <i class="material-icons">edit</i>
+                            </md-standard-icon-button>
+                            <md-standard-icon-button @click="tasks.removeBin(e)">
+                                <i class="material-icons">delete_forever</i>
+                            </md-standard-icon-button>
+                        </div>
+                    </li>
+                </template>
+            </Task>
+
+            <CreatorInSearch v-if="get.length === 0" :input="props.input"></CreatorInSearch>
+        </main>
+
+
+        <footer>
             <p class="text-right text-gray-500 dark:text-gray-300">Accumulate {{ get.length }} results</p>
         </footer>
     </div>
@@ -48,8 +54,9 @@ import {
 import {
     useRouter
 } from 'vue-router'
-import Task from '../components/Task.vue'
-import useTasks from '../hooks/useTasks'
+import Task from '@/components/Task.vue'
+import useTasks from '@/hooks/useTasks'
+import CreatorInSearch from '@/components/CreatorInSearch.vue'
 
 
 /**

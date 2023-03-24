@@ -13,7 +13,7 @@
 
 
 import {
-    ref, reactive, onBeforeUpdate, watch, onBeforeMount
+    reactive, watch
 } from 'vue'
 import moment from "moment"
 
@@ -31,7 +31,7 @@ const createDate = () => moment().format('YYYY-MM-DD')
 /**
  * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是全局的TASKS
  */
-const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
+var TASKS = reactive(JSON.parse(localStorage.getItem('bre97-web-todo-tasks')) || {
     list: [
         {
             date: createDate(),
@@ -45,7 +45,7 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
 /**
  * 当全局对象TASKS状态变化时将TASKS保存到localStorage
  */
-watch(TASKS, () => localStorage.setItem('tasks', JSON.stringify(TASKS)))
+watch(TASKS, () => localStorage.setItem('bre97-web-todo-tasks', JSON.stringify(TASKS)))
 
 
 /**
@@ -69,7 +69,7 @@ function useInnerList(item) {
     /**
      * item参数是必须提供的
      */
-    if(item == '' || typeof item == 'undefined') {
+    if(item === '' || typeof item === 'undefined') {
         return undefined
     }
 

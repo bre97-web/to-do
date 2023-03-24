@@ -3,19 +3,117 @@
 @tailwind utilities;
 @tailwind variants;
 
+@layer base {
+
+    /* 
+     * base: 背景的标准色或文字的标准色
+     * off-base: 背景色之上的元素背景色
+     * primary: 标题或主要文字
+     * secondary: 副标题或标题下的普通文字
+     *
+     */
+
+
+
+
+
+    /* 默认配色 */
+    :root,
+    .default {
+        --color-base: theme('colors.transparent');
+        --color-off-base: theme('colors.gray.100');
+        /* --color-text-muted: theme('colors.gray.600'); */
+        /* --color-text-muted-hover: theme('colors.gray.500'); */
+        --color-text-base: theme('colors.black');
+        --color-primary: theme('colors.black');
+        --color-secondary: theme('colors.gray.500');
+    }
+    .dark.default {
+        --color-primary: theme('colors.white');
+        --color-secondary: theme('colors.gray.300');
+    }
+
+
+
+
+    .green {
+        --color-base: #E8F5E9;
+        --color-off-base: #C8E6C9;
+        --color-text-base: #1B5E20;
+        --color-primary: #1B5E20;
+        --color-secondary: #388E3C;
+    }
+    .dark.green {
+        --color-base: theme('colors.slate.900');
+        --color-text-base: #E8F5E9;
+        --color-primary: #C8E6C9;
+        --color-secondary: #81C784;
+    }
+
+
+
+
+
+    .red {
+        --color-base: #FFEBEE;
+        --color-off-base: #FFCDD2;
+        --color-text-base: #B71C1C;
+        --color-primary: #B71C1C;
+        --color-secondary: #D32F2F;
+    }
+    .dark.red {
+        --color-base: theme('colors.slate.900');
+        --color-text-base: #FFEBEE;
+        --color-primary: #FFCDD2;
+        --color-secondary: #E57373;
+    }
+
+
+
+
+    .blue {
+        --color-base: #E3F2FD;
+        --color-off-base: #BBDEFB;
+        --color-text-base: #0D47A1;
+        --color-primary: #0D47A1;
+        --color-secondary: #1976D2;
+    }
+    .dark.blue {
+        --color-base: theme('colors.slate.900');
+        --color-text-base: #E3F2FD;
+        --color-primary: #BBDEFB;
+        --color-secondary: #64B5F6;
+    }
+
+
+
+
+    /* 深色模式只会修改必要的配色 */
+    .dark {
+        --color-base: theme('colors.slate.900');
+        --color-off-base: theme('colors.gray.700');
+        --color-text-base: theme('colors.white');
+    }
+}
+
 @layer components {
+    /* 全局聚焦环 */
     * {
         @apply ring-black dark:ring-white;
     }
 
+    /* 禁止选取图标 */
     i {
         @apply select-none;
     }
+
 
     ::-webkit-scrollbar {
         @apply hidden;
     }
 
+
+    /* nav应该位于最顶层 */
     nav,
     nav * {
         @apply z-50;
@@ -33,25 +131,38 @@
         @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip shadow-md;
     }
 
+
     main {
-        @apply min-h-screen max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto;
     }
-    footer {
-        @apply bg-purple-100 dark:bg-slate-700 text-black dark:text-white pb-24;
+    /* footer作为网页页脚，颜色不变 */
+    #root > footer {
+        @apply  bg-black bg-opacity-5 dark:bg-slate-800 pb-20 lg:pb-32;
     }
 
     label {
         @apply flex flex-row items-center justify-center gap-2;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+
+
+    /* h1 ~ h6的字体宽度 */
+    h1 {
         @apply font-extrabold;
     }
+    h2,
+    h3 {
+        @apply font-bold;
+    }
+    h4,
+    h5 {
+        @apply font-medium;
+    }
+    p,
+    h6 {
+        @apply font-normal;
+    }
+    /* 字体颜色 */
     h1,
     h2,
     h3,
@@ -62,48 +173,53 @@
     b,
     i,
     mark {
-        @apply text-black dark:text-white
+        @apply text-base;
     }
-
     mark {
-        @apply bg-green-100 dark:bg-green-700 px-2;
+        @apply bg-green-200 text-black px-2;
     }
     
+
+
+    /* md-dialog窗口下的h1标题字体大小 */
+    md-dialog h1 {
+        @apply text-2xl;
+    }
     
     
     header h1 {
         @apply text-xl;
     }
     header p {
-        @apply text-gray-500 dark:text-gray-300;
+        @apply text-secondary;
     }
 
 
     .topBar {
-        @apply z-50 border-b dark:border-none text-black dark:text-white bg-white dark:bg-transparent bg-opacity-25 flex items-center justify-start;
+        @apply z-50 border-b dark:border-none flex items-center justify-start;
         transition: none;
     }
     header.topBar {
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-gray-700 bg-opacity-25;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-700;
     }
 
 
 
     ul.tasks {
-        @apply flex flex-col gap-1 py-4 rounded-md;
+        @apply flex flex-col gap-1 py-4 rounded-md xl:flex-row flex-wrap;
     }
     ul.tasks li {
-        @apply relative flex items-center justify-start px-4 py-2 rounded-md border hover:bg-purple-50 dark:hover:bg-slate-700 dark:border-none hover:shadow overflow-clip w-full;
+        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center justify-start px-4 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
     }
     ul.tasks li:hover::after {
         @apply block;
     }
     ul.tasks li::after {
         content: '';
-        @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-200 dark:to-gray-500 w-full max-w-xs h-full select-none pointer-events-none z-0;
+        @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
     ul.tasks li div.desc {
         @apply flex flex-col;
@@ -122,11 +238,45 @@
         @apply flex flex-row gap-2;
     }
     ul.list li {
-        @apply rounded-md bg-blue-500 text-white font-bold p-4;
+        @apply rounded-md bg-off-base font-bold p-4;
+    }
+
+
+    ul li.list {
+        @apply rounded-md p-4 relative bg-off-base;
+    }
+    ul li.list .list-inner-page {
+        @apply z-40 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-16 shadow rounded-md;
+    }
+    ul li.list .list-inner-page:hover,
+    ul li.list:hover .list-inner-page {
+        @apply block;
     }
 
     ul.results {
         @apply flex flex-row flex-wrap;
     }
 
+
+    ul.group {
+        @apply flex flex-wrap gap-4;
+    }
+    ul.group li {
+        @apply border dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
+    }
+
+    .setting .item {
+        @apply hidden;
+    }
+    .setting:active .item,
+    .setting .item:hover {
+        @apply block;
+    }
+    .setting .item li {
+        @apply space-y-2;
+    }
+    .setting .item li label h1 {
+        @apply font-bold text-base;
+    }
 }
+

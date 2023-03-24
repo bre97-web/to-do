@@ -26,8 +26,8 @@ export default defineConfig({
   //   },
   // },
 
-  base: 'To-Do',
+  base: '/To-Do',
   build: {
-    outDir: '../docs'
+    outDir: './docs'
   }
 })

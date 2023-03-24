@@ -1,25 +1,33 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
+import Tasks  from '@/views/Tasks.vue'
+import Me     from '@/views/Me.vue'
+import Helper from '@/views/Helper.vue'
+import Editor from '@/views/Editor.vue'
+
 const routes = [
     {
         name: 'Tasks',
         path: '/',
-        component: () => import('../views/Tasks.vue'),
-        meta: {
-            keepAlive: true,
-        }
+        component: Tasks
     },
     {
         name: 'Me',
         path: '/me',
-        component: () => import('../views/Me.vue'),
-        meta: {
-            keepAlive: true,
-        }
+        component: Me,
+        children: [
+            {
+                name: 'Helper',
+                path: '/helper',
+                components: {
+                    Me: Helper,
+                }
+            },
+        ],
     },
     {
         path: '/Edit',
-        component: () => import('../views/Editor.vue'),
+        component: Editor,
         props: r => ({
             task: r.query.task
         })

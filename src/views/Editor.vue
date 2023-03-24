@@ -29,7 +29,7 @@ import {
 } from 'vue-router'
 import { 
     useList
-} from '../hooks/useList'
+} from '@/hooks/useList'
 
 const router = useRouter()
 

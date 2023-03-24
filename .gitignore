@@ -30,4 +30,5 @@ coverage
 /test
 
 # Material Web
+bundle.js
 src/assets/bundle.js

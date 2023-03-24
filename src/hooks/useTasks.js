@@ -1,14 +1,14 @@
 import { 
     useList, useInnerList
-} from './useList'
+} from '@/hooks/useList'
 
 /**
  * 初始化所有关于bin、focus、tasks的变量
  * 这将作为全局对象并provide
  */
 const taskList  = useList()
-const binList   = useInnerList('bin')
-const focusList = useInnerList('focus')
+const binList   = useInnerList('bre97-web-todo-bin')
+const focusList = useInnerList('bre97-web-todo-focus')
 
 
 

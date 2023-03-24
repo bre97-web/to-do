@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-transparent dark:bg-gray-900 overflow-x-hidden">
+    <div id="root" class="bg-base overflow-x-hidden">
         <header class="topBar">
-            <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
+            <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
 
                 <!-- Web Title -->
                 <h1>To-Do</h1>
@@ -13,22 +13,37 @@
                 </div>
 
                 <!-- Settings and other buttons -->
-                <div class="flex flex-row items-center justify-between">
-                    <label>
-                        Dark
-                        <md-switch 
-                            @click="dark.set({
-                                isDark: !dark.get().current.isDark
-                            })" 
-                            :selected="dark.get().current.isDark">
-                        </md-switch>
-                    </label>
+                <div class="setting">
+                    
+                    <md-text-button label="Settings">
+                    </md-text-button>
+                    
+                    <ul class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2">
+                        <li class="space-y-2">
+                            <h1>Dark</h1>
+                            <label>
+                                <p>Dark</p>
+                                <md-switch 
+                                    @click="theme.set({
+                                        isDark: !theme.get().current.isDark
+                                    })" 
+                                    :selected="theme.get().current.isDark">
+                                </md-switch>
+                            </label>
+                        </li>
+
+                        <md-divider></md-divider>
+
+                        <li class="space-y-2">
+                            <h1>Theme</h1>
+                            <Theme></Theme>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </header>
 
-        <main class="pt-24">
-
+        <main class="pt-24 min-h-screen">
             <Search :input="input"></Search>
 
             <router-view v-slot="{Component}">
@@ -36,7 +51,7 @@
             </router-view>
         </main>
 
-        <!-- Create feature -->
+        <!-- Create and Bottom Navigation -->
         <nav>
             <div class="fab">
                 <md-fab-extended :class="{'opacity-0': location != '/'}" @click="open = true" label="Create">
@@ -45,12 +60,12 @@
             </div>
             <div class="navigation">
                 <div>
-                    <md-navigation-bar class="lg:max-w-lg flex mx-auto">
+                    <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
                         <md-navigation-tab @click="push('/')" label="Home">
                             <i class="material-icons" slot="icon">home</i>
                         </md-navigation-tab>
                         
-                        <md-navigation-tab @click="push('/me')" label="Me">
+                        <md-navigation-tab  @click="push('/me')" label="Me">
                             <i class="material-icons" slot="icon">home</i>
                         </md-navigation-tab>
                     </md-navigation-bar>
@@ -71,15 +86,16 @@
 
 <script setup>
 import {
-    reactive, ref, provide, watch
+    reactive, ref, provide, watch, computed
 } from 'vue'
 import {
     useRouter
 } from 'vue-router'
-import Search from './views/Search.vue'
-import useDark from './hooks/useDark'
+import Search from '@/views/Search.vue'
+import Theme from '@/components/Theme.vue'
+import useTheme from '@/hooks/useTheme'
 
-const dark = useDark()
+const theme = useTheme()
 
 var open = ref(false)
 const close = () => open.value = false
@@ -97,6 +113,18 @@ const push = (path) => router.push({
     path: path
 })
 watch(router, () => location.value = router.options.history.location)
+const optionsRoutes = ref(router.options.routes)
+
+var activeIndex = computed(() => {
+    for(let key in optionsRoutes.value) {
+        if(optionsRoutes.value[key].path == location.value) {
+            return key * 1
+        }
+    }
+    
+    return optionsRoutes.value.length - 2
+})
+
 
 
 /**
