@@ -9,7 +9,7 @@
                 <!-- Search input -->
                 <div class="relative w-full flex items-center justify-center">
                     <i class="material-icons relative left-10">search</i>
-                    <input type="text" placeholder="Search" />
+                    <input :value:="input" @input="input = $event.target.value" type="text" placeholder="Search" />
                 </div>
 
                 <!-- Settings and other buttons -->
@@ -28,6 +28,9 @@
         </header>
 
         <main class="pt-24">
+
+            <Search :input="input"></Search>
+
             <router-view v-slot="{Component}">
                 <component :is="Component"></component>
             </router-view>
@@ -73,7 +76,7 @@ import {
 import {
     useRouter
 } from 'vue-router'
-
+import Search from './views/Search.vue'
 import useDark from './hooks/useDark'
 
 const dark = useDark()
@@ -85,6 +88,9 @@ provide('createDialog', {
     close
 })
 
+/**
+ * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
+ */
 const router = reactive(useRouter())
 const location = ref(router.options.history.location)
 const push = (path) => router.push({
@@ -92,8 +98,9 @@ const push = (path) => router.push({
 })
 watch(router, () => location.value = router.options.history.location)
 
+
+/**
+ * 用于Search组件
+ */
+var input = ref('')
 </script>
-
-<style lang="scss" scoped>
-
-</style>
