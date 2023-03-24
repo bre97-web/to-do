@@ -94,7 +94,6 @@ import {
 
 
 const router = useRouter()
-
 const push = (path, e) => router.push({
     path: path,
     query: {
@@ -103,16 +102,12 @@ const push = (path, e) => router.push({
 })
 
 
-const taskList = useList()
 /**
- * 当Vue即将挂载前获取所有还未初始化的useList()实例变量的局部成员tasks
+ * 初始化所有关于bin、focus、tasks的变量
  */
+const taskList = useList()
 const binList  = useInnerList('bin')
 const focusList = useInnerList('focus')
-
-
-
-
 
 /**
  * 将元素e保存到bin，并将e从当前tasks中删除
@@ -132,22 +127,16 @@ const moveToTasks = (e) => {
     binList.remove(e)
     focusList.remove(e)
 }
-
 const moveToPin = (e) => {}
 const moveToFocus = (e) => {
     taskList.remove(e)
     focusList.push(e)
 }
-
 const removeTask = (e) => taskList.remove(e)
 const removeFocus = (e) => focusList.remove(e)
 const removeBin = (e) => {
     binList.remove(e)
 }
-
-watch(taskList.get(), () => {
-    taskList.save()
-})
 
 </script>
 

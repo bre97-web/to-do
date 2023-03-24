@@ -22,27 +22,26 @@
 
 <script setup>
 import {
-    reactive, ref, provide, inject, watch
+    reactive
 } from 'vue'
 import {
     useRouter
 } from 'vue-router'
 import { 
-    useList, useInnerList
+    useList
 } from '../hooks/useList'
 
 const router = useRouter()
 
+/**
+ * 由路由时传递的query得到需要修改的useList的全局对象的具体的元素
+ */
 const props = defineProps(['task'])
 const task = reactive({
     ...JSON.parse(props.task),
 })
-
-
 const submit = () => {
-    var taskList = useList()
-
-    taskList.edit(task)
+    useList().edit(task)
     close()
 }
 const cancel = () => {

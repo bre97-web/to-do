@@ -17,7 +17,7 @@
                             @click="dark.set({
                                 isDark: !dark.get().current.isDark
                             })" 
-                            :selected="dark.isDark">
+                            :selected="dark.get().current.isDark">
                         </md-switch>
                     </label>
                 </div>
@@ -63,7 +63,7 @@
 
 <script setup>
 import {
-    reactive, ref, provide, watch, toRef
+    reactive, ref, provide, watch
 } from 'vue'
 import {
     useRouter

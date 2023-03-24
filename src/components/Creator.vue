@@ -21,14 +21,11 @@
 
 <script setup>
 import {
-    reactive, ref, provide, inject
+    inject
 } from 'vue'
 import { 
-    useList, useInnerList
+    useList
 } from '../hooks/useList'
-
-const list = useList()
-
 
 const dialog = inject('createDialog')
 
@@ -41,9 +38,7 @@ const task = {
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
  */
 const submit = () => {
-    list.push(task)
-    list.save()
-
+    useList().push(task)
     clear()
     dialog.close()
 }
