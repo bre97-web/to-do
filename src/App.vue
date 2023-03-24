@@ -29,9 +29,7 @@
 
         <main class="pt-24">
             <router-view v-slot="{Component}">
-                <keep-alive>    
-                    <component :is="Component"></component>
-                </keep-alive>
+                <component :is="Component"></component>
             </router-view>
         </main>
 
