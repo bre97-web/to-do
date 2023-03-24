@@ -1,3 +1,16 @@
+/**
+ * 
+ * useList.js
+ * 
+ * import {
+ *     useList, useInnerList
+ * }
+ * 
+ * useList提供所有的关于操作全局reactive对象TASKS，TASKS被watch时保存到本地存储localStorage。
+ * useInnerList会为每一个变量创建一个只属于自己的局部reactive变量tasks，通过useInnerList得到的方法操作的是它的局部reactive对象。
+ * 
+ */
+
 
 import {
     ref, reactive, onBeforeUpdate, watch, onBeforeMount
@@ -17,10 +30,8 @@ const createDate = () => moment().format('YYYY-MM-DD')
 
 
 
-
-
 /**
- * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是TASKS。
+ * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是全局的TASKS
  */
 const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
     list: [
@@ -34,10 +45,18 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
 })
 
 /**
- * 操作tasks请调用useInnerList()
+ * 当全局对象TASKS状态变化时将TASKS保存到localStorage
+ */
+watch(TASKS, () => localStorage.setItem('tasks', JSON.stringify(TASKS)))
+
+/**
+ * 操作tasks请调用useInnerList()，useList会为每一个调用者创建一个局部对象
  */
 function useInnerList(item) {
 
+    /**
+     * item参数是必须提供的
+     */
     if(item == '' || typeof item == 'undefined') {
         return undefined
     }
@@ -46,7 +65,6 @@ function useInnerList(item) {
         list: []
     })
 
-    
     const get = () => tasks
     const getValues = () => tasks.list
     const push = (e) => {
@@ -57,23 +75,26 @@ function useInnerList(item) {
         })
     }
     const remove = (e) => tasks.list = tasks.list.filter(element => e.index != element.index)
-    /**
-     * 请不要在这里中设置watch
-     */
-    const save = () => localStorage.setItem(item, JSON.stringify(tasks))
 
-    watch(tasks, () => save())
+    /**
+     * 为当前的局部reactive对象监听保存到localStorage
+     * 保存在localStorage中，名为item（item由调用useInnerList的地方提供）
+     */
+    watch(tasks, () => localStorage.setItem(item, JSON.stringify(tasks)))
 
     return {
         get,
         getValues,
         push,
         remove,
-        save
     }
 }
 
 
+/**
+ * 通过useList()得到的方法操作的全局对象TASKS，多个useList()创建的变量共享同一个全局变量TASKS
+ * @returns Object
+ */
 function useList() {
     const get = () => TASKS
     const getValues = () => TASKS.list
@@ -101,7 +122,6 @@ function useList() {
 
         TASKS.list[index] = e
     }
-    const save = () => localStorage.setItem('tasks', JSON.stringify(TASKS))
 
     return {
         get,
@@ -113,7 +133,6 @@ function useList() {
         remove,
         removeAll,
         edit,
-        save,
     }
 }
 
