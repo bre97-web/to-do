@@ -36,7 +36,7 @@
             </router-view>
         </main>
 
-        <!-- Create feature -->
+        <!-- Create and Bottom Navigation -->
         <nav>
             <div class="fab">
                 <md-fab-extended :class="{'opacity-0': location != '/'}" @click="open = true" label="Create">
@@ -45,12 +45,12 @@
             </div>
             <div class="navigation">
                 <div>
-                    <md-navigation-bar class="lg:max-w-lg flex mx-auto">
+                    <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
                         <md-navigation-tab @click="push('/')" label="Home">
                             <i class="material-icons" slot="icon">home</i>
                         </md-navigation-tab>
                         
-                        <md-navigation-tab @click="push('/me')" label="Me">
+                        <md-navigation-tab  @click="push('/me')" label="Me">
                             <i class="material-icons" slot="icon">home</i>
                         </md-navigation-tab>
                     </md-navigation-bar>
@@ -71,7 +71,7 @@
 
 <script setup>
 import {
-    reactive, ref, provide, watch
+    reactive, ref, provide, watch, computed
 } from 'vue'
 import {
     useRouter
@@ -97,6 +97,18 @@ const push = (path) => router.push({
     path: path
 })
 watch(router, () => location.value = router.options.history.location)
+const optionsRoutes = ref(router.options.routes)
+
+var activeIndex = computed(() => {
+    for(let key in optionsRoutes.value) {
+        if(optionsRoutes.value[key].path == location.value) {
+            return key * 1
+        }
+    }
+    
+    return 0
+})
+
 
 
 /**
