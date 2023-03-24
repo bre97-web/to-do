@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-transparent dark:bg-gray-900">
+    <div class="bg-transparent dark:bg-gray-900 overflow-x-hidden">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
 
@@ -7,7 +7,10 @@
                 <h1>To-Do</h1>
 
                 <!-- Search input -->
-                <input type="text" placeholder="Search" />
+                <div class="relative w-full flex items-center justify-center">
+                    <i class="material-icons relative left-10">search</i>
+                    <input type="text" placeholder="Search" />
+                </div>
 
                 <!-- Settings and other buttons -->
                 <div class="flex flex-row items-center justify-between">
