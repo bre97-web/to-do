@@ -58,8 +58,15 @@
     h4,
     h5,
     h6,
-    p {
+    p,
+    b,
+    i,
+    mark {
         @apply text-black dark:text-white
+    }
+
+    mark {
+        @apply bg-green-100 dark:bg-green-700 px-2;
     }
     
     
@@ -116,6 +123,10 @@
     }
     ul.list li {
         @apply rounded-md bg-blue-500 text-white font-bold p-4;
+    }
+
+    ul.results {
+        @apply flex flex-row flex-wrap;
     }
 
 }

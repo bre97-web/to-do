@@ -1,96 +1,108 @@
-<script>
-import task from '../components/tasks/task.vue'
-
-import { mapActions, mapGetters } from 'vuex'
-
-export default {
-    computed: {
-        focusTasks() {
-            return this.get.filter(p => p.text.indexOf(this.getKeyWord) !== -1)
-        },
-
-        ...mapGetters('TasksStore', ['get', 'getKeyWord']),
-
-    },
-    methods: {
-        ...mapActions('TasksStore', ['add', 'remove', 'done', 'undo', 'pin', 'unpin', 'edit', 'setKeyWord']),
-    },
-    components: {
-        task,
-    },
-}
-</script>
-
 <template>
-    <div v-if="getKeyWord !== ''" class="panel">
-        <!-- Title -->
-        <p class="font-bold text-2xl break-all">
-            Search
-            <mark class="underline">
-                {{getKeyWord}}
-            </mark>
-        </p>
+    <div v-show="props.input.length != 0" class="border dark:border-none bg-transparent dark:bg-slate-700 rounded-md px-4 py-2 my-4">
+        <header class="flex flex-row items-end justify-start gap-2">
+            <h1>Search</h1>
+            <h1 class="underline underline-offset-1"><mark>{{ props.input }}</mark></h1>
+        </header>
 
-        <!-- Suggests -->
-        <div v-if="getKeyWord !== ''" class="flex gap-2 flex-col items-center self-end justify-center pb-4 pl-4">
-            
-            <!-- Create suggests -->
-            <div v-if="get.length == 0 || focusTasks.length == 0" class="flex flex-col items-end gap-2">
-                <p class="inline-block">
-                    Do you want to create: 
-                    <mark class="inline-block underline font-bold break-all">
-                        {{getKeyWord}}
-                    </mark> 
-                    ?
-                </p>
-                
-                <button @click="add(getKeyWord)" type="normal">
-                    <p>Create</p>
-                </button>
-            </div>
-            
-            <!-- Edit Suggests -->
-            <div v-if="focusTasks.length != 0" class="flex flex-col gap-2 items-end">
-                <p class="inline-block">
-                    Do you want to edit the last task: 
-                    <mark class="inline-block underline font-bold break-all">
-                        {{focusTasks[focusTasks.length - 1].text}}
-                    </mark> 
-                    ?
-                </p>
-                <!-- Edit and remove -->
-                <div class="flex gap-2">
-                    <button @click="focusTasks[focusTasks.length - 1].isModifying = true" type="normal">
-                        <p>Edit</p>
-                    </button>
-                    <button @click="remove(focusTasks[focusTasks.length - 1])" type="normal">
-                        <p>Delete</p>
-                    </button>
-                </div>
-                
-            </div>
+        <Task title="" subtitle="">
+            <template #>
+                <li v-for="e in get" :key="e.index">
 
-        </div>
+                    <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
-        <!-- Search results -->
-        <!-- Tasks -->
-        <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-2 flex-col md:flex-row">
-            <task 
-                v-for="e in get" :key="e.id"
-                :task="e"
-                :hasRemove="true" :hasDone="true" :hasEdit="true" :hasPin="true" :showEdit="false">
-            </task>
-        </TransitionGroup>
-        
-            
-        <!-- 'No Result' if focusTasks is null -->
-        <p v-if="focusTasks.length == 0" class="text-gray-400">No Result</p>
+                    <div class="desc">
+                        <h1>
+                            {{ e.title }}
+                        </h1>
+                        <p>
+                            {{ e.subtitle }}
+                        </p>
+                    </div>
+
+                    <div class="flex flex-row gap-2 py-2 buttonGroup">
+                        <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                            <i class="material-icons">favorite</i>
+                        </md-standard-icon-button>
+                        <md-standard-icon-button @click="push('/Edit', e)">
+                            <i class="material-icons">edit</i>
+                        </md-standard-icon-button>
+                        <md-standard-icon-button @click="tasks.removeBin(e)">
+                            <i class="material-icons">delete_forever</i>
+                        </md-standard-icon-button>
+                    </div>
+                </li>
+            </template>
+        </Task>
+
+        <footer class="bg-transparent dark:bg-transparent p-0">
+            <p class="text-right text-gray-500 dark:text-gray-300">Accumulate {{ get.length }} results</p>
+        </footer>
     </div>
-
 </template>
 
-<style scoped lang="css">
-    button[type=normal] {
-        @apply border;
+<script setup>
+import {
+    computed
+} from 'vue'
+import {
+    useRouter
+} from 'vue-router'
+import Task from '../components/Task.vue'
+import useTasks from '../hooks/useTasks'
+
+
+/**
+ * 由父组件提供搜索词，它应该是一个响应式对象
+ */
+const props = defineProps(['input'])
+
+/**
+ * 使用tasks并获取所有的元素
+ */
+const tasks = useTasks()
+var get = computed(() => {
+    var lists = new Array()
+    var results = new Array()
+
+    // get TASKS, al of tasks(focus, bin)
+    for(let key in tasks.taskList.getValues()) {   
+        lists.push(tasks.taskList.getValues()[key])
     }
+    for(let key in tasks.focusList.getValues()) {   
+        lists.push(tasks.focusList.getValues()[key])
+    }
+    for(let key in tasks.binList.getValues()) {   
+        lists.push(tasks.binList.getValues()[key])
+    }
+
+    /**
+     * 现在所有的lists获取完毕，将所有的lists中的元素与props.input进行比较得出最终结果
+     */
+    for(let key = 0; key < lists.length; key ++) {
+        if(lists[key].title.toLowerCase().indexOf(props.input.toLowerCase()) === -1) {
+            continue
+        }
+        results.push(lists[key])
+    }
+
+    return results
+})
+
+
+
+/**
+ * 用于edit功能的路由
+ */
+const router = useRouter()
+const push = (path, e) => router.push({
+    path: path,
+    query: {
+        task: JSON.stringify(e) 
+    }
+})
+</script>
+
+<style scoped>
+
 </style>
