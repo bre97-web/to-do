@@ -39,19 +39,20 @@
 
 <script setup>
 import {
-    ref, reactive, watch, onMounted, onBeforeMount
+    ref, reactive
 } from 'vue'
 
+var dialogOpen = ref(false)
 
 const info = reactive(JSON.parse(localStorage.getItem('personal-info')) || {
     name: 'Click me to rename',
 })
-watch(info, () => localStorage.setItem('personal-info', JSON.stringify(info)))
-
-var dialogOpen = ref(false)
-const submit = () => close()
+const submit = () => {
+    localStorage.setItem('personal-info', JSON.stringify(info))
+    close()
+}
 const cancel = () => {
-    info.name = 'Click me to rename'
+    info.name = JSON.parse(localStorage.getItem('personal-info')).name
     close()
 }
 const open = () => dialogOpen.value = true
