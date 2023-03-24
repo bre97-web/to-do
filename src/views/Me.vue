@@ -7,16 +7,22 @@
             </div>
         </header>
 
-        <main>
+        <main class="mt-12">
             <div>
                 <header>
                     <h1>Tasks</h1>
                 </header>
-                <main>
-                    <ul class="list">
-                        <!-- <li>待办 {{ task.tasks.length }}</li>
-                        <li>固定 {{ task.focus.length }}</li>
-                        <li>完成 {{ task.bin.length }}</li> -->
+                <main class="py-2">
+                    <ul>
+                        <li class="list">
+                            待办
+                            {{ tasksList.getValues().length }}
+                            <div class="list-inner-page">
+                                <ul class="tasks">
+                                    <li v-for="e in tasksList.getValues()">{{ e.title }}</li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </main>
             </div>
@@ -41,9 +47,16 @@
 import {
     ref, reactive
 } from 'vue'
+import { useList } from '../hooks/useList'
 
+
+name = 'Me'
+
+
+/**
+ * 关于打开与关闭dialog的操作和业务逻辑
+ */
 var dialogOpen = ref(false)
-
 const info = reactive(JSON.parse(localStorage.getItem('personal-info')) || {
     name: 'Click me to rename',
 })
@@ -59,14 +72,29 @@ const open = () => dialogOpen.value = true
 const close = () => dialogOpen.value = false
 
 
-// const task = reactive({
-//     tasks: JSON.parse(localStorage.getItem('tasks')),
-//     focus: JSON.parse(localStorage.getItem('focus')),
-//     bin  : JSON.parse(localStorage.getItem('bin')),
-// })
+/**
+ * 用于获取当前未完成的任务
+ */
+const tasksList = useList()
+
+const show = () => {
+    console.log(123);
+}
 
 </script>
 
 <style scoped>
-
+    ul {
+        @apply flex flex-row flex-wrap font-bold;
+    }
+    ul li.list {
+        @apply bg-blue-500 text-white rounded-md p-4 relative;
+    }
+    ul li.list .list-inner-page {
+        @apply hidden p-2 absolute left-16 bg-white dark:bg-gray-700 text-black dark:text-white shadow rounded-md;
+    }
+    ul li.list .list-inner-page:hover,
+    ul li.list:hover .list-inner-page {
+        @apply block;
+    }
 </style>

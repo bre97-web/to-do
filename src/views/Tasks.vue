@@ -83,7 +83,7 @@
 
 <script setup>
 import {
-    reactive, ref, provide, inject, onMounted, onBeforeMount, watch
+    provide
 } from 'vue'
 import { useRouter } from 'vue-router';
 import Task from '../components/Task.vue'
@@ -92,6 +92,7 @@ import {
     useList, useInnerList
 } from '../hooks/useList'
 
+name = 'Tasks'
 
 const router = useRouter()
 const push = (path, e) => router.push({
@@ -105,9 +106,18 @@ const push = (path, e) => router.push({
 /**
  * 初始化所有关于bin、focus、tasks的变量
  */
-const taskList = useList()
-const binList  = useInnerList('bin')
+const taskList  = useList()
+const binList   = useInnerList('bin')
 const focusList = useInnerList('focus')
+
+/**
+ * 共享至Me组件
+ */
+provide('tasksObj', {
+    taskList,
+    binList,
+    focusList,
+})
 
 /**
  * 将元素e保存到bin，并将e从当前tasks中删除

@@ -27,10 +27,12 @@
             </div>
         </header>
 
-        <main>
-            <div>
-                <router-view></router-view>
-            </div>
+        <main class="pt-24">
+            <router-view v-slot="{Component}">
+                <keep-alive>    
+                    <component :is="Component"></component>
+                </keep-alive>
+            </router-view>
         </main>
 
         <!-- Create feature -->
@@ -56,9 +58,11 @@
         </nav>
 
         <footer>
-            <div class=" p-8 flex flex-col md:flex-row flex-wrap">
-                <h1>To-Do</h1>
-                <h2>bre97-web</h2>
+            <div class="p-8 flex flex-col md:flex-row gap-2 flex-wrap">
+                <div>
+                    <h1>To-Do</h1>
+                    <h2>bre97-web</h2>
+                </div>
             </div>
         </footer>
     </div>
