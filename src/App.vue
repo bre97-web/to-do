@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-transparent dark:bg-gray-900">
+    <div class="bg-transparent dark:bg-gray-900 overflow-x-hidden">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
 
@@ -7,7 +7,10 @@
                 <h1>To-Do</h1>
 
                 <!-- Search input -->
-                <input type="text" placeholder="Search" />
+                <div class="relative w-full flex items-center justify-center">
+                    <i class="material-icons relative left-10">search</i>
+                    <input :value:="input" @input="input = $event.target.value" type="text" placeholder="Search" />
+                </div>
 
                 <!-- Settings and other buttons -->
                 <div class="flex flex-row items-center justify-between">
@@ -24,10 +27,13 @@
             </div>
         </header>
 
-        <main>
-            <div>
-                <router-view></router-view>
-            </div>
+        <main class="pt-24">
+
+            <Search :input="input"></Search>
+
+            <router-view v-slot="{Component}">
+                <component :is="Component"></component>
+            </router-view>
         </main>
 
         <!-- Create feature -->
@@ -53,9 +59,11 @@
         </nav>
 
         <footer>
-            <div class=" p-8 flex flex-col md:flex-row flex-wrap">
-                <h1>To-Do</h1>
-                <h2>bre97-web</h2>
+            <div class="p-8 flex flex-col md:flex-row gap-2 flex-wrap">
+                <div>
+                    <h1>To-Do</h1>
+                    <h2>bre97-web</h2>
+                </div>
             </div>
         </footer>
     </div>
@@ -68,7 +76,7 @@ import {
 import {
     useRouter
 } from 'vue-router'
-
+import Search from './views/Search.vue'
 import useDark from './hooks/useDark'
 
 const dark = useDark()
@@ -80,6 +88,9 @@ provide('createDialog', {
     close
 })
 
+/**
+ * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
+ */
 const router = reactive(useRouter())
 const location = ref(router.options.history.location)
 const push = (path) => router.push({
@@ -87,8 +98,9 @@ const push = (path) => router.push({
 })
 watch(router, () => location.value = router.options.history.location)
 
+
+/**
+ * 用于Search组件
+ */
+var input = ref('')
 </script>
-
-<style lang="scss" scoped>
-
-</style>

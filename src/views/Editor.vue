@@ -1,5 +1,5 @@
 <template>
-    <md-dialog open="true">
+    <md-dialog :open="isOpen">
         <div slot="header">
             <h1>
                 Edit a task
@@ -22,7 +22,7 @@
 
 <script setup>
 import {
-    reactive
+    ref, reactive, onMounted
 } from 'vue'
 import {
     useRouter
@@ -40,14 +40,21 @@ const props = defineProps(['task'])
 const task = reactive({
     ...JSON.parse(props.task),
 })
+var isOpen = ref(false)
+onMounted(() => {
+    isOpen.value = true
+})
 const submit = () => {
-    useList().edit(task)
+    useList().edit(task)  
     close()
 }
 const cancel = () => {
     close()
 }
-const close = () => router.push('/')
+const close = () => {
+    isOpen.value = false
+    setTimeout(() => router.push('/'), 200)
+}
 
 </script>
 

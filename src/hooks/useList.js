@@ -28,8 +28,6 @@ const createIndex = () => moment().format('x')
  */
 const createDate = () => moment().format('YYYY-MM-DD')
 
-
-
 /**
  * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是全局的TASKS
  */
@@ -48,6 +46,20 @@ const TASKS = reactive(JSON.parse(localStorage.getItem('tasks')) || {
  * 当全局对象TASKS状态变化时将TASKS保存到localStorage
  */
 watch(TASKS, () => localStorage.setItem('tasks', JSON.stringify(TASKS)))
+
+
+/**
+ * 在push添加元素时判断元素是否存在，如果元素存在则返回true
+ */
+const contain = (list, e) => {
+    for(let key in list.list) {
+        if(e.index == list.list[key].index) {
+            return true
+        }
+    }
+
+    return false
+}
 
 /**
  * 操作tasks请调用useInnerList()，useList会为每一个调用者创建一个局部对象
@@ -68,10 +80,13 @@ function useInnerList(item) {
     const get = () => tasks
     const getValues = () => tasks.list
     const push = (e) => {
+        if(contain(tasks, e)) {
+            return null
+        }        
         tasks.list.push({
             ...e,
-            date: createDate(),
-            index: createIndex(),
+            date: typeof e.date !== 'string' ? createDate() : e.date,
+            index: typeof e.index !== 'string' ? createIndex() : e.index,
         })
     }
     const remove = (e) => tasks.list = tasks.list.filter(element => e.index != element.index)
@@ -102,10 +117,13 @@ function useList() {
     const add = (e) => push(e)
     const put = (e) => push(e)
     const push = (e) => {
+        if(contain(TASKS, e)) {
+            return null
+        }
         TASKS.list.push({
             ...e,
-            date: createDate(),
-            index: createIndex(),
+            date: typeof e.date !== 'string' ? createDate() : e.date,
+            index: typeof e.index !== 'string' ? createIndex() : e.index,
         })
     }
     const remove = (e) => TASKS.list = TASKS.list.filter(element => e.index != element.index)
