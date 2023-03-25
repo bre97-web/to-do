@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
- import useTasks from '../hooks/useTasks'
+ import useTasks from '@/hooks/useTasks'
 
 /**
  * 由父组件提供搜索词，它应该是一个响应式对象

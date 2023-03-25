@@ -53,7 +53,7 @@
                 <ul class="group">
                     <li>
                         <h1>Helper</h1>
-                        <md-text-button @click="router.push('/me/helper')" label="Look"></md-text-button>
+                        <md-text-button @click="router.push('/helper')" label="Look"></md-text-button>
                     </li>
 
                 </ul>
@@ -85,10 +85,7 @@ import {
     ref, reactive
 } from 'vue'
 import { useRouter } from 'vue-router'
-import useTasks from '../hooks/useTasks'
-
-name = 'Me'
-
+import useTasks from '@/hooks/useTasks'
 
 /**
  * 关于打开与关闭dialog的操作和业务逻辑

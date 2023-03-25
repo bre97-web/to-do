@@ -1,17 +1,17 @@
 
 // Vue
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
 
 /**
  * Vue-Router
  */
-import Router from './router/index'
+import Router from '@/router/index'
 
 /**
  * Tailwindcss
  */
-import './assets/index.css'
+import '@/assets/index.css'
 
 /**
  * Google's Material Design Icons
@@ -25,8 +25,7 @@ import 'material-icons/css/material-icons.css'
  * Please run:
  * npm run md
  */
-import './assets/bundle'
-
+// import './assets/bundle'
 
 const app = createApp(App)
 app.use(Router).mount('#app')

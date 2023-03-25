@@ -76,8 +76,8 @@ import {
 import {
     useRouter
 } from 'vue-router'
-import Search from './views/Search.vue'
-import useDark from './hooks/useDark'
+import Search from '@/views/Search.vue'
+import useDark from '@/hooks/useDark'
 
 const dark = useDark()
 

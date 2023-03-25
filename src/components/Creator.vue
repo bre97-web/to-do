@@ -25,7 +25,7 @@ import {
 } from 'vue'
 import { 
     useList
-} from '../hooks/useList'
+} from '@/hooks/useList'
 
 const dialog = inject('createDialog')
 

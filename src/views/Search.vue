@@ -54,9 +54,9 @@ import {
 import {
     useRouter
 } from 'vue-router'
-import Task from '../components/Task.vue'
-import useTasks from '../hooks/useTasks'
-import CreatorInSearch from '../components/CreatorInSearch.vue'
+import Task from '@/components/Task.vue'
+import useTasks from '@/hooks/useTasks'
+import CreatorInSearch from '@/components/CreatorInSearch.vue'
 
 
 /**

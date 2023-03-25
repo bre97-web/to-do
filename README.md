@@ -8,11 +8,11 @@ Get the repository and open it, Open the Window Terminal or something.
 
 Enter the following code to start following the dependency:
 > `npm i`
+> `npm run md`
+
 
 Enter the following code to start sever after download is complete:
 > `npm dev run`
 
 If you finished your modifications, run this:
 > `npm run build`
-
- and **move 'dist/\*\*' to 'docs/\*\*'** before commit.

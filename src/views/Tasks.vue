@@ -83,11 +83,9 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import Task from '../components/Task.vue'
-import Creator from '../components/Creator.vue'
-import useTasks from '../hooks/useTasks'
-
-name = 'Tasks'
+import Task from '@/components/Task.vue'
+import Creator from '@/components/Creator.vue'
+import useTasks from '@/hooks/useTasks'
 
 const router = useRouter()
 const push = (path, e) => router.push({
