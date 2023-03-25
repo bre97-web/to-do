@@ -7,7 +7,9 @@
             </div>
         </header>
 
-        <main class="mt-12">
+        <main class="mt-12 relative">
+
+            <!-- 待办等统计按钮，悬停时显示详细信息 -->
             <div>
                 <header>
                     <h1>Tasks</h1>
@@ -46,6 +48,21 @@
                     </ul>
                 </main>
             </div>
+
+            <div class="mt-12 mb-2">
+                <ul class="group">
+                    <li>
+                        <h1>Helper</h1>
+                        <md-text-button @click="router.push('/me/helper')" label="Look"></md-text-button>
+                    </li>
+
+                </ul>
+            </div>
+
+            <router-view name="Me" v-slot="{Component}">
+                <component :is="Component"></component>
+            </router-view>
+
         </main>
 
         <md-dialog :open="dialogOpen">
@@ -67,8 +84,8 @@
 import {
     ref, reactive
 } from 'vue'
+import { useRouter } from 'vue-router'
 import useTasks from '../hooks/useTasks'
-
 
 name = 'Me'
 
@@ -98,20 +115,17 @@ const close = () => dialogOpen.value = false
 const tasks = useTasks()
 
 
+
+
+/**
+ * 路由
+ */
+const router = useRouter()
 </script>
 
 <style scoped>
     ul {
         @apply flex flex-row flex-wrap gap-2 font-bold;
     }
-    ul li.list {
-        @apply bg-blue-500 dark:bg-sky-900 text-white rounded-md p-4 relative;
-    }
-    ul li.list .list-inner-page {
-        @apply z-40 hidden px-4 py-2 absolute left-16 bg-white dark:bg-gray-700 text-black dark:text-white shadow rounded-md;
-    }
-    ul li.list .list-inner-page:hover,
-    ul li.list:hover .list-inner-page {
-        @apply block;
-    }
+
 </style>
