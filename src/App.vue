@@ -27,7 +27,7 @@
             </div>
         </header>
 
-        <main class="pt-24">
+        <main class="pt-24 min-h-screen">
 
             <Search :input="input"></Search>
 
@@ -106,7 +106,7 @@ var activeIndex = computed(() => {
         }
     }
     
-    return 0
+    return optionsRoutes.value.length - 2
 })
 
 

@@ -5,17 +5,20 @@ const routes = [
         name: 'Tasks',
         path: '/',
         component: () => import('../views/Tasks.vue'),
-        meta: {
-            keepAlive: true,
-        }
     },
     {
         name: 'Me',
         path: '/me',
         component: () => import('../views/Me.vue'),
-        meta: {
-            keepAlive: true,
-        }
+        children: [
+            {
+                name: 'Helper',
+                path: '/me/helper',
+                components: {
+                    Me: () => import('../views/Helper.vue'),
+                }
+            },
+        ],
     },
     {
         path: '/Edit',
