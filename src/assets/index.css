@@ -44,7 +44,7 @@
         --color-secondary: #388E3C;
     }
     .dark.green {
-        --color-base: #263238;
+        --color-base: theme('colors.slate.900');
         --color-text-base: #E8F5E9;
         --color-primary: #C8E6C9;
         --color-secondary: #81C784;
@@ -62,7 +62,7 @@
         --color-secondary: #D32F2F;
     }
     .dark.red {
-        --color-base: #263238;
+        --color-base: theme('colors.slate.900');
         --color-text-base: #FFEBEE;
         --color-primary: #FFCDD2;
         --color-secondary: #E57373;
@@ -79,7 +79,7 @@
         --color-secondary: #1976D2;
     }
     .dark.blue {
-        --color-base: #263238;
+        --color-base: theme('colors.slate.900');
         --color-text-base: #E3F2FD;
         --color-primary: #BBDEFB;
         --color-secondary: #64B5F6;
@@ -135,14 +135,18 @@
     main {
         @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto;
     }
-    footer {
-        @apply bg-gray-200 bg-opacity-75 pb-24;
+    /* footer作为网页页脚，颜色不变 */
+    #root > footer {
+        @apply  bg-black bg-opacity-5 dark:bg-slate-800 pb-20 lg:pb-32;
     }
 
     label {
         @apply flex flex-row items-center justify-center gap-2;
     }
 
+
+
+    /* h1 ~ h6的字体宽度 */
     h1 {
         @apply font-extrabold;
     }
@@ -158,6 +162,7 @@
     h6 {
         @apply font-normal;
     }
+    /* 字体颜色 */
     h1,
     h2,
     h3,
@@ -170,11 +175,16 @@
     mark {
         @apply text-base;
     }
-
     mark {
         @apply bg-green-200 text-black px-2;
     }
     
+
+
+    /* md-dialog窗口下的h1标题字体大小 */
+    md-dialog h1 {
+        @apply text-2xl;
+    }
     
     
     header h1 {

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-base overflow-x-hidden">
+    <div id="root" class="bg-base overflow-x-hidden">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
 

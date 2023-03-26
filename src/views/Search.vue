@@ -41,7 +41,7 @@
         </main>
 
 
-        <footer class="bg-transparent dark:bg-transparent p-0">
+        <footer>
             <p class="text-right text-gray-500 dark:text-gray-300">Accumulate {{ get.length }} results</p>
         </footer>
     </div>
