@@ -143,13 +143,20 @@
         @apply flex flex-row items-center justify-center gap-2;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1 {
         @apply font-extrabold;
+    }
+    h2,
+    h3 {
+        @apply font-bold;
+    }
+    h4,
+    h5 {
+        @apply font-medium;
+    }
+    p,
+    h6 {
+        @apply font-normal;
     }
     h1,
     h2,
@@ -248,5 +255,18 @@
         @apply border dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
     }
 
+    .setting .item {
+        @apply hidden;
+    }
+    .setting:active .item,
+    .setting .item:hover {
+        @apply block;
+    }
+    .setting .item li {
+        @apply space-y-2;
+    }
+    .setting .item li label h1 {
+        @apply font-bold text-base;
+    }
 }
 

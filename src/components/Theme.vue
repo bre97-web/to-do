@@ -1,13 +1,14 @@
 <template>
-    <div>
-        <ul class="list">
-            <li v-for="e in theme.getThemeColor()" @click="theme.set({
-                    color: e
-                })">
-                <h1>{{ e }}</h1>
-            </li>
-        </ul>
-    </div>
+    <ul class="flex flex-col gap-2">
+        <li v-for="e in theme.getThemeColor()" class="flex items-center justify-start">
+            <label>
+                <p>{{ e }}</p> 
+                <md-radio name="theme" class="absolute right-0" @click="theme.set({
+                color: e
+            })"></md-radio>
+            </label>
+        </li>
+    </ul>
 </template>
 
 <script setup>

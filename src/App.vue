@@ -1,7 +1,7 @@
 <template>
     <div class="bg-base overflow-x-hidden">
         <header class="topBar">
-            <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
+            <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
 
                 <!-- Web Title -->
                 <h1>To-Do</h1>
@@ -13,24 +13,37 @@
                 </div>
 
                 <!-- Settings and other buttons -->
-                <div class="flex flex-row items-center justify-between">
-                    <label>
-                        Dark
-                        <md-switch 
-                            @click="theme.set({
-                                isDark: !theme.get().current.isDark
-                            })" 
-                            :selected="theme.get().current.isDark">
-                        </md-switch>
-                    </label>
+                <div class="setting">
+                    
+                    <md-text-button label="Settings">
+                    </md-text-button>
+                    
+                    <ul class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2">
+                        <li class="space-y-2">
+                            <h1>Dark</h1>
+                            <label>
+                                <p>Dark</p>
+                                <md-switch 
+                                    @click="theme.set({
+                                        isDark: !theme.get().current.isDark
+                                    })" 
+                                    :selected="theme.get().current.isDark">
+                                </md-switch>
+                            </label>
+                        </li>
+
+                        <md-divider></md-divider>
+
+                        <li class="space-y-2">
+                            <h1>Theme</h1>
+                            <Theme></Theme>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </header>
 
         <main class="pt-24 min-h-screen">
-
-            <Theme></Theme>
-
             <Search :input="input"></Search>
 
             <router-view v-slot="{Component}">
