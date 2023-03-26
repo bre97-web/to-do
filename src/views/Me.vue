@@ -17,8 +17,7 @@
                 <main class="py-2">
                     <ul>
                         <li class="list">
-                            待办
-                            {{ tasks.taskList.getValues().length }}
+                            <h1>待办 {{ tasks.taskList.getValues().length }}</h1>
                             <div v-if="tasks.taskList.getValues().length != 0" class="list-inner-page">
                                 <ul class="tasks">
                                     <li v-for="e in tasks.taskList.getValues()">{{ e.title }}</li>
@@ -27,8 +26,7 @@
                         </li>
 
                         <li class="list">
-                            已完成
-                            {{ tasks.binList.getValues().length }}
+                            <h1>已完成 {{ tasks.binList.getValues().length }}</h1>
                             <div v-if="tasks.binList.getValues().length != 0" class="list-inner-page">
                                 <ul class="tasks">
                                     <li v-for="e in tasks.binList.getValues()">{{ e.title }}</li>
@@ -37,8 +35,7 @@
                         </li>
 
                         <li class="list">
-                            固定
-                            {{ tasks.focusList.getValues().length }}
+                            <h1>固定 {{ tasks.focusList.getValues().length }}</h1>
                             <div v-if="tasks.focusList.getValues().length != 0" class="list-inner-page">
                                 <ul class="tasks">
                                     <li v-for="e in tasks.focusList.getValues()">{{ e.title }}</li>

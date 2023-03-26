@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-transparent dark:bg-gray-900 overflow-x-hidden">
+    <div class="bg-base overflow-x-hidden">
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full">
 
@@ -28,6 +28,8 @@
         </header>
 
         <main class="pt-24 min-h-screen">
+
+            <Theme></Theme>
 
             <Search :input="input"></Search>
 
@@ -77,6 +79,7 @@ import {
     useRouter
 } from 'vue-router'
 import Search from '@/views/Search.vue'
+import Theme from '@/components/Theme.vue'
 import useTheme from '@/hooks/useTheme'
 
 const theme = useTheme()
