@@ -17,10 +17,10 @@
                     <label>
                         Dark
                         <md-switch 
-                            @click="dark.set({
-                                isDark: !dark.get().current.isDark
+                            @click="theme.set({
+                                isDark: !theme.get().current.isDark
                             })" 
-                            :selected="dark.get().current.isDark">
+                            :selected="theme.get().current.isDark">
                         </md-switch>
                     </label>
                 </div>
@@ -77,9 +77,9 @@ import {
     useRouter
 } from 'vue-router'
 import Search from '@/views/Search.vue'
-import useDark from '@/hooks/useDark'
+import useTheme from '@/hooks/useTheme'
 
-const dark = useDark()
+const theme = useTheme()
 
 var open = ref(false)
 const close = () => open.value = false
