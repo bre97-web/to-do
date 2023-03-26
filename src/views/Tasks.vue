@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="flex flex-col">
 
-        <Task title="Focus" subtitle="使用固定按钮将任务钉至此处">
+        <Task :class="tasksStyle.focusList" title="Focus" subtitle="使用固定按钮将任务钉至此处">
             <template #>
                 <li v-for="e in tasks.focusList.getValues()" :key="e.index">
 
@@ -25,7 +25,7 @@
             </template>
         </Task>
 
-        <Task title="Today's tasks" subtitle="需要完成的任务清单">
+        <Task :class="{'opacity-25': tasks.taskList.getValues().length === 0}" title="Today's tasks" subtitle="需要完成的任务清单">
             <template #>
                 <li v-for="e in tasks.taskList.getValues()" :key="e.index">
 
@@ -52,7 +52,7 @@
             </template>
         </Task>
 
-        <Task title="Recycle Bin" subtitle="完成的任务会在这里">
+        <Task style="grid-row:3;" :class="{'opacity-25': tasks.binList.getValues().length === 0}" title="Recycle Bin" subtitle="完成的任务会在这里">
             <template #>
                 <li v-for="e in tasks.binList.getValues()" class="line-through italic" :key="e.index">
                     <div class="desc">
@@ -82,6 +82,9 @@
 </template>
 
 <script setup>
+import {
+    watch, reactive
+} from 'vue'
 import { useRouter } from 'vue-router';
 import Task from '@/components/Task.vue'
 import Creator from '@/components/Creator.vue'
@@ -97,7 +100,30 @@ const push = (path, e) => router.push({
 
 
 const tasks = useTasks()
+var tasksStyle = reactive({
+    focusList: {
+        'opacity-0': true,
+        'hidden': true
+    }
+})
 
+/**
+ * 仅针对focusList的样式
+ * 监测tasks中tasks.focusList的长度，当长度为0时设定定时器，延迟使样式成立
+ */
+watch(() => tasks.focusList.getValues().length, (v) => {
+    if(v === 0) {
+        tasksStyle.focusList['opacity-0'] = true
+        setTimeout(() => {
+            tasksStyle.focusList['hidden'] = true
+        }, 500)
+    } else {
+        tasksStyle.focusList['hidden'] = false
+        setTimeout(() => {
+            tasksStyle.focusList['opacity-0'] = false
+        }, 300)
+    }
+}, {immediate: true})
 
 
 </script>

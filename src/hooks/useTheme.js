@@ -5,9 +5,21 @@ import {
 /**
  * 全局主题，用于设置主题颜色和深色模式
  */
-const THEME = reactive(JSON.parse(localStorage.getItem('theme')) || {
-    current: {
-        isDark: false
+const THEME = reactive({
+    /**
+     * color是允许使用的所有主题色，不包括深色模式
+     */
+    color: ['default', 'green', 'red', 'blue'],
+
+    /**
+     * current是当前主题的配置信息
+     */
+    current: JSON.parse(localStorage.getItem('theme-current')) || {
+        isDark: false,
+        /**
+         * 当前使用的主题色
+         */
+        color: 'default',
     }
 })
 
@@ -23,9 +35,19 @@ watch(() => THEME.current.isDark, () => {
 }, {immediate: true})
 
 /**
+ * 切换主题色
+ */
+watch(() => THEME.current.color, () => {
+    THEME.color.forEach(element => {
+        document.body.classList.remove(element)
+    })
+    document.body.classList.add(THEME.current.color)
+}, {immediate: true})
+
+/**
  * 当THEME状态变化时将THEME保存到localStorage
  */
-watch(THEME, () => localStorage.setItem('theme', JSON.stringify(THEME)))
+watch(() => THEME.current, () => localStorage.setItem('theme-current', JSON.stringify(THEME.current)))
 
 export default function useDark() {
 
@@ -34,6 +56,7 @@ export default function useDark() {
      * @returns const Object THEME
      */
     const get = () => THEME
+    const getThemeColor = () => THEME.color
 
     /**
      * 设置全局的THEME.current
@@ -41,12 +64,14 @@ export default function useDark() {
      */
     const set = (current) => {
         THEME.current = {
+            ...THEME.current,
             ...current
         }
     }
 
     return {
         get,
+        getThemeColor,
         set,
     }
 }

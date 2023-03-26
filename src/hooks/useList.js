@@ -69,7 +69,7 @@ function useInnerList(item) {
     /**
      * item参数是必须提供的
      */
-    if(item == '' || typeof item == 'undefined') {
+    if(item === '' || typeof item === 'undefined') {
         return undefined
     }
 
