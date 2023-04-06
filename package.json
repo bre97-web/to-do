@@ -13,11 +13,7 @@
 
     "dev:electron": "electron-vite dev",
     "preview:electron": "electron-vite preview",
-<<<<<<< Updated upstream
     "build": "electron-vite build",
-=======
-    "build:electron": "electron-vite build",
->>>>>>> Stashed changes
 
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",

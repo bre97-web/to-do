@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
 appId: com.github.To-Do.bre97-web
 productName: To-Do
-=======
-appId: com.electron.app
-productName: electron-app
->>>>>>> Stashed changes
 directories:
   buildResources: build
 files:
@@ -17,11 +12,7 @@ asarUnpack:
   - resources/**
 afterSign: build/notarize.js
 win:
-<<<<<<< Updated upstream
   executableName: To-Do
-=======
-  executableName: electron-app
->>>>>>> Stashed changes
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

@@ -23,11 +23,6 @@ export default defineConfig({
   root: './src/renderer/',
   base: '/To-Do',
   build: {
-<<<<<<< Updated upstream
-    outDir: '../../docs',
-=======
-    outDir: './docs',
->>>>>>> Stashed changes
-    emptyOutDir: true
+    outDir: '../docs',
   }
 })

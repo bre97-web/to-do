@@ -2,11 +2,9 @@
 
 Welcome!
 
-<div style="display:flex; justify-content: center;">
-    <p style="color: #f43f5e ; background-image: linear-gradient(to bottom right, #f0fdf4, #f0f9ff);font-size: 3.75rem; line-height:2.5rem; font-weight:900;">To-Do</p>
-</div>
+<div align="center">
 
-<div align="center" style="display:flex; gap:0.5rem; justify-content: center;">
+![To-Do](./static/img/to-do.png?raw=true)
 
 ![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.0/total)
 
