@@ -1,18 +1,44 @@
-# To-Do
-Write with **Vue** and **TailwindCSS**, It is a simple todo page.
+# **To-Do**
 
-轻松地使用我们的[To-Do](https://bre97-web.github.io/To-Do/)网页创建任务清单并完成它！只需要简单的几步就能得到你想要的。
+Welcome!
 
-## program with me if you want
-Get the repository and open it, Open the Window Terminal or something.
+<div style="display:flex; justify-content: center;">
+    <p style="color: #f43f5e ; background-image: linear-gradient(to bottom right, #f0fdf4, #f0f9ff);font-size: 3.75rem; line-height:2.5rem; font-weight:900;">To-Do</p>
+</div>
 
-Enter the following code to start following the dependency:
-> `npm i`
-> `npm run md`
+<div align="center" style="display:flex; gap:0.5rem; justify-content: center;">
 
+![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.0/total)
 
-Enter the following code to start sever after download is complete:
-> `npm dev run`
+![](https://img.shields.io/github/last-commit/bre97-web/To-Do)
 
-If you finished your modifications, run this:
-> `npm run build`
+</div>
+
+You can visit our web version view [To-Do WebPage](bre97-web.github.io/To-Do/), If you want to experience our Windows platform applications, please move to [Release](https://github.com/bre97-web/To-Do/releases). 
+
+_Unfortunately, the web version and the Windows platform application are the same._
+
+## Code
+
+If you want to contribute code, please refer to the form below:
+
+|Language|Position|
+|:--|:--|
+|Vue 3|`./src/renderer/**/*.vue`|
+|Tailwindcss|`./src/renderer/assets/index.css`|
+|JavaScript|`./src/renderer/**/*.js`|
+
+## Roadmap
+
+You can make suggestions in issues.
+
+- ❌ Not started
+- 🟡 In progress
+- ✅ Complete
+
+|Feature|planned|
+|:--|--:|
+|Event Slider|❌|
+|Notes|❌|
+|Sugguest|❌|
+|Notify|❌|

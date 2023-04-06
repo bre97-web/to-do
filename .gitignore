@@ -31,4 +31,7 @@ coverage
 
 # Material Web
 bundle.js
-src/assets/bundle.js
+src/assetsrenderer/assets/bundle.js
+
+# Electron
+web-application
