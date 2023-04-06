@@ -1,6 +1,8 @@
 {
   "name": "to-do",
-  "version": "0.0.0",
+  "version": "1.0.0-pre.0",
+  "author": "bre97-web",
+  "description": "Written by Vue 3 and Electron with Vite.",
   "private": false,
   "main": "./out/main/index.js",
   "scripts": {
@@ -11,7 +13,7 @@
 
     "dev:electron": "electron-vite dev",
     "preview:electron": "electron-vite preview",
-    "build:electron": "electron-vite build",
+    "build": "electron-vite build",
 
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",

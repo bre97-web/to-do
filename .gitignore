@@ -34,5 +34,4 @@ bundle.js
 src/assetsrenderer/assets/bundle.js
 
 # Electron
-out
 web-application

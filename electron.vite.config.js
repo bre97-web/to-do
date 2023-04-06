@@ -26,8 +26,9 @@ export default defineConfig({
       }),
       vueJsx()
     ],
+    base: './',
     build: {
-      outDir: './web-application'
+      outDir: './docs'
     }
   }
 })
