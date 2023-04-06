@@ -22,9 +22,9 @@ function createWindow() {
     electron.shell.openExternal(details.url);
     return { action: "deny" };
   });
-  if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"])
-    ;
-  else {
+  if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
+    mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
+  } else {
     mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
   }
 }

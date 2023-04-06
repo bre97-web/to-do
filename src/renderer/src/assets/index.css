@@ -278,5 +278,12 @@
     .setting .item li label h1 {
         @apply font-bold text-base;
     }
+
+    input,
+    ul li,
+    .fab,
+    .navigation {
+        transition: all .15s;
+    }
 }
 
