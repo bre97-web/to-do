@@ -1,4 +1,3 @@
-
 // Vue
 import { createApp } from 'vue'
 import App from '@/App.vue'
@@ -25,7 +24,7 @@ import 'material-icons/css/material-icons.css'
  * Please run:
  * npm run md
  */
-// import './assets/bundle'
+import '@/assets/bundle'
 
 const app = createApp(App)
 app.use(Router).mount('#app')
