@@ -1,5 +1,8 @@
 <template>
     <div id="root" class="bg-base overflow-x-hidden">
+
+        <FirstLaunch></FirstLaunch>
+
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
 
@@ -85,20 +88,17 @@
 </template>
 
 <script setup>
-import {
-    reactive, ref, provide, watch, computed
-} from 'vue'
-import {
-    useRouter
-} from 'vue-router'
+import { reactive, ref, provide, watch, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import Search from '@/views/Search.vue'
 import Theme from '@/components/Theme.vue'
 import useTheme from '@/hooks/useTheme'
+import FirstLaunch from './components/FirstLaunch.vue'
 
 const theme = useTheme()
 
 var open = ref(false)
-const close = () => open.value = false
+const close = () => (open.value = false)
 provide('createDialog', {
     open,
     close
@@ -109,23 +109,18 @@ provide('createDialog', {
  */
 const router = reactive(useRouter())
 const location = ref(router.options.history.location)
-const push = (path) => router.push({
-    path: path
-})
-watch(router, () => location.value = router.options.history.location)
+const push = (path) => router.push({ path: path })
+watch(router, () => (location.value = router.options.history.location))
 const optionsRoutes = ref(router.options.routes)
 
 var activeIndex = computed(() => {
-    for(let key in optionsRoutes.value) {
-        if(optionsRoutes.value[key].path == location.value) {
+    for (let key in optionsRoutes.value) {
+        if (optionsRoutes.value[key].path == location.value) {
             return key * 1
         }
     }
-    
     return optionsRoutes.value.length - 2
 })
-
-
 
 /**
  * 用于Search组件

@@ -116,13 +116,13 @@
     /* nav应该位于最顶层 */
     nav,
     nav * {
-        @apply z-50;
+        @apply z-40;
     }
     nav .fab {
         @apply fixed right-5 bottom-24 lg:bottom-5;
     }
     nav .fab * {
-        @apply z-50;
+        @apply z-40;
     }
     nav .navigation {
         @apply fixed right-0 bottom-0 w-full lg:bottom-5 z-40;
@@ -132,7 +132,7 @@
     }
 
 
-    main {
+    #root > main {
         @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto;
     }
     /* footer作为网页页脚，颜色不变 */
@@ -196,7 +196,7 @@
 
 
     .topBar {
-        @apply z-50 border-b dark:border-none flex items-center justify-start;
+        @apply z-40 border-b dark:border-none flex items-center justify-start;
         transition: none;
     }
     header.topBar {
@@ -228,7 +228,7 @@
         @apply hidden absolute right-5;
     }
     ul.tasks li:hover .buttonGroup {
-        @apply block z-50;
+        @apply block z-40;
     }
     ul.tasks li:hover .buttonGroup * {
         @apply text-black dark:text-white;
