@@ -1,11 +1,6 @@
 <template>
     <div>
-        <header>
-            <div class="flex flex-col">
-                <p>Hello</p>
-                <h1 @click="open" class="underline underline-offset-1 hover:underline-offset-4">{{ info.name }}</h1>
-            </div>
-        </header>
+        <Profile></Profile>
 
         <main class="mt-12 relative">
 
@@ -61,55 +56,19 @@
             </router-view>
 
         </main>
-
-        <md-dialog :open="dialogOpen">
-            <div slot="header">
-                <h1>Rename</h1>
-            </div>
-
-            <div class="flex flex-col gap-2">
-                <md-filled-text-field :value="info.name" @input="info.name = $event.target.value" label="Name"></md-filled-text-field>
-            </div>
-
-            <md-text-button @click="cancel" label="Cancel" slot="footer"></md-text-button>
-            <md-filled-button @click="submit" label="OK" slot="footer"></md-filled-button>
-        </md-dialog>
     </div>
 </template>
 
 <script setup>
-import {
-    ref, reactive
-} from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useTasks from '@/hooks/useTasks'
-
-/**
- * 关于打开与关闭dialog的操作和业务逻辑
- */
-var dialogOpen = ref(false)
-const info = reactive(JSON.parse(localStorage.getItem('personal-info')) || {
-    name: 'Click me to rename',
-})
-const submit = () => {
-    localStorage.setItem('personal-info', JSON.stringify(info))
-    close()
-}
-const cancel = () => {
-    info.name = JSON.parse(localStorage.getItem('personal-info')).name
-    close()
-}
-const open = () => dialogOpen.value = true
-const close = () => dialogOpen.value = false
-
+import Profile from '@/components/Profile.vue'
 
 /**
  * 用于获取所有的任务
  */
 const tasks = useTasks()
-
-
-
 
 /**
  * 路由
@@ -118,8 +77,7 @@ const router = useRouter()
 </script>
 
 <style scoped>
-    ul {
-        @apply flex flex-row flex-wrap gap-2 font-bold;
-    }
-
+ul {
+    @apply flex flex-row flex-wrap gap-2 font-bold;
+}
 </style>

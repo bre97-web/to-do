@@ -279,8 +279,16 @@
         @apply font-bold text-base;
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
     input,
     ul li,
+    md-filled-text-field,
     .fab,
     .navigation {
         transition: all .15s;

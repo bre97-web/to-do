@@ -40,3 +40,4 @@ You can make suggestions in issues.
 |Notes|❌|
 |Sugguest|❌|
 |Notify|❌|
+|Avatar|🟡|
