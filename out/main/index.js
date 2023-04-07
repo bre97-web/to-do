@@ -25,11 +25,7 @@ function createWindow() {
   if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
     mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
   } else {
-<<<<<<< Updated upstream
     mainWindow.loadFile(path.join(__dirname, "../../docs/index.html"));
-=======
-    mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
->>>>>>> Stashed changes
   }
 }
 electron.app.whenReady().then(() => {

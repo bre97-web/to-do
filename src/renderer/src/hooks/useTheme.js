@@ -1,6 +1,4 @@
-import {
-    reactive, watch
-} from 'vue'
+import { reactive, watch } from 'vue'
 
 /**
  * 全局主题，用于设置主题颜色和深色模式
@@ -72,6 +70,6 @@ export default function useDark() {
     return {
         get,
         getThemeColor,
-        set,
+        set
     }
 }

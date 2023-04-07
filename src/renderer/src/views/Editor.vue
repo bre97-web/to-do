@@ -1,35 +1,36 @@
 <template>
     <md-dialog :open="isOpen">
         <div slot="header">
-            <h1>
-                Edit a task
-            </h1>
-            <p>
-                
-            </p>
+            <h1>Edit a task</h1>
         </div>
 
         <div class="flex flex-col gap-2">
-            <md-filled-text-field :value="task.title" @input="task.title = $event.target.value" label="Title"></md-filled-text-field>
-            <md-filled-text-field :value="task.subtitle" @input="task.subtitle = $event.target.value" label="Subtitle"></md-filled-text-field>
-            <md-outlined-text-field type="date" :value="task.date" @input="task.date = $event.target.value" label="Created Date"></md-outlined-text-field>
+            <md-filled-text-field
+                :value="task.title"
+                label="Title"
+                @input="task.title = $event.target.value"
+            ></md-filled-text-field>
+            <md-filled-text-field
+                :value="task.subtitle"
+                label="Subtitle"
+                @input="task.subtitle = $event.target.value"
+            ></md-filled-text-field>
+            <md-outlined-text-field
+                type="date" :value="task.date"
+                label="Created Date"
+                @input="task.date = $event.target.value"
+            ></md-outlined-text-field>
         </div>
 
-        <md-text-button @click="cancel" label="Cancel" slot="footer"></md-text-button>
-        <md-filled-button @click="submit" label="OK" slot="footer"></md-filled-button>
+        <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
+        <md-filled-button label="OK" @click="submit" slot="footer"></md-filled-button>
     </md-dialog>
 </template>
 
 <script setup>
-import {
-    ref, reactive, onMounted
-} from 'vue'
-import {
-    useRouter
-} from 'vue-router'
-import { 
-    useList
-} from '@/hooks/useList'
+import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useList } from '@/hooks/useList'
 
 const router = useRouter()
 
@@ -38,14 +39,14 @@ const router = useRouter()
  */
 const props = defineProps(['task'])
 const task = reactive({
-    ...JSON.parse(props.task),
+    ...JSON.parse(props.task)
 })
 var isOpen = ref(false)
 onMounted(() => {
     isOpen.value = true
 })
 const submit = () => {
-    useList().edit(task)  
+    useList().edit(task)
     close()
 }
 const cancel = () => {
@@ -55,9 +56,4 @@ const close = () => {
     isOpen.value = false
     setTimeout(() => router.push('/'), 200)
 }
-
 </script>
-
-<style scoped>
-
-</style>

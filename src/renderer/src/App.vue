@@ -1,5 +1,8 @@
 <template>
-    <div id="root" class="bg-base overflow-x-hidden">
+    <Loading v-if="!isLoaded" message="To-Do"></Loading>
+    <div v-else id="root" class="bg-base overflow-x-hidden">
+        <FirstLaunch></FirstLaunch>
+
         <header class="topBar">
             <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
 
@@ -9,26 +12,33 @@
                 <!-- Search input -->
                 <div class="relative w-full flex items-center justify-center">
                     <i class="material-icons relative left-10">search</i>
-                    <input :value:="input" @input="input = $event.target.value" type="text" placeholder="Search" />
+                    <input
+                        :value:="input"
+                        type="text"
+                        placeholder="Search"
+                        @input="input = $event.target.value"
+                    />
                 </div>
 
                 <!-- Settings and other buttons -->
                 <div class="setting">
-                    
-                    <md-text-button label="Settings">
-                    </md-text-button>
-                    
-                    <ul class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2">
+                    <md-text-button label="Settings"></md-text-button>
+
+                    <ul
+                        class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2"
+                    >
                         <li class="space-y-2">
                             <h1>Dark</h1>
                             <label>
                                 <p>Dark</p>
-                                <md-switch 
-                                    @click="theme.set({
-                                        isDark: !theme.get().current.isDark
-                                    })" 
-                                    :selected="theme.get().current.isDark">
-                                </md-switch>
+                                <md-switch
+                                    :selected="theme.get().current.isDark"
+                                    @click="
+                                        theme.set({
+                                            isDark: !theme.get().current.isDark
+                                        })
+                                    "
+                                ></md-switch>
                             </label>
                         </li>
 
@@ -54,19 +64,23 @@
         <!-- Create and Bottom Navigation -->
         <nav>
             <div class="fab">
-                <md-fab-extended :class="{'opacity-0': location != '/'}" @click="open = true" label="Create">
-                    <i class="material-icons" slot="icon">create</i>
+                <md-fab-extended
+                    label="Create"
+                    :class="{ 'opacity-0': location != '/' }"
+                    @click="dialog.open = true"
+                >
+                    <i slot="icon" class="material-icons">create</i>
                 </md-fab-extended>
+                <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
             </div>
             <div class="navigation">
                 <div>
                     <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
-                        <md-navigation-tab @click="push('/')" label="Home">
-                            <i class="material-icons" slot="icon">home</i>
+                        <md-navigation-tab label="Home" @click="push('/')">
+                            <i slot="icon" class="material-icons">home</i>
                         </md-navigation-tab>
-                        
-                        <md-navigation-tab  @click="push('/me')" label="Me">
-                            <i class="material-icons" slot="icon">home</i>
+                        <md-navigation-tab label="Me" @click="push('/me')">
+                            <i slot="icon" class="material-icons">home</i>
                         </md-navigation-tab>
                     </md-navigation-bar>
                 </div>
@@ -85,47 +99,47 @@
 </template>
 
 <script setup>
-import {
-    reactive, ref, provide, watch, computed
-} from 'vue'
-import {
-    useRouter
-} from 'vue-router'
+import { reactive, ref, watch, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import Search from '@/views/Search.vue'
 import Theme from '@/components/Theme.vue'
 import useTheme from '@/hooks/useTheme'
+import Creator from './components/Creator.vue'
+import FirstLaunch from './components/FirstLaunch.vue'
+import Loading from './components/Loading.vue'
 
 const theme = useTheme()
 
-var open = ref(false)
-const close = () => open.value = false
-provide('createDialog', {
-    open,
-    close
+/**
+ * 在window.load时isLoaded变为true，延迟1秒
+ */
+const isLoaded = ref(false)
+window.addEventListener('load', () => {
+    setTimeout(() => (isLoaded.value = true), 1000)
 })
+
+const dialog = reactive({
+    open: false
+})
+const closeDialog = () => (dialog.open = false)
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
  */
 const router = reactive(useRouter())
 const location = ref(router.options.history.location)
-const push = (path) => router.push({
-    path: path
-})
-watch(router, () => location.value = router.options.history.location)
+const push = (path) => router.push({ path: path })
+watch(router, () => (location.value = router.options.history.location))
 const optionsRoutes = ref(router.options.routes)
 
 var activeIndex = computed(() => {
-    for(let key in optionsRoutes.value) {
-        if(optionsRoutes.value[key].path == location.value) {
+    for (let key in optionsRoutes.value) {
+        if (optionsRoutes.value[key].path == location.value) {
             return key * 1
         }
     }
-    
     return optionsRoutes.value.length - 2
 })
-
-
 
 /**
  * 用于Search组件

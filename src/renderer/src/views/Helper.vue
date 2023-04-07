@@ -1,16 +1,12 @@
 <template>
     <div class="relative border rounded-md px-4 py-2">
         <nav class="absolute right-1 top-1">
-            <md-text-button @click="router.back()" label="Hidden"></md-text-button>
+            <md-text-button label="Hidden" @click="router.back()"></md-text-button>
         </nav>
 
         <header>
-            <h1>
-                Help
-            </h1>
-            <p>
-                你将从这里学习到使用本网页的技能！
-            </p>
+            <h1>Help</h1>
+            <p>你将从这里学习到使用本网页的技能！</p>
         </header>
 
         <main>
@@ -33,19 +29,16 @@
 </template>
 
 <script setup>
-import {
-    useRouter
-} from 'vue-router'
-
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 </script>
 
 <style scoped lang="css">
-    li {
-        @apply hover:shadow-none pt-4;
-    }
-    li h1 {
-        @apply font-bold;
-    }
+li {
+    @apply hover:shadow-none pt-4;
+}
+li h1 {
+    @apply font-bold;
+}
 </style>

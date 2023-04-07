@@ -1,11 +1,9 @@
 <template>
     <div>
-
         <header>
             <h1>{{ props.title }}</h1>
             <p>{{ props.subtitle }}</p>
         </header>
-
 
         <ul class="tasks">
             <slot></slot>
@@ -14,22 +12,16 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
-    'title':{
+    title: {
         type: String,
         required: true,
         default: ''
     },
-    'subtitle':{
+    subtitle: {
         type: String,
         required: true,
         default: ''
     }
 })
-
 </script>
-
-<style scoped>
-
-</style>

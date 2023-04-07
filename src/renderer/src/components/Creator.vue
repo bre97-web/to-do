@@ -1,37 +1,38 @@
 <template>
-    <md-dialog :open="dialog.open.value">
+    <md-dialog :open="props.dialog.open">
         <div slot="header">
-            <h1>
-                Create a task
-            </h1>
-            <p>
-                
-            </p>
+            <h1>Create a task</h1>
         </div>
 
         <div class="flex flex-col gap-2">
-            <md-filled-text-field :value="task.title" @input="task.title = $event.target.value" label="Title"></md-filled-text-field>
-            <md-filled-text-field :value="task.subtitle" @input="task.subtitle = $event.target.value" label="Subtitle"></md-filled-text-field>
+            <md-filled-text-field
+                :value="task.title"
+                label="Title"
+                @input="task.title = $event.target.value"
+            />
+            <md-filled-text-field
+                :value="task.subtitle"
+                label="Subtitle"
+                @input="task.subtitle = $event.target.value"
+            />
         </div>
 
-        <md-text-button @click="cancel" label="Cancel" slot="footer"></md-text-button>
-        <md-filled-button @click="submit" label="OK" slot="footer"></md-filled-button>
+        <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
+        <md-filled-button label="OK" @click="submit" slot="footer"></md-filled-button>
     </md-dialog>
 </template>
 
 <script setup>
-import {
-    inject
-} from 'vue'
-import { 
-    useList
-} from '@/hooks/useList'
+import { useList } from '@/hooks/useList'
 
-const dialog = inject('createDialog')
+const props = defineProps(['dialog', 'closeDialog'])
 
+/**
+ * 将要创建的task信息
+ */
 const task = {
     title: '',
-    subtitle: '',
+    subtitle: ''
 }
 
 /**
@@ -40,20 +41,15 @@ const task = {
 const submit = () => {
     useList().push(task)
     clear()
-    dialog.close()
+    props.closeDialog()
 }
 const cancel = () => {
     clear()
-    dialog.close()
+    props.closeDialog()
 }
 
 const clear = () => {
     task.title = ''
     task.subtitle = ''
 }
-
 </script>
-
-<style scoped>
-
-</style>

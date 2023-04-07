@@ -25,19 +25,19 @@
             </template>
         </Task>
 
-        <Task :class="{'opacity-25': tasks.taskList.getValues().length === 0}" title="Today's tasks" subtitle="需要完成的任务清单">
+        <Task
+            :class="{ 'opacity-25': tasks.taskList.getValues().length === 0 }"
+            title="Today's tasks"
+            subtitle="需要完成的任务清单"
+        >
             <template #>
                 <li v-for="e in tasks.taskList.getValues()" :key="e.index">
 
                     <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
                     <div class="desc">
-                        <h1>
-                            {{ e.title }}
-                        </h1>
-                        <p>
-                            {{ e.subtitle }}
-                        </p>
+                        <h1>{{ e.title }}</h1>
+                        <p>{{ e.subtitle }}</p>
                     </div>
 
                     <div class="flex flex-row gap-2 py-2 buttonGroup">
@@ -52,16 +52,21 @@
             </template>
         </Task>
 
-        <Task style="grid-row:3;" :class="{'opacity-25': tasks.binList.getValues().length === 0}" title="Recycle Bin" subtitle="完成的任务会在这里">
+        <Task
+            style="grid-row:3;"
+            :class="{ 'opacity-25': tasks.binList.getValues().length === 0 }"
+            title="Recycle Bin"
+            subtitle="完成的任务会在这里"
+        >
             <template #>
-                <li v-for="e in tasks.binList.getValues()" class="line-through italic" :key="e.index">
+                <li
+                    v-for="e in tasks.binList.getValues()"
+                    :key="e.index"
+                    class="line-through italic"
+                >
                     <div class="desc">
-                        <h1>
-                            {{ e.title }}
-                        </h1>
-                        <p>
-                            {{ e.subtitle }}
-                        </p>
+                        <h1>{{ e.title }}</h1>
+                        <p>{{ e.subtitle }}</p>
                     </div>
 
                     <div class="flex flex-row gap-2 py-2 buttonGroup">
@@ -75,19 +80,13 @@
                 </li>
             </template>
         </Task>
-
-
-        <Creator></Creator>
     </div>
 </template>
 
 <script setup>
-import {
-    watch, reactive
-} from 'vue'
+import { watch, reactive } from 'vue'
 import { useRouter } from 'vue-router';
 import Task from '@/components/Task.vue'
-import Creator from '@/components/Creator.vue'
 import useTasks from '@/hooks/useTasks'
 
 const router = useRouter()
@@ -103,7 +102,7 @@ const tasks = useTasks()
 var tasksStyle = reactive({
     focusList: {
         'opacity-0': true,
-        'hidden': true
+        hidden: true
     }
 })
 
@@ -112,7 +111,7 @@ var tasksStyle = reactive({
  * 监测tasks中tasks.focusList的长度，当长度为0时设定定时器，延迟使样式成立
  */
 watch(() => tasks.focusList.getValues().length, (v) => {
-    if(v === 0) {
+    if (v === 0) {
         tasksStyle.focusList['opacity-0'] = true
         setTimeout(() => {
             tasksStyle.focusList['hidden'] = true
@@ -123,11 +122,7 @@ watch(() => tasks.focusList.getValues().length, (v) => {
             tasksStyle.focusList['opacity-0'] = false
         }, 300)
     }
-}, {immediate: true})
-
-
+}, {
+    immediate: true
+})
 </script>
-
-<style scoped>
-
-</style>
