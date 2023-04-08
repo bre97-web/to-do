@@ -1,8 +1,11 @@
 <!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-    <div class="flex flex-row">
-        <header v-if="info.avatar_path.length !== 0">
-            <img :src="info.avatar_path" alt="Avatar" />
+    <div class="flex flex-row gap-2">
+        <header
+            v-if="info.name.length !== 0"
+            class="rounded-full border w-20 h-20 flex items-center justify-center bg-off-base"
+        >
+            <h1 class="text-4xl">{{ info.name[0] }}</h1>
         </header>
 
         <main class="flex flex-col">
@@ -24,7 +27,6 @@
                     :value="info.name"
                     @input="info.name = $event.target.value"
                 ></md-filled-text-field>
-                <md-filled-text-field ref="img" type="file" label="Avatar"></md-filled-text-field>
             </div>
 
             <md-text-button slot="footer" label="Cancel" @click="cancel"></md-text-button>
@@ -34,9 +36,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-
-const img = ref()
+import { ref, reactive } from 'vue'
 
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
@@ -45,14 +45,10 @@ var dialogOpen = ref(false)
 const info = reactive(
     JSON.parse(localStorage.getItem('bre97-web-todo-personal-info')) || {
         name: 'Click me to edit your info',
-        avatar_path: '',
-        avatar_file: ''
     }
 )
 
 const submit = () => {
-    info.avatar_file = img.value.input.files[0]
-    progress()
     close()
     localStorage.setItem('bre97-web-todo-personal-info', JSON.stringify(info))
 }
@@ -62,19 +58,6 @@ const cancel = () => {
 }
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)
-
-/**
- * 头像处理
- */
-onMounted(() => {
-    // progress()
-})
-const progress = () => {
-    var reader = new FileReader()
-    reader.readAsDataURL(info.avatar_file)
-    reader.onload = () => (info.avatar_path = reader.result)
-    // info.avatar_path = info.avatar_file
-}
 </script>
 
 <style scoped></style>

@@ -3,55 +3,7 @@
     <div v-else id="root" class="bg-base overflow-x-hidden">
         <FirstLaunch></FirstLaunch>
 
-        <header class="topBar">
-            <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
-
-                <!-- Web Title -->
-                <h1>To-Do</h1>
-
-                <!-- Search input -->
-                <div class="relative w-full flex items-center justify-center">
-                    <i class="material-icons relative left-10">search</i>
-                    <input
-                        :value:="input"
-                        type="text"
-                        placeholder="Search"
-                        @input="input = $event.target.value"
-                    />
-                </div>
-
-                <!-- Settings and other buttons -->
-                <div class="setting">
-                    <md-text-button label="Settings"></md-text-button>
-
-                    <ul
-                        class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2"
-                    >
-                        <li class="space-y-2">
-                            <h1>Dark</h1>
-                            <label>
-                                <p>Dark</p>
-                                <md-switch
-                                    :selected="theme.get().current.isDark"
-                                    @click="
-                                        theme.set({
-                                            isDark: !theme.get().current.isDark
-                                        })
-                                    "
-                                ></md-switch>
-                            </label>
-                        </li>
-
-                        <md-divider></md-divider>
-
-                        <li class="space-y-2">
-                            <h1>Theme</h1>
-                            <Theme></Theme>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+        <Header :input="input" @setInput="setInput"></Header>
 
         <main class="pt-24 min-h-screen">
             <Search :input="input"></Search>
@@ -102,13 +54,10 @@
 import { reactive, ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Search from '@/views/Search.vue'
-import Theme from '@/components/Theme.vue'
-import useTheme from '@/hooks/useTheme'
+import Header from './components/header/Header.vue'
 import Creator from './components/Creator.vue'
 import FirstLaunch from './components/FirstLaunch.vue'
 import Loading from './components/Loading.vue'
-
-const theme = useTheme()
 
 /**
  * 在window.load时isLoaded变为true，延迟1秒
@@ -144,5 +93,6 @@ var activeIndex = computed(() => {
 /**
  * 用于Search组件
  */
-var input = ref('')
+const input = ref('')
+const setInput = (value) => input.value = value
 </script>
