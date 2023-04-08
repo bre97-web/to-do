@@ -3,7 +3,6 @@
         <Profile></Profile>
 
         <main class="mt-12 relative">
-
             <!-- 待办等统计按钮，悬停时显示详细信息 -->
             <div>
                 <header>
@@ -13,27 +12,51 @@
                     <ul>
                         <li class="list">
                             <h1>待办 {{ tasks.taskList.getValues().length }}</h1>
-                            <div v-if="tasks.taskList.getValues().length != 0" class="list-inner-page">
+                            <div
+                                v-if="tasks.taskList.getValues().length != 0"
+                                class="list-inner-page"
+                            >
                                 <ul class="tasks">
-                                    <li v-for="e in tasks.taskList.getValues()">{{ e.title }}</li>
+                                    <li
+                                        v-for="e in tasks.taskList.getValues()"
+                                        :key="e.index"
+                                    >
+                                        {{ e.title }}
+                                    </li>
                                 </ul>
                             </div>
                         </li>
 
                         <li class="list">
                             <h1>已完成 {{ tasks.binList.getValues().length }}</h1>
-                            <div v-if="tasks.binList.getValues().length != 0" class="list-inner-page">
+                            <div
+                                v-if="tasks.binList.getValues().length != 0"
+                                class="list-inner-page"
+                            >
                                 <ul class="tasks">
-                                    <li v-for="e in tasks.binList.getValues()">{{ e.title }}</li>
+                                    <li
+                                        v-for="e in tasks.binList.getValues()"
+                                        :key="e.index"
+                                    >
+                                        {{ e.title }}
+                                    </li>
                                 </ul>
                             </div>
                         </li>
 
                         <li class="list">
                             <h1>固定 {{ tasks.focusList.getValues().length }}</h1>
-                            <div v-if="tasks.focusList.getValues().length != 0" class="list-inner-page">
+                            <div
+                                v-if="tasks.focusList.getValues().length != 0"
+                                class="list-inner-page"
+                            >
                                 <ul class="tasks">
-                                    <li v-for="e in tasks.focusList.getValues()">{{ e.title }}</li>
+                                    <li
+                                        v-for="e in tasks.focusList.getValues()"
+                                        :key="e.index"
+                                    >
+                                        {{ e.title }}
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -45,22 +68,22 @@
                 <ul class="group">
                     <li>
                         <h1>Helper</h1>
-                        <md-text-button @click="router.push('/helper')" label="Look"></md-text-button>
+                        <md-text-button
+                            label="Look"
+                            @click="router.push('/helper')"
+                        ></md-text-button>
                     </li>
-
                 </ul>
             </div>
 
-            <router-view name="Me" v-slot="{Component}">
+            <router-view v-slot="{Component}" name="Me">
                 <component :is="Component"></component>
             </router-view>
-
         </main>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useTasks from '@/hooks/useTasks'
 import Profile from '@/components/Profile.vue'

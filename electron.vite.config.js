@@ -4,31 +4,31 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
-  main: {
-    plugins: [externalizeDepsPlugin()]
-  },
-  preload: {
-    plugins: [externalizeDepsPlugin()]
-  },
-  renderer: {
-    resolve: {
-      alias: {
-        '@': resolve('./src/renderer/src')
-      }
+    main: {
+        plugins: [externalizeDepsPlugin()]
     },
-    plugins: [
-      vue({
-        template: {
-          compilerOptions: {
-            isCustomElement: (tag) => tag.startsWith('md-')
-          }
+    preload: {
+        plugins: [externalizeDepsPlugin()]
+    },
+    renderer: {
+        resolve: {
+            alias: {
+                '@': resolve('./src/renderer/src')
+            }
+        },
+        plugins: [
+            vue({
+                template: {
+                    compilerOptions: {
+                        isCustomElement: (tag) => tag.startsWith('md-')
+                    }
+                }
+            }),
+            vueJsx()
+        ],
+        base: './',
+        build: {
+            outDir: './docs'
         }
-      }),
-      vueJsx()
-    ],
-    base: './',
-    build: {
-      outDir: './docs'
     }
-  }
 })

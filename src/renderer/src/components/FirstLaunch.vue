@@ -60,7 +60,6 @@ const submit = () => {
     localStorage.setItem('bre97-web-todo-firstLaunch', JSON.stringify(isFirstLaunch.value))
 }
 const close = () => (isFirstLaunch.value = false)
-
 </script>
 
 <style scoped></style>

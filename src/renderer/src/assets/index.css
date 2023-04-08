@@ -116,16 +116,16 @@
     /* nav应该位于最顶层 */
     nav,
     nav * {
-        @apply z-40;
+        @apply z-30;
     }
     nav .fab {
-        @apply fixed right-5 bottom-24 lg:bottom-5;
+        @apply fixed right-5 bottom-24 lg:bottom-5 z-40;
     }
     nav .fab * {
         @apply z-40;
     }
     nav .navigation {
-        @apply fixed right-0 bottom-0 w-full lg:bottom-5 z-40;
+        @apply fixed right-0 bottom-0 w-full lg:bottom-5 z-30;
     }
     nav .navigation div {
         @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip shadow-md;

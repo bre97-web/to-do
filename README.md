@@ -41,7 +41,7 @@ You can make suggestions in issues.
 |Sugguest|❌|
 |Notify|❌|
 |Avatar|🟡|
-|Startup Animation|❌|
+|Startup Animation|✅|
 |First Launch|✅|
 |Tag|❌|
 |Today's Tasks|❌|
