@@ -1,6 +1,6 @@
 <template>
-    <div id="root" class="bg-base overflow-x-hidden">
-
+    <Loading v-if="!isLoaded" message="To-Do"></Loading>
+    <div v-else id="root" class="bg-base overflow-x-hidden">
         <FirstLaunch></FirstLaunch>
 
         <header class="topBar">
@@ -94,8 +94,17 @@ import Search from '@/views/Search.vue'
 import Theme from '@/components/Theme.vue'
 import useTheme from '@/hooks/useTheme'
 import FirstLaunch from './components/FirstLaunch.vue'
+import Loading from './components/Loading.vue'
 
 const theme = useTheme()
+
+/**
+ * 在window.load时isLoaded变为true，延迟1秒
+ */
+const isLoaded = ref(false)
+window.addEventListener('load', () => {
+    setTimeout(() => (isLoaded.value = true), 1000)
+})
 
 var open = ref(false)
 const close = () => (open.value = false)

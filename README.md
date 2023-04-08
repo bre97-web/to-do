@@ -42,7 +42,7 @@ You can make suggestions in issues.
 |Notify|❌|
 |Avatar|🟡|
 |Startup Animation|❌|
-|First Launch|🟡|
+|First Launch|✅|
 |Tag|❌|
 |Today's Tasks|❌|
 |Task Step|❌|
