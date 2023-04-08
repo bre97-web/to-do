@@ -40,7 +40,8 @@ You can make suggestions in issues.
 |Notes|❌|
 |Sugguest|❌|
 |Notify|❌|
-|Avatar|🟡|
+|Avatar|✅|
+|DIY Avatar|❌|
 |Startup Animation|✅|
 |First Launch|✅|
 |Tag|❌|
