@@ -211,26 +211,26 @@
     ul.tasks {
         @apply flex flex-col py-4 rounded-md xl:flex-row flex-wrap gap-2;
     }
-    ul.tasks li {
+    ul.tasks > li {
         @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center justify-start px-4 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
     }
-    ul.tasks li:hover::after {
+    ul.tasks > li:hover::after {
         @apply block;
     }
-    ul.tasks li::after {
+    ul.tasks > li::after {
         content: '';
         @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
-    ul.tasks li div.desc {
+    ul.tasks > li div.desc {
         @apply flex flex-col;
     }
-    ul.tasks li .buttonGroup {
+    ul.tasks > li .buttonGroup {
         @apply hidden absolute right-5;
     }
-    ul.tasks li:hover .buttonGroup {
+    ul.tasks > li:hover .buttonGroup {
         @apply block z-40;
     }
-    ul.tasks li:hover .buttonGroup * {
+    ul.tasks > li:hover .buttonGroup * {
         @apply text-black dark:text-white;
     }
 

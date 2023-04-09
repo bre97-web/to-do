@@ -38,6 +38,19 @@
                     <div class="desc">
                         <h1>{{ e.title }}</h1>
                         <p>{{ e.subtitle }}</p>
+
+                        <ul
+                            v-if="e.tag.length !== 0 && e.tag[0] !== ''"
+                            class="hidden lg:flex flex-row items-center justify-start mt-1 gap-2"
+                        >
+                            <li
+                                v-for="(tag, index) in e.tag"
+                                :key="index"
+                                class="border rounded-full py-1 px-2"
+                            >
+                                {{ tag }}
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="flex flex-row gap-2 py-2 buttonGroup">
@@ -48,7 +61,10 @@
                             <i class="material-icons">edit</i>
                         </md-standard-icon-button>
                     </div>
+
+                    
                 </li>
+
             </template>
         </Task>
 

@@ -15,25 +15,10 @@
 
 <script setup>
 import useTasks from '@/hooks/useTasks'
-import { ref } from 'vue'
+import { useTags } from '@/hooks/useTags'
 
-/**
- * 读取taskList中的每一个Tag属性，将所有的Tag属性统计
- */
-const tasks = useTasks().taskList
-const tags = ref(new Map())
+const tags = useTags(useTasks().taskList.getValues())
 
-tasks.getValues().forEach(element => {
-    element.tag.forEach(e => {
-        if (!tags.value.has(e)) {
-            tags.value.set(e, [element])
-        } else {
-            tags.value.set(e, [...tags.value.get(e), element])
-        }
-    })
-});
-
-console.log(tags.value);
 </script>
 
 <style scoped>
