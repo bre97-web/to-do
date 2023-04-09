@@ -31,7 +31,8 @@ var TASKS = reactive(
                 date: createDate(),
                 index: createIndex(),
                 title: '任何任务都没有被创建',
-                subtitle: '移步到搜索框或者创建按钮进行创建'
+                subtitle: '移步到搜索框或者创建按钮进行创建',
+                tag: ['welcome']
             }
         ]
     }
