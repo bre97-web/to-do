@@ -40,7 +40,7 @@
                         <p>{{ e.subtitle }}</p>
 
                         <ul
-                            v-if="e.tag.length !== 0 && e.tag[0] !== ''"
+                            v-if="e.tag && e.tag.length !== 0 && e.tag[0] !== ''"
                             class="hidden lg:flex flex-row items-center justify-start mt-1 gap-2"
                         >
                             <li

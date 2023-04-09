@@ -44,6 +44,7 @@ You can make suggestions in issues.
 |DIY Avatar|❌|
 |Startup Animation|✅|
 |First Launch|✅|
-|Tag|🟡|
+|Tag|✅|
+|Sort|❌|
 |Today's Tasks|❌|
 |Task Step|❌|

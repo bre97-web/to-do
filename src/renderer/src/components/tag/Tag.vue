@@ -18,7 +18,6 @@ import useTasks from '@/hooks/useTasks'
 import { useTags } from '@/hooks/useTags'
 
 const tags = useTags(useTasks().taskList.getValues())
-
 </script>
 
 <style scoped>
