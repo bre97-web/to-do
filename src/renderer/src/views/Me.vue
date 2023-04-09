@@ -12,55 +12,58 @@
                     <ul>
                         <li class="list">
                             <h1>待办 {{ tasks.taskList.getValues().length }}</h1>
-                            <div
+                            <ul
                                 v-if="tasks.taskList.getValues().length != 0"
-                                class="list-inner-page"
+                                class="list-inner-page tasks"
                             >
-                                <ul class="tasks">
-                                    <li
-                                        v-for="e in tasks.taskList.getValues()"
-                                        :key="e.index"
-                                    >
-                                        {{ e.title }}
-                                    </li>
-                                </ul>
-                            </div>
+                                <li
+                                    v-for="e in tasks.taskList.getValues()"
+                                    :key="e.index"
+                                >
+                                    {{ e.title }}
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="list">
                             <h1>已完成 {{ tasks.binList.getValues().length }}</h1>
-                            <div
+                            <ul
                                 v-if="tasks.binList.getValues().length != 0"
-                                class="list-inner-page"
+                                class="list-inner-page tasks"
                             >
-                                <ul class="tasks">
-                                    <li
-                                        v-for="e in tasks.binList.getValues()"
-                                        :key="e.index"
-                                    >
-                                        {{ e.title }}
-                                    </li>
-                                </ul>
-                            </div>
+                                <li
+                                    v-for="e in tasks.binList.getValues()"
+                                    :key="e.index"
+                                >
+                                    {{ e.title }}
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="list">
                             <h1>固定 {{ tasks.focusList.getValues().length }}</h1>
-                            <div
+                            <ul
                                 v-if="tasks.focusList.getValues().length != 0"
-                                class="list-inner-page"
+                                class="list-inner-page tasks"
                             >
-                                <ul class="tasks">
-                                    <li
-                                        v-for="e in tasks.focusList.getValues()"
-                                        :key="e.index"
-                                    >
-                                        {{ e.title }}
-                                    </li>
-                                </ul>
-                            </div>
+                                <li
+                                    v-for="e in tasks.focusList.getValues()"
+                                    :key="e.index"
+                                >
+                                    {{ e.title }}
+                                </li>
+                            </ul>
                         </li>
                     </ul>
+                </main>
+            </div>
+
+            <div>
+                <header>
+                    <h1>Tag</h1>
+                </header>
+                <main class="py-2">
+                    <Tag></Tag>
                 </main>
             </div>
 
@@ -87,6 +90,7 @@
 import { useRouter } from 'vue-router'
 import useTasks from '@/hooks/useTasks'
 import Profile from '@/components/Profile.vue'
+import Tag from '@/components/tag/Tag.vue'
 
 /**
  * 用于获取所有的任务

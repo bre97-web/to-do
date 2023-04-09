@@ -15,6 +15,11 @@
                 label="Subtitle"
                 @input="task.subtitle = $event.target.value"
             />
+            <md-filled-text-field
+                :value="task.tag.toString().replace(',', ' ')"
+                label="Tag"
+                @input="task.tag = $event.target.value.split(' ')"
+            />
         </div>
 
         <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
@@ -32,7 +37,8 @@ const props = defineProps(['dialog', 'closeDialog'])
  */
 const task = {
     title: '',
-    subtitle: ''
+    subtitle: '',
+    tag: []
 }
 
 /**
