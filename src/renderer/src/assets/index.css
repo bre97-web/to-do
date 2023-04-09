@@ -209,7 +209,7 @@
 
 
     ul.tasks {
-        @apply flex flex-col gap-1 py-4 rounded-md xl:flex-row flex-wrap;
+        @apply flex flex-col py-4 rounded-md xl:flex-row flex-wrap gap-2;
     }
     ul.tasks li {
         @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center justify-start px-4 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
@@ -246,7 +246,7 @@
         @apply rounded-md p-4 relative bg-off-base;
     }
     ul li.list .list-inner-page {
-        @apply z-40 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-16 shadow rounded-md;
+        @apply z-40 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-4 shadow rounded-md;
     }
     ul li.list .list-inner-page:hover,
     ul li.list:hover .list-inner-page {
