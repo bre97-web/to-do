@@ -22,6 +22,7 @@ export default defineConfig({
     root: './src/renderer/',
     base: '/To-Do',
     build: {
-        outDir: '../../docs'
+        outDir: '../../docs',
+        emptyOutDir: true
     }
 })

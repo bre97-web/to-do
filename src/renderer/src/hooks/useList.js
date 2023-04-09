@@ -7,7 +7,7 @@
  * useInnerList会为每一个变量创建一个只属于自己的局部reactive变量tasks，通过useInnerList得到的方法操作的是它的局部reactive对象。
  */
 
-import { reactive, watch } from 'vue'
+import { onBeforeMount, reactive, watch } from 'vue'
 import moment from "moment"
 
 /**
@@ -31,11 +31,21 @@ var TASKS = reactive(
                 date: createDate(),
                 index: createIndex(),
                 title: '任何任务都没有被创建',
-                subtitle: '移步到搜索框或者创建按钮进行创建'
+                subtitle: '移步到搜索框或者创建按钮进行创建',
+                tag: ['welcome']
             }
         ]
     }
 )
+
+/**
+ * 挂载前检查每一个属性
+ */
+TASKS.list.forEach(element => {
+    if (!element['tag']) {
+        element['tag'] = ['']
+    }
+})
 
 /**
  * 当全局对象TASKS状态变化时将TASKS保存到localStorage

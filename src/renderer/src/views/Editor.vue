@@ -15,8 +15,14 @@
                 label="Subtitle"
                 @input="task.subtitle = $event.target.value"
             ></md-filled-text-field>
+            <md-filled-text-field
+                :value="task.tag.toString().replace(',', ' ')"
+                label="Tag"
+                @input="task.tag = $event.target.value.split(' ')"
+            />
             <md-outlined-text-field
-                type="date" :value="task.date"
+                type="date"
+                :value="task.date"
                 label="Created Date"
                 @input="task.date = $event.target.value"
             ></md-outlined-text-field>
