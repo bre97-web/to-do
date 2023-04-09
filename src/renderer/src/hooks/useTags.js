@@ -7,7 +7,7 @@ function useTags(list) {
     const tags = ref(new Map())
 
     list.forEach(element => {
-        element.tag.forEach(e => {
+        element['tag'].forEach(e => {
             if (e !== '') {
                 if (!tags.value.has(e)) {
                     tags.value.set(e, [element])

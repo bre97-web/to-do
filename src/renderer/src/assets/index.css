@@ -104,7 +104,7 @@
 
     /* 禁止选取图标 */
     i {
-        @apply select-none;
+        @apply select-none z-0;
     }
 
 
@@ -228,7 +228,7 @@
         @apply hidden absolute right-5;
     }
     ul.tasks > li:hover .buttonGroup {
-        @apply block z-40;
+        @apply block z-0;
     }
     ul.tasks > li:hover .buttonGroup * {
         @apply text-black dark:text-white;
