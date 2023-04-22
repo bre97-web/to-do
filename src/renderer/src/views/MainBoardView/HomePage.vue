@@ -21,6 +21,4 @@ const props = defineProps({
     }
 })
 const input = ref('')
-
-
 </script>

@@ -36,10 +36,10 @@ You can make suggestions in issues.
 - 🟡 In progress
 - ✅ Complete
 
-|Feature|planned|
+|Feature|Planned|
 |:--|--:|
 |Event Slider|❌|
-|Notes|❌|
+|Notes|🟡|
 |Sugguest|❌|
 |Notify|❌|
 |Avatar|✅|
@@ -50,3 +50,6 @@ You can make suggestions in issues.
 |Sort|❌|
 |Today's Tasks|❌|
 |Task Step|❌|
+|PWA Support|❌|
+|Goals|❌|
+|Element Slide|❌|
