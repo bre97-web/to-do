@@ -211,27 +211,27 @@
     ul.tasks {
         @apply flex flex-col py-4 rounded-md xl:flex-row flex-wrap gap-2;
     }
+    ul.tasks {
+        transition: all 0.15s;
+    }
     ul.tasks > li {
-        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center justify-start px-4 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
+        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center md:items-start justify-start px-2 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
     }
     ul.tasks > li:hover::after {
         @apply block;
     }
     ul.tasks > li::after {
         content: '';
-        @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
+        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
     ul.tasks > li div.desc {
-        @apply flex flex-col;
+        @apply flex flex-col items-start justify-start w-1/2 flex-1;
     }
     ul.tasks > li .buttonGroup {
-        @apply hidden absolute right-5;
+        @apply hidden absolute right-0 mr-2 flex-none;
     }
     ul.tasks > li:hover .buttonGroup {
         @apply block z-0;
-    }
-    ul.tasks > li:hover .buttonGroup * {
-        @apply text-black dark:text-white;
     }
 
     ul.list {
@@ -278,6 +278,31 @@
     .setting .item li label h1 {
         @apply font-bold text-base;
     }
+
+
+    div.page > .innerPage,
+    div.pageToggle ~ .innerPage {
+        @apply hidden;
+    }
+    div.pageToggle:active {
+        @apply opacity-0;
+    }
+    div.page:active > .innerPage,
+    div.pageToggle:active ~ .innerPage {
+        @apply block;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     h1,
     h2,

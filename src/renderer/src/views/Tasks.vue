@@ -3,25 +3,27 @@
 
         <Task :class="tasksStyle.focusList" title="Focus" subtitle="使用固定按钮将任务钉至此处">
             <template #>
-                <li v-for="e in tasks.focusList.getValues()" :key="e.index">
+                <ul class="tasks">
+                    <li v-for="e in tasks.focusList.getValues()" :key="e.index">
 
-                    <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
+                        <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
-                    <div class="desc">
-                        <h1>
-                            {{ e.title }}
-                        </h1>
-                        <p>
-                            {{ e.subtitle }}
-                        </p>
-                    </div>
+                        <div class="desc">
+                            <h1>
+                                {{ e.title }}
+                            </h1>
+                            <p>
+                                {{ e.subtitle }}
+                            </p>
+                        </div>
 
-                    <div class="flex flex-row gap-2 py-2 buttonGroup">
-                        <md-standard-icon-button @click="tasks.moveToTasks(e)">
-                            <i class="material-icons">favorite</i>
-                        </md-standard-icon-button>
-                    </div>
-                </li>
+                        <div class="flex flex-row gap-2 py-2 buttonGroup">
+                            <md-standard-icon-button @click="tasks.moveToTasks(e)">
+                                <i class="material-icons">favorite</i>
+                            </md-standard-icon-button>
+                        </div>
+                    </li>
+                </ul>
             </template>
         </Task>
 
@@ -31,39 +33,50 @@
             subtitle="需要完成的任务清单"
         >
             <template #>
-                <li v-for="e in tasks.taskList.getValues()" :key="e.index">
+                <ul class="tasks">
+                    <li v-for="e in tasks.taskList.getValues()" :key="e.index">
 
-                    <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
+                        <!-- 完成按钮 -->
+                        <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
-                    <div class="desc">
-                        <h1>{{ e.title }}</h1>
-                        <p>{{ e.subtitle }}</p>
+                        <!-- Task信息 -->
+                        <div class="desc">
+                            <h1>{{ e.title }}</h1>
+                            <p>{{ e.subtitle }}</p>
 
-                        <ul
-                            v-if="e.tag && e.tag.length !== 0 && e.tag[0] !== ''"
-                            class="hidden lg:flex flex-row items-center justify-start mt-1 gap-2"
-                        >
-                            <li
-                                v-for="(tag, index) in e.tag"
-                                :key="index"
-                                class="border rounded-full py-1 px-2"
+                            <!-- Tags -->
+                            <ul
+                                v-if="e.tag && e.tag.length !== 0 && e.tag[0] !== ''"
+                                class="hidden lg:flex flex-row items-center justify-start mt-1 gap-2"
                             >
-                                {{ tag }}
-                            </li>
-                        </ul>
-                    </div>
+                                <li
+                                    v-for="(tag, index) in e.tag"
+                                    :key="index"
+                                    class="border rounded-full py-1 px-2"
+                                >
+                                    {{ tag }}
+                                </li>
+                            </ul>
+                        </div>
 
-                    <div class="flex flex-row gap-2 py-2 buttonGroup">
-                        <md-standard-icon-button @click="tasks.moveToFocus(e)">
-                            <i class="material-icons">favorite_outlined</i>
-                        </md-standard-icon-button>
-                        <md-standard-icon-button @click="push('/Edit', e)">
-                            <i class="material-icons">edit</i>
-                        </md-standard-icon-button>
-                    </div>
+                        <!-- Buttons -->
+                        <div class="buttonGroup">
+                            <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                                <i class="material-icons">favorite_outlined</i>
+                            </md-standard-icon-button>
+                            <md-standard-icon-button @click="push('/Edit', e)">
+                                <i class="material-icons">edit</i>
+                            </md-standard-icon-button>
+                            <!-- <md-standard-icon-button @click="push('/Edit', e)">
+                                <i class="material-icons">more</i>
+                            </md-standard-icon-button> -->
+                        </div>
 
-                    
-                </li>
+                        <!-- Note组件本身是absolute的 -->
+                        <!-- <Note :note="e.note"></Note> -->
+                    </li>
+                </ul>
+
 
             </template>
         </Task>
@@ -75,25 +88,28 @@
             subtitle="完成的任务会在这里"
         >
             <template #>
-                <li
-                    v-for="e in tasks.binList.getValues()"
-                    :key="e.index"
-                    class="line-through italic"
-                >
-                    <div class="desc">
-                        <h1>{{ e.title }}</h1>
-                        <p>{{ e.subtitle }}</p>
-                    </div>
+                <ul class="tasks">
 
-                    <div class="flex flex-row gap-2 py-2 buttonGroup">
-                        <md-standard-icon-button @click="tasks.removeBin(e)">
-                            <i class="material-icons">delete_forever</i>
-                        </md-standard-icon-button>
-                        <md-standard-icon-button @click="tasks.moveToTasks(e)">
-                            <i class="material-icons">undo</i>
-                        </md-standard-icon-button>
-                    </div>
-                </li>
+                    <li
+                        v-for="e in tasks.binList.getValues()"
+                        :key="e.index"
+                        class="line-through italic"
+                    >
+                        <div class="desc">
+                            <h1>{{ e.title }}</h1>
+                            <p>{{ e.subtitle }}</p>
+                        </div>
+
+                        <div class="flex flex-row gap-2 py-2 buttonGroup">
+                            <md-standard-icon-button @click="tasks.removeBin(e)">
+                                <i class="material-icons">delete_forever</i>
+                            </md-standard-icon-button>
+                            <md-standard-icon-button @click="tasks.moveToTasks(e)">
+                                <i class="material-icons">undo</i>
+                            </md-standard-icon-button>
+                        </div>
+                    </li>
+                </ul>
             </template>
         </Task>
     </div>
@@ -103,6 +119,7 @@
 import { watch, reactive } from 'vue'
 import { useRouter } from 'vue-router';
 import Task from '@/components/task/Task.vue'
+import Note from '@/components/task/note/Note.vue'
 import useTasks from '@/hooks/useTasks'
 
 const router = useRouter()
