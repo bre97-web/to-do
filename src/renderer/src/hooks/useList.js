@@ -46,6 +46,10 @@ TASKS.list.forEach(element => {
     if (!element['tag']) {
         element['tag'] = ['']
     }
+
+    if (!element['note']) {
+        element['note'] = ['']
+    }
 })
 
 /**

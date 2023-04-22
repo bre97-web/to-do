@@ -117,18 +117,19 @@
 
 <script setup>
 import { watch, reactive } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 import Task from '@/components/task/Task.vue'
-import Note from '@/components/task/note/Note.vue'
 import useTasks from '@/hooks/useTasks'
 
 const router = useRouter()
-const push = (path, e) => router.push({
-    path: path,
-    query: {
-        task: JSON.stringify(e) 
-    }
-})
+const push = (path, e) => {
+    router.push({
+        path: path,
+        query: {
+            task: JSON.stringify(e)
+        }
+    })
+}
 
 
 const tasks = useTasks()

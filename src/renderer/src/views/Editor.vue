@@ -43,9 +43,8 @@ const router = useRouter()
 /**
  * 由路由时传递的query得到需要修改的useList的全局对象的具体的元素
  */
-const props = defineProps(['task'])
 const task = reactive({
-    ...JSON.parse(props.task)
+    ...JSON.parse(router.currentRoute.value.query.task)
 })
 var isOpen = ref(false)
 onMounted(() => {

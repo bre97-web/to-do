@@ -132,8 +132,8 @@
     }
 
 
-    #root > main {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto;
+    main.main {
+        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl mx-auto min-h-screen mt-16;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
