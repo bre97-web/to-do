@@ -54,7 +54,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import Task from '@/components/Task.vue'
+import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
 
