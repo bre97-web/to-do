@@ -1,17 +1,18 @@
 <template>
     <div>
         <header>
-            <h1>Note</h1>
+            <h1>Date</h1>
         </header>
+
         <main>
-            <p>{{ props.note }}</p>
+            <p>{{ props.date }}</p>
         </main>
     </div>
 </template>
 
 <script setup>
 const props = defineProps({
-    note: {
+    date: {
         type: String,
         required: true,
         default: ''

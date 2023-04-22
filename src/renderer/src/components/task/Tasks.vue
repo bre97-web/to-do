@@ -67,13 +67,10 @@
                             <md-standard-icon-button @click="push('/Edit', e)">
                                 <i class="material-icons">edit</i>
                             </md-standard-icon-button>
-                            <!-- <md-standard-icon-button @click="push('/Edit', e)">
+                            <md-standard-icon-button @click="push('/info', e)">
                                 <i class="material-icons">more</i>
-                            </md-standard-icon-button> -->
+                            </md-standard-icon-button>
                         </div>
-
-                        <!-- Note组件本身是absolute的 -->
-                        <!-- <Note :note="e.note"></Note> -->
                     </li>
                 </ul>
 

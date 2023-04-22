@@ -133,7 +133,7 @@
 
 
     main.main {
-        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl mx-auto min-h-screen mt-16;
+        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl mx-auto min-h-screen mt-24;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
@@ -203,7 +203,7 @@
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-700;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-800;
     }
 
 
@@ -293,7 +293,21 @@
     }
 
 
-
+    div.fixedWindow {
+        @apply fixed z-50;
+    }
+    div.fixedWindow.fullScreen {
+        @apply absolute w-full min-h-screen top-0 right-0;
+    }
+    div.fixedWindow.fullScreen > div {
+        @apply p-8 m-8 md:mx-auto md:max-w-md lg:max-w-lg xl:max-w-xl bg-white dark:bg-slate-700 border dark:border-none rounded-md shadow dark:shadow-none;
+    }
+    div.fixedWindow > div {
+        @apply relative;
+    }
+    div.fixedWindow > div > nav.backButton {
+        @apply absolute right-5 top-5;
+    }
 
 
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 
 import Home   from '@/views/Home.vue'
 import HomePage from '@/views/MainBoardView/HomePage.vue'
+import Info   from '../views/MainBoardView/MoreInformation.vue'
 import Me     from '@/views/Me.vue'
 import Helper from '@/views/Helper.vue'
 import Editor from '@/views/Editor.vue'
@@ -29,6 +30,13 @@ const routes = [
                         name: Editor,
                         components: {
                             HomePageInnerBoardView: Editor
+                        }
+                    },
+                    {
+                        path: '/info',
+                        name: Info,
+                        components: {
+                            HomePageInnerBoardView: Info
                         }
                     },
                 ]
