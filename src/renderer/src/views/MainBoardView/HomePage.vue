@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Search :input="input"></Search>
+        <Search></Search>
         <Tasks></Tasks>
 
         <router-view v-slot="{ Component }" name="HomePageInnerBoardView">
@@ -10,15 +10,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import Tasks from '@/components/task/Tasks.vue'
-import Search from '@/views/Search.vue'
-
-const props = defineProps({
-    input: {
-        type: String,
-        default: null
-    }
-})
-const input = ref('')
+import Search from '@/components/search/Search.vue'
 </script>

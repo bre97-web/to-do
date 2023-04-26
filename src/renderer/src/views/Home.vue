@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :input="input" @setInput="setInput"></Header>
+        <Header :input="input.value" @setInput="setInput"></Header>
         <main class="main">
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>
@@ -53,17 +53,22 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/Creator.vue'
 import Header from '@/components/header/Header.vue'
-
+import search from '../assets/js/search'
 
 /**
- * 用于Search组件
+ * 由search.js提供搜索词，它应该转变为一个响应式对象
+ * 使用时请带上.value
  */
-const input = ref('')
+const searchInput = search()
+const input = reactive(searchInput.get())
 const setInput = (value) => (input.value = value)
+watch(input, () => {
+    searchInput.set(input.value)
+})
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）

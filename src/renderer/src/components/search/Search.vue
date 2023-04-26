@@ -1,14 +1,9 @@
 <template>
     <div
-        v-show="props.input.length != 0"
+        v-show="input.value.length != 0"
         class="border dark:border-none bg-transparent dark:bg-slate-700 rounded-md px-4 py-2 my-4"
     >
-        <header class="flex flex-row items-end justify-start gap-2">
-            <h1>Search</h1>
-            <h1 class="underline underline-offset-1">
-                <mark>{{ props.input }}</mark>
-            </h1>
-        </header>
+        <Header :input="input.value"></Header>
 
         <main>
             <Task title="" subtitle="">
@@ -17,12 +12,8 @@
                         <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
                         <div class="desc">
-                            <h1>
-                                {{ e.title }}
-                            </h1>
-                            <p>
-                                {{ e.subtitle }}
-                            </p>
+                            <h1>{{ e.title }}</h1>
+                            <p>{{ e.subtitle }}</p>
                         </div>
 
                         <div class="flex flex-row gap-2 py-2 buttonGroup">
@@ -40,28 +31,29 @@
                 </template>
             </Task>
 
-            <CreatorInSearch v-if="get.length === 0" :input="props.input"></CreatorInSearch>
+            <CreatorInSearch v-if="get.length === 0" :input="input.value"></CreatorInSearch>
         </main>
 
-        <footer>
-            <p class="text-right text-gray-500 dark:text-gray-300">
-                Accumulate {{ get.length }} results
-            </p>
-        </footer>
+        <Footer :get="get"></Footer>
     </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import Header from './Header.vue'
+import Footer from './Footer.vue'
 import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
+import search from '@/assets/js/search'
 
 /**
- * 由父组件提供搜索词，它应该是一个响应式对象
+ * 由search.js提供搜索词，它应该转变为一个响应式对象
+ * 使用时请带上.value
  */
-const props = defineProps(['input'])
+var searchInput = search()
+const input = reactive(searchInput.get())
 
 /**
  * 使用tasks并获取所有的元素
@@ -83,10 +75,10 @@ var get = computed(() => {
     }
 
     /**
-     * 现在所有的lists获取完毕，将所有的lists中的元素与props.input进行比较得出最终结果
+     * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
      */
     for (let key = 0; key < lists.length; key ++) {
-        if(lists[key].title.toLowerCase().indexOf(props.input.toLowerCase()) === -1) {
+        if(lists[key].title.toLowerCase().indexOf(input.value.toLowerCase()) === -1) {
             continue
         }
         results.push(lists[key])
