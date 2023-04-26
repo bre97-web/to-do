@@ -8,26 +8,28 @@
         <main>
             <Task title="" subtitle="">
                 <template #>
-                    <li v-for="e in get" :key="e.index">
-                        <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
+                    <ul class="tasks">
+                        <li v-for="e in get" :key="e.index">
+                            <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
-                        <div class="desc">
-                            <h1>{{ e.title }}</h1>
-                            <p>{{ e.subtitle }}</p>
-                        </div>
+                            <div class="desc">
+                                <h1>{{ e.title }}</h1>
+                                <p>{{ e.subtitle }}</p>
+                            </div>
 
-                        <div class="flex flex-row gap-2 py-2 buttonGroup">
-                            <md-standard-icon-button @click="tasks.moveToFocus(e)">
-                                <i class="material-icons">favorite</i>
-                            </md-standard-icon-button>
-                            <md-standard-icon-button @click="push('/Edit', e)">
-                                <i class="material-icons">edit</i>
-                            </md-standard-icon-button>
-                            <md-standard-icon-button @click="tasks.removeBin(e)">
-                                <i class="material-icons">delete_forever</i>
-                            </md-standard-icon-button>
-                        </div>
-                    </li>
+                            <div class="flex flex-row gap-2 py-2 buttonGroup">
+                                <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                                    <i class="material-icons">favorite</i>
+                                </md-standard-icon-button>
+                                <md-standard-icon-button @click="push('/Edit', e)">
+                                    <i class="material-icons">edit</i>
+                                </md-standard-icon-button>
+                                <md-standard-icon-button @click="tasks.removeBin(e)">
+                                    <i class="material-icons">delete_forever</i>
+                                </md-standard-icon-button>
+                            </div>
+                        </li>
+                    </ul>
                 </template>
             </Task>
 

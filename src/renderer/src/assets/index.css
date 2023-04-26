@@ -215,7 +215,7 @@
         transition: all 0.15s;
     }
     ul.tasks > li {
-        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center md:items-start justify-start px-2 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
+        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center md:items-start justify-start px-2 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs pb-8;
     }
     ul.tasks > li:hover::after {
         @apply block;
@@ -228,7 +228,7 @@
         @apply flex flex-col items-start justify-start w-1/2 flex-1;
     }
     ul.tasks > li .buttonGroup {
-        @apply hidden absolute right-0 mr-2 flex-none;
+        @apply hidden absolute right-0 top-0 mt-2 mr-2 flex-none;
     }
     ul.tasks > li:hover .buttonGroup {
         @apply block z-0;
