@@ -132,8 +132,8 @@
     }
 
 
-    #root > main {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-2xl mx-auto;
+    main.main {
+        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl mx-auto min-h-screen mt-24;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
@@ -203,7 +203,7 @@
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-700;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-800;
     }
 
 
@@ -211,27 +211,27 @@
     ul.tasks {
         @apply flex flex-col py-4 rounded-md xl:flex-row flex-wrap gap-2;
     }
+    ul.tasks {
+        transition: all 0.15s;
+    }
     ul.tasks > li {
-        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center justify-start px-4 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs;
+        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center md:items-start justify-start px-2 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs pb-8;
     }
     ul.tasks > li:hover::after {
         @apply block;
     }
     ul.tasks > li::after {
         content: '';
-        @apply absolute hidden right-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
+        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
     ul.tasks > li div.desc {
-        @apply flex flex-col;
+        @apply flex flex-col items-start justify-start w-1/2 flex-1;
     }
     ul.tasks > li .buttonGroup {
-        @apply hidden absolute right-5;
+        @apply hidden absolute right-0 top-0 mt-2 mr-2 flex-none;
     }
     ul.tasks > li:hover .buttonGroup {
         @apply block z-0;
-    }
-    ul.tasks > li:hover .buttonGroup * {
-        @apply text-black dark:text-white;
     }
 
     ul.list {
@@ -278,6 +278,45 @@
     .setting .item li label h1 {
         @apply font-bold text-base;
     }
+
+
+    div.page > .innerPage,
+    div.pageToggle ~ .innerPage {
+        @apply hidden;
+    }
+    div.pageToggle:active {
+        @apply opacity-0;
+    }
+    div.page:active > .innerPage,
+    div.pageToggle:active ~ .innerPage {
+        @apply block;
+    }
+
+
+    div.fixedWindow {
+        @apply fixed z-50;
+    }
+    div.fixedWindow.fullScreen {
+        @apply absolute w-full min-h-screen top-0 right-0;
+    }
+    div.fixedWindow.fullScreen > div {
+        @apply p-8 m-8 md:mx-auto md:max-w-md lg:max-w-lg xl:max-w-xl bg-white dark:bg-slate-700 border dark:border-none rounded-md shadow dark:shadow-none;
+    }
+    div.fixedWindow > div {
+        @apply relative;
+    }
+    div.fixedWindow > div > nav.backButton {
+        @apply absolute right-5 top-5;
+    }
+
+
+
+
+
+
+
+
+
 
     h1,
     h2,

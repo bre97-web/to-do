@@ -5,9 +5,9 @@
             <p>{{ props.subtitle }}</p>
         </header>
 
-        <ul class="tasks">
+        <main>
             <slot></slot>
-        </ul>
+        </main>
     </div>
 </template>
 

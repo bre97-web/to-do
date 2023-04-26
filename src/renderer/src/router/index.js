@@ -1,36 +1,63 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
-import Tasks  from '@/views/Tasks.vue'
+import Home   from '@/views/Home.vue'
+import HomePage from '@/views/MainBoardView/HomePage.vue'
+import Info   from '../views/MainBoardView/MoreInformation.vue'
 import Me     from '@/views/Me.vue'
 import Helper from '@/views/Helper.vue'
 import Editor from '@/views/Editor.vue'
 
 const routes = [
+
+    /**
+     * 在App组件中显示主面板（Home组件）
+     */
     {
-        name: 'Tasks',
+        name: 'Home',
         path: '/',
-        component: Tasks
-    },
-    {
-        name: 'Me',
-        path: '/me',
-        component: Me,
+        component: Home,
+        redirect: '/home',
         children: [
             {
-                name: 'Helper',
-                path: '/helper',
+                name: HomePage,
+                path: '/home',
                 components: {
-                    Me: Helper,
-                }
+                    MainBoardView: HomePage
+                },
+                children: [
+                    {
+                        path: '/Edit',
+                        name: Editor,
+                        components: {
+                            HomePageInnerBoardView: Editor
+                        }
+                    },
+                    {
+                        path: '/info',
+                        name: Info,
+                        components: {
+                            HomePageInnerBoardView: Info
+                        }
+                    },
+                ]
             },
-        ],
-    },
-    {
-        path: '/Edit',
-        component: Editor,
-        props: r => ({
-            task: r.query.task
-        })
+            {
+                name: 'Me',
+                path: '/me',
+                components: {
+                    MainBoardView: Me
+                },
+                children: [
+                    {
+                        name: 'Helper',
+                        path: '/helper',
+                        components: {
+                            MeInnerBoard: Helper,
+                        }
+                    },
+                ],
+            },
+        ]
     },
 ]
 

@@ -5,7 +5,7 @@
             <Title></Title>
 
             <!-- Search input -->
-            <SearchInput :input="input" @setInput="setInput"></SearchInput>
+            <SearchInput :input="props.input" @setInput="setInput"></SearchInput>
 
             <!-- Settings and other buttons -->
             <Setting></Setting>

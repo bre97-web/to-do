@@ -36,17 +36,20 @@ You can make suggestions in issues.
 - 🟡 In progress
 - ✅ Complete
 
-|Feature|planned|
-|:--|--:|
-|Event Slider|❌|
-|Notes|❌|
-|Sugguest|❌|
-|Notify|❌|
-|Avatar|✅|
-|DIY Avatar|❌|
-|Startup Animation|✅|
-|First Launch|✅|
-|Tag|✅|
-|Sort|❌|
-|Today's Tasks|❌|
-|Task Step|❌|
+|Feature|Dev|Perview|Release|
+|:--|--:|--:|--:|
+|Event Slider|❌|❌|❌|
+|Notes|✅|❌|❌|
+|Sugguest|❌|❌|❌|
+|Notify|❌|❌|❌|
+|Avatar|✅|🟡|❌|
+|DIY Avatar|❌|❌|❌|
+|Startup Animation|✅|✅|❌|
+|First Launch|✅|✅|❌|
+|Tag|✅|❌|❌|
+|Sort|❌|❌|❌|
+|Today's Tasks|❌|❌|❌|
+|Task Step|❌|❌|❌|
+|PWA Support|❌|❌|❌|
+|Goals|❌|❌|❌|
+|Element Slide|❌|❌|❌|
