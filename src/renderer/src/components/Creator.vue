@@ -20,6 +20,11 @@
                 label="Tag"
                 @input="task.tag = $event.target.value.split(' ')"
             />
+            <md-filled-text-field
+                :value="task.note"
+                label="Note"
+                @input="task.note = $event.target.value"
+            />
         </div>
 
         <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
@@ -38,7 +43,8 @@ const props = defineProps(['dialog', 'closeDialog'])
 const task = {
     title: '',
     subtitle: '',
-    tag: []
+    tag: [],
+    note: ''
 }
 
 /**

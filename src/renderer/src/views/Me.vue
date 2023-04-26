@@ -79,7 +79,7 @@
                 </ul>
             </div>
 
-            <router-view v-slot="{Component}" name="Me">
+            <router-view v-slot="{ Component }" name="MeInnerBoard">
                 <component :is="Component"></component>
             </router-view>
         </main>
