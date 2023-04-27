@@ -49,7 +49,7 @@ You can make suggestions in issues.
 |Tag|✅|❌|❌|
 |Sort|❌|❌|❌|
 |Today's Tasks|❌|❌|❌|
-|Task Step|❌|❌|❌|
+|Task Step|🟡|❌|❌|
 |PWA Support|❌|❌|❌|
 |Goals|❌|❌|❌|
 |Element Slide|❌|❌|❌|
