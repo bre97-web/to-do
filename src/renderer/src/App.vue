@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import FirstLaunch from './components/FirstLaunch.vue'
 import Loading from './components/Loading.vue'
