@@ -1,11 +1,13 @@
-import { type } from 'os'
 import { reactive, watch } from 'vue'
 
+interface Dark {
+    isDark: boolean
+}
+interface Color {
+    color: string
+}
 interface CurrentTheme {
-    current: {
-        isDark: boolean,
-        color: string
-    }
+    current: Dark & Color
 }
 interface Colors {
     color: string[]
@@ -67,14 +69,14 @@ export default function useDark() {
      * @returns const Object THEME
      */
     const get = (): Theme => THEME
-    const getCurrent = () => THEME.current
+    const getCurrent = (): Dark & Color => THEME.current
     const getThemeColor = (): string[] => THEME.color
 
     /**
      * 设置全局的THEME.current
      * @param {Object} current 请传入一个对象，其中包含THEME.current的属性
      */
-    const set = (current: CurrentTheme) => {
+    const set = (current: Dark | Color) => {
         THEME.current = {
             ...THEME.current,
             ...current
@@ -92,5 +94,7 @@ export default function useDark() {
 export type {
     Theme,
     Colors,
-    CurrentTheme
+    CurrentTheme,
+    Dark,
+    Color
 }

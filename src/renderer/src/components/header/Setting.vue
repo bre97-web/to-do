@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-import useTheme from '@/hooks/useTheme'
+import useTheme, { Color, Dark } from '@/hooks/useTheme'
 import Theme from '@/components/Theme.vue'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 
 
 /**
@@ -37,5 +37,6 @@ import { reactive } from 'vue'
  */
 const theme = useTheme()
 
-const settings = reactive(theme.getCurrent())
+const settings = reactive<Dark & Color>(theme.getCurrent())
+watch(settings, () => theme.set(settings))
 </script>
