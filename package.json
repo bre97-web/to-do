@@ -24,8 +24,7 @@
   },
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.3",
-    "@electron-toolkit/utils": "^1.0.2",
-    "vue-simple-spinner": "^1.2.10"
+    "@electron-toolkit/utils": "^1.0.2"
   },
   "devDependencies": {
     "@electron/notarize": "^1.2.3",
