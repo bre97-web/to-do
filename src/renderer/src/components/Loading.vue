@@ -3,7 +3,7 @@
         <div>
             <img src="../assets/img/icon.png" alt="To-Do" class="max-w-xs" />
             <div>
-                <Spinner :size="64" :line-size="8" :spacing="55" :speed="1"></Spinner>
+                
                 <h1>To-Do</h1>
             </div>
         </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import Spinner from 'vue-simple-spinner/src/components/Spinner.vue'
+// import Spinner from 'vue-simple-spinner/src/components/Spinner.vue'
 </script>
 
 <style scoped>
