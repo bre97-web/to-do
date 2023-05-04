@@ -6,14 +6,7 @@
             :value:="props.input"
             type="text"
             placeholder="Search"
-            @input="
-                (e: InputEvent) => {
-                    return (payload: Event) => {
-                        emits('setInput', e.data)
-                        payload.preventDefault()
-                    }
-                }
-            "
+            @input="(payload: Event) => onInput(payload)"
         />
     </div>
 </template>
@@ -31,4 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
     input: () => ''
 })
 const emits = defineEmits(['setInput'])
+
+const onInput = (e: Event) => {
+    emits('setInput', e.target === null ? '' : e.target.value)
+}
 </script>

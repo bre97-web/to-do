@@ -48,7 +48,7 @@ import Footer from './Footer.vue'
 import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
-import { Search } from '@/assets/js/search'
+import { Search, SearchType } from '@/assets/js/search'
 import { Item } from '@/hooks/useList'
 
 /**
@@ -56,9 +56,7 @@ import { Item } from '@/hooks/useList'
  * 使用时请带上.value
  */
 var searchInput = Search()
-const input = reactive({
-    value: searchInput.get()
-})
+const input = reactive<SearchType>(searchInput.get())
 
 /**
  * 使用tasks并获取所有的元素

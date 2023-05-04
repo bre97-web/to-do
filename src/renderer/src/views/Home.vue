@@ -57,18 +57,16 @@ import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/Creator.vue'
 import Header from '@/components/header/Header.vue'
-import { Search } from '../assets/js/search'
+import { Search, SearchType } from '../assets/js/search'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
  */
 const searchInput = Search()
-const input = reactive({value: searchInput.get()})
-const setInput = (value: string) => (input.value = value)
-watch(input, () => {
-    searchInput.set(input.value as string)
-})
+const input = reactive<SearchType>(searchInput.get())
+const setInput = (value: string) => input.value = value
+watch(input, () => searchInput.set(input.value))
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
