@@ -16,9 +16,9 @@
                 @input="task.subtitle = $event.target.value"
             />
             <md-filled-text-field
-                :value="task.tag.toString().replace(',', ' ')"
+                :value="task.tag.toString()"
                 label="Tag"
-                @input="task.tag = $event.target.value.split(' ')"
+                @input="task.tag = $event.target.value.split(',')"
             />
             <md-filled-text-field
                 :value="task.note"
@@ -27,25 +27,26 @@
             />
         </div>
 
-        <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
-        <md-filled-button label="OK" @click="submit" slot="footer"></md-filled-button>
+        <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
+        <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
     </md-dialog>
 </template>
 
-<script setup>
-import { useList } from '@/hooks/useList'
+<script lang="ts" setup>
+import { Item, useList } from '@/hooks/useList'
+import { reactive } from 'vue'
 
 const props = defineProps(['dialog', 'closeDialog'])
 
 /**
  * 将要创建的task信息
  */
-const task = {
+const task = reactive<Item>({
     title: '',
     subtitle: '',
-    tag: [],
+    tag: [''],
     note: ''
-}
+})
 
 /**
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
@@ -63,5 +64,7 @@ const cancel = () => {
 const clear = () => {
     task.title = ''
     task.subtitle = ''
+    task.tag = ['']
+    task.note = ''
 }
 </script>

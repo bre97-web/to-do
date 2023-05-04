@@ -72,9 +72,8 @@
                     <li>
                         <h1>Helper</h1>
                         <md-text-button
-                            label="Look"
                             @click="router.push('/helper')"
-                        ></md-text-button>
+                        >Look</md-text-button>
                     </li>
                 </ul>
             </div>
@@ -86,9 +85,11 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
+
 import useTasks from '@/hooks/useTasks'
+
 import Profile from '@/components/Profile.vue'
 import Tag from '@/components/tag/Tag.vue'
 

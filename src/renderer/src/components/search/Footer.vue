@@ -6,11 +6,10 @@
     </footer>
 </template>
 
-<script setup>
-const props = defineProps({
-    get: {
-        type: Object,
-        default: null
-    }
-})
+<script lang="ts" setup>
+import { Item } from '@/hooks/useList'
+
+const props = defineProps<{
+    get: Item[]
+}>()
 </script>

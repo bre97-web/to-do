@@ -2,20 +2,30 @@
     <div class="relative w-full flex items-center justify-center">
         <i class="material-icons relative left-10">search</i>
         <input
+            ref="inputRef"
             :value:="props.input"
             type="text"
             placeholder="Search"
-            @input="emits('setInput', $event.target.value)"
+            @input="(payload: Event) => onInput(payload)"
         />
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    input: {
-        type: String,
-        default: ''
-    }
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputRef = ref<HTMLInputElement>()
+
+interface Props {
+    input: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    input: () => ''
 })
 const emits = defineEmits(['setInput'])
+
+const onInput = (e: Event) => {
+    emits('setInput', e.target === null ? '' : e.target.value)
+}
 </script>

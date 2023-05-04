@@ -29,21 +29,21 @@
                 ></md-filled-text-field>
             </div>
 
-            <md-text-button slot="footer" label="Cancel" @click="cancel"></md-text-button>
-            <md-filled-button slot="footer" label="OK" @click="submit"></md-filled-button>
+            <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
+            <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
         </md-dialog>
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive } from 'vue'
 
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
  */
-var dialogOpen = ref(false)
+var dialogOpen = ref<boolean>(false)
 const info = reactive(
-    JSON.parse(localStorage.getItem('bre97-web-todo-personal-info')) || {
+    JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
         name: 'Click me to edit your info',
     }
 )
@@ -54,7 +54,7 @@ const submit = () => {
 }
 const cancel = () => {
     close()
-    info.name = JSON.parse(localStorage.getItem('bre97-web-todo-personal-info')).name
+    info.name = JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string).name
 }
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)

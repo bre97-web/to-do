@@ -15,27 +15,27 @@
 
             <nav class="backButton">
                 <md-text-button
-                    label="Back"
                     @click="
                         () => {
                             router.push('/home')
                         }
                     "
-                ></md-text-button>
+                >Back</md-text-button>
             </nav>
         </div>
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import Note from '@/components/task/note/Note.vue'
 import Date from '@/components/task/date/Date.vue'
 import Tag  from '@/components/task/tag/Tag.vue'
+import { Item } from '@/hooks/useList';
 
 
 const router = useRouter()
 
-const task = ref(JSON.parse(router.currentRoute.value.query.task))
+const task = ref<Item>(JSON.parse(router.currentRoute.value.query.task as string))
 </script>

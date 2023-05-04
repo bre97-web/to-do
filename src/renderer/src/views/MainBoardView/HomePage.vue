@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Tasks from '@/components/task/Tasks.vue'
 import Search from '@/components/search/Search.vue'
 </script>
