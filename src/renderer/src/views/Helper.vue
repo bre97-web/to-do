@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 
-const router: any = useRouter()
+const router = useRouter()
 </script>
 
 <style scoped lang="css">

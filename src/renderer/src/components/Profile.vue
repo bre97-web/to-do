@@ -41,8 +41,8 @@ import { ref, reactive } from 'vue'
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
  */
-var dialogOpen: any = ref(false)
-const info: any = reactive(
+var dialogOpen = ref<boolean>(false)
+const info = reactive(
     JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
         name: 'Click me to edit your info',
     }

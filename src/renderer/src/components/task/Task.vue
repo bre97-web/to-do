@@ -12,16 +12,11 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    title: {
-        type: String,
-        required: true,
-        default: ''
-    },
-    subtitle: {
-        type: String,
-        required: true,
-        default: ''
-    }
+const props = withDefaults(defineProps<{
+    title: string,
+    subtitle: string
+}>(), {
+    title: () => '',
+    subtitle: () => ''
 })
 </script>

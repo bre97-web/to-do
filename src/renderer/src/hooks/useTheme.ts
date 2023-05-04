@@ -1,3 +1,4 @@
+import { type } from 'os'
 import { reactive, watch } from 'vue'
 
 interface CurrentTheme {
@@ -65,8 +66,9 @@ export default function useDark() {
      * 得到全局的THEME
      * @returns const Object THEME
      */
-    const get = () => THEME
-    const getThemeColor = () => THEME.color
+    const get = (): Theme => THEME
+    const getCurrent = () => THEME.current
+    const getThemeColor = (): string[] => THEME.color
 
     /**
      * 设置全局的THEME.current
@@ -81,7 +83,14 @@ export default function useDark() {
 
     return {
         get,
+        getCurrent,
         getThemeColor,
         set
     }
+}
+
+export type {
+    Theme,
+    Colors,
+    CurrentTheme
 }

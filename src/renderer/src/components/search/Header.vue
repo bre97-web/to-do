@@ -10,9 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    input: {
-        type: String
-    }
-})
+const props = defineProps<{
+    input: string
+}>()
 </script>

@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-const info: any = reactive(
+const info = reactive(
     JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
         name: 'Click me to edit your info',
     }

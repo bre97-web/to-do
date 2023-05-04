@@ -33,19 +33,20 @@
 </template>
 
 <script lang="ts" setup>
-import { useList } from '@/hooks/useList'
+import { Item, useList } from '@/hooks/useList'
+import { reactive } from 'vue'
 
-const props: any = defineProps(['dialog', 'closeDialog'])
+const props = defineProps(['dialog', 'closeDialog'])
 
 /**
  * 将要创建的task信息
  */
-const task: any = {
+const task: Item = reactive({
     title: '',
     subtitle: '',
     tag: [],
     note: ''
-}
+})
 
 /**
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据

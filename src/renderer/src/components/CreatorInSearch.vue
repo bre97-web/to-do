@@ -18,16 +18,20 @@ import useTasks from '@/hooks/useTasks'
 /**
  * 由父组件提供搜索词，它应该是一个响应式对象
  */
-const props: any = defineProps(['input'])
+const props = defineProps<{
+    input: string
+}>()
 
 /**
  * 创建TASKS元素
  */
-const tasks: any = useTasks()
+const tasks = useTasks()
 const add = () => {
     tasks.taskList.push({
         title: props.input,
-        subtitle: ''
+        subtitle: '',
+        tag: [''],
+        note: ''
     })
 }
 </script>

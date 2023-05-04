@@ -33,9 +33,10 @@ import { useRouter } from 'vue-router'
 import Note from '@/components/task/note/Note.vue'
 import Date from '@/components/task/date/Date.vue'
 import Tag  from '@/components/task/tag/Tag.vue'
+import { Item } from '@/hooks/useList';
 
 
-const router: any = useRouter()
+const router = useRouter()
 
-const task: any = ref(JSON.parse(router.currentRoute.value.query.task))
+const task = ref<Item>(JSON.parse(router.currentRoute.value.query.task as string))
 </script>

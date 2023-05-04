@@ -22,11 +22,12 @@ import SearchInput from '@/components/header/SearchInput.vue'
 import Setting from '@/components/header/Setting.vue'
 import Avatar from '@/components/header/Avatar.vue'
 
-const props = defineProps({
-    input: {
-        type: String,
-        default: ''
-    }
+interface Props {
+    input: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    input: () => ''
 })
 const emits = defineEmits(['setInput'])
 const setInput = (value: string) => emits('setInput', value)

@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    tag: {
-        type: Array
-    }
+const props = withDefaults(defineProps<{
+    tag: string[]
+}>(), {
+    tag: () => ['']
 })
 </script>

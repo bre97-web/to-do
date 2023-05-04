@@ -6,7 +6,14 @@
             :value:="props.input"
             type="text"
             placeholder="Search"
-            @input="update"
+            @input="
+                (e: InputEvent) => {
+                    return (payload: Event) => {
+                        emits('setInput', e.data)
+                        payload.preventDefault()
+                    }
+                }
+            "
         />
     </div>
 </template>
@@ -14,16 +21,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputRef = ref()
-const props = defineProps({
-    input: {
-        type: String,
-        default: ''
-    }
+const inputRef = ref<HTMLInputElement>()
+
+interface Props {
+    input: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    input: () => ''
 })
 const emits = defineEmits(['setInput'])
-
-const update = () => {
-    emits('setInput', inputRef.value)
-}
 </script>

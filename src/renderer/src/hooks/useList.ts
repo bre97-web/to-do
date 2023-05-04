@@ -16,7 +16,7 @@ interface Item {
     title: string,
     subtitle:string,
     tag: string[],
-    note: string[],
+    note: string,
 }
 interface Items {
     list: Item[]

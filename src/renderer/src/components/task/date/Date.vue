@@ -11,11 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    date: {
-        type: String,
-        required: true,
-        default: ''
-    }
+const props = withDefaults(defineProps<{
+    date: string
+}>(), {
+    date: () => ''
 })
 </script>

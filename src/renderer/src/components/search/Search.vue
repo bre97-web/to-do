@@ -95,7 +95,7 @@ var get = computed<Item[]>(() => {
 /**
  * 用于edit功能的路由
  */
-const router: any = useRouter()
+const router = useRouter()
 const push = (path: string, e: any) => router.push({
     path: path,
     query: {

@@ -49,7 +49,7 @@
 <script lang="ts" setup>
 import { ref, onBeforeMount } from 'vue'
 
-const isFirstLaunch: any = ref(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string))
+const isFirstLaunch = ref(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string))
 
 onBeforeMount(() => {
     if (isFirstLaunch.value === undefined || isFirstLaunch.value === null) {

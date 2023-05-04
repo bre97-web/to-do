@@ -48,7 +48,7 @@ const router = useRouter()
 const task = reactive<Item>({
     ...JSON.parse(router.currentRoute.value.query.task as string)
 })
-var isOpen: any = ref(false)
+var isOpen = ref<boolean>(false)
 onMounted(() => {
     isOpen.value = true
 })

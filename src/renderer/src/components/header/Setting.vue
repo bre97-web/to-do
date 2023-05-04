@@ -11,11 +11,7 @@
                     <p>Dark</p>
                     <md-switch
                         :selected="theme.get().current.isDark"
-                        @click="
-                            theme.set({
-                                isDark: !theme.get().current.isDark
-                            })
-                        "
+                        @click="() => settings.isDark = !settings.isDark"
                     ></md-switch>
                 </label>
             </li>
@@ -33,9 +29,13 @@
 <script lang="ts" setup>
 import useTheme from '@/hooks/useTheme'
 import Theme from '@/components/Theme.vue'
+import { reactive } from 'vue'
+
 
 /**
  * 修改主题
  */
-const theme: any = useTheme()
+const theme = useTheme()
+
+const settings = reactive(theme.getCurrent())
 </script>

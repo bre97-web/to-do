@@ -10,11 +10,9 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    note: {
-        type: String,
-        required: true,
-        default: ''
-    }
+const props = withDefaults(defineProps<{
+    note: string
+}>(), {
+    note: () => ''
 })
 </script>

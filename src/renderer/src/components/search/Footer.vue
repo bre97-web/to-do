@@ -7,10 +7,9 @@
 </template>
 
 <script lang="ts" setup>
-const props: any = defineProps({
-    get: {
-        type: Object,
-        default: null
-    }
-})
+import { Item } from '@/hooks/useList'
+
+const props = defineProps<{
+    get: Item[]
+}>()
 </script>
