@@ -52,41 +52,41 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/Creator.vue'
 import Header from '@/components/header/Header.vue'
-import search from '../assets/js/search'
+import { Search } from '../assets/js/search'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
  */
-const searchInput = search()
-const input = reactive(searchInput.get())
-const setInput = (value) => (input.value = value)
+const searchInput = Search()
+const input = reactive({value: searchInput.get()})
+const setInput = (value: string) => (input.value = value)
 watch(input, () => {
-    searchInput.set(input.value)
+    searchInput.set(input.value as string)
 })
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
  */
 const router = useRouter()
-const push = (path) => router.push({ 
+const push = (path: string) => router.push({ 
     path: path,
 })
 
 /**
  * 控制md-navigation-bar的activeIndex属性，请在push时更改此activeIndex的值
  */
-const activeIndex = ref(0)
+const activeIndex: any = ref(0)
 
 /**
  * 控制fab按钮点击后显示的dialog窗口
  */
-const dialog = reactive({
+const dialog: any = reactive({
     open: false
 })
 const closeDialog = () => (dialog.open = false)

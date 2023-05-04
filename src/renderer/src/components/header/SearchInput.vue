@@ -2,15 +2,19 @@
     <div class="relative w-full flex items-center justify-center">
         <i class="material-icons relative left-10">search</i>
         <input
+            ref="inputRef"
             :value:="props.input"
             type="text"
             placeholder="Search"
-            @input="emits('setInput', $event.target.value)"
+            @input="update"
         />
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputRef = ref()
 const props = defineProps({
     input: {
         type: String,
@@ -18,4 +22,8 @@ const props = defineProps({
     }
 })
 const emits = defineEmits(['setInput'])
+
+const update = () => {
+    emits('setInput', inputRef.value)
+}
 </script>

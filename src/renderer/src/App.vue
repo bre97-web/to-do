@@ -26,7 +26,7 @@ import Loading from './components/Loading.vue'
 /**
  * 在window.load时isLoaded变为true，延迟1秒
  */
-const isLoaded = ref(false)
+const isLoaded: any = ref(false)
 window.addEventListener('load', () => {
     setTimeout(() => (isLoaded.value = true), 1000)
 })

@@ -32,15 +32,15 @@
     </md-dialog>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useList } from '@/hooks/useList'
 
-const props = defineProps(['dialog', 'closeDialog'])
+const props: any = defineProps(['dialog', 'closeDialog'])
 
 /**
  * 将要创建的task信息
  */
-const task = {
+const task: any = {
     title: '',
     subtitle: '',
     tag: [],

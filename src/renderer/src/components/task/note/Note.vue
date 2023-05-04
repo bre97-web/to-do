@@ -9,8 +9,8 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+const props: any = defineProps({
     note: {
         type: String,
         required: true,

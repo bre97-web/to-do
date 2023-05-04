@@ -6,8 +6,8 @@
     </footer>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+const props: any = defineProps({
     get: {
         type: Object,
         default: null

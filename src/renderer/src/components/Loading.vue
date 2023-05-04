@@ -10,7 +10,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Spinner from 'vue-simple-spinner/src/components/Spinner.vue'
 </script>
 

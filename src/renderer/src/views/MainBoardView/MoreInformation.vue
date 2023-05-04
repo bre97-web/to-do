@@ -27,7 +27,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import Note from '@/components/task/note/Note.vue'
@@ -35,7 +35,7 @@ import Date from '@/components/task/date/Date.vue'
 import Tag  from '@/components/task/tag/Tag.vue'
 
 
-const router = useRouter()
+const router: any = useRouter()
 
-const task = ref(JSON.parse(router.currentRoute.value.query.task))
+const task: any = ref(JSON.parse(router.currentRoute.value.query.task))
 </script>

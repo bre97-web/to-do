@@ -7,25 +7,39 @@
  * useInnerList会为每一个变量创建一个只属于自己的局部reactive变量tasks，通过useInnerList得到的方法操作的是它的局部reactive对象。
  */
 
-import { onBeforeMount, reactive, watch } from 'vue'
+import { reactive, watch } from 'vue'
 import moment from "moment"
+
+interface Item {
+    date?: string,
+    index?: number,
+    title: string,
+    subtitle:string,
+    tag: string[],
+    note: string[],
+}
+interface Items {
+    list: Item[]
+}
+
+type List = Items
 
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
  */
-const createIndex = () => moment().format('x')
+const createIndex = (): number => parseInt(moment().format('x'))
 
 /**
  * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
  * @returns 返回一个YYYY-MM-DD格式的日期
  */
-const createDate = () => moment().format('YYYY-MM-DD')
+const createDate = (): string => moment().format('YYYY-MM-DD')
 
 /**
  * **这是一个公有的对象**TASKS，通过use.List()得到的方法而操作的对象一定是全局的TASKS
  */
-var TASKS = reactive(
-    JSON.parse(localStorage.getItem('bre97-web-todo-tasks')) || {
+var TASKS = reactive<List>(
+    JSON.parse(localStorage.getItem('bre97-web-todo-tasks') as string) || {
         list: [
             {
                 date: createDate(),
@@ -60,7 +74,7 @@ watch(TASKS, () => localStorage.setItem('bre97-web-todo-tasks', JSON.stringify(T
 /**
  * 在push添加元素时判断元素是否存在，如果元素存在则返回true
  */
-const contain = (list, e) => {
+const contain = (list: List, e: Item): boolean => {
     for (let key in list.list) {
         if (e.index == list.list[key].index) {
             return true
@@ -70,48 +84,69 @@ const contain = (list, e) => {
     return false
 }
 
+interface ListGet {
+    get: () => List,
+    getValues: () => Item[],
+    length?: () => number,
+}
+interface ListUpdate {
+    push: (e: Item) => boolean,
+    remove: (e: Item) => any,
+    edit: (e: Item) => any
+}
+type ListFunctionInterface = ListGet & ListUpdate
+
+
 /**
  * 操作tasks请调用useInnerList()，useList会为每一个调用者创建一个局部对象
  */
-function useInnerList(item) {
-    /**
-     * item参数是必须提供的
-     */
-    if (item === '' || typeof item === 'undefined') {
-        return undefined
-    }
-
-    var tasks = reactive(
-        JSON.parse(localStorage.getItem(item)) || {
+function useInnerList(localStorageName: string): ListFunctionInterface {
+    var tasks = reactive<List>(
+        JSON.parse(localStorage.getItem(localStorageName) as string) || {
             list: []
         }
     )
 
-    const get = () => tasks
-    const getValues = () => tasks.list
-    const push = (e) => {
+    const get = (): List => tasks
+    const getValues = (): Item[] => tasks.list
+    const push = (e: Item): boolean => {
         if (contain(tasks, e)) {
-            return null
+            return false
         }
         tasks.list.push({
             ...e,
-            date: typeof e.date !== 'string' ? createDate() : e.date,
-            index: typeof e.index !== 'string' ? createIndex() : e.index,
+            date: e.date === null ? createDate() : e.date,
+            index: e.index === null ? createIndex() : e.index,
         })
+
+        return true
     }
-    const remove = (e) => (tasks.list = tasks.list.filter(element => e.index != element.index))
+    const remove = (e: Item): any => tasks.list = tasks.list.filter(element => e.index != element.index)
+    const edit = (e: Item): any => {
+        var targetIndex = e.index
+        var index = null
+
+        for (index = 0; index < TASKS.list.length; index ++) {
+            if (targetIndex == tasks.list[index].index) {
+                break
+            }
+        }
+
+        TASKS.list[index] = e
+    }
 
     /**
      * 为当前的局部reactive对象监听保存到localStorage
      * 保存在localStorage中，名为item（item由调用useInnerList的地方提供）
      */
-    watch(tasks, () => localStorage.setItem(item, JSON.stringify(tasks)))
+    watch(tasks, () => localStorage.setItem(localStorageName, JSON.stringify(tasks)))
 
     return {
         get,
         getValues,
         push,
         remove,
+        edit
     }
 }
 
@@ -119,25 +154,24 @@ function useInnerList(item) {
  * 通过useList()得到的方法操作的全局对象TASKS，多个useList()创建的变量共享同一个全局变量TASKS
  * @returns Object
  */
-function useList() {
-    const get = () => TASKS
-    const getValues = () => TASKS.list
-    const length = () => TASKS.list.length
-    const add = (e) => push(e)
-    const put = (e) => push(e)
-    const push = (e) => {
+function useList(): ListFunctionInterface {
+    const get               = (): List => TASKS
+    const getValues         = (): Item[] => TASKS.list
+    const length            = (): number => TASKS.list.length
+    const push              = (e: Item): boolean => {
         if (contain(TASKS, e)) {
-            return null
+            return false
         }
         TASKS.list.push({
             ...e,
-            date: typeof e.date !== 'string' ? createDate() : e.date,
-            index: typeof e.index !== 'string' ? createIndex() : e.index,
+            date: e.date === null ? createDate() : e.date,
+            index: e.index === null ? createIndex() : e.index,
         })
+
+        return true
     }
-    const remove = (e) => TASKS.list = TASKS.list.filter(element => e.index != element.index)
-    const removeAll = () => TASKS.list = []
-    const edit = (e) => {
+    const remove = (e: Item) => TASKS.list = TASKS.list.filter(element => e.index != element.index)
+    const edit = (e: Item): any => {
         var targetIndex = e.index
         var index = null
 
@@ -154,16 +188,15 @@ function useList() {
         get,
         getValues,
         length,
-        add,
-        put,
         push,
         remove,
-        removeAll,
         edit,
     }
 }
 
 export {
     useList,
-    useInnerList,
+    useInnerList
 }
+
+export type { Item, Items, ListFunctionInterface }

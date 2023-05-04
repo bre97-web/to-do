@@ -33,20 +33,22 @@
     </md-dialog>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
 import { useList } from '@/hooks/useList'
+import type { Item } from '@/hooks/useList'
 
 const router = useRouter()
 
 /**
  * 由路由时传递的query得到需要修改的useList的全局对象的具体的元素
  */
-const task = reactive({
-    ...JSON.parse(router.currentRoute.value.query.task)
+const task = reactive<Item>({
+    ...JSON.parse(router.currentRoute.value.query.task as string)
 })
-var isOpen = ref(false)
+var isOpen: any = ref(false)
 onMounted(() => {
     isOpen.value = true
 })

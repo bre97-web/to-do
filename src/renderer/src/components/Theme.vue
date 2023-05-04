@@ -21,8 +21,8 @@
     </ul>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import useTheme from '@/hooks/useTheme'
 
-const theme = useTheme()
+const theme: any = useTheme()
 </script>

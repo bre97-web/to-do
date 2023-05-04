@@ -16,7 +16,7 @@
     </header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Title from '@/components/header/Title.vue'
 import SearchInput from '@/components/header/SearchInput.vue'
 import Setting from '@/components/header/Setting.vue'
@@ -29,5 +29,5 @@ const props = defineProps({
     }
 })
 const emits = defineEmits(['setInput'])
-const setInput = (value) => emits('setInput', value)
+const setInput = (value: string) => emits('setInput', value)
 </script>

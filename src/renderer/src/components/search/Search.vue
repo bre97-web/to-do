@@ -40,7 +40,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from './Header.vue'
@@ -48,22 +48,25 @@ import Footer from './Footer.vue'
 import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
-import search from '@/assets/js/search'
+import { Search } from '@/assets/js/search'
+import { Item } from '@/hooks/useList'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
  */
-var searchInput = search()
-const input = reactive(searchInput.get())
+var searchInput = Search()
+const input = reactive({
+    value: searchInput.get()
+})
 
 /**
  * 使用tasks并获取所有的元素
  */
 const tasks = useTasks()
-var get = computed(() => {
-    var lists = new Array()
-    var results = new Array()
+var get = computed<Item[]>(() => {
+    var lists: any = new Array()
+    var results: any = new Array()
 
     // get TASKS, al of tasks(focus, bin)
     for (let key in tasks.taskList.getValues()) {
@@ -92,8 +95,8 @@ var get = computed(() => {
 /**
  * 用于edit功能的路由
  */
-const router = useRouter()
-const push = (path, e) => router.push({
+const router: any = useRouter()
+const push = (path: string, e: any) => router.push({
     path: path,
     query: {
         task: JSON.stringify(e) 

@@ -35,15 +35,15 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive } from 'vue'
 
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
  */
-var dialogOpen = ref(false)
-const info = reactive(
-    JSON.parse(localStorage.getItem('bre97-web-todo-personal-info')) || {
+var dialogOpen: any = ref(false)
+const info: any = reactive(
+    JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
         name: 'Click me to edit your info',
     }
 )
@@ -54,7 +54,7 @@ const submit = () => {
 }
 const cancel = () => {
     close()
-    info.name = JSON.parse(localStorage.getItem('bre97-web-todo-personal-info')).name
+    info.name = JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string).name
 }
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)

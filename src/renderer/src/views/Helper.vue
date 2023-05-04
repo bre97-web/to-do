@@ -28,10 +28,10 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
+const router: any = useRouter()
 </script>
 
 <style scoped lang="css">

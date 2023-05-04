@@ -46,14 +46,16 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref, onBeforeMount } from 'vue'
 
-const isFirstLaunch = ref(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch')))
+const isFirstLaunch: any = ref(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string))
 
-if (isFirstLaunch.value === undefined || isFirstLaunch.value === null) {
-    isFirstLaunch.value = true
-}
+onBeforeMount(() => {
+    if (isFirstLaunch.value === undefined || isFirstLaunch.value === null) {
+        isFirstLaunch.value = true
+    }
+})
 
 const submit = () => {
     isFirstLaunch.value = false

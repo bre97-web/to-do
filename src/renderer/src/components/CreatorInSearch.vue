@@ -12,18 +12,18 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import useTasks from '@/hooks/useTasks'
 
 /**
  * 由父组件提供搜索词，它应该是一个响应式对象
  */
-const props = defineProps(['input'])
+const props: any = defineProps(['input'])
 
 /**
  * 创建TASKS元素
  */
-const tasks = useTasks()
+const tasks: any = useTasks()
 const add = () => {
     tasks.taskList.push({
         title: props.input,

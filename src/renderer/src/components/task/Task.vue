@@ -11,8 +11,8 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
+<script lang="ts" setup>
+const props: any = defineProps({
     title: {
         type: String,
         required: true,

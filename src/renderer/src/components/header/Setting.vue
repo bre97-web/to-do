@@ -30,12 +30,12 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import useTheme from '@/hooks/useTheme'
 import Theme from '@/components/Theme.vue'
 
 /**
  * 修改主题
  */
- const theme = useTheme()
+const theme: any = useTheme()
 </script>

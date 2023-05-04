@@ -1,9 +1,21 @@
 import { reactive, watch } from 'vue'
 
+interface CurrentTheme {
+    current: {
+        isDark: boolean,
+        color: string
+    }
+}
+interface Colors {
+    color: string[]
+}
+
+type Theme = Colors & CurrentTheme
+
 /**
  * 全局主题，用于设置主题颜色和深色模式
  */
-const THEME = reactive({
+const THEME = reactive<Theme>({
     /**
      * color是允许使用的所有主题色，不包括深色模式
      */
@@ -12,7 +24,7 @@ const THEME = reactive({
     /**
      * current是当前主题的配置信息
      */
-    current: JSON.parse(localStorage.getItem('theme-current')) || {
+    current: JSON.parse(localStorage.getItem('theme-current') as string) || {
         isDark: false,
         /**
          * 当前使用的主题色
@@ -60,7 +72,7 @@ export default function useDark() {
      * 设置全局的THEME.current
      * @param {Object} current 请传入一个对象，其中包含THEME.current的属性
      */
-    const set = (current) => {
+    const set = (current: CurrentTheme) => {
         THEME.current = {
             ...THEME.current,
             ...current
