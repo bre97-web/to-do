@@ -62,7 +62,7 @@ TASKS.list.forEach(element => {
     }
 
     if (!element['note']) {
-        element['note'] = ['']
+        element['note'] = ''
     }
 })
 
@@ -76,7 +76,7 @@ watch(TASKS, () => localStorage.setItem('bre97-web-todo-tasks', JSON.stringify(T
  */
 const contain = (list: List, e: Item): boolean => {
     for (let key in list.list) {
-        if (e.index == list.list[key].index) {
+        if (e.index === list.list[key].index) {
             return true
         }
     }
@@ -115,8 +115,8 @@ function useInnerList(localStorageName: string): ListFunctionInterface {
         }
         tasks.list.push({
             ...e,
-            date: e.date === null ? createDate() : e.date,
-            index: e.index === null ? createIndex() : e.index,
+            date: e['date'] === undefined ? createDate() : e.date,
+            index: e['index'] === undefined ? createIndex() : e.index,
         })
 
         return true
@@ -164,8 +164,8 @@ function useList(): ListFunctionInterface {
         }
         TASKS.list.push({
             ...e,
-            date: e.date === null ? createDate() : e.date,
-            index: e.index === null ? createIndex() : e.index,
+            date: e['date'] === undefined ? createDate() : e.date,
+            index: e['index'] === undefined ? createIndex() : e.index,
         })
 
         return true

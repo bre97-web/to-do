@@ -27,6 +27,8 @@ const props = defineProps<{
  */
 const tasks = useTasks()
 const add = () => {
+    console.log(props.input);
+    
     tasks.taskList.push({
         title: props.input,
         subtitle: '',
