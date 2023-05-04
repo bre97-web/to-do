@@ -3,15 +3,14 @@
         <div>
             <img src="../assets/img/icon.png" alt="To-Do" class="max-w-xs" />
             <div>
-                <Spinner :size="64" :line-size="8" :spacing="55" :speed="1"></Spinner>
+                <md-linear-progress indeterminate></md-linear-progress>
                 <h1>To-Do</h1>
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
-import Spinner from 'vue-simple-spinner/src/components/Spinner.vue'
+<script lang="ts" setup>
 </script>
 
 <style scoped>
@@ -23,12 +22,11 @@ import Spinner from 'vue-simple-spinner/src/components/Spinner.vue'
     transition: none;
 }
 #loading > div {
-    @apply text-center flex flex-col items-center justify-center gap-10;
-    transition: all 0.45s;
+    @apply text-center flex flex-col items-center justify-center gap-10 w-full;
 }
 #loading > div > img {
     @apply relative top-0;
-    animation: lead 0.5s;
+    animation: lead 0.25s;
 }
 
 @keyframes lead {

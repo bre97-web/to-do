@@ -11,17 +11,12 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    title: {
-        type: String,
-        required: true,
-        default: ''
-    },
-    subtitle: {
-        type: String,
-        required: true,
-        default: ''
-    }
+<script lang="ts" setup>
+const props = withDefaults(defineProps<{
+    title: string,
+    subtitle: string
+}>(), {
+    title: () => '',
+    subtitle: () => ''
 })
 </script>

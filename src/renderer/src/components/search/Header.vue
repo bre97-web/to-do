@@ -9,10 +9,8 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    input: {
-        type: String
-    }
-})
+<script lang="ts" setup>
+const props = defineProps<{
+    input: string
+}>()
 </script>

@@ -104,7 +104,7 @@
 
     /* 禁止选取图标 */
     i {
-        @apply select-none z-0;
+        @apply select-none z-0 w-7 h-7;
     }
 
 

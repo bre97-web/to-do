@@ -13,11 +13,12 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import useTasks from '@/hooks/useTasks'
 import { useTags } from '@/hooks/useTags'
+import { Item } from '@/hooks/useList'
 
-const tags = useTags(useTasks().taskList.getValues())
+const tags: Map<string, Item[]> = useTags(useTasks().taskList.getValues())
 </script>
 
 <style scoped>

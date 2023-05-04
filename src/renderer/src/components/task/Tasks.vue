@@ -4,7 +4,7 @@
         <Task :class="tasksStyle.focusList" title="Focus" subtitle="使用固定按钮将任务钉至此处">
             <template #>
                 <ul class="tasks">
-                    <li v-for="e in tasks.focusList.getValues()" :key="e.index">
+                    <li v-for="e in tasks.focusList.getValues()" :key="e as any ['index']">
 
                         <md-checkbox @click="tasks.moveToBin(e)"></md-checkbox>
 
@@ -112,14 +112,15 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
+import { Item } from '@/hooks/useList'
 
 const router = useRouter()
-const push = (path, e) => {
+const push = (path: string, e: Item) => {
     router.push({
         path: path,
         query: {
@@ -141,7 +142,7 @@ var tasksStyle = reactive({
  * 仅针对focusList的样式
  * 监测tasks中tasks.focusList的长度，当长度为0时设定定时器，延迟使样式成立
  */
-watch(() => tasks.focusList.getValues().length, (v) => {
+watch(() => tasks.focusList.getValues().length, (v: any) => {
     if (v === 0) {
         tasksStyle.focusList['opacity-0'] = true
         setTimeout(() => {
