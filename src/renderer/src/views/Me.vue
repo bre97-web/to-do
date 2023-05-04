@@ -72,9 +72,8 @@
                     <li>
                         <h1>Helper</h1>
                         <md-text-button
-                            label="Look"
                             @click="router.push('/helper')"
-                        ></md-text-button>
+                        >Look</md-text-button>
                     </li>
                 </ul>
             </div>

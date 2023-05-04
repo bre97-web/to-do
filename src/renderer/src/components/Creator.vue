@@ -16,9 +16,9 @@
                 @input="task.subtitle = $event.target.value"
             />
             <md-filled-text-field
-                :value="task.tag.toString().replace(',', ' ')"
+                :value="task.tag.toString()"
                 label="Tag"
-                @input="task.tag = $event.target.value.split(' ')"
+                @input="task.tag = $event.target.value.split(',')"
             />
             <md-filled-text-field
                 :value="task.note"
@@ -41,10 +41,10 @@ const props = defineProps(['dialog', 'closeDialog'])
 /**
  * 将要创建的task信息
  */
-const task: Item = reactive({
+const task = reactive<Item>({
     title: '',
     subtitle: '',
-    tag: [],
+    tag: [''],
     note: ''
 })
 
@@ -64,5 +64,7 @@ const cancel = () => {
 const clear = () => {
     task.title = ''
     task.subtitle = ''
+    task.tag = ['']
+    task.note = ''
 }
 </script>
