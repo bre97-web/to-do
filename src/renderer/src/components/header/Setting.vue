@@ -1,6 +1,6 @@
 <template>
     <div class="setting">
-        <md-text-button label="Settings"></md-text-button>
+        <md-text-button>Settings</md-text-button>
 
         <ul
             class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2"

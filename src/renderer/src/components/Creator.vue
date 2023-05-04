@@ -27,8 +27,8 @@
             />
         </div>
 
-        <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
-        <md-filled-button label="OK" @click="submit" slot="footer"></md-filled-button>
+        <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
+        <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
     </md-dialog>
 </template>
 

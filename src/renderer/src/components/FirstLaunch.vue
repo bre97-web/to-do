@@ -39,8 +39,8 @@
             </main>
 
             <footer class="flex flex-row items-center justify-end gap-2">
-                <md-text-button label="Hidden" @click="close"></md-text-button>
-                <md-filled-button label="Read" @click="submit"></md-filled-button>
+                <md-text-button @click="close">Hidden</md-text-button>
+                <md-filled-button @click="submit">Read</md-filled-button>
             </footer>
         </div>
     </div>

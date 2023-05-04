@@ -15,13 +15,12 @@
 
             <nav class="backButton">
                 <md-text-button
-                    label="Back"
                     @click="
                         () => {
                             router.push('/home')
                         }
                     "
-                ></md-text-button>
+                >Back</md-text-button>
             </nav>
         </div>
     </div>

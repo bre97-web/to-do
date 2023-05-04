@@ -10,13 +10,13 @@
         <!-- Create and Bottom Navigation -->
         <nav>
             <div class="fab">
-                <md-fab-extended
+                <md-branded-fab
                     label="Create"
                     :class="{ 'opacity-0': activeIndex != 0 }"
                     @click="dialog.open = true"
                 >
                     <i slot="icon" class="material-icons">create</i>
-                </md-fab-extended>
+                </md-branded-fab>
                 <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
             </div>
             <div class="navigation">

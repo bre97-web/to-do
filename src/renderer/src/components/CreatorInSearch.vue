@@ -6,7 +6,7 @@
 
         <main class="flex justify-end">
             <div class="flex items-center gap-2">
-                <md-tonal-button label="Create" @click="add"></md-tonal-button>
+                <md-tonal-button @click="add">Create</md-tonal-button>
             </div>
         </main>
     </div>
