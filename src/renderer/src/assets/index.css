@@ -207,7 +207,7 @@
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white dark:bg-slate-800 text-base;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white shadow dark:bg-slate-800 text-base;
     }
 
 
@@ -226,7 +226,7 @@
     }
     ul.tasks > li::after {
         content: '';
-        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
+        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500/5 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
     ul.tasks > li div.desc {
         @apply flex flex-col items-start justify-start w-1/2 flex-1;
