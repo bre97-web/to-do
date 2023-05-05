@@ -7,13 +7,7 @@
         >
             <li class="space-y-2">
                 <h1>Dark</h1>
-                <label>
-                    <p>Dark</p>
-                    <md-switch
-                        :selected="theme.get().current.isDark"
-                        @click="() => settings.isDark = !settings.isDark"
-                    ></md-switch>
-                </label>
+                <Dark></Dark>
             </li>
 
             <md-divider></md-divider>
@@ -27,16 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import useTheme, { Color, Dark } from '@/hooks/useTheme'
 import Theme from '@/components/Theme.vue'
-import { reactive, watch } from 'vue'
-
-
-/**
- * 修改主题
- */
-const theme = useTheme()
-
-const settings = reactive<Dark & Color>(theme.getCurrent())
-watch(settings, () => theme.set(settings))
+import Dark from '@/components/header/Dark.vue'
 </script>

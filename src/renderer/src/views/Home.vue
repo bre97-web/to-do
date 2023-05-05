@@ -15,7 +15,7 @@
                     :class="{ 'opacity-0': activeIndex != 0 }"
                     @click="dialog.open = true"
                 >
-                    <i slot="icon" class="material-icons">create</i>
+                    <md-icon slot="icon" class="material-icons">create</md-icon>
                 </md-branded-fab>
                 <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
             </div>
@@ -31,7 +31,7 @@
                                 }
                             "
                         >
-                            <i slot="icon" class="material-icons">home</i>
+                            <md-icon slot="icon" class="material-icons">home</md-icon>
                         </md-navigation-tab>
 
                         <md-navigation-tab
@@ -43,7 +43,7 @@
                                 }
                             "
                         >
-                            <i slot="icon" class="material-icons">home</i>
+                            <md-icon slot="icon" class="material-icons">home</md-icon>
                         </md-navigation-tab>
                     </md-navigation-bar>
                 </div>
