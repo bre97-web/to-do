@@ -137,7 +137,7 @@
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
-        @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32;
+        @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32 mt-32;
     }
 
     /* label默认针对checkbox、radio、switch组件 */
