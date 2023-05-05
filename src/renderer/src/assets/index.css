@@ -91,7 +91,7 @@
     /* 深色模式只会修改必要的配色 */
     .dark {
         --color-base: theme('colors.slate.900');
-        --color-off-base: theme('colors.gray.700');
+        --color-off-base: theme('colors.gray.800');
         --color-text-base: theme('colors.white');
     }
 }
@@ -207,7 +207,7 @@
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white dark:bg-slate-800;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white dark:bg-slate-800 text-base;
     }
 
 

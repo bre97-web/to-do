@@ -1,7 +1,7 @@
 <template>
     <div
         v-show="input.value.length != 0"
-        class="border dark:border-none bg-transparent dark:bg-slate-700 rounded-md px-4 py-2 my-4"
+        class="border dark:border-none bg-transparent dark:bg-slate-800 rounded-md px-4 py-2 my-4"
     >
         <Header :input="input.value"></Header>
 
