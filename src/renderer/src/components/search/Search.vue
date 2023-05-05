@@ -19,13 +19,13 @@
 
                             <div class="flex flex-row gap-2 py-2 buttonGroup">
                                 <md-standard-icon-button @click="tasks.moveToFocus(e)">
-                                    <i class="material-icons">favorite</i>
+                                    <md-icon class="material-icons">favorite</md-icon>
                                 </md-standard-icon-button>
                                 <md-standard-icon-button @click="push('/Edit', e)">
-                                    <i class="material-icons">edit</i>
+                                    <md-icon class="material-icons">edit</md-icon>
                                 </md-standard-icon-button>
                                 <md-standard-icon-button @click="tasks.removeBin(e)">
-                                    <i class="material-icons">delete_forever</i>
+                                    <md-icon class="material-icons">delete_forever</md-icon>
                                 </md-standard-icon-button>
                             </div>
                         </li>
