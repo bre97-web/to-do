@@ -228,16 +228,6 @@
         content: '';
         @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500/5 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
-    ul.tasks > li div.desc {
-        @apply flex flex-col items-start justify-start w-1/2 flex-1;
-    }
-    ul.tasks > li .buttonGroup {
-        @apply hidden absolute right-0 top-0 mt-2 mr-2 flex-none;
-    }
-    ul.tasks > li:hover .buttonGroup {
-        @apply block z-0;
-    }
-
     ul.list {
         @apply flex flex-row gap-2;
     }
