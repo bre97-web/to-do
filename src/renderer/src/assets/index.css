@@ -99,7 +99,7 @@
 @layer components {
     /* 全局聚焦环 */
     * {
-        @apply ring-purple-500 dark:ring-purple-300;
+        @apply ring-black/50 dark:ring-white/50;
     }
 
     /* 禁止选取图标 */
@@ -142,7 +142,7 @@
 
     /* label默认针对checkbox、radio、switch组件 */
     label {
-        @apply flex flex-row items-center justify-center gap-2;
+        @apply flex flex-row items-center justify-between gap-2;
     }
 
 
