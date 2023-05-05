@@ -61,29 +61,21 @@ const input = reactive<SearchType>(searchInput.get())
  */
 const tasks = useTasks()
 var get = computed<Item[]>(() => {
-    var lists: any = new Array()
-    var results: any = new Array()
-
-    // get TASKS, al of tasks(focus, bin)
-    for (let key in tasks.taskList.getValues()) {
-        lists.push(tasks.taskList.getValues()[key])
-    }
-    for (let key in tasks.focusList.getValues()) {
-        lists.push(tasks.focusList.getValues()[key])
-    }
-    for (let key in tasks.binList.getValues()) {
-        lists.push(tasks.binList.getValues()[key])
-    }
+    var results: Item[] = new Array()
+    var lists: Item[] = Array.from([
+        ...tasks.taskList.getValues(), 
+        ...tasks.focusList.getValues(),
+        ...tasks.binList.getValues()
+    ])
 
     /**
      * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
      */
-    for (let key = 0; key < lists.length; key ++) {
-        if(lists[key].title.toLowerCase().indexOf(input.value.toLowerCase()) === -1) {
-            continue
+    lists.forEach(e => {
+        if(e.title.toLowerCase().indexOf(input.value.toLowerCase()) !== -1) {
+            results.push(e)
         }
-        results.push(lists[key])
-    }
+    })
 
     return results
 })
