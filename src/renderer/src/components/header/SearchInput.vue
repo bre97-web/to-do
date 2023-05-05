@@ -1,6 +1,6 @@
 <template>
     <div class="relative w-full flex items-center justify-center">
-        <i class="material-icons relative left-10">search</i>
+        <md-icon class="material-icons relative left-10 text-base">search</md-icon>
         <input
             ref="inputRef"
             :value:="props.input"

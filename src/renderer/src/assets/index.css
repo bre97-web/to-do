@@ -91,7 +91,7 @@
     /* 深色模式只会修改必要的配色 */
     .dark {
         --color-base: theme('colors.slate.900');
-        --color-off-base: theme('colors.gray.700');
+        --color-off-base: theme('colors.gray.800');
         --color-text-base: theme('colors.white');
     }
 }
@@ -99,7 +99,7 @@
 @layer components {
     /* 全局聚焦环 */
     * {
-        @apply ring-black dark:ring-white;
+        @apply ring-black/50 dark:ring-white/50;
     }
 
     /* 禁止选取图标 */
@@ -107,13 +107,13 @@
         @apply select-none z-0 w-7 h-7;
     }
 
-
+    /* 不显示滚动条 */
     ::-webkit-scrollbar {
         @apply hidden;
     }
 
 
-    /* nav应该位于最顶层 */
+    /* nav应该位于顶层 */
     nav,
     nav * {
         @apply z-30;
@@ -133,15 +133,16 @@
 
 
     main.main {
-        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl mx-auto min-h-screen mt-24;
+        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
-        @apply  bg-black bg-opacity-5 dark:bg-slate-800 pb-20 lg:pb-32;
+        @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32 mt-32;
     }
 
+    /* label默认针对checkbox、radio、switch组件 */
     label {
-        @apply flex flex-row items-center justify-center gap-2;
+        @apply flex flex-row items-center justify-between gap-2;
     }
 
 
@@ -185,6 +186,9 @@
     md-dialog h1 {
         @apply text-2xl;
     }
+    md-dialog h1 + p {
+        @apply text-xl;
+    }
     
     
     header h1 {
@@ -196,14 +200,14 @@
 
 
     .topBar {
-        @apply z-40 border-b dark:border-none flex items-center justify-start;
+        @apply z-40 border-b dark:border-none flex items-center justify-start bg-transparent;
         transition: none;
     }
     header.topBar {
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none border dark:border-none rounded-md hover:shadow focus:ring px-12 py-2 bg-white dark:bg-slate-800;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white shadow dark:bg-slate-800 text-base;
     }
 
 
@@ -222,18 +226,8 @@
     }
     ul.tasks > li::after {
         content: '';
-        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500 opacity-25 w-full max-w-xs h-full select-none pointer-events-none z-0;
+        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500/5 w-full max-w-xs h-full select-none pointer-events-none z-0;
     }
-    ul.tasks > li div.desc {
-        @apply flex flex-col items-start justify-start w-1/2 flex-1;
-    }
-    ul.tasks > li .buttonGroup {
-        @apply hidden absolute right-0 top-0 mt-2 mr-2 flex-none;
-    }
-    ul.tasks > li:hover .buttonGroup {
-        @apply block z-0;
-    }
-
     ul.list {
         @apply flex flex-row gap-2;
     }

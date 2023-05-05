@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li v-for="e in tags" class="list">
-                {{ e[0] }}
+                <h1>{{ e[0] }}</h1>
                 <ul class="list-inner-page tasks">
                     <li v-for="el in e[1]">
                         {{ el.title }}
