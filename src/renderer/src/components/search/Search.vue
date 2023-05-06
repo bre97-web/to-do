@@ -11,18 +11,18 @@
                     <md-list class="tasks">
                         <div v-for="e in get" :key="e.index">
                             <md-list-item :headline="e.title" :supporttingText="e.subtitle">
-                                <md-checkbox @click="tasks.moveToBin(e)" slot="start"></md-checkbox>
+                                <!-- <md-checkbox @click="tasks.moveTo(e, )" slot="start"></md-checkbox> -->
 
                                 <div slot="end">
-                                    <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                                    <!-- <md-standard-icon-button @click="tasks.moveToFocus(e)">
                                         <md-icon class="material-icons">favorite</md-icon>
-                                    </md-standard-icon-button>
+                                    </md-standard-icon-button> -->
                                     <md-standard-icon-button @click="push('/Edit', e)">
                                         <md-icon class="material-icons">edit</md-icon>
                                     </md-standard-icon-button>
-                                    <md-standard-icon-button @click="tasks.removeBin(e)">
+                                    <!-- <md-standard-icon-button @click="tasks.removeBin(e)">
                                         <md-icon class="material-icons">delete_forever</md-icon>
-                                    </md-standard-icon-button>
+                                    </md-standard-icon-button> -->
                                 </div>
                             </md-list-item>
                             <md-divider></md-divider>
@@ -44,10 +44,10 @@ import { useRouter } from 'vue-router'
 import Header from './Header.vue'
 import Footer from './Footer.vue'
 import Task from '@/components/task/Task.vue'
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import { Item } from '@/hooks/useList'
+import { Items } from '@/hooks/useList'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
@@ -60,12 +60,12 @@ const input = reactive<SearchType>(searchInput.get())
  * 使用tasks并获取所有的元素
  */
 const tasks = useTasks()
-var get = computed<Item[]>(() => {
-    var results: Item[] = new Array()
-    var lists: Item[] = Array.from([
-        ...tasks.taskList.getValues(), 
-        ...tasks.focusList.getValues(),
-        ...tasks.binList.getValues()
+var get = computed<Items>(() => {
+    var results: Items = new Array()
+    var lists: Items = Array.from([
+        ...tasks.get().taskList.get(), 
+        ...tasks.get().focusList.get(),
+        ...tasks.get().binList.get()
     ])
 
     /**

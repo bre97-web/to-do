@@ -11,13 +11,13 @@
                 <main class="py-2">
                     <ul>
                         <li class="list">
-                            <h1>待办 {{ tasks.taskList.getValues().length }}</h1>
+                            <h1>待办 {{ tasks.get().taskList.get().length }}</h1>
                             <ul
-                                v-if="tasks.taskList.getValues().length != 0"
+                                v-if="tasks.get().taskList.get().length != 0"
                                 class="list-inner-page tasks"
                             >
                                 <li
-                                    v-for="e in tasks.taskList.getValues()"
+                                    v-for="e in tasks.get().taskList.get()"
                                     :key="e.index"
                                 >
                                     {{ e.title }}
@@ -26,13 +26,13 @@
                         </li>
 
                         <li class="list">
-                            <h1>已完成 {{ tasks.binList.getValues().length }}</h1>
+                            <h1>已完成 {{ tasks.get().binList.get().length }}</h1>
                             <ul
-                                v-if="tasks.binList.getValues().length != 0"
+                                v-if="tasks.get().binList.get().length != 0"
                                 class="list-inner-page tasks"
                             >
                                 <li
-                                    v-for="e in tasks.binList.getValues()"
+                                    v-for="e in tasks.get().binList.get()"
                                     :key="e.index"
                                 >
                                     {{ e.title }}
@@ -41,13 +41,13 @@
                         </li>
 
                         <li class="list">
-                            <h1>固定 {{ tasks.focusList.getValues().length }}</h1>
+                            <h1>固定 {{ tasks.get().focusList.get().length }}</h1>
                             <ul
-                                v-if="tasks.focusList.getValues().length != 0"
+                                v-if="tasks.get().focusList.get().length != 0"
                                 class="list-inner-page tasks"
                             >
                                 <li
-                                    v-for="e in tasks.focusList.getValues()"
+                                    v-for="e in tasks.get().focusList.get()"
                                     :key="e.index"
                                 >
                                     {{ e.title }}
@@ -88,7 +88,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 
 import Profile from '@/components/Profile.vue'
 import Tag from '@/components/tag/Tag.vue'

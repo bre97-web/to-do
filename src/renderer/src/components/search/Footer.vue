@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts" setup>
-import { Item } from '@/hooks/useList'
+import { Items } from '@/hooks/useList'
 
 const props = defineProps<{
-    get: Item[]
+    get: Items
 }>()
 </script>

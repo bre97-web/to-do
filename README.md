@@ -38,18 +38,19 @@ You can make suggestions in issues.
 
 |Feature|Dev|Perview|Release|
 |:--|--:|--:|--:|
-|Event Slider|❌|❌|❌|
-|Notes|✅|❌|❌|
+|Event Slider|🟡|❌|❌|
+|Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
 |Notify|❌|❌|❌|
-|Avatar|✅|🟡|❌|
+|Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
 |Startup Animation|✅|✅|❌|
 |First Launch|✅|✅|❌|
-|Tag|✅|❌|❌|
+|Tag|✅|✅|❌|
 |Sort|❌|❌|❌|
 |Today's Tasks|❌|❌|❌|
-|Task Step|❌|❌|❌|
+|Task Step|✅|✅|❌|
+|Search Advanced|❌|❌|❌|
 |PWA Support|❌|❌|❌|
 |Goals|❌|❌|❌|
 |Element Slide|❌|❌|❌|

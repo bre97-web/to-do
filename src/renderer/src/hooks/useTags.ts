@@ -7,7 +7,7 @@ function useTags(list: Item[]): Map<string, Item[]> {
     const tags = new Map<string, Item[]>()
 
     list.forEach(element => {
-        element['tag'].forEach(e => {
+        element['tags'].forEach(e => {
             if (e !== '') {
                 if (!tags.has(e)) {
                     tags.set(e, [element])
