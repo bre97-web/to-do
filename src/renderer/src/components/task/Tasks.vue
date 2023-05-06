@@ -5,7 +5,7 @@
             <template #>
                 <md-list>
                     <div
-                        v-for="e in tasks.focusList.getValues()"
+                        v-for="e in tasks.get().focusList.get()"
                         :key="e['index']"
                         class="relative"
                     >
@@ -13,10 +13,10 @@
                             :headline="e.title"
                             :supportingText="e.subtitle"
                         >
-                            <md-checkbox @click="tasks.moveToBin(e)" slot="start"></md-checkbox>
+                            <md-checkbox @click="tasks.moveTo(e, tasks.get().focusList, tasks.get().binList)" slot="start"></md-checkbox>
 
                             <div class="buttonGroup" slot="end">
-                                <md-standard-icon-button @click="tasks.moveToTasks(e)">
+                                <md-standard-icon-button @click="tasks.moveTo(e, tasks.get().focusList, tasks.get().taskList)">
                                     <md-icon class="material-icons">favorite</md-icon>
                                 </md-standard-icon-button>
                             </div>
@@ -41,14 +41,14 @@
         </Task>
 
         <Task
-            :class="{ 'opacity-25': tasks.taskList.getValues().length === 0 }"
+            :class="{ 'opacity-25': tasks.get().taskList.get().length === 0 }"
             title="Today's tasks"
             subtitle="需要完成的任务清单"
         >
             <template #>
                 <md-list>
                     <div 
-                        v-for="e in tasks.taskList.getValues()"
+                        v-for="e in tasks.get().taskList.get()"
                         :key="e['index']"
                         class="relative"
                     >
@@ -57,11 +57,11 @@
                             :supportingText="e.subtitle"
                         >
                             <!-- 完成按钮 -->
-                            <md-checkbox @click="tasks.moveToBin(e)" slot="start"></md-checkbox>
+                            <md-checkbox @click="tasks.moveTo(e, tasks.get().taskList, tasks.get().binList)" slot="start"></md-checkbox>
                             
                             <!-- Buttons -->
                             <div slot="end">
-                                <md-standard-icon-button @click="tasks.moveToFocus(e)">
+                                <md-standard-icon-button @click="tasks.moveTo(e, tasks.get().taskList, tasks.get().focusList)">
                                     <md-icon class="material-icons">favorite_outlined</md-icon>
                                 </md-standard-icon-button>
                                 <md-standard-icon-button @click="push('/Edit', e)">
@@ -93,14 +93,14 @@
 
         <Task
             style="grid-row:3;"
-            :class="{ 'opacity-25': tasks.binList.getValues().length === 0 }"
+            :class="{ 'opacity-25': tasks.get().binList.get().length === 0 }"
             title="Recycle Bin"
             subtitle="完成的任务会在这里"
         >
             <template #>
                 <md-list>
                     <div
-                        v-for="e in tasks.binList.getValues()"
+                        v-for="e in tasks.get().binList.get()"
                         :key="e['index']"
                         class="relative"
                     >
@@ -109,9 +109,9 @@
                             :headline="e.title"
                             :supportingText="e.subtitle"
                         >
-                            <md-checkbox checked @click="tasks.moveToTasks(e)" slot="start"></md-checkbox>
+                            <md-checkbox checked @click="tasks.moveTo(e, tasks.get().binList, tasks.get().taskList)" slot="start"></md-checkbox>
                             <div slot="end">
-                                <md-standard-icon-button @click="tasks.removeBin(e)">
+                                <md-standard-icon-button @click="tasks.removeFrom(e, tasks.get().binList)">
                                     <md-icon class="material-icons">delete_forever</md-icon>
                                 </md-standard-icon-button>
                             </div>
@@ -128,7 +128,7 @@
 import { watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import Task from '@/components/task/Task.vue'
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 import { Item } from '@/hooks/useList'
 
 const router = useRouter()
@@ -154,7 +154,7 @@ var tasksStyle = reactive({
  * 仅针对focusList的样式
  * 监测tasks中tasks.focusList的长度，当长度为0时设定定时器，延迟使样式成立
  */
-watch(() => tasks.focusList.getValues().length, (v: any) => {
+watch(() => tasks.get().focusList.get().length, (v: any) => {
     if (v === 0) {
         tasksStyle.focusList['opacity-0'] = true
         setTimeout(() => {

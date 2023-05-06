@@ -12,18 +12,6 @@ import moment from "moment"
 
 
 /**
- * 在push添加元素时判断元素是否存在，如果元素存在则返回true
- */
-const contain = (list: List, e: Item): boolean => {
-    for (let key in list.list) {
-        if (e.index === list.list[key].index) {
-            return true
-        }
-    }
-    return false;
-}
-
-/**
  * 使用moment().format('x')时间戳作为每个元素的index
  */
 const createIndex = (): number => parseInt(moment().format('x'))
@@ -49,7 +37,7 @@ interface Tag {
     tags: string[]
 }
 interface Step {
-    steps: {
+    steps?: {
         [index: number]: Title
     }
 }
@@ -63,13 +51,9 @@ interface Identifiable {
 
 type Item  = Title & Note & Tag & Identifiable & Step
 type Items = Item[]
-interface List {
-    list: Items
-}
 
 interface ListGet {
-    get: () => List,
-    getValues: () => Item[],
+    get: () => Items,
     length?: () => number,
 }
 interface ListUpdate {
@@ -83,13 +67,12 @@ type ListFunctionInterface = ListGet & ListUpdate
  * 操作tasks请调用useInnerList()，useList会为每一个调用者创建一个局部对象
  */
 function useList(localStorageName: string): ListFunctionInterface {
-    var tasks = reactive<List>(
-        JSON.parse(localStorage.getItem(localStorageName) as string) || {
-            list: []
-        }
-    )
+    type List = {
+        value: Items
+    }
+    var tasks = reactive<List>(JSON.parse(localStorage.getItem(localStorageName) as string) || { value: []})
 
-    tasks.list.forEach(element => {
+    tasks.value.forEach(element => {
         if (!element['tags']) {
             element['tags'] = ['']
         }
@@ -97,46 +80,50 @@ function useList(localStorageName: string): ListFunctionInterface {
         if (!element['note']) {
             element['note'] = ''
         }
+
+        if (!element['steps']) {
+            element['steps'] = []
+        }
     })
-
-    const get = (): List => tasks
-    const getValues = (): Item[] => tasks.list
-    const length            = (): number => tasks.list.length
-    const push = (e: Item): boolean => {
-        if (contain(tasks, e)) {
-            return false
-        }
-        tasks.list.push({
-            ...e,
-            date: e['date'] === undefined ? createDate() : e.date,
-            index: e['index'] === undefined ? createIndex() : e.index,
-        })
-
-        return true
-    }
-    const remove = (e: Item): any => tasks.list = tasks.list.filter(element => e.index != element.index)
-    const edit = (e: Item): any => {
-        var targetIndex = e.index
-        var index = null
-
-        for (index = 0; index < tasks.list.length; index ++) {
-            if (targetIndex == tasks.list[index].index) {
-                break
-            }
-        }
-
-        tasks.list[index] = e
-    }
 
     /**
      * 为当前的局部reactive对象监听保存到localStorage
      * 保存在localStorage中，名为item（item由调用useInnerList的地方提供）
      */
-    watch(tasks, () => localStorage.setItem(localStorageName, JSON.stringify(tasks)))
+    watch(tasks, () => {
+        localStorage.setItem(localStorageName, JSON.stringify(tasks))
+    })
+
+    const get = (): Items => tasks.value
+    const length            = (): number => tasks.value.length
+    const push = (e: Item): boolean => {
+        if (tasks.value.indexOf(e) !== -1) {
+            return false
+        }
+        
+        tasks.value.push({
+            ...e,
+            date: e['date'] === undefined ? createDate() : e.date,
+            index: e['index'] === undefined ? createIndex() : e.index,
+        })
+        return true
+    }
+    const remove = (e: Item): any => tasks.value = tasks.value.filter(el => e.index !== el.index)
+    const edit = (e: Item): any => {
+        var targetIndex = e.index
+        var index = null
+
+        for (index = 0; index < tasks.value.length; index ++) {
+            if (targetIndex === tasks.value[index].index) {
+                break
+            }
+        }
+
+        tasks.value[index] = e
+    }
 
     return {
         get,
-        getValues,
         length,
         push,
         remove,

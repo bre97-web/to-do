@@ -34,7 +34,7 @@
 
 <script lang="ts" setup>
 import { Item } from '@/hooks/useList'
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 import { reactive } from 'vue'
 
 const props = defineProps(['dialog', 'closeDialog'])
@@ -53,7 +53,7 @@ const task = reactive<Item>({
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
  */
 const submit = () => {
-    useTasks().taskList.push(task)
+    useTasks().get().taskList.push(task)
     clear()
     props.closeDialog()
 }

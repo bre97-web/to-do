@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts" setup>
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 import { useTags } from '@/hooks/useTags'
 import { Items } from '@/hooks/useList'
 
-const tags: Map<string, Items> = useTags(useTasks().taskList.getValues())
+const tags: Map<string, Items> = useTags(useTasks().get().taskList.get())
 </script>
 
 <style scoped>

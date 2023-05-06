@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import useTasks from '@/hooks/useTasks'
+import { useTasks } from '@/hooks/useTasks'
 
 /**
  * 由父组件提供搜索词，它应该是一个响应式对象
@@ -29,7 +29,7 @@ const tasks = useTasks()
 const add = () => {
     console.log(props.input);
     
-    tasks.taskList.push({
+    tasks.get().taskList.push({
         title: props.input,
         subtitle: '',
         tags: [''],
