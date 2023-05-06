@@ -52,7 +52,7 @@ onMounted(() => {
     isOpen.value = true
 })
 const submit = () => {
-    useTasks().get().taskList.edit(task)
+    useTasks().get().taskList.edit(task, task)
     close()
 }
 const cancel = () => {
@@ -60,6 +60,6 @@ const cancel = () => {
 }
 const close = () => {
     isOpen.value = false
-    setTimeout(() => router.push('/'), 200)
+    router.push('/')
 }
 </script>

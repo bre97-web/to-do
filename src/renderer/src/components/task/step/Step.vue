@@ -17,7 +17,7 @@
         <main>
             <md-list>
                 <div
-                    v-for="(e, index) in props.task.steps"
+                    v-for="(e, index) in steps"
                     :key="index"
                 >
                     <md-list-item :headline="e">
@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 import { Item } from '@/hooks/useList';
 import { useTasks } from '@/hooks/useTasks';
-import { ref } from 'vue';
+import { ref, toRef, watch } from 'vue';
 
 
 const props = defineProps<{
@@ -40,12 +40,19 @@ const props = defineProps<{
     task: Item
 }>()
 
+const steps = toRef(props.task, 'steps')
+
 const input = ref('')
 
+
+
 const create = () => {
+
+    steps.value?.push(input.value)
+
     useTasks().get().taskList.edit(props.task, {
         ...props.task,
-        steps: [...props.steps, input.value],
+        steps: [...props.steps],
     })
 }
 

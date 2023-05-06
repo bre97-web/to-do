@@ -10,7 +10,7 @@
                 <!-- Note组件本身是absolute的 -->
                 <Note :note="task.note"></Note>
                 <Date :date="task.date"></Date>
-                <Tag :tag="task.tags"></Tag>
+                <Tag  :tag="task.tags"></Tag>
                 <Step :steps="task.steps || []" :task="task"></Step>
             </main>
 
