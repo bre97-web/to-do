@@ -55,7 +55,7 @@ interface ListGet {
 interface ListUpdate {
     push: (e: Item) => boolean,
     remove: (e: Item) => any,
-    edit: (e: Item) => any
+    edit: (from: Item, to: Item) => any
 }
 type ListFunctionInterface = ListGet & ListUpdate
 
@@ -106,18 +106,27 @@ function useList(localStorageName: string): ListFunctionInterface {
         return true
     }
     const remove = (e: Item): any => tasks.value = tasks.value.filter(el => e.index !== el.index)
-    const edit = (e: Item): any => {
-        var targetIndex = e.index
-        var index = null
+    const edit = (from: Item, to: Item): any => {
+        // var targetIndex = e.index
+        // var index = null
 
-        for (index = 0; index < tasks.value.length; index ++) {
-            if (targetIndex === tasks.value[index].index) {
-                break
+        // for (index = 0; index < tasks.value.length; index ++) {
+        //     if (targetIndex === tasks.value[index].index) {
+        //         break
+        //     }
+        // }
+
+        // tasks.value[index] = e
+        for(let e = 0; e < tasks.value.length; e ++) {
+            if(tasks.value[e].index === from.index) {
+                tasks.value[e] = {
+                    ...tasks.value[e],
+                    ...to
+                }
             }
         }
-
-        tasks.value[index] = e
     }
+    
 
     return {
         get,
