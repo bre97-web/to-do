@@ -34,6 +34,10 @@ const createIndex = (): number => parseInt(moment().format('x'))
  */
 const createDate = (): string => moment().format('YYYY-MM-DD')
 
+
+
+
+
 interface Title {
     title: string,
     subtitle?: string
@@ -44,6 +48,11 @@ interface Note {
 interface Tag {
     tags: string[]
 }
+interface Step {
+    steps: {
+        [index: number]: Title
+    }
+}
 /**
  * Item的标识符，其中index的生成结果应该是唯一的
  */
@@ -52,7 +61,7 @@ interface Identifiable {
     date?: string
 }
 
-type Item  = Title & Note & Tag & Identifiable 
+type Item  = Title & Note & Tag & Identifiable & Step
 type Items = Item[]
 interface List {
     list: Items
