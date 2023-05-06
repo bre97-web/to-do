@@ -26,6 +26,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits(['setInput'])
 
 const onInput = (e: Event) => {
-    emits('setInput', e.target === null ? '' : e.target.value)
+    emits('setInput', (e.target as HTMLInputElement).value)
 }
 </script>
