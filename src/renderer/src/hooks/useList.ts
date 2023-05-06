@@ -37,9 +37,8 @@ interface Tag {
     tags: string[]
 }
 interface Step {
-    steps?: {
-        [index: number]: Title
-    }
+    steps: string[]
+    
 }
 /**
  * Item的标识符，其中index的生成结果应该是唯一的
@@ -82,7 +81,7 @@ function useList(localStorageName: string): ListFunctionInterface {
         }
 
         if (!element['steps']) {
-            element['steps'] = []
+            element['steps'] = ['']
         }
     })
 
@@ -135,4 +134,4 @@ export {
     useList
 }
 
-export type { Item, Items, ListFunctionInterface }
+export type { Item, Items, Step, ListFunctionInterface }
