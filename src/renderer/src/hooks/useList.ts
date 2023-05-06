@@ -34,7 +34,10 @@ interface Tag {
     tags: string[]
 }
 interface Step {
-    steps?: string[]
+    steps: [{
+        text: string,
+        done: boolean
+    }]
     
 }
 /**
@@ -79,7 +82,10 @@ function useList(localStorageName: string): ListFunctionInterface {
         }
 
         if (!element['steps']) {
-            element['steps'] = ['']
+            element['steps'] = [{
+                text: '',
+                done: false
+            }]
         }
     })
 

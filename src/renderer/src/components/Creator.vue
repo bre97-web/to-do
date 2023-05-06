@@ -47,6 +47,10 @@ const task = reactive<Item>({
     subtitle: '',
     tags: [],
     note: '',
+    steps: [{
+        text: '',
+        done: false
+    }]
 })
 
 /**
