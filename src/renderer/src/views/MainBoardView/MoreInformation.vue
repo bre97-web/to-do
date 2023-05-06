@@ -10,7 +10,8 @@
                 <!-- Note组件本身是absolute的 -->
                 <Note :note="task.note"></Note>
                 <Date :date="task.date"></Date>
-                <Tag :tag="task.tag"></Tag>
+                <Tag  :tag="task.tags"></Tag>
+                <Step :task="task"></Step>
             </main>
 
             <nav class="backButton">
@@ -32,7 +33,8 @@ import { useRouter } from 'vue-router'
 import Note from '@/components/task/note/Note.vue'
 import Date from '@/components/task/date/Date.vue'
 import Tag  from '@/components/task/tag/Tag.vue'
-import { Item } from '@/hooks/useList';
+import { Item } from '@/hooks/useList'
+import Step from '@/components/task/step/Step.vue'
 
 
 const router = useRouter()

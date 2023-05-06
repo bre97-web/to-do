@@ -16,9 +16,9 @@
                 @input="task.subtitle = $event.target.value"
             ></md-filled-text-field>
             <md-filled-text-field
-                :value="task.tag.toString()"
+                :value="task.tags.toString()"
                 label="Tag"
-                @input="task.tag = $event.target.value.split(',')"
+                @input="task.tags = $event.target.value.split(',')"
             />
             <md-outlined-text-field
                 type="date"
@@ -36,9 +36,8 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-
-import { useList } from '@/hooks/useList'
 import type { Item } from '@/hooks/useList'
+import { useTasks } from '@/hooks/useTasks'
 
 const router = useRouter()
 
@@ -53,7 +52,7 @@ onMounted(() => {
     isOpen.value = true
 })
 const submit = () => {
-    useList().edit(task)
+    useTasks().get().taskList.edit(task, task)
     close()
 }
 const cancel = () => {
@@ -61,6 +60,6 @@ const cancel = () => {
 }
 const close = () => {
     isOpen.value = false
-    setTimeout(() => router.push('/'), 200)
+    setTimeout(() => router.push('/'), 250)
 }
 </script>

@@ -13,7 +13,7 @@
     "type-check": "vue-tsc --noEmit",
     "dev:electron": "electron-vite dev",
     "preview:electron": "electron-vite preview",
-    "build:electron": "electron-vite build",
+    "build": "electron-vite build",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "postinstall": "electron-builder install-app-deps",
