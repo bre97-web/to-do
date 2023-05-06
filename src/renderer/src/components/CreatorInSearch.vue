@@ -32,8 +32,8 @@ const add = () => {
     tasks.get().taskList.push({
         title: props.input,
         subtitle: '',
-        tags: [''],
-        note: ''
+        tags: [],
+        note: '',
     })
 }
 </script>

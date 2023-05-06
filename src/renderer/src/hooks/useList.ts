@@ -23,9 +23,6 @@ const createIndex = (): number => parseInt(moment().format('x'))
 const createDate = (): string => moment().format('YYYY-MM-DD')
 
 
-
-
-
 interface Title {
     title: string,
     subtitle?: string
@@ -37,7 +34,7 @@ interface Tag {
     tags: string[]
 }
 interface Step {
-    steps: string[]
+    steps?: string[]
     
 }
 /**
@@ -61,6 +58,7 @@ interface ListUpdate {
     edit: (e: Item) => any
 }
 type ListFunctionInterface = ListGet & ListUpdate
+
 
 /**
  * 操作tasks请调用useInnerList()，useList会为每一个调用者创建一个局部对象

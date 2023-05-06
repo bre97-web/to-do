@@ -45,8 +45,8 @@ const props = defineProps(['dialog', 'closeDialog'])
 const task = reactive<Item>({
     title: '',
     subtitle: '',
-    tags: [''],
-    note: ''
+    tags: [],
+    note: '',
 })
 
 /**

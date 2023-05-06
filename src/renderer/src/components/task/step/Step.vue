@@ -18,8 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Item, Step } from '@/hooks/useList';
-import { useTasks } from '@/hooks/useTasks';
+import { Item } from '@/hooks/useList';
 
 
 const props = defineProps<{
@@ -28,17 +27,6 @@ const props = defineProps<{
 }>()
 
 const create = () => {
-    var step: Step = {
-        steps: [
-            'The new step',
-            ...props.task.steps
-        ]
-    }
-
-    // useTasks().get().taskList.edit({
-    //     ...props.task,
-    //     steps: step.steps
-    // })
     props.task.steps = ['Test', ...props.steps]
 }
 

@@ -11,7 +11,7 @@
                 <Note :note="task.note"></Note>
                 <Date :date="task.date"></Date>
                 <Tag :tag="task.tags"></Tag>
-                <Step :steps="task.steps" :task="task"></Step>
+                <Step :steps="task.steps || []" :task="task"></Step>
             </main>
 
             <nav class="backButton">
