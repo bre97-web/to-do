@@ -1,4 +1,4 @@
-import { useList, useInnerList } from '@/hooks/useList'
+import { useList } from '@/hooks/useList'
 import type { Item, ListFunctionInterface } from '@/hooks/useList'
 
 // interface TaskOperate {
@@ -10,9 +10,9 @@ import type { Item, ListFunctionInterface } from '@/hooks/useList'
  * 初始化所有关于bin、focus、tasks的变量
  * 这将作为全局对象并provide
  */
-const taskList: ListFunctionInterface  = useList()
-const binList: ListFunctionInterface   = useInnerList('bre97-web-todo-bin')
-const focusList: ListFunctionInterface = useInnerList('bre97-web-todo-focus')
+const taskList: ListFunctionInterface  = useList('bre97-web-todo-tasks')
+const binList: ListFunctionInterface   = useList('bre97-web-todo-bin')
+const focusList: ListFunctionInterface = useList('bre97-web-todo-focus')
 
 /**
  * 将元素e保存到bin，并将e从当前tasks中删除

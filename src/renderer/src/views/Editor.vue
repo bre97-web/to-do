@@ -36,9 +36,8 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-
-import { useList } from '@/hooks/useList'
 import type { Item } from '@/hooks/useList'
+import useTasks from '@/hooks/useTasks'
 
 const router = useRouter()
 
@@ -53,7 +52,7 @@ onMounted(() => {
     isOpen.value = true
 })
 const submit = () => {
-    useList().edit(task)
+    useTasks().taskList.edit(task)
     close()
 }
 const cancel = () => {
