@@ -60,6 +60,6 @@ const cancel = () => {
 }
 const close = () => {
     isOpen.value = false
-    router.push('/')
+    setTimeout(() => router.push('/'), 250)
 }
 </script>

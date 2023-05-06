@@ -17,10 +17,21 @@
         <main>
             <md-list>
                 <div
-                    v-for="(e, index) in steps"
+                    v-for="(e, index) in copyRef"
                     :key="index"
                 >
-                    <md-list-item :headline="e">
+                    <md-list-item :headline="e.text">
+                        <md-checkbox
+                            :checked="e.done"
+                            slot="start"
+                            @click="() => e.done = !e.done"
+                        ></md-checkbox>
+                        <md-standard-icon-button
+                            slot="end"
+                            @click="() => copyRef.splice(index, 1)"
+                        >
+                            <md-icon class="material-icons">delete_outlined</md-icon>
+                        </md-standard-icon-button>
                     </md-list-item>
                     <md-divider></md-divider>
                 </div>
@@ -32,28 +43,28 @@
 <script lang="ts" setup>
 import { Item } from '@/hooks/useList';
 import { useTasks } from '@/hooks/useTasks';
-import { ref, toRef, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
 
 const props = defineProps<{
-    steps: string[],
     task: Item
 }>()
 
-const steps = toRef(props.task, 'steps')
+const copyRef = reactive(props.task.steps)
 
 const input = ref('')
 
-
-
 const create = () => {
-
-    steps.value?.push(input.value)
-
-    useTasks().get().taskList.edit(props.task, {
-        ...props.task,
-        steps: [...props.steps],
+    copyRef.push({
+        text: input.value,
+        done: false
     })
 }
 
+watch(copyRef, () => {
+    useTasks().get().taskList.edit(props.task, {
+        ...props.task,
+        steps: copyRef
+    })
+})
 </script>

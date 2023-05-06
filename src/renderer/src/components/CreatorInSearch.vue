@@ -34,6 +34,10 @@ const add = () => {
         subtitle: '',
         tags: [],
         note: '',
+        steps: [{
+            text: '',
+            done: false
+        }]
     })
 }
 </script>
