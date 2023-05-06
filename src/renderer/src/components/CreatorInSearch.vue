@@ -32,7 +32,7 @@ const add = () => {
     tasks.taskList.push({
         title: props.input,
         subtitle: '',
-        tag: [''],
+        tags: [''],
         note: ''
     })
 }

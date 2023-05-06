@@ -10,19 +10,29 @@
 import { reactive, watch } from 'vue'
 import moment from "moment"
 
-interface Item {
-    date?: string,
-    index?: number,
+interface Title {
     title: string,
-    subtitle:string,
-    tag: string[],
-    note: string,
+    subtitle?: string
 }
-interface Items {
-    list: Item[]
+interface Note {
+    note: string
+}
+interface Tag {
+    tags: string[]
+}
+/**
+ * Item的标识符，其中index的生成结果应该是唯一的
+ */
+interface Identifiable {
+    index?: number,
+    date?: string
 }
 
-type List = Items
+type Item  = Title & Note & Tag & Identifiable 
+type Items = Item[]
+interface List {
+    list: Items
+}
 
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
@@ -57,8 +67,8 @@ var TASKS = reactive<List>(
  * 挂载前检查每一个属性
  */
 TASKS.list.forEach(element => {
-    if (!element['tag']) {
-        element['tag'] = ['']
+    if (!element['tags']) {
+        element['tags'] = ['']
     }
 
     if (!element['note']) {
@@ -156,7 +166,7 @@ function useInnerList(localStorageName: string): ListFunctionInterface {
  */
 function useList(): ListFunctionInterface {
     const get               = (): List => TASKS
-    const getValues         = (): Item[] => TASKS.list
+    const getValues         = (): Items => TASKS.list
     const length            = (): number => TASKS.list.length
     const push              = (e: Item): boolean => {
         if (contain(TASKS, e)) {

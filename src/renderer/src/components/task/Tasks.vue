@@ -24,11 +24,11 @@
 
                         <!-- Tags -->
                         <ul
-                            v-if="e.tag && e.tag.length !== 0 && e.tag[0] !== ''"
+                            v-if="e.tags && e.tags.length !== 0 && e.tags[0] !== ''"
                             class="relative bottom-0 px-4 py-2"
                         >
                             <li
-                                v-for="(tag, index) in e.tag"
+                                v-for="(tag, index) in e.tags"
                                 :key="index"
                             >
                                 <p>{{ tag }}</p>
@@ -75,11 +75,11 @@
 
                         <!-- Tags -->
                         <ul
-                            v-if="e.tag && e.tag.length !== 0 && e.tag[0] !== ''"
+                            v-if="e.tags && e.tags.length !== 0 && e.tags[0] !== ''"
                             class="relative bottom-0 px-4 py-2"
                         >
                             <li
-                                v-for="(tag, index) in e.tag"
+                                v-for="(tag, index) in e.tags"
                                 :key="index"
                             >
                                 <p>{{ tag }}</p>

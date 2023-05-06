@@ -47,7 +47,7 @@ import Task from '@/components/task/Task.vue'
 import useTasks from '@/hooks/useTasks'
 import CreatorInSearch from '@/components/CreatorInSearch.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import { Item } from '@/hooks/useList'
+import { Items } from '@/hooks/useList'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
@@ -60,9 +60,9 @@ const input = reactive<SearchType>(searchInput.get())
  * 使用tasks并获取所有的元素
  */
 const tasks = useTasks()
-var get = computed<Item[]>(() => {
-    var results: Item[] = new Array()
-    var lists: Item[] = Array.from([
+var get = computed<Items>(() => {
+    var results: Items = new Array()
+    var lists: Items = Array.from([
         ...tasks.taskList.getValues(), 
         ...tasks.focusList.getValues(),
         ...tasks.binList.getValues()

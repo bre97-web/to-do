@@ -10,7 +10,7 @@
                 <!-- Note组件本身是absolute的 -->
                 <Note :note="task.note"></Note>
                 <Date :date="task.date"></Date>
-                <Tag :tag="task.tag"></Tag>
+                <Tag :tag="task.tags"></Tag>
             </main>
 
             <nav class="backButton">
