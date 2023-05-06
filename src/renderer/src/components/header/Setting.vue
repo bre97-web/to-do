@@ -1,23 +1,13 @@
 <template>
     <div class="setting">
-        <md-text-button label="Settings"></md-text-button>
+        <md-text-button>Settings</md-text-button>
 
         <ul
             class="item p-4 rounded-md border dark:border-none shadow-md bg-white dark:bg-slate-700 absolute top-5 right-5 flex flex-col space-y-2"
         >
             <li class="space-y-2">
                 <h1>Dark</h1>
-                <label>
-                    <p>Dark</p>
-                    <md-switch
-                        :selected="theme.get().current.isDark"
-                        @click="
-                            theme.set({
-                                isDark: !theme.get().current.isDark
-                            })
-                        "
-                    ></md-switch>
-                </label>
+                <Dark></Dark>
             </li>
 
             <md-divider></md-divider>
@@ -30,12 +20,7 @@
     </div>
 </template>
 
-<script setup>
-import useTheme from '@/hooks/useTheme'
+<script lang="ts" setup>
 import Theme from '@/components/Theme.vue'
-
-/**
- * 修改主题
- */
- const theme = useTheme()
+import Dark from '@/components/header/Dark.vue'
 </script>

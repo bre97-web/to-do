@@ -16,9 +16,9 @@
                 @input="task.subtitle = $event.target.value"
             ></md-filled-text-field>
             <md-filled-text-field
-                :value="task.tag.toString().replace(',', ' ')"
+                :value="task.tag.toString()"
                 label="Tag"
-                @input="task.tag = $event.target.value.split(' ')"
+                @input="task.tag = $event.target.value.split(',')"
             />
             <md-outlined-text-field
                 type="date"
@@ -28,25 +28,27 @@
             ></md-outlined-text-field>
         </div>
 
-        <md-text-button label="Cancel" @click="cancel" slot="footer"></md-text-button>
-        <md-filled-button label="OK" @click="submit" slot="footer"></md-filled-button>
+        <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
+        <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
     </md-dialog>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
 import { useList } from '@/hooks/useList'
+import type { Item } from '@/hooks/useList'
 
 const router = useRouter()
 
 /**
  * 由路由时传递的query得到需要修改的useList的全局对象的具体的元素
  */
-const task = reactive({
-    ...JSON.parse(router.currentRoute.value.query.task)
+const task = reactive<Item>({
+    ...JSON.parse(router.currentRoute.value.query.task as string)
 })
-var isOpen = ref(false)
+var isOpen = ref<boolean>(false)
 onMounted(() => {
     isOpen.value = true
 })

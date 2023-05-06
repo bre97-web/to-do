@@ -14,10 +14,10 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    tag: {
-        type: Array
-    }
+<script lang="ts" setup>
+const props = withDefaults(defineProps<{
+    tag: string[]
+}>(), {
+    tag: () => ['']
 })
 </script>

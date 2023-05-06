@@ -9,12 +9,10 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    note: {
-        type: String,
-        required: true,
-        default: ''
-    }
+<script lang="ts" setup>
+const props = withDefaults(defineProps<{
+    note: string
+}>(), {
+    note: () => ''
 })
 </script>

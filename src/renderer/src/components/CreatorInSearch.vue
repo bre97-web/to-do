@@ -6,28 +6,34 @@
 
         <main class="flex justify-end">
             <div class="flex items-center gap-2">
-                <md-tonal-button label="Create" @click="add"></md-tonal-button>
+                <md-tonal-button @click="add">Create</md-tonal-button>
             </div>
         </main>
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import useTasks from '@/hooks/useTasks'
 
 /**
  * 由父组件提供搜索词，它应该是一个响应式对象
  */
-const props = defineProps(['input'])
+const props = defineProps<{
+    input: string
+}>()
 
 /**
  * 创建TASKS元素
  */
 const tasks = useTasks()
 const add = () => {
+    console.log(props.input);
+    
     tasks.taskList.push({
         title: props.input,
-        subtitle: ''
+        subtitle: '',
+        tag: [''],
+        note: ''
     })
 }
 </script>

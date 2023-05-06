@@ -1,7 +1,7 @@
 <template>
     <div class="relative border rounded-md px-4 py-2">
         <nav class="absolute right-1 top-1">
-            <md-text-button label="Hidden" @click="router.back()"></md-text-button>
+            <md-text-button @click="router.back()">Hidden</md-text-button>
         </nav>
 
         <header>
@@ -28,7 +28,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

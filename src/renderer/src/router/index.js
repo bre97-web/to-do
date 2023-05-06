@@ -7,6 +7,8 @@ import Me     from '@/views/Me.vue'
 import Helper from '@/views/Helper.vue'
 import Editor from '@/views/Editor.vue'
 
+import TestPage from '@/views/TestPage.vue'
+
 const routes = [
 
     /**
@@ -59,6 +61,11 @@ const routes = [
             },
         ]
     },
+    {
+        name: 'Test',
+        path: '/test',
+        component: TestPage,
+    }
 ]
 
 const Router = createRouter({
