@@ -47,10 +47,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, Ref } from 'vue'
 
+var isFirstLaunch: Ref<boolean>
 try {
-    var isFirstLaunch = ref(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string))
+    isFirstLaunch = ref<Ref<boolean>>(JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string))
 } catch {
     console.log('Please check your Applications Local Storage, We have been delete your invaild local storage.');
     
