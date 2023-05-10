@@ -1,19 +1,16 @@
 <template>
     <div class="eventsSurface">
         <ul class="events">
-            <li>
-                <Event :event="event"></Event>
-            </li>
-            <li>
-                <Event :event="event"></Event>
+            <li v-for="(e, index) in events.getAll()" :key="index">
+                <Event :event="e"></Event>
             </li>
         </ul>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { useEvent, EventItem } from '@/hooks/useEvent';
+import { EventsInterface, useEvents } from '@/hooks/useEvent';
 import Event from './Event.vue'
 
-var event: EventItem = useEvent('Test Msg')
+const events: EventsInterface = useEvents()
 </script>

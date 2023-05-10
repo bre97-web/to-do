@@ -3,19 +3,16 @@
         <h1 class="dark:text-black">
             {{ props.event.msg  }}
         </h1>
-        <md-text-button>Undo</md-text-button>
+        <div :class="{'invisible': !props.event.isRollback}">
+            <md-text-button>Undo</md-text-button>
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { EventItem } from '@/hooks/useEvent';
-
+import { EventInterface } from '@/hooks/useEvent';
 
 const props = defineProps<{
-    event: EventItem
+    event: EventInterface
 }>()
 </script>
-
-<style lang="scss" scoped>
-
-</style>
