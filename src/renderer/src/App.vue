@@ -15,6 +15,8 @@
                 </div>
             </div>
         </footer>
+
+        <Events></Events>
     </div>
 </template>
 
@@ -22,6 +24,7 @@
 import { ref } from 'vue'
 import FirstLaunch from './components/FirstLaunch.vue'
 import Loading from './components/Loading.vue'
+import Events from '@/components/event/Events.vue'
 
 /**
  * 在window.load时isLoaded变为true，延迟1秒
