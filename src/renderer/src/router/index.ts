@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router"
+import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from "vue-router"
 
 import Home   from '@/views/Home.vue'
 import HomePage from '@/views/MainBoardView/HomePage.vue'
@@ -9,7 +9,7 @@ import Editor from '@/views/Editor.vue'
 
 import TestPage from '@/views/TestPage.vue'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
 
     /**
      * 在App组件中显示主面板（Home组件）
@@ -21,7 +21,7 @@ const routes = [
         redirect: '/home',
         children: [
             {
-                name: HomePage,
+                name: 'HomePage',
                 path: '/home',
                 components: {
                     MainBoardView: HomePage
@@ -29,14 +29,14 @@ const routes = [
                 children: [
                     {
                         path: '/Edit',
-                        name: Editor,
+                        name: 'Editor',
                         components: {
                             HomePageInnerBoardView: Editor
                         }
                     },
                     {
                         path: '/info',
-                        name: Info,
+                        name: 'Info',
                         components: {
                             HomePageInnerBoardView: Info
                         }
@@ -68,7 +68,7 @@ const routes = [
     }
 ]
 
-const Router = createRouter({
+const Router:Router = createRouter({
     history: createWebHashHistory(),
     routes,
     linkExactActiveClass: 'active',
