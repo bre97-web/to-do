@@ -94,8 +94,6 @@ function useList(localStorageName: string): ListFunctionInterface {
      * 保存在localStorage中，名为item（item由调用useInnerList的地方提供）
      */
     watch(tasks, () => {
-        console.log('changed');
-        
         localStorage.setItem(localStorageName, JSON.stringify(tasks))
     })
 

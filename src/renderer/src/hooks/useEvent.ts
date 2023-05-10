@@ -5,7 +5,6 @@ interface EventInterface {
     isRollback: boolean,
 }
 interface EventsInterface {
-    // Events: EventItem[],
     push: (e: EventItem) => void,
     getAll: () => EventItem[]
 }
