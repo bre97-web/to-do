@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import { EventsInterface, useEvents } from '@/hooks/useEvent';
+import { getCurrentInstance } from 'vue'
+import { EventsInterface } from '@/hooks/useEvent';
 import Event from './Event.vue'
 
-const events: EventsInterface = useEvents()
+const events:EventsInterface = getCurrentInstance()?.appContext.config.globalProperties.$events
 </script>
