@@ -9,12 +9,13 @@
 
 import { reactive, watch } from 'vue'
 import moment from "moment"
+import { useIndex } from './useIndex'
 
 
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
  */
-const createIndex = (): number => parseInt(moment().format('x'))
+const createIndex = (): number => useIndex()
 
 /**
  * 使用YYYY-MM-DD格式的日期作为每一个元素的日期

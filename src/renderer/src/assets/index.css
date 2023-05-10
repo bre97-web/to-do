@@ -306,13 +306,29 @@
 
 
     div.eventsSurface {
-        @apply fixed bottom-24 lg:bottom-5 left-4;
+        @apply fixed bottom-24 lg:bottom-5 left-4 w-1/2 md:w-52 xl:w-96;
     }
     div.eventsSurface > ul.events {
-        @apply flex flex-col w-full max-w-xl gap-2;
+        @apply flex flex-col w-full gap-2;
     }
     div.event {
-        @apply px-4 py-2 dark:bg-white rounded-md shadow flex flex-row items-center justify-between;
+        @apply opacity-0 px-4 py-2 rounded-md shadow flex flex-row items-center justify-between bg-black dark:bg-white;
+        animation: 5s eventAnimation;
+    }
+    div.event > h1 {
+        @apply text-white dark:text-black;
+    }
+
+    @keyframes eventAnimation {
+        from {
+            @apply opacity-0 block;
+        } 20% {
+            @apply opacity-100;
+        } 80% {
+            @apply opacity-100;
+        } to {
+            @apply opacity-0;
+        }
     }
 
 

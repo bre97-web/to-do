@@ -1,7 +1,7 @@
 <template>
     <div class="eventsSurface">
         <ul class="events">
-            <li v-for="(e, index) in events.getAll()" :key="index">
+            <li v-for="e in events.getAll()" :key="e.index">
                 <Event :event="e"></Event>
             </li>
         </ul>

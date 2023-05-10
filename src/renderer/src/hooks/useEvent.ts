@@ -1,8 +1,10 @@
-import { reactive } from "vue"
+import { ref } from "vue"
+import { useIndex } from "./useIndex"
 
 interface EventInterface {
     msg: string,
     isRollback: boolean,
+    index?: number,
 }
 interface EventsInterface {
     push: (e: EventItem) => void,
@@ -14,16 +16,17 @@ type EventItem = EventInterface
 
 function useEvents(): EventsInterface {
 
-    const Events = reactive<EventItem[]>([])
+    const Events = ref<EventItem[]>([])
 
     const push = (e: EventItem) => {
-        Events.push(e)
+        e.index = useIndex()
+        Events.value.push(e)
 
         setTimeout(() => {
-            Events.shift()
+            Events.value = Events.value.filter(el => e.index !== el.index)
         }, 5000)
     }
-    const getAll = () => Events
+    const getAll = () => Events.value
 
     return {
         push,
@@ -36,7 +39,7 @@ function useEvent(msg:string, isRollback = false): EventInterface {
 
     var event: EventItem = {
         msg: msg,
-        isRollback: isRollback
+        isRollback: isRollback,
     }
     
     return event

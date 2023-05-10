@@ -1,6 +1,6 @@
 <template>
     <div class="event">
-        <h1 class="dark:text-black">
+        <h1>
             {{ props.event.msg  }}
         </h1>
         <div :class="{'invisible': !props.event.isRollback}">
