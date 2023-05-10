@@ -33,12 +33,13 @@ If you want to contribute code, please refer to the form below:
 You can make suggestions in issues.
 
 - ❌ Not started
-- 🟡 In progress
+- 🟡 In progress or waiting
 - ✅ Complete
 
 |Feature|Dev|Perview|Release|
 |:--|--:|--:|--:|
-|Event Slider|🟡|❌|❌|
+|Event Snackbars|✅|🟡|❌|
+|Event Snackbars Actions|❌|❌|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
 |Notify|❌|❌|❌|
@@ -52,5 +53,6 @@ You can make suggestions in issues.
 |Task Step|✅|✅|❌|
 |Search Advanced|❌|❌|❌|
 |PWA Support|❌|❌|❌|
+|Sidebar|🟡|❌|❌|
 |Goals|❌|❌|❌|
 |Element Slide|❌|❌|❌|

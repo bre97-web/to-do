@@ -30,5 +30,11 @@ import '@/assets/material-web-style.css'
  */
 import '@/assets/bundle'
 
+import { useEvents } from '@/hooks/useEvent'
+
 const app = createApp(App)
 app.use(Router).mount('#app')
+
+app.config.globalProperties.$events = useEvents()
+
+app.config.performance = true

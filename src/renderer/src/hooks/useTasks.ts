@@ -1,6 +1,8 @@
 
 import { useList } from '@/hooks/useList'
 import type { Item, ListFunctionInterface } from '@/hooks/useList'
+import { getCurrentInstance, onMounted } from 'vue'
+import { EventsInterface, useEvent } from './useEvent'
 
 interface TaskOperate {
     get: () => {
@@ -27,7 +29,15 @@ try {
     location.reload()
 }
 
+
+var events: EventsInterface
+
 function useTasks(): TaskOperate {
+
+    onMounted(() => {
+        events = getCurrentInstance()?.appContext.config.globalProperties.$events
+    })
+
     const get = () => ({
         taskList,
         binList,
@@ -36,9 +46,11 @@ function useTasks(): TaskOperate {
     const moveTo = (e: Item, from:ListFunctionInterface, to:ListFunctionInterface): void => {
         from.remove(e)
         to.push(e)
+        events.push(useEvent('Move task is successfully'))
     }
     const removeFrom = (e: Item, from: ListFunctionInterface): void => {
         from.remove(e)
+        events.push(useEvent('Task is delete'))
     }
 
     return {
