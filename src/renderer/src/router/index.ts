@@ -1,4 +1,4 @@
-import { RouteRecordRaw, Router, RouterOptions, createRouter, createWebHashHistory } from "vue-router"
+import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from "vue-router"
 
 import Home   from '@/views/Home.vue'
 import HomePage from '@/views/MainBoardView/HomePage.vue'
