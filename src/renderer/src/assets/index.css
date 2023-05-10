@@ -305,7 +305,15 @@
 
 
 
-
+    div.eventsSurface {
+        @apply fixed bottom-24 lg:bottom-5 left-4;
+    }
+    div.eventsSurface > ul.events {
+        @apply flex flex-col-reverse w-full max-w-xl gap-2;
+    }
+    div.event {
+        @apply px-4 py-2 dark:bg-white rounded-md shadow flex flex-row items-center justify-between;
+    }
 
 
 
@@ -323,7 +331,10 @@
     ul li,
     md-filled-text-field,
     .fab,
-    .navigation {
+    .navigation,
+    .eventsSurface,
+    .events,
+    .event {
         transition: all .15s;
     }
 }

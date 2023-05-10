@@ -20,3 +20,7 @@ function useEvent(msg:string, isRollback = false): EventInterface {
 export {
     useEvent
 }
+
+export type {
+    EventItem
+}
