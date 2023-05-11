@@ -2,7 +2,7 @@
     <div id="testDiv">
 
         <div class="controller relative">
-            <Dark></Dark>
+            <DarkSwitch></DarkSwitch>
             <Theme></Theme>
         </div>
 
@@ -92,7 +92,7 @@
 
 <script lang="ts" setup>
 import Theme from '@/components/Theme.vue'
-import Dark from '@/components/header/Dark.vue'
+import { DarkSwitch } from '@/components/dark/DarkSwitch'
 
 </script>
 
