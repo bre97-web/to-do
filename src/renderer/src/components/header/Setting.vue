@@ -7,7 +7,7 @@
         >
             <li class="space-y-2">
                 <h1>Dark</h1>
-                <Dark></Dark>
+                <DarkSwitch></DarkSwitch>
             </li>
 
             <md-divider></md-divider>
@@ -22,5 +22,5 @@
 
 <script lang="ts" setup>
 import Theme from '@/components/Theme.vue'
-import Dark from '@/components/header/Dark.vue'
+import { DarkSwitch } from '../dark/DarkSwitch';
 </script>

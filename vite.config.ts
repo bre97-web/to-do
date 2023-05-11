@@ -13,11 +13,13 @@ export default defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag) => tag.startsWith('md-')
+                    isCustomElement: (tag: string): boolean => tag.startsWith('md-')
                 }
-            }
+            },
         }),
-        vueJsx()
+        vueJsx({
+            isCustomElement: (tag: string): boolean => tag.startsWith('md-')
+        }),
     ],
     root: './src/renderer/',
     base: '/To-Do',
