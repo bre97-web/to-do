@@ -18,16 +18,20 @@
 
 <script lang="tsx" setup>
 import Setting from '@/components/header/Setting.vue'
-import Avatar from '@/components/header/Avatar.vue'
+import Avatar from '@/components/header/Avatar'
+import { reactive } from 'vue'
 
 interface Props {
     input: string
 }
-
 const props = withDefaults(defineProps<Props>(), {
     input: ''
 })
 const emits = defineEmits(['setInput'])
+
+const info = reactive(JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
+    name: 'Click me to edit your info',
+})
 
 /**
  * Component
