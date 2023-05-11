@@ -5,7 +5,7 @@
             <Title></Title>
 
             <!-- Search input -->
-            <SearchInput :input="props.input" @setInput="setInput"></SearchInput>
+            <SearchInput></SearchInput>
 
             <!-- Settings and other buttons -->
             <Setting></Setting>
@@ -16,19 +16,41 @@
     </header>
 </template>
 
-<script lang="ts" setup>
-import Title from '@/components/header/Title.vue'
-import SearchInput from '@/components/header/SearchInput.vue'
+<script lang="tsx" setup>
 import Setting from '@/components/header/Setting.vue'
-import Avatar from '@/components/header/Avatar.vue'
+import Avatar from '@/components/header/Avatar'
+import { reactive } from 'vue'
 
 interface Props {
     input: string
 }
-
 const props = withDefaults(defineProps<Props>(), {
-    input: () => ''
+    input: ''
 })
 const emits = defineEmits(['setInput'])
-const setInput = (value: string) => emits('setInput', value)
+
+const info = reactive(JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
+    name: 'Click me to edit your info',
+})
+
+/**
+ * Component
+ */
+const Title = () => (
+    <div class="flex flex-col flex-none">
+        <h1 class="text-base">To-Do</h1>
+        <p class="text-xs">Preview</p>
+    </div>    
+)
+const SearchInput = () => (
+    <div class="relative w-full flex items-center justify-center">
+        <md-icon class="material-icons relative left-10 text-base">search</md-icon>
+        <input
+            value={props.input}
+            type="text"
+            placeholder="Search"
+            onInput={(e) => emits('setInput', (e.target as HTMLInputElement).value)}
+        />
+    </div>
+)
 </script>
