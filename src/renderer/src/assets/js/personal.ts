@@ -5,6 +5,7 @@ interface PersonalInterface {
 }
 interface InfoInterface {
     get: () => PersonalInterface
+    set: ({}: PersonalInterface) => any
 }
 
 const PERSONAL = reactive<PersonalInterface>(JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
@@ -12,10 +13,14 @@ const PERSONAL = reactive<PersonalInterface>(JSON.parse(localStorage.getItem('br
 })
 
 function Info(): InfoInterface {
-    const get = () => PERSONAL
+    const get = ():PersonalInterface => PERSONAL
+    const set = ({name}: PersonalInterface) => {
+        PERSONAL.name = name
+    }
 
     return {
-        get
+        get,
+        set
     }
 }
 
