@@ -2,16 +2,16 @@
 <template>
     <div class="flex flex-row gap-2">
         <header
-            v-if="info.name.length !== 0"
+            v-if="info.get().name.length !== 0"
             class="rounded-full border w-20 h-20 flex items-center justify-center bg-off-base"
         >
-            <h1 class="text-4xl">{{ info.name[0] }}</h1>
+            <h1 class="text-4xl">{{ info.get().name[0] }}</h1>
         </header>
 
         <main class="flex flex-col">
             <p>Hello</p>
             <h1 class="underline underline-offset-1 hover:underline-offset-4" @click="open">
-                {{ info.name }}
+                {{ info.get().name }}
             </h1>
         </main>
 
@@ -24,8 +24,8 @@
                 <md-filled-text-field
                     label="Name"
                     type="text"
-                    :value="info.name"
-                    @input="info.name = $event.target.value"
+                    :value="newName"
+                    @input="newName = $event.target.value"
                 ></md-filled-text-field>
             </div>
 
@@ -36,25 +36,27 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
+import personal from '@/assets/js/personal'
+
 
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
  */
 var dialogOpen = ref<boolean>(false)
-const info = reactive(
-    JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string) || {
-        name: 'Click me to edit your info',
-    }
-)
+
+const info = personal()
+const newName = ref(info.get().name)
 
 const submit = () => {
     close()
-    localStorage.setItem('bre97-web-todo-personal-info', JSON.stringify(info))
+    info.set({
+        name: newName.value
+    })
 }
 const cancel = () => {
     close()
-    info.name = JSON.parse(localStorage.getItem('bre97-web-todo-personal-info') as string).name
+    newName.value = info.get().name
 }
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)
