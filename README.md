@@ -55,6 +55,6 @@ You can make suggestions in issues.
 |PWA Support|❌|❌|❌|
 |Sidebar|🟡|❌|❌|
 |Sidebar Actions|❌|❌|❌|
-|Tabs|❌|❌|❌|
+|Tabs|🟡|❌|❌|
 |Goals|❌|❌|❌|
 |Element Slide|❌|❌|❌|
