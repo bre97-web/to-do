@@ -335,6 +335,33 @@
 
 
 
+    div.sidebar > ul {
+        @apply flex flex-col gap-4;
+    }
+    div.sidebar > ul > li {
+        @apply rounded-xl space-y-2 px-4 py-2 bg-gradient-to-br from-blue-50/25 to-blue-100/75;
+    }
+    div.sidebar > ul > li > header > h1 {
+        @apply font-medium text-base;
+    }
+    div.sidebar > ul > li > header > h1 + p {
+        @apply font-normal text-sm italic;
+    }
+    div.sidebar > ul > li > footer.action {
+        @apply flex items-center justify-end;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     h1,
     h2,
