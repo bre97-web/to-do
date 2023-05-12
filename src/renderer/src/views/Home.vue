@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header :input="input.value" @setInput="setInput"></Header>
-        <main class="main">
+        
+        
+        <main class="main bg-gray-200/25 dark:bg-white/10 rounded-3xl p-4">
+            <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>
             </router-view>
@@ -52,11 +55,12 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/Creator.vue'
 import Header from '@/components/header/Header.vue'
+import Sidebar from '@/components/sidebar/Sidebar'
 import { Search, SearchType } from '../assets/js/search'
 
 /**

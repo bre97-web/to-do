@@ -1,8 +1,11 @@
 <template>
     <Loading v-if="!isLoaded" message="To-Do"></Loading>
+    
+    <!-- 首屏 -->
     <div v-else id="root" class="bg-base overflow-x-hidden">
         <FirstLaunch></FirstLaunch>
-
+        
+        <!-- 启动后/重定向到/home -->
         <router-view v-slot="{ Component }">
             <component :is="Component"></component>
         </router-view>
