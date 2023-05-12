@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Tabs></Tabs>
         <Search></Search>
         <Tasks></Tasks>
 
@@ -9,7 +10,8 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import Tasks from '@/components/task/Tasks.vue'
 import Search from '@/components/search/Search.vue'
+import Tabs from '@/components/tabs/Tabs'
 </script>

@@ -147,6 +147,15 @@
 
 
 
+    ul.tabs {
+        @apply flex flex-row gap-2;
+    }
+    ul.tabs > li {
+        @apply rounded-md;
+    };
+
+
+
     /* h1 ~ h6的字体宽度 */
     h1 {
         @apply font-extrabold;
