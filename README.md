@@ -54,5 +54,7 @@ You can make suggestions in issues.
 |Search Advanced|❌|❌|❌|
 |PWA Support|❌|❌|❌|
 |Sidebar|🟡|❌|❌|
+|Sidebar Actions|❌|❌|❌|
+|Tabs|❌|❌|❌|
 |Goals|❌|❌|❌|
 |Element Slide|❌|❌|❌|
