@@ -3,7 +3,7 @@
         <Header :input="input.value" @setInput="setInput"></Header>
         
         
-        <main class="main bg-gray-200/25 dark:bg-white/10 rounded-3xl p-4">
+        <main class="main bg-gray-200/25 dark:bg-white/10 rounded-3xl">
             <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>

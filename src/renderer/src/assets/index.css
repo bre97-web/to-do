@@ -133,7 +133,7 @@
 
 
     main.main {
-        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24;
+        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24 overflow-clip;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
@@ -148,10 +148,10 @@
 
 
     ul.tabs {
-        @apply flex flex-row gap-2;
+        @apply flex flex-row gap-4 h-16 items-center justify-start font-bold;
     }
     ul.tabs > li {
-        @apply rounded-md;
+        @apply rounded-full hover:bg-gray-200 px-4 py-2;
     };
 
 

@@ -1,8 +1,10 @@
 <template>
     <div>
         <Tabs></Tabs>
-        <Search></Search>
-        <Tasks></Tasks>
+        <div class="px-4">
+            <Search></Search>
+            <Tasks></Tasks>
+        </div>
 
         <router-view v-slot="{ Component }" name="HomePageInnerBoardView">
             <component :is="Component"></component>

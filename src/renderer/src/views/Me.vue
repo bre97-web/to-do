@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-4">
         <Profile></Profile>
 
         <main class="mt-12 relative">

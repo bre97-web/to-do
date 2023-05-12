@@ -22,7 +22,7 @@ const components = reactive([
 
 function Tabs() {
     return (
-        <div>
+        <div class="w-full border-b px-4">
             <ul class="tabs">
                 <li onClick={() => index.value = 0}>Overview</li>
                 <li onClick={() => index.value = 1}>Overview</li>
