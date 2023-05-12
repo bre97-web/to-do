@@ -133,7 +133,7 @@
 
 
     main.main {
-        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24 overflow-clip;
+        @apply  m-2 md:mx-auto md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl min-h-screen mt-24 overflow-clip;
     }
     /* footer作为网页页脚，颜色不变 */
     #root > footer {
@@ -151,8 +151,27 @@
         @apply flex flex-row gap-4 h-16 items-center justify-start font-bold;
     }
     ul.tabs > li {
-        @apply rounded-full hover:bg-gray-200 px-4 py-2;
-    };
+        @apply rounded-full hover:bg-gray-200 px-4 py-2 text-gray-500 dark:text-gray-300;
+    }
+    ul.tabs .currentTab {
+        @apply font-black relative text-base dark:text-white;
+    }
+    ul.tabs .currentTab::after {
+        content: '';
+        @apply absolute w-full bg-black/50 dark:bg-white dark:bg-opacity-75 h-1 right-0 -bottom-2 rounded-full;
+        animation: from-b-to-t 0.25s;
+        
+    }
+
+    @keyframes from-b-to-t {
+        from {
+            @apply -bottom-3 opacity-0 w-0;
+        } 75% {
+            @apply opacity-50;
+        } to {
+            @apply -bottom-2 opacity-100 w-full h-1;
+        }
+    }
 
 
 
@@ -386,7 +405,9 @@
     .navigation,
     .eventsSurface,
     .events,
-    .event {
+    .event,
+    .tabs,
+    .currentTab {
         transition: all .15s;
     }
 }

@@ -12,8 +12,8 @@
     </div>
 </template>
 
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import Tasks from '@/components/task/Tasks.vue'
 import Search from '@/components/search/Search.vue'
-import Tabs from '@/components/tabs/Tabs'
+import Tabs from '@/components/tabs/Tabs.vue'
 </script>
