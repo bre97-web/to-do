@@ -9,6 +9,51 @@
             <main class="space-y-2 pb-16">
                 <Info>
                     <template #header>
+                        <md-icon class="material-icons">title</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Title"
+                            type="text"
+                            :value="task.title"
+                            @input="(e: InputEvent) => task.title = (e.target as HTMLInputElement).value"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
+
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">subtitles</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Subtitle"
+                            type="text"
+                            :value="task.subtitle"
+                            @input="(e: InputEvent) => task.subtitle = (e.target as HTMLInputElement).value"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
+
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">description</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Note"
+                            type="text"
+                            :value="task.note"
+                            @input="(e: InputEvent) => task.note = (e.target as HTMLInputElement).value"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
+
+                <Info>
+                    <template #header>
                         <md-icon class="material-icons">description</md-icon>
                     </template>
                     <template #content :task="task">
