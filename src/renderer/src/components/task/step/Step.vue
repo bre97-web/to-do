@@ -15,27 +15,7 @@
         </header>
 
         <main>
-            <md-list>
-                <div
-                    v-for="(e, index) in copyRef"
-                    :key="index"
-                >
-                    <md-list-item :headline="e.text">
-                        <md-checkbox
-                            :checked="e.done"
-                            slot="start"
-                            @click="() => e.done = !e.done"
-                        ></md-checkbox>
-                        <md-standard-icon-button
-                            slot="end"
-                            @click="() => copyRef.splice(index, 1)"
-                        >
-                            <md-icon class="material-icons">delete_outlined</md-icon>
-                        </md-standard-icon-button>
-                    </md-list-item>
-                    <md-divider></md-divider>
-                </div>
-            </md-list>
+
         </main>
     </div>
 </template>

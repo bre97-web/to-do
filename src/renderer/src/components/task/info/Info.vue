@@ -1,20 +1,14 @@
 <template>
-    <div>
-        <header>
-            {{ title }}
+    <div class="flex items-center justify-start gap-4">
+        <header class="self-start mt-4">
+            <slot name="header"></slot>
         </header>
 
         <main>
-            <slot></slot>
+            <slot name="content"></slot>
         </main>
     </div>
 </template>
 
 <script lang="ts" setup>
-
-interface TaskInfo {
-    title: string
-}
-
-defineProps<TaskInfo>()
 </script>

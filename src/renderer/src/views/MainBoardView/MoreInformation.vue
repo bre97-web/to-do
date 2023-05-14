@@ -1,20 +1,102 @@
 <template>
-    <div class="fixedWindow fullScreen">
-        <div class="background px-8 py-4">
+    <div class="fixedWindow fullScreen overflow-y-scroll">
+        <div class="background px-8 space-y-8 mt-16 max-w-xl w-full mx-auto">
             <header>
-                <h1>{{ task.title }}</h1>
-                <p>{{ task.subtitle }}</p>
+                <h1 class="text-6xl">{{ task.title }}</h1>
+                <p class="text-xl">{{ task.subtitle }}</p>
             </header>
 
-            <main class="space-y-2">
-                <!-- Note组件本身是absolute的 -->
+            <main class="space-y-2 pb-16">
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">description</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Note"
+                            type="text"
+                            :value="task.note"
+                            @input="(e: InputEvent) => task.note = (e.target as HTMLInputElement).value"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
 
-                <!-- <Info></Info> -->
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">schedule</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Created time"
+                            type="date"
+                            :value="task.date"
+                            @input="(e: InputEvent) => task.date = (e.target as HTMLInputElement).value"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
 
-                <Note :note="task.note"></Note>
-                <Date :date="task.date"></Date>
-                <Tag  :tag="task.tags"></Tag>
-                <Step :task="task"></Step>
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">tag</md-icon>
+                    </template>
+                    <template #content :task="task">    
+                        <md-outlined-text-field
+                            label="Tags"
+                            supportingText="Tags中每一个Tag使用逗号分隔"
+                            type="text"
+                            :value="task.tags"
+                            @input="(e: InputEvent) => task.tags = (e.target as HTMLInputElement).value.split(/[,，]/)"
+                            >
+                        </md-outlined-text-field>
+                        <ul class="flex items-center justify-start gap-2 flex-wrap">
+                            <md-filled-field
+                                v-for="(e, index) in task.tags"
+                                :key="index"
+                            >{{ e }}</md-filled-field>
+                        </ul>
+                    </template>
+                </Info>
+
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">checklist</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <div class="flex items-center gap-2">
+                            <md-outlined-text-field
+                                label="Step"
+                                :value="input"
+                                @input="input = $event.target.value"
+                            ></md-outlined-text-field>
+                            <md-standard-icon-button @click="create">
+                                <md-icon class="material-icons">add</md-icon>
+                            </md-standard-icon-button>
+                        </div>
+                        <md-list>
+                            <div
+                                v-for="(e, index) in task.steps"
+                                :key="index"
+                            >
+                                <md-list-item :headline="e.text">
+                                    <md-checkbox
+                                        :checked="e.done"
+                                        slot="start"
+                                        @click="() => e.done = !e.done"
+                                    ></md-checkbox>
+                                    <md-standard-icon-button
+                                        slot="end"
+                                        @click="() => task.steps.splice(index, 1)"
+                                    >
+                                        <md-icon class="material-icons">delete_outlined</md-icon>
+                                    </md-standard-icon-button>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                            </div>
+                        </md-list>
+                    </template>
+                </Info>
             </main>
 
             <nav class="backButton">
@@ -31,17 +113,36 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router'
-import Note from '@/components/task/note/Note.vue'
-import Date from '@/components/task/date/Date.vue'
-import Tag  from '@/components/task/tag/Tag.vue'
 import { Item } from '@/hooks/useList'
-import Step from '@/components/task/step/Step.vue'
 import Info from '@/components/task/info/Info.vue'
+import { useTasks } from '@/hooks/useTasks';
 
-
+/**
+ * 用于返回按钮，路由到/home
+ */
 const router = useRouter()
 
+
 const task = ref<Item>(JSON.parse(router.currentRoute.value.query.task as string))
+
+/**
+ * 用于Info组件，在task.steps中添加step元素
+ */
+const input = ref('')
+const create = () => {
+    task.value.steps.push({
+        text: input.value,
+        done: false
+    })
+}
+watch(task.value, () => {
+    console.log('changed');
+    
+    useTasks().get().taskList.edit(task.value, {
+        ...task.value,
+        steps: task.value.steps
+    })
+})
 </script>

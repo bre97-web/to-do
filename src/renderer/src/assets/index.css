@@ -291,13 +291,13 @@
         @apply fixed z-50;
     }
     div.fixedWindow.fullScreen {
-        @apply w-full h-full min-h-screen top-0 right-0;
+        @apply w-full h-full min-h-screen bg-white dark:bg-black top-0 right-0;
     }
     div.fixedWindow.fullScreen > div.background {
-        @apply w-full h-full bg-white dark:bg-black;
+        @apply relative w-full bg-white dark:bg-black;
     }
     div.fixedWindow > div > nav.backButton {
-        @apply absolute right-5 top-5;
+        @apply absolute right-5 top-0;
     }
 
 
