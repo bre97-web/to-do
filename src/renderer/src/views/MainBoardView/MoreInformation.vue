@@ -8,6 +8,9 @@
 
             <main class="space-y-2">
                 <!-- Note组件本身是absolute的 -->
+
+                <!-- <Info></Info> -->
+
                 <Note :note="task.note"></Note>
                 <Date :date="task.date"></Date>
                 <Tag  :tag="task.tags"></Tag>
@@ -35,6 +38,7 @@ import Date from '@/components/task/date/Date.vue'
 import Tag  from '@/components/task/tag/Tag.vue'
 import { Item } from '@/hooks/useList'
 import Step from '@/components/task/step/Step.vue'
+import Info from '@/components/task/info/Info.vue'
 
 
 const router = useRouter()
