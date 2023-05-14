@@ -90,7 +90,7 @@ import { useRouter } from 'vue-router'
 
 import { useTasks } from '@/hooks/useTasks'
 
-import Profile from '@/components/Profile.vue'
+import Profile from '@/components/personal/Profile.vue'
 import Tag from '@/components/tag/Tag.vue'
 
 /**

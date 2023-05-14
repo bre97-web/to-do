@@ -58,8 +58,8 @@
 <script lang="tsx" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import Creator from '@/components/Creator.vue'
-import Header from '@/components/header/Header.vue'
+import Creator from '@/components/creator/Creator.vue'
+import Header from '@/components/setting/Header.vue'
 import Sidebar from '@/components/sidebar/Sidebar'
 import { Search, SearchType } from '../assets/js/search'
 

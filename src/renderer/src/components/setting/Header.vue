@@ -8,7 +8,7 @@
             <SearchInput></SearchInput>
 
             <!-- Settings and other buttons -->
-            <Setting></Setting>
+            <Settings></Settings>
 
             <!-- Users avatar-->
             <Avatar></Avatar>
@@ -17,8 +17,8 @@
 </template>
 
 <script lang="tsx" setup>
-import Setting from '@/components/header/Setting.vue'
-import Avatar from '@/components/header/Avatar'
+import { Settings } from '@/components/setting/lib/Setting'
+import Avatar from '@/components/setting/lib/Avatar'
 
 interface Props {
     input: string
