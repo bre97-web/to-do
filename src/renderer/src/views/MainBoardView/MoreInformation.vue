@@ -1,6 +1,19 @@
 <template>
-    <div class="fixedWindow fullScreen overflow-y-scroll">
-        <div class="background px-8 space-y-8 mt-16 max-w-xl w-full mx-auto">
+    <div class="fixedWindow fullScreen withBackButton overflow-y-scroll">
+        <nav class="backButton">
+            <div class="max-w-lg mx-auto">
+                <md-text-button 
+                    @click="() => {
+                        router.push('/home')
+                    }"
+                >
+                    <md-icon slot="icon" class="material-icons">arrow_back</md-icon>
+                    Back
+                </md-text-button>
+            </div>
+        </nav>
+        
+        <div class="background px-8 space-y-8 max-w-xl w-full mx-auto">
             <header>
                 <h1 class="text-6xl">{{ task.title }}</h1>
                 <p class="text-xl">{{ task.subtitle }}</p>
@@ -129,15 +142,6 @@
                 </Info>
             </main>
 
-            <nav class="backButton">
-                <md-text-button
-                    @click="
-                        () => {
-                            router.push('/home')
-                        }
-                    "
-                >Back</md-text-button>
-            </nav>
         </div>
     </div>
 </template>

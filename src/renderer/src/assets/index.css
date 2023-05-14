@@ -102,11 +102,6 @@
         @apply ring-black/50 dark:ring-white/50;
     }
 
-    /* 禁止选取图标 */
-    i {
-        @apply select-none z-0 w-7 h-7;
-    }
-
     /* 不显示滚动条 */
     ::-webkit-scrollbar {
         @apply hidden;
@@ -294,10 +289,13 @@
         @apply w-full h-full min-h-screen bg-white dark:bg-black top-0 right-0;
     }
     div.fixedWindow.fullScreen > div.background {
-        @apply relative w-full bg-white dark:bg-black;
+        @apply w-full bg-white dark:bg-black;
     }
-    div.fixedWindow > div > nav.backButton {
-        @apply absolute right-5 top-0;
+    div.fixedWindow.fullScreen.withBackButton > nav{
+        @apply mb-8;
+    }
+    div.fixedWindow nav.backButton {
+        @apply relative w-full border-b py-2;
     }
 
 
@@ -369,7 +367,6 @@
     p,
     input,
     ul li,
-    md-filled-text-field,
     .fab,
     .navigation,
     .eventsSurface,
