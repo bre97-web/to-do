@@ -11,7 +11,7 @@ const ThemeColors = () => (
                     class="flex items-center justify-start"
                 >
                     <label>
-                        <p>{{ e }}</p>
+                        <p>{ e }</p>
                         <md-radio
                             name="theme"
                             class="absolute right-0"
