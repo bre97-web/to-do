@@ -1,6 +1,6 @@
 <template>
     <div class="fixedWindow fullScreen">
-        <div class="space-y-4">
+        <div class="background px-8 py-4">
             <header>
                 <h1>{{ task.title }}</h1>
                 <p>{{ task.subtitle }}</p>
