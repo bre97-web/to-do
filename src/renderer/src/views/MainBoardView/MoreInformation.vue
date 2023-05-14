@@ -54,21 +54,6 @@
 
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">description</md-icon>
-                    </template>
-                    <template #content :task="task">
-                        <md-outlined-text-field
-                            label="Note"
-                            type="text"
-                            :value="task.note"
-                            @input="(e: InputEvent) => task.note = (e.target as HTMLInputElement).value"
-                        >
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
-
-                <Info>
-                    <template #header>
                         <md-icon class="material-icons">schedule</md-icon>
                     </template>
                     <template #content :task="task">
