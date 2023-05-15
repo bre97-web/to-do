@@ -102,13 +102,14 @@
         @apply ring-black/50 dark:ring-white/50;
     }
 
+
     /* 不显示滚动条 */
     ::-webkit-scrollbar {
         @apply hidden;
     }
 
 
-    /* nav应该位于顶层 */
+    /* nav位于顶层30 */
     nav,
     nav * {
         @apply z-30;
@@ -127,19 +128,18 @@
     }
 
 
-    main.main {
+    #root > div > main.main {
         @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24;
     }
-    /* footer作为网页页脚，颜色不变 */
     #root > footer {
         @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32 mt-32;
     }
+
 
     /* label默认针对checkbox、radio、switch组件 */
     label {
         @apply flex flex-row items-center justify-between gap-2;
     }
-
 
 
     /* h1 ~ h6的字体宽度 */
@@ -150,21 +150,13 @@
     h3 {
         @apply font-bold;
     }
-    h4,
-    h5 {
-        @apply font-medium;
-    }
-    p,
-    h6 {
+    p {
         @apply font-normal;
     }
     /* 字体颜色 */
     h1,
     h2,
     h3,
-    h4,
-    h5,
-    h6,
     p,
     b,
     i,
@@ -174,7 +166,6 @@
     mark {
         @apply bg-green-200 text-black px-2;
     }
-    
 
 
     /* md-dialog窗口下的h1标题字体大小 */
@@ -186,10 +177,10 @@
     }
     
     
-    header h1 {
+    header > h1 {
         @apply text-xl;
     }
-    header p {
+    header > p {
         @apply text-secondary;
     }
 
@@ -206,53 +197,29 @@
     }
 
 
-
-    ul.tasks {
-        @apply flex flex-col py-4 rounded-md xl:flex-row flex-wrap gap-2;
-    }
-    ul.tasks {
-        transition: all 0.15s;
-    }
-    ul.tasks > li {
-        @apply relative hover:bg-off-base hover:bg-opacity-25 flex flex-row items-center md:items-start justify-start px-2 py-2 rounded-md border dark:border-none hover:shadow overflow-clip w-full xl:max-w-xs pb-8;
-    }
-    ul.tasks > li:hover::after {
-        @apply block;
-    }
-    ul.tasks > li::after {
-        content: '';
-        @apply absolute hidden right-0 top-0 bg-gradient-to-r from-transparent to-gray-500/5 w-full max-w-xs h-full select-none pointer-events-none z-0;
-    }
     ul.list {
-        @apply flex flex-row gap-2;
+        @apply flex flex-row gap-2 flex-wrap;
     }
-    ul.list li {
-        @apply rounded-md bg-off-base font-bold p-4;
+    ul.list > li {
+        @apply rounded-md p-4 relative bg-off-base bg-white dark:bg-black/50;
     }
-
-
-    ul li.list {
-        @apply rounded-md p-4 relative bg-off-base;
+    ul.list > li .list-inner-page {
+        @apply z-30 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-4 shadow rounded-md;
     }
-    ul li.list .list-inner-page {
-        @apply z-40 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-4 shadow rounded-md;
-    }
-    ul li.list .list-inner-page:hover,
-    ul li.list:hover .list-inner-page {
+    ul.list > li .list-inner-page:hover,
+    ul.list > li:hover .list-inner-page {
         @apply block;
     }
 
-    ul.results {
-        @apply flex flex-row flex-wrap;
-    }
 
 
     ul.group {
         @apply flex flex-wrap gap-4;
     }
     ul.group li {
-        @apply border dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
+        @apply border bg-white dark:bg-black/50 dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
     }
+
 
     .setting .item {
         @apply hidden;

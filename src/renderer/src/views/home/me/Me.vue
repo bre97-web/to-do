@@ -9,12 +9,12 @@
                     <h1>Tasks</h1>
                 </header>
                 <main class="py-2">
-                    <ul>
-                        <li class="list">
+                    <ul class="list">
+                        <li>
                             <h1>待办 {{ tasks.get().taskList.get().length }}</h1>
                             <ul
                                 v-if="tasks.get().taskList.get().length != 0"
-                                class="list-inner-page tasks"
+                                class="list-inner-page list"
                             >
                                 <li
                                     v-for="e in tasks.get().taskList.get()"
@@ -25,11 +25,11 @@
                             </ul>
                         </li>
 
-                        <li class="list">
+                        <li>
                             <h1>已完成 {{ tasks.get().binList.get().length }}</h1>
                             <ul
                                 v-if="tasks.get().binList.get().length != 0"
-                                class="list-inner-page tasks"
+                                class="list-inner-page list"
                             >
                                 <li
                                     v-for="e in tasks.get().binList.get()"
@@ -40,11 +40,11 @@
                             </ul>
                         </li>
 
-                        <li class="list">
+                        <li>
                             <h1>固定 {{ tasks.get().focusList.get().length }}</h1>
                             <ul
                                 v-if="tasks.get().focusList.get().length != 0"
-                                class="list-inner-page tasks"
+                                class="list-inner-page list"
                             >
                                 <li
                                     v-for="e in tasks.get().focusList.get()"
@@ -58,12 +58,21 @@
                 </main>
             </div>
 
-            <div>
+            <div v-if="useTags(tasks.get().taskList.get()).keys() === null">
                 <header>
                     <h1>Tag</h1>
                 </header>
                 <main class="py-2">
-                    <Tag></Tag>
+                    <ul class="list">
+                        <li v-for="e in useTags(tasks.get().taskList.get())" class="list">
+                            <h1>{{ e[0] }}</h1>
+                            <ul class="list-inner-page tasks">
+                                <li v-for="el in e[1]">
+                                    {{ el.title }}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </main>
             </div>
 
@@ -87,11 +96,11 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-
 import { useTasks } from '@/hooks/useTasks'
-
 import Profile from '@/components/personal/Profile.vue'
-import Tag from '@/components/tag/Tag.vue'
+import { useTags } from '@/hooks/useTags'
+
+
 
 /**
  * 用于获取所有的任务
@@ -103,9 +112,3 @@ const tasks = useTasks()
  */
 const router = useRouter()
 </script>
-
-<style scoped>
-ul {
-    @apply flex flex-row flex-wrap gap-2 font-bold;
-}
-</style>
