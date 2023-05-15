@@ -1,35 +1,37 @@
 <template>
-    <md-dialog :open="props.dialog.open">
-        <div slot="header">
-            <h1>Create a task</h1>
-        </div>
+    <teleport to='#app'>
+        <md-dialog :open="props.dialog.open">
+            <div slot="header">
+                <h1>Create a task</h1>
+            </div>
 
-        <div class="flex flex-col gap-2">
-            <md-filled-text-field
-                :value="task.title"
-                label="Title"
-                @input="task.title = $event.target.value"
-            />
-            <md-filled-text-field
-                :value="task.subtitle"
-                label="Subtitle"
-                @input="task.subtitle = $event.target.value"
-            />
-            <md-filled-text-field
-                :value="task.tags.toString()"
-                label="Tag"
-                @input="task.tags = $event.target.value.split(',')"
-            />
-            <md-filled-text-field
-                :value="task.note"
-                label="Note"
-                @input="task.note = $event.target.value"
-            />
-        </div>
+            <div class="flex flex-col gap-2">
+                <md-filled-text-field
+                    :value="task.title"
+                    label="Title"
+                    @input="task.title = $event.target.value"
+                />
+                <md-filled-text-field
+                    :value="task.subtitle"
+                    label="Subtitle"
+                    @input="task.subtitle = $event.target.value"
+                />
+                <md-filled-text-field
+                    :value="task.tags.toString()"
+                    label="Tag"
+                    @input="task.tags = $event.target.value.split(',')"
+                />
+                <md-filled-text-field
+                    :value="task.note"
+                    label="Note"
+                    @input="task.note = $event.target.value"
+                />
+            </div>
 
-        <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
-        <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
-    </md-dialog>
+            <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
+            <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
+        </md-dialog>
+    </teleport>
 </template>
 
 <script lang="ts" setup>
