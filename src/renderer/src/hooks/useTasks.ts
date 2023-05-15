@@ -1,8 +1,9 @@
 
 import { useList } from '@/hooks/useList'
 import type { Item, ListFunctionInterface } from '@/hooks/useList'
-import { getCurrentInstance, onMounted } from 'vue'
-import { EventsInterface, useEvent } from './useEvent'
+import { reactive } from 'vue'
+import { useEvent } from './useEvent'
+import { GlobalEvents } from './lib/GlobalEventsObject'
 
 interface TaskOperate {
     get: () => {
@@ -29,14 +30,10 @@ try {
     location.reload()
 }
 
-
-var events: EventsInterface
-
-onMounted(() => {
-    events = getCurrentInstance()?.appContext.config.globalProperties.$events
-})
+const events = reactive(GlobalEvents().get())
 
 function useTasks(): TaskOperate {
+    
     const get = () => ({
         taskList,
         binList,
