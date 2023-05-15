@@ -32,12 +32,11 @@ try {
 
 var events: EventsInterface
 
+onMounted(() => {
+    events = getCurrentInstance()?.appContext.config.globalProperties.$events
+})
+
 function useTasks(): TaskOperate {
-
-    onMounted(() => {
-        events = getCurrentInstance()?.appContext.config.globalProperties.$events
-    })
-
     const get = () => ({
         taskList,
         binList,
