@@ -38,14 +38,14 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="tsx" setup>
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import Header from './Header.vue'
-import Footer from './Footer.vue'
+import { Header } from './lib/Header'
+import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
 import { useTasks } from '@/hooks/useTasks'
-import CreatorInSearch from '@/components/CreatorInSearch.vue'
+import { CreatorInSearch } from '@/components/search/lib/CreatorInSearch'
 import { Search, SearchType } from '@/assets/js/search'
 import { Items } from '@/hooks/useList'
 

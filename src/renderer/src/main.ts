@@ -10,7 +10,7 @@ import Router from '@/router/index'
 /**
  * Tailwindcss
  */
-import '@/assets/index.css'
+import '@/assets/css/index.css'
 
 /**
  * Google's Material Design Icons
@@ -20,7 +20,7 @@ import 'material-icons/iconfont/material-icons.css'
 /**
  * Material Web CSS
  */
-import '@/assets/material-web-style.css'
+import '@/assets/css/material-web-style.css'
 
 // Import Google's Material Design 3 Web Components
 // Import Google's formatted js
@@ -28,13 +28,10 @@ import '@/assets/material-web-style.css'
  * Please run:
  * npm run md
  */
-import '@/assets/bundle'
-
-import { useEvents } from '@/hooks/useEvent'
+import '@/assets/js/out/bundle'
 
 const app = createApp(App)
-app.use(Router).mount('#app')
-
-app.config.globalProperties.$events = useEvents()
+ app.use(Router)
+    .mount('#app')
 
 app.config.performance = true

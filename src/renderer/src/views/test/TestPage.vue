@@ -3,7 +3,7 @@
 
         <div class="controller relative">
             <DarkSwitch></DarkSwitch>
-            <Theme></Theme>
+            <ThemeColors></ThemeColors>
         </div>
 
         <div class="contenter">
@@ -90,8 +90,8 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import Theme from '@/components/Theme.vue'
+<script lang="tsx" setup>
+import { ThemeColors } from '@/components/setting/lib/ThemeColors'
 import { DarkSwitch } from '@/components/dark/DarkSwitch'
 
 </script>

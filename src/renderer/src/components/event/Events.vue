@@ -2,16 +2,16 @@
     <div class="eventsSurface">
         <ul class="events">
             <li v-for="e in events.getAll()" :key="e.index">
-                <Event :event="e"></Event>
+                <Event :msg="e.msg" :isRollback="e.isRollback"></Event>
             </li>
         </ul>
     </div>
 </template>
 
-<script lang="ts" setup>
-import { getCurrentInstance } from 'vue'
+<script lang="tsx" setup>
 import { EventsInterface } from '@/hooks/useEvent';
-import Event from './Event.vue'
+import { Event } from './lib/Event'
+import { GlobalEvents } from '@/hooks/lib/GlobalEventsObject';
 
-const events:EventsInterface = getCurrentInstance()?.appContext.config.globalProperties.$events
+const events:EventsInterface = GlobalEvents().get()
 </script>

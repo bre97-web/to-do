@@ -20,7 +20,7 @@
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "npm run build && electron-builder --mac --config",
     "build:linux": "npm run build && electron-builder --linux --config",
-    "build:md": "npx rollup -p @rollup/plugin-node-resolve ./src/renderer/src/assets/material-web.js > ./src/renderer/src/assets/bundle.js"
+    "build:md": "npx rollup -p @rollup/plugin-node-resolve ./src/renderer/src/assets/js/material-web.js > ./src/renderer/src/assets/js/out/bundle.js"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.3",

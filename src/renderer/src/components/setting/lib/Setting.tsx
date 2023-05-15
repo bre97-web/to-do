@@ -1,4 +1,10 @@
-<template>
+
+import { ThemeColors } from '@/components/setting/lib/ThemeColors'
+import { DarkSwitch } from '@/components/dark/DarkSwitch'
+
+
+
+const Settings = () => (
     <div class="setting">
         <md-text-button>Settings</md-text-button>
 
@@ -14,13 +20,13 @@
 
             <li class="space-y-2">
                 <h1>Theme</h1>
-                <Theme></Theme>
+                <ThemeColors></ThemeColors>
             </li>
         </ul>
     </div>
-</template>
+)    
 
-<script lang="ts" setup>
-import Theme from '@/components/Theme.vue'
-import { DarkSwitch } from '../dark/DarkSwitch';
-</script>
+
+export {
+    Settings
+}
