@@ -1,13 +1,13 @@
 import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from "vue-router"
 
 import Home   from '@/views/Home.vue'
-import HomePage from '@/views/MainBoardView/HomePage.vue'
-import Info   from '../views/MainBoardView/MoreInformation.vue'
-import Me     from '@/views/Me.vue'
-import Helper from '@/views/Helper.vue'
-import Editor from '@/views/Editor.vue'
+import HomePage from '@/views/home/HomePage.vue'
+import Info   from '@/views/home/info/MoreInformation.vue'
+import Me     from '@/views/home/me/Me.vue'
+import Helper from '@/views/home/me/helper/Helper.vue'
+import Editor from '@/views/home/edit/Editor.vue'
 
-import TestPage from '@/views/TestPage.vue'
+import TestPage from '@/views/test/TestPage.vue'
 
 const routes: RouteRecordRaw[] = [
 
