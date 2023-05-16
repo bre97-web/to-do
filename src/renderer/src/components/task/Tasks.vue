@@ -129,7 +129,7 @@ import { watch, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import Task from '@/components/task/Task.vue'
 import { useTasks } from '@/hooks/useTasks'
-import { Item } from '@/hooks/useList'
+import { Item } from '@/hooks/useList/lib/useItem'
 
 const router = useRouter()
 const push = (path: string, e: Item) => {

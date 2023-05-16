@@ -19,7 +19,6 @@ const add = (title: string) => {
             done: false
         }],
         type: 'task',
-        goals: []
     })
 }
 

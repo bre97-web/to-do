@@ -112,3 +112,5 @@ import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
 
 import '@material/web/elevation/elevation'
+
+import '@material/web/focus/focus-ring'

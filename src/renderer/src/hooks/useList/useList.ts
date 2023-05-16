@@ -9,7 +9,8 @@
 
 import { reactive, watch } from 'vue'
 import moment from "moment"
-import { useIndex } from './useIndex'
+import { useIndex } from '../useIndex'
+import { Item, Items } from './lib/useItem'
 
 
 /**
@@ -23,36 +24,6 @@ const createIndex = (): number => useIndex()
  */
 const createDate = (): string => moment().format('YYYY-MM-DD')
 
-
-type Title = string
-type Subtitle = string
-type Note = string
-type Tags = string[]
-type Steps = [{
-    text: string,
-    done: boolean
-}]
-type Index = number
-type Date = string
-type Type = "task" | "goal"
-type Goals = Goal[]
-
-interface Goal {
-    event: string
-}
-
-interface Item {
-    title: Title,
-    subtitle?: Subtitle,
-    note: Note,
-    tags: Tags,
-    steps: Steps,
-    index?: Index,
-    date?: Date,
-    type: Type,
-    goals: Goals
-}
-type Items = Item[]
 
 interface ListGet {
     get: () => Items,
@@ -89,10 +60,6 @@ function useList(localStorageName: string): ListFunctionInterface {
                 text: '',
                 done: false
             }]
-        }
-
-        if(!element['goals']) {
-            element['tags'] = ['']
         }
 
         if(!element['type']) {
@@ -143,8 +110,8 @@ function useList(localStorageName: string): ListFunctionInterface {
     }
 }
 
-export {
-    useList
-}
+export { useList }
 
-export type { Item, Items, Type, Goal, ListFunctionInterface }
+export type {
+    ListFunctionInterface
+}

@@ -52,38 +52,6 @@
                     </template>
                 </Info>
 
-                <!-- Type -->
-                <Info>
-                    <template #header>
-                        <md-icon class="material-icons">class</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-select
-                            label="Type"
-                            disabled
-                            :value="task.type"
-                            @input="(e: InputEvent) => task.type = ((e.target as HTMLInputElement).value as Type)"
-                        >
-                            <md-select-option value="task" headline="Task"></md-select-option>
-                            <md-select-option value="goal" headline="Goal"></md-select-option>
-                        </md-outlined-select>
-                    </template>
-                </Info>
-
-                <!-- DateRange -->
-                <Info>
-                    <template #header>
-                        <md-icon class="material-icons">date_range</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-segmented-button-set>
-                            <md-outlined-segmented-button disabled label="Day"></md-outlined-segmented-button>
-                            <md-outlined-segmented-button disabled label="Week"></md-outlined-segmented-button>
-                            <md-outlined-segmented-button disabled label="Month"></md-outlined-segmented-button>
-                        </md-outlined-segmented-button-set>
-                    </template>
-                </Info>
-
                 <!-- Note  -->
                 <Info>
                     <template #header>
@@ -187,7 +155,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router'
-import { Item, Type } from '@/hooks/useList'
+import { Item } from '@/hooks/useList/lib/useItem'
 import Info from '@/components/task/info/Info.vue'
 import { useTasks } from '@/hooks/useTasks';
 

@@ -15,7 +15,9 @@
                     </footer>
                 </li>
 
-                <li>More features is coming.</li>
+                <li>
+                    <p class="italic">More features is coming.</p>
+                </li>
             </ul>
         </div>
     </div>

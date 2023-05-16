@@ -1,50 +1,78 @@
 <template>
-    <div class="fixedWindow top-0 left-0 w-full h-full bg-black/25">
-        <div class="relative w-2/3 max-w-4xl mx-auto m-8 bg-off-base border shadow rounded-xl px-8 py-4">
-            
-            <!-- Back to /home -->
-            <nav class="absolute right-4">
-                <md-text-button 
-                    @click="() => {
-                        router.push('/home')
-                    }"
-                >
-                    <md-icon slot="icon" class="material-icons">arrow_back</md-icon>
-                    Back
-                </md-text-button>
-            </nav>
-
+    <div class="fixedWindow top-0 left-0 w-screen h-screen bg-black/25 p-0 md:p-4">
+        <div class="relative h-screen md:h-full md:max-w-2xl lg:max-w-4xl mx-auto bg-off-base border dark:border-none shadow rounded-xl px-8 py-4">
             <header>
                 <h1>Goals</h1>
                 <p></p>
             </header>
 
-            <main class="my-8">
-                <div class="flex">
-                    <Card class="goalDescription">
-                        <template #header>
-                            <div>
-                                <img src="@/assets/img/pexels-susan-flores.jpg" alt="">
-                            </div>
-                        </template>
-                        <template #content>
-                            <h1>Test</h1>
-                            <p>Test</p>
-                        </template>
-                    </Card>
-                </div>
+            <main class="overflow-y-scroll p-2 h-4/5 md:max-h-screen my-8">
+                <router-view v-slot="{ Component }" name="ChooseGoalViewBoard">
+                    <component :is="Component" :currentIndex="currentIndex" :setCurrentIndex="setCurrentIndex" :goalTemplates="goalTemplates"></component>
+                </router-view>
             </main>
+
+            <!-- Back to /home -->
+            <nav class="absolute bottom-4 right-4 flex justify-end items-center gap-2">
+                <md-text-button 
+                    @click="() => {
+                        router.push('/home')
+                    }"
+                >Close</md-text-button>
+                <md-text-button :disabled="router.currentRoute.value.path === '/chooseGoal/goalTemplate'"  @click="last">Previous</md-text-button>
+                <md-tonal-button v-if="router.currentRoute.value.path === '/chooseGoal/goalTemplate'" :disabled="currentIndex === -1" @click="next">Next</md-tonal-button>
+                <md-tonal-button v-else :disabled="currentIndex === -1" @click="create">Done</md-tonal-button>
+            </nav>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import Card from './lib/Card.vue'
+import { useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
+import { ref } from 'vue'
+import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
+import template from './lib/template.json'
 
+const goalTemplates = template
+
+const router = useRouter()
 
 /**
- * 用于返回按钮，路由到/home
+ * currentIndex是当前选择的Goal模板索引
+ * 默认为-1（没有选择）
  */
-const router = useRouter()
+const currentIndex = ref(-1)
+const setCurrentIndex = (index: number) => currentIndex.value = index
+/**
+ * 根据currentIndex值作为goalTemplates的索引，路由到选择的goal模板的详细信息界面
+ */
+const next = () => {
+    if(currentIndex.value === -1) {
+        return undefined
+    }
+    router.push({
+        path: '/chooseGoal/templateDesc',
+        query: {
+            value: JSON.stringify({
+                title: '模板',
+                goal: goalTemplates[currentIndex.value]
+            })
+        }
+    })
+}
+/**
+ * 用于上一步按钮
+ */
+const last = () => router.back()
+/**
+ * 将选择的goal模板保存到全局BLOBAL_GOALS中
+ */
+const create = () => {
+    var goals = useGoals('weekly')
+
+    goalTemplates[currentIndex.value].forEach(e => goals.push(useGoal(e)))
+
+    getGlobalGoalsList().push(goals.get())
+}
 </script>

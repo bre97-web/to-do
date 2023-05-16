@@ -1,4 +1,4 @@
-import { Items } from '@/hooks/useList'
+import { Items } from '@/hooks/useList/lib/useItem'
 
 interface ItemsInnerInterface {
     get: Items
