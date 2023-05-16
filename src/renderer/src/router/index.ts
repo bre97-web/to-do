@@ -6,6 +6,7 @@ import Info   from '@/views/home/info/MoreInformation.vue'
 import Me     from '@/views/home/me/Me.vue'
 import Helper from '@/views/home/me/helper/Helper.vue'
 import Editor from '@/views/home/edit/Editor.vue'
+import ChooseGoal from '@/views/home/chooseGoal/ChooseGoal.vue'
 
 import TestPage from '@/views/test/TestPage.vue'
 
@@ -41,6 +42,13 @@ const routes: RouteRecordRaw[] = [
                             HomePageInnerBoardView: Info
                         }
                     },
+                    {
+                        path: '/chooseGoal',
+                        name: 'ChooseGoal',
+                        components: {
+                            HomePageInnerBoardView: ChooseGoal
+                        }
+                    }
                 ]
             },
             {

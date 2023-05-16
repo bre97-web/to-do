@@ -10,8 +10,7 @@
                     </header>
                     <footer class="action">
                         <md-tonal-button
-                            disabled
-                            @click="createGoal"
+                            @click="router.push('/chooseGoal')"
                         >Create</md-tonal-button>
                     </footer>
                 </li>
@@ -23,8 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
 
-const createGoal = () => {
-
-}
+const router = useRouter()
 </script>
