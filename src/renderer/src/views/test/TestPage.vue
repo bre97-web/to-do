@@ -1,12 +1,19 @@
 <template>
     <div id="testDiv">
 
-        <div class="controller relative">
+        <div class="controller">
             <DarkSwitch></DarkSwitch>
             <ThemeColors></ThemeColors>
         </div>
 
-        <div class="contenter">
+        <div class="font">
+            <h1>H1</h1>
+            <h2>H2</h2>
+            <h3>H3</h3>
+            <p>P</p>
+        </div>
+
+        <div class="md">
             <h1>Material Web Components Test Page</h1>
             <div>
                 <md-filled-button>Test</md-filled-button>
@@ -98,15 +105,16 @@ import { DarkSwitch } from '@/components/dark/DarkSwitch'
 
 <style scoped>
 #testDiv {
-    @apply flex flex-row items-start justify-center min-h-screen w-full p-16 gap-16;
+    @apply flex flex-col max-w-md mx-auto gap-8 mt-8;
 }
-#testDiv > .controller {
-    @apply max-w-xs;
+#testDiv > div.controller {
+    @apply max-w-xs relative;
 }
-#testDiv > .contenter {
-    @apply flex flex-col gap-4 max-w-lg;
+#testDiv > div.font {
+    @apply text-start;
 }
-#testDiv > div > div {
-    @apply flex flex-row gap-4 items-center justify-start flex-wrap;
+#testDiv > div.md > div {
+    @apply relative flex flex-row gap-2 items-start justify-start my-4;
 }
+
 </style>
