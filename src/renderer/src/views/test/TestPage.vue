@@ -1,5 +1,11 @@
 <template>
     <div id="testDiv">
+        <header class="text-center my-4 space-y-4">
+            <md-icon class="material-icons  scale-[2]">waving_hand</md-icon>
+            <h1 class="font-black text-4xl text-center">Welcome to the TestPage</h1>
+            <md-divider></md-divider>
+        </header>
+
 
         <div class="controller">
             <DarkSwitch></DarkSwitch>
@@ -7,11 +13,20 @@
         </div>
 
         <div class="font">
-            <h1>H1</h1>
-            <h2>H2</h2>
-            <h3>H3</h3>
-            <p>P</p>
+            <p class="font-black">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-bold">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-medium">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-normal">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-light">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-thin">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-black">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-bold">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-medium">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-normal">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-light">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-thin">人人生而自由，在尊严和权利上一律平等。</p>
         </div>
+
 
         <div class="md">
             <h1>Material Web Components Test Page</h1>
