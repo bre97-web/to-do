@@ -24,32 +24,26 @@ const createIndex = (): number => useIndex()
 const createDate = (): string => moment().format('YYYY-MM-DD')
 
 
-interface Title {
-    title: string,
-    subtitle?: string
-}
-interface Note {
-    note: string
-}
-interface Tag {
-    tags: string[]
-}
-interface Step {
-    steps: [{
-        text: string,
-        done: boolean
-    }]
-    
-}
-/**
- * Item的标识符，其中index的生成结果应该是唯一的
- */
-interface Identifiable {
-    index?: number,
-    date?: string
-}
+type Title = string
+type Subtitle = string
+type Note = string
+type Tags = string[]
+type Steps = [{
+    text: string,
+    done: boolean
+}]
+type Index = number
+type Date = string
 
-type Item  = Title & Note & Tag & Identifiable & Step
+interface Item {
+    title: Title,
+    subtitle?: Subtitle,
+    note: Note,
+    tags: Tags,
+    steps: Steps,
+    index?: Index,
+    date?: Date
+}
 type Items = Item[]
 
 interface ListGet {
@@ -137,4 +131,4 @@ export {
     useList
 }
 
-export type { Item, Items, Step, ListFunctionInterface }
+export type { Item, Items, ListFunctionInterface }

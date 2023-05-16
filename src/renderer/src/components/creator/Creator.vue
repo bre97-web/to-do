@@ -52,7 +52,7 @@ const task = reactive<Item>({
     steps: [{
         text: '',
         done: false
-    }]
+    }],
 })
 
 /**
