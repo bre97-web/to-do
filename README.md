@@ -56,5 +56,5 @@ You can make suggestions in issues.
 |Sidebar|🟡|❌|❌|
 |Sidebar Actions|❌|❌|❌|
 |Tabs|❌|❌|❌|
-|Goals|❌|❌|❌|
+|Goals|🟡|❌|❌|
 |Element Slide|❌|❌|❌|
