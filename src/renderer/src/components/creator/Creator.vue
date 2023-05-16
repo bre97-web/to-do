@@ -53,6 +53,8 @@ const task = reactive<Item>({
         text: '',
         done: false
     }],
+    type: 'task',
+    goals: []
 })
 
 /**

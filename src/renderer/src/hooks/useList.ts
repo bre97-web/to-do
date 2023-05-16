@@ -34,6 +34,8 @@ type Steps = [{
 }]
 type Index = number
 type Date = string
+type Type = "task" | "goal"
+type Goals = string[]
 
 interface Item {
     title: Title,
@@ -42,7 +44,9 @@ interface Item {
     tags: Tags,
     steps: Steps,
     index?: Index,
-    date?: Date
+    date?: Date,
+    type: Type,
+    goals: Goals
 }
 type Items = Item[]
 
@@ -81,6 +85,14 @@ function useList(localStorageName: string): ListFunctionInterface {
                 text: '',
                 done: false
             }]
+        }
+
+        if(!element['goals']) {
+            element['tags'] = ['']
+        }
+
+        if(!element['type']) {
+            element['type'] = 'task'
         }
     })
 
