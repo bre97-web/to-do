@@ -35,7 +35,11 @@ type Steps = [{
 type Index = number
 type Date = string
 type Type = "task" | "goal"
-type Goals = string[]
+type Goals = Goal[]
+
+interface Goal {
+    event: string
+}
 
 interface Item {
     title: Title,
@@ -143,4 +147,4 @@ export {
     useList
 }
 
-export type { Item, Items, Type, ListFunctionInterface }
+export type { Item, Items, Type, Goal, ListFunctionInterface }
