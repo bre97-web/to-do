@@ -20,6 +20,7 @@
             </header>
 
             <main class="space-y-2 pb-16">
+                <!-- Title -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">title</md-icon>
@@ -35,6 +36,7 @@
                     </template>
                 </Info>
 
+                <!-- Subtitle-->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">subtitles</md-icon>
@@ -50,6 +52,7 @@
                     </template>
                 </Info>
 
+                <!-- Type -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">class</md-icon>
@@ -57,8 +60,9 @@
                     <template #content>
                         <md-outlined-select
                             label="Type"
+                            disabled
                             :value="task.type"
-                            @input="(e: InputEvent) => task.type = (e.target as HTMLInputElement).value as Type"
+                            @input="(e: InputEvent) => task.type = ((e.target as HTMLInputElement).value as Type)"
                         >
                             <md-select-option value="task" headline="Task"></md-select-option>
                             <md-select-option value="goal" headline="Goal"></md-select-option>
@@ -66,6 +70,21 @@
                     </template>
                 </Info>
 
+                <!-- DateRange -->
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">date_range</md-icon>
+                    </template>
+                    <template #content>
+                        <md-outlined-segmented-button-set>
+                            <md-outlined-segmented-button disabled label="Day"></md-outlined-segmented-button>
+                            <md-outlined-segmented-button disabled label="Week"></md-outlined-segmented-button>
+                            <md-outlined-segmented-button disabled label="Month"></md-outlined-segmented-button>
+                        </md-outlined-segmented-button-set>
+                    </template>
+                </Info>
+
+                <!-- Note  -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">description</md-icon>
@@ -81,6 +100,7 @@
                     </template>
                 </Info>
 
+                <!-- CreatedTime -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">schedule</md-icon>
@@ -96,6 +116,7 @@
                     </template>
                 </Info>
 
+                <!-- Tags -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">tag</md-icon>
@@ -118,6 +139,7 @@
                     </template>
                 </Info>
 
+                <!-- Steps -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">checklist</md-icon>
