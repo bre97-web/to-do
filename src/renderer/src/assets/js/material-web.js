@@ -102,3 +102,12 @@ import '@material/web/menu/sub-menu-item'
 // Progress
 import '@material/web/linearprogress/linear-progress'
 import '@material/web/circularprogress/circular-progress'
+
+// SegmentedButton
+import '@material/web/segmentedbutton/outlined-segmented-button'
+import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
+
+// Select
+import '@material/web/select/outlined-select'
+import '@material/web/select/select-option'
+

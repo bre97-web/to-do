@@ -143,4 +143,4 @@ export {
     useList
 }
 
-export type { Item, Items, ListFunctionInterface }
+export type { Item, Items, Type, ListFunctionInterface }
