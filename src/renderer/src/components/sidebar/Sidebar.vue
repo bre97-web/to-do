@@ -1,9 +1,6 @@
-
-
-
-const Sidebar = () => (
-    <div class={'fixed hidden lg:block left-0 pl-4 w-44 h-96'}>
-        <div class={'sidebar'}>
+<template>
+    <div class="fixed hidden lg:block left-0 pl-4 w-44 h-96">
+        <div class="sidebar">
             <h1>Sidebar</h1>
             <ul>
                 <li>
@@ -12,7 +9,9 @@ const Sidebar = () => (
                         <p>Including some steps</p>
                     </header>
                     <footer class="action">
-                        <md-tonal-button disabled>Create</md-tonal-button>
+                        <md-tonal-button
+                            @click="router.push('/chooseGoal')"
+                        >Create</md-tonal-button>
                     </footer>
                 </li>
 
@@ -20,7 +19,10 @@ const Sidebar = () => (
             </ul>
         </div>
     </div>
-)
+</template>
 
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
 
-export default Sidebar
+const router = useRouter()
+</script>

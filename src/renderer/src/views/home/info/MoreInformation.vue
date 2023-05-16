@@ -20,6 +20,7 @@
             </header>
 
             <main class="space-y-2 pb-16">
+                <!-- Title -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">title</md-icon>
@@ -35,6 +36,7 @@
                     </template>
                 </Info>
 
+                <!-- Subtitle-->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">subtitles</md-icon>
@@ -50,6 +52,39 @@
                     </template>
                 </Info>
 
+                <!-- Type -->
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">class</md-icon>
+                    </template>
+                    <template #content>
+                        <md-outlined-select
+                            label="Type"
+                            disabled
+                            :value="task.type"
+                            @input="(e: InputEvent) => task.type = ((e.target as HTMLInputElement).value as Type)"
+                        >
+                            <md-select-option value="task" headline="Task"></md-select-option>
+                            <md-select-option value="goal" headline="Goal"></md-select-option>
+                        </md-outlined-select>
+                    </template>
+                </Info>
+
+                <!-- DateRange -->
+                <Info>
+                    <template #header>
+                        <md-icon class="material-icons">date_range</md-icon>
+                    </template>
+                    <template #content>
+                        <md-outlined-segmented-button-set>
+                            <md-outlined-segmented-button disabled label="Day"></md-outlined-segmented-button>
+                            <md-outlined-segmented-button disabled label="Week"></md-outlined-segmented-button>
+                            <md-outlined-segmented-button disabled label="Month"></md-outlined-segmented-button>
+                        </md-outlined-segmented-button-set>
+                    </template>
+                </Info>
+
+                <!-- Note  -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">description</md-icon>
@@ -65,6 +100,7 @@
                     </template>
                 </Info>
 
+                <!-- CreatedTime -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">schedule</md-icon>
@@ -80,6 +116,7 @@
                     </template>
                 </Info>
 
+                <!-- Tags -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">tag</md-icon>
@@ -102,6 +139,7 @@
                     </template>
                 </Info>
 
+                <!-- Steps -->
                 <Info>
                     <template #header>
                         <md-icon class="material-icons">checklist</md-icon>
@@ -110,10 +148,10 @@
                         <div class="flex items-center gap-2">
                             <md-outlined-text-field
                                 label="Step"
-                                :value="input"
-                                @input="input = $event.target.value"
+                                :value="newStepValue"
+                                @input="newStepValue = $event.target.value"
                             ></md-outlined-text-field>
-                            <md-standard-icon-button @click="create">
+                            <md-standard-icon-button @click="createStep">
                                 <md-icon class="material-icons">add</md-icon>
                             </md-standard-icon-button>
                         </div>
@@ -149,7 +187,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router'
-import { Item } from '@/hooks/useList'
+import { Item, Type } from '@/hooks/useList'
 import Info from '@/components/task/info/Info.vue'
 import { useTasks } from '@/hooks/useTasks';
 
@@ -159,21 +197,23 @@ import { useTasks } from '@/hooks/useTasks';
 const router = useRouter()
 
 
+/**
+ * 用于Info组件，用于修改元素
+ */
 const task = ref<Item>(JSON.parse(router.currentRoute.value.query.task as string))
 
 /**
- * 用于Info组件，在task.steps中添加step元素
+ * 用于创建新的step元素
  */
-const input = ref('')
-const create = () => {
+const newStepValue = ref<string>('')
+const createStep = () => {
     task.value.steps.push({
-        text: input.value,
+        text: newStepValue.value,
         done: false
     })
 }
+
 watch(task.value, () => {
-    console.log('changed');
-    
     useTasks().get().taskList.edit(task.value, {
         ...task.value,
         steps: task.value.steps

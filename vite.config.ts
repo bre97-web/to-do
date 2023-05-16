@@ -22,9 +22,14 @@ export default defineConfig({
         }),
     ],
     root: './src/renderer/',
+    publicDir: 'public',
+    assetsInclude: '',
+    clearScreen: true,
     base: '/To-Do',
     build: {
         outDir: '../../docs',
-        emptyOutDir: true
+        emptyOutDir: true,
+        sourcemap: true,
+
     }
 })

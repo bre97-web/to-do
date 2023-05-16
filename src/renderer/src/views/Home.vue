@@ -60,7 +60,7 @@ import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/creator/Creator.vue'
 import Header from '@/components/setting/Header.vue'
-import Sidebar from '@/components/sidebar/Sidebar'
+import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
 
 /**

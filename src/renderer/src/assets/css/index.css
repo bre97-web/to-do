@@ -316,9 +316,24 @@
 
 
 
-
-
-
+    .goalDescription {
+        @apply rounded-3xl relative bg-white;
+    }
+    .goalDescription div img {
+        @apply w-64 h-48 rounded-3xl;
+    }
+    .goalDescription h1 {
+        @apply text-2xl font-semibold;
+    }
+    
+    .surface:hover {
+        --md-elevation-level: 2;
+        transition-duration: 250ms;
+        transition-timing-function: ease-in-out;
+    }
+    .surface:active {
+        --md-elevation-level: 0;
+    }
 
 
 

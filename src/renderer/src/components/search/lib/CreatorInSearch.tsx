@@ -17,7 +17,9 @@ const add = (title: string) => {
         steps: [{
             text: '',
             done: false
-        }]
+        }],
+        type: 'task',
+        goals: []
     })
 }
 
