@@ -110,3 +110,5 @@ import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
 // Select
 import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
+
+import '@material/web/elevation/elevation'
