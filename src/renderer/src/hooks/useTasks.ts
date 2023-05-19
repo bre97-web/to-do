@@ -1,6 +1,6 @@
 
-import { useList } from '@/hooks/useList'
-import type { Item, ListFunctionInterface } from '@/hooks/useList'
+import { ListFunctionInterface, useList } from '@/hooks/useList/useList'
+import type { Item } from '@/hooks/useList/lib/useItem'
 import { reactive } from 'vue'
 import { useEvent } from './useEvent'
 import { GlobalEvents } from './lib/GlobalEventsObject'

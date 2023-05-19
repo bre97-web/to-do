@@ -3,6 +3,14 @@ module.exports = {
     content: ['./**/*.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
     darkMode: 'class',
     theme: {
+        fontWeight: {
+            thin: '100',
+            light: '300',
+            normal: '400',
+            medium: '500',
+            bold: '700',
+            black: '900',
+        },
         extend: {
             backgroundColor: {
                 base: 'var(--color-base)',

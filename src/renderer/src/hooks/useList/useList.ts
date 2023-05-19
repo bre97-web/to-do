@@ -9,7 +9,8 @@
 
 import { reactive, watch } from 'vue'
 import moment from "moment"
-import { useIndex } from './useIndex'
+import { useIndex } from '../useIndex'
+import { Item, Items } from './lib/useItem'
 
 
 /**
@@ -23,34 +24,6 @@ const createIndex = (): number => useIndex()
  */
 const createDate = (): string => moment().format('YYYY-MM-DD')
 
-
-interface Title {
-    title: string,
-    subtitle?: string
-}
-interface Note {
-    note: string
-}
-interface Tag {
-    tags: string[]
-}
-interface Step {
-    steps: [{
-        text: string,
-        done: boolean
-    }]
-    
-}
-/**
- * Item的标识符，其中index的生成结果应该是唯一的
- */
-interface Identifiable {
-    index?: number,
-    date?: string
-}
-
-type Item  = Title & Note & Tag & Identifiable & Step
-type Items = Item[]
 
 interface ListGet {
     get: () => Items,
@@ -87,6 +60,10 @@ function useList(localStorageName: string): ListFunctionInterface {
                 text: '',
                 done: false
             }]
+        }
+
+        if(!element['type']) {
+            element['type'] = 'task'
         }
     })
 
@@ -133,8 +110,8 @@ function useList(localStorageName: string): ListFunctionInterface {
     }
 }
 
-export {
-    useList
-}
+export { useList }
 
-export type { Item, Items, Step, ListFunctionInterface }
+export type {
+    ListFunctionInterface
+}
