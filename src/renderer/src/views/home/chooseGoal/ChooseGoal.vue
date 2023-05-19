@@ -16,7 +16,7 @@
             <nav class="absolute bottom-4 right-4 flex justify-end items-center gap-2">
                 <md-text-button 
                     @click="() => {
-                        router.push('/home')
+                        router.push('/goals')
                     }"
                 >Close</md-text-button>
                 <md-text-button :disabled="router.currentRoute.value.path === '/chooseGoal/goalTemplate'"  @click="last">Previous</md-text-button>
@@ -32,7 +32,7 @@ import { useRouter } from 'vue-router'
 import { useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { ref } from 'vue'
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
-import template from './lib/template.json'
+import template from '@/views/home/chooseGoal/goalTemplate/lib/template.json'
 
 const goalTemplates = template
 
@@ -74,5 +74,7 @@ const create = () => {
     goalTemplates[currentIndex.value].forEach(e => goals.push(useGoal(e)))
 
     getGlobalGoalsList().push(goals.get())
+
+    router.push('/goals')
 }
 </script>
