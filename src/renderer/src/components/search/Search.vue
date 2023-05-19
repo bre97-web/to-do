@@ -47,7 +47,7 @@ import Task from '@/components/task/Task.vue'
 import { useTasks } from '@/hooks/useTasks'
 import { CreatorInSearch } from '@/components/search/lib/CreatorInSearch'
 import { Search, SearchType } from '@/assets/js/search'
-import { Items } from '@/hooks/useList'
+import { Items } from '@/hooks/useList/lib/useItem'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象

@@ -1,12 +1,34 @@
 <template>
     <div id="testDiv">
+        <header class="text-center my-4 space-y-4">
+            <md-icon class="material-icons  scale-[2]">waving_hand</md-icon>
+            <h1 class="font-black text-4xl text-center">Welcome to the TestPage</h1>
+            <md-divider></md-divider>
+        </header>
 
-        <div class="controller relative">
+
+        <div class="controller">
             <DarkSwitch></DarkSwitch>
             <ThemeColors></ThemeColors>
         </div>
 
-        <div class="contenter">
+        <div class="font">
+            <p class="font-black">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-bold">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-medium">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-normal">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-light">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-thin">No one shall be subjected to arbitrary arrest.</p>
+            <p class="font-black">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-bold">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-medium">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-normal">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-light">人人生而自由，在尊严和权利上一律平等。</p>
+            <p class="font-thin">人人生而自由，在尊严和权利上一律平等。</p>
+        </div>
+
+
+        <div class="md">
             <h1>Material Web Components Test Page</h1>
             <div>
                 <md-filled-button>Test</md-filled-button>
@@ -98,15 +120,16 @@ import { DarkSwitch } from '@/components/dark/DarkSwitch'
 
 <style scoped>
 #testDiv {
-    @apply flex flex-row items-start justify-center min-h-screen w-full p-16 gap-16;
+    @apply flex flex-col max-w-md mx-auto gap-8 mt-8;
 }
-#testDiv > .controller {
-    @apply max-w-xs;
+#testDiv > div.controller {
+    @apply max-w-xs relative;
 }
-#testDiv > .contenter {
-    @apply flex flex-col gap-4 max-w-lg;
+#testDiv > div.font {
+    @apply text-start;
 }
-#testDiv > div > div {
-    @apply flex flex-row gap-4 items-center justify-start flex-wrap;
+#testDiv > div.md > div {
+    @apply relative flex flex-row gap-2 items-start justify-start my-4;
 }
+
 </style>

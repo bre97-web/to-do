@@ -15,7 +15,7 @@
             <div class="fab">
                 <md-branded-fab
                     label="Create"
-                    :class="{ 'opacity-0': activeIndex != 0 }"
+                    :class="{ 'opacity-0': activeIndex > 1 }"
                     @click="dialog.open = true"
                 >
                     <md-icon slot="icon" class="material-icons">create</md-icon>
@@ -38,10 +38,22 @@
                         </md-navigation-tab>
 
                         <md-navigation-tab
-                            label="Me"
+                            label="Goals"
                             @click="
                                 () => {
                                     activeIndex = 1
+                                    push('/goals')
+                                }
+                            "
+                        >
+                            <md-icon class="material-icons">home</md-icon>
+                        </md-navigation-tab>
+
+                        <md-navigation-tab
+                            label="Me"
+                            @click="
+                                () => {
+                                    activeIndex = 2
                                     push('/me')
                                 }
                             "
@@ -60,7 +72,7 @@ import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Creator from '@/components/creator/Creator.vue'
 import Header from '@/components/setting/Header.vue'
-import Sidebar from '@/components/sidebar/Sidebar'
+import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
 
 /**

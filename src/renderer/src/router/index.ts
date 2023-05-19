@@ -6,6 +6,10 @@ import Info   from '@/views/home/info/MoreInformation.vue'
 import Me     from '@/views/home/me/Me.vue'
 import Helper from '@/views/home/me/helper/Helper.vue'
 import Editor from '@/views/home/edit/Editor.vue'
+import ChooseGoal from '@/views/home/chooseGoal/ChooseGoal.vue'
+import Template from "@/views/home/chooseGoal/goalTemplate/Template.vue"
+import TemplateDesc from "@/views/home/chooseGoal/goalTemplate/goalTemplateDesc/TemplateDesc.vue"
+import Goals from "@/components/goal/Goals.vue"
 
 import TestPage from '@/views/test/TestPage.vue'
 
@@ -41,6 +45,30 @@ const routes: RouteRecordRaw[] = [
                             HomePageInnerBoardView: Info
                         }
                     },
+                    {
+                        path: '/chooseGoal',
+                        name: 'ChooseGoal',
+                        components: {
+                            HomePageInnerBoardView: ChooseGoal
+                        },
+                        redirect: '/chooseGoal/goalTemplate',
+                        children: [
+                            {
+                                path: '/chooseGoal/goalTemplate',
+                                name: 'Template',
+                                components: {
+                                    ChooseGoalViewBoard: Template
+                                },
+                            },
+                            {
+                                path: '/chooseGoal/templateDesc',
+                                name: 'TemplateDesc',
+                                components: {
+                                    ChooseGoalViewBoard: TemplateDesc
+                                },
+                            }
+                        ]
+                    }
                 ]
             },
             {
@@ -59,6 +87,13 @@ const routes: RouteRecordRaw[] = [
                     },
                 ],
             },
+            {
+                path: '/goals',
+                name: 'Goals',
+                components: {
+                    MainBoardView: Goals
+                }
+            }
         ]
     },
     {

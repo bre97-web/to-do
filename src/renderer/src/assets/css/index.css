@@ -4,19 +4,6 @@
 @tailwind variants;
 
 @layer base {
-
-    /* 
-     * base: 背景的标准色或文字的标准色
-     * off-base: 背景色之上的元素背景色
-     * primary: 标题或主要文字
-     * secondary: 副标题或标题下的普通文字
-     *
-     */
-
-
-
-
-
     /* 默认配色 */
     :root,
     .default {
@@ -144,7 +131,7 @@
 
     /* h1 ~ h6的字体宽度 */
     h1 {
-        @apply font-extrabold;
+        @apply font-bold;
     }
     h2,
     h3 {
@@ -301,7 +288,7 @@
         @apply flex flex-col gap-4;
     }
     div.sidebar > ul > li {
-        @apply rounded-xl space-y-2 px-4 py-2 bg-gradient-to-br from-blue-50/25 to-blue-100/75;
+        @apply rounded-xl space-y-2 px-4 py-2 bg-gradient-to-br from-blue-50/25 to-blue-100/75 dark:to-blue-800/25;
     }
     div.sidebar > ul > li > header > h1 {
         @apply font-medium text-base;
@@ -316,9 +303,35 @@
 
 
 
+    .goalDescription {
+        @apply rounded-3xl relative bg-white;
+    }
+    .goalDescription div img {
+        @apply w-64 h-48 rounded-3xl;
+    }
+    .goalDescription h1 {
+        @apply text-2xl font-bold;
+    }
+    .goalDescription div.action {
+        @apply flex flex-row justify-end;
+    }
+    
+    .surface {
+        @apply relative;
+        transition-duration: 250ms;
+        transition-timing-function: ease-in-out;
+    }
+    .surface:hover {
+        --md-elevation-level: 2;
+    }
+    .surface:active {
+        --md-elevation-level: 0;
+    }
 
-
-
+    .focus {
+        @apply relative;
+        --md-focus-ring-shape: 1.5rem;
+    }
 
 
 

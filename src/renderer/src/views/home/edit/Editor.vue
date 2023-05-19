@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import type { Item } from '@/hooks/useList'
+import type { Item } from '@/hooks/useList/lib/useItem'
 import { useTasks } from '@/hooks/useTasks'
 
 const router = useRouter()

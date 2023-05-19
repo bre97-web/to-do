@@ -53,8 +53,8 @@ You can make suggestions in issues.
 |Task Step|✅|✅|❌|
 |Search Advanced|❌|❌|❌|
 |PWA Support|❌|❌|❌|
-|Sidebar|🟡|❌|❌|
+|Sidebar|✅|🟡|❌|
 |Sidebar Actions|❌|❌|❌|
 |Tabs|❌|❌|❌|
-|Goals|❌|❌|❌|
+|Goals|✅|🟡|❌|
 |Element Slide|❌|❌|❌|
