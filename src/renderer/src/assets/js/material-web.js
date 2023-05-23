@@ -114,3 +114,6 @@ import '@material/web/select/select-option'
 import '@material/web/elevation/elevation'
 
 import '@material/web/focus/focus-ring'
+
+import '@material/web/ripple/ripple'
+import '@material/web/ripple/directive'
