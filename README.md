@@ -42,7 +42,7 @@ You can make suggestions in issues.
 |Event Snackbars Actions|❌|❌|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
-|Notify|🟡|❌|❌|
+|Notify|✅|❌|❌|
 |Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
 |Startup Animation|✅|✅|❌|
