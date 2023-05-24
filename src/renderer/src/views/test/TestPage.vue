@@ -8,7 +8,7 @@
 
 
         <div class="controller">
-            <dark-switch></dark-switch>
+            <lit-dark-switch></lit-dark-switch>
             <ThemeColors></ThemeColors>
         </div>
 
@@ -115,6 +115,27 @@
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
 import '@/components/dark/DarkSwitch'
+
+import '@material/web/checkbox/checkbox'
+import '@material/web/radio/radio'
+import '@material/web/switch/switch'
+import '@material/web/button/text-button'
+import '@material/web/button/elevated-button'
+import '@material/web/button/outlined-button'
+import '@material/web/button/tonal-button'
+import '@material/web/button/filled-button'
+import '@material/web/textfield/filled-text-field'
+import '@material/web/dialog/dialog'
+import '@material/web/list/list'
+import '@material/web/list/list-item'
+import '@material/web/divider/divider'
+import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/navigationbar/navigation-bar'
+import '@material/web/navigationtab/navigation-tab'
+import '@material/web/fab/branded-fab'
+import '@material/web/linearprogress/linear-progress'
+import '@material/web/circularprogress/circular-progress'
+
 
 </script>
 

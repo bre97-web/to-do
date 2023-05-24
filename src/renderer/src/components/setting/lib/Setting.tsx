@@ -16,7 +16,7 @@ const Settings = () => (
         >
             <li class="space-y-2">
                 <h1>Dark</h1>
-                <dark-switch></dark-switch>
+                <lit-dark-switch></lit-dark-switch>
             </li>
 
             <md-divider></md-divider>
