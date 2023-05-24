@@ -8,7 +8,7 @@
 
 
         <div class="controller">
-            <DarkSwitch></DarkSwitch>
+            <dark-switch></dark-switch>
             <ThemeColors></ThemeColors>
         </div>
 
@@ -114,7 +114,7 @@
 
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
-import { DarkSwitch } from '@/components/dark/DarkSwitch'
+import '@/components/dark/DarkSwitch'
 
 </script>
 

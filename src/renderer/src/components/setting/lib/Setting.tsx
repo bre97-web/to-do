@@ -1,6 +1,6 @@
 
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
-import { DarkSwitch } from '@/components/dark/DarkSwitch'
+import '@/components/dark/DarkSwitch'
 
 
 
@@ -13,7 +13,7 @@ const Settings = () => (
         >
             <li class="space-y-2">
                 <h1>Dark</h1>
-                <DarkSwitch></DarkSwitch>
+                <dark-switch></dark-switch>
             </li>
 
             <md-divider></md-divider>
