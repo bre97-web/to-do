@@ -2,6 +2,9 @@
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
 import '@/components/dark/DarkSwitch'
 
+import '@material/web/divider/divider'
+import '@material/web/button/text-button'
+
 
 
 const Settings = () => (

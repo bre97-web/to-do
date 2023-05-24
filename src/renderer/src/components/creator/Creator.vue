@@ -64,6 +64,17 @@ import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
 import { useTasks } from '@/hooks/useTasks'
 import { reactive, ref } from 'vue'
+import '@material/web/dialog/dialog'
+import '@material/web/button/text-button'
+import '@material/web/button/filled-button'
+import '@material/web/textfield/filled-text-field'
+import '@material/web/textfield/outlined-text-field'
+import '@material/web/segmentedbutton/outlined-segmented-button'
+import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
+import '@material/web/select/outlined-select'
+import '@material/web/select/select-option'
+
+
 
 const props = defineProps(['dialog', 'closeDialog'])
 

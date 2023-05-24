@@ -1,5 +1,7 @@
 import { EventInterface } from '@/hooks/useEvent'
 
+import '@material/web/button/text-button'
+
 const Event = ({msg, isRollback}: EventInterface) => (
     <div class="event">
         <h1>

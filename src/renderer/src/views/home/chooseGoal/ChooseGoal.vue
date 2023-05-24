@@ -34,6 +34,10 @@ import { ref } from 'vue'
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import template from '@/views/home/chooseGoal/goalTemplate/lib/template.json'
 
+import '@material/web/button/text-button'
+import '@material/web/button/tonal-button'
+
+
 const goalTemplates = template
 
 const router = useRouter()

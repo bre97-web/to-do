@@ -75,6 +75,12 @@ import Header from '@/components/setting/Header.vue'
 import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
 
+import '@material/web/navigationbar/navigation-bar'
+import '@material/web/navigationtab/navigation-tab'
+import '@material/web/fab/branded-fab'
+
+
+
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
