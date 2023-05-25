@@ -34,19 +34,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import type { Item } from '@/hooks/useList/lib/useItem'
-import { useTasks } from '@/hooks/useTasks'
-
 import '@material/web/button/text-button'
 import '@material/web/button/filled-button'
 import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/dialog/dialog'
+import { useTaskStore } from '@/store'
 
 
-
+const store = useTaskStore()
 
 
 const router = useRouter()
@@ -61,8 +60,35 @@ var isOpen = ref<boolean>(false)
 onMounted(() => {
     isOpen.value = true
 })
+watch(store.tasks, () => {
+    console.log(store.tasks);
+    
+})
 const submit = () => {
-    useTasks().get().taskList.edit(task, task)
+
+    for(let index = 0; index < store.getFocus.length; index ++) {
+        if(store.tasks.focus[index].index === task.index) {
+            store.tasks.focus[index] = {
+                ...task
+            }
+        }
+    }
+    for(let index = 0; index < store.getNormal.length; index ++) {
+        if(store.tasks.normal[index].index === task.index) {
+            store.tasks.normal[index] = {
+                ...task
+            }
+        }
+    }
+    for(let index = 0; index < store.getRecycle.length; index ++) {
+        if(store.tasks.recycle[index].index === task.index) {
+            store.tasks.recycle[index] = {
+                ...task
+            }
+        }
+    }
+
+
     close()
 }
 const cancel = () => {

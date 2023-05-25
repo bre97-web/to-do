@@ -17,26 +17,10 @@
 
                 <!-- Task -->
                 <template v-if="targetType === 'task'">
-                    <md-filled-text-field
-                        :value="task.title"
-                        label="Title"
-                        @input="task.title = $event.target.value"
-                    />
-                    <md-filled-text-field
-                        :value="task.subtitle"
-                        label="Subtitle"
-                        @input="task.subtitle = $event.target.value"
-                    />
-                    <md-filled-text-field
-                        :value="task.tags.toString()"
-                        label="Tag"
-                        @input="task.tags = $event.target.value.split(',')"
-                    />
-                    <md-filled-text-field
-                        :value="task.note"
-                        label="Note"
-                        @input="task.note = $event.target.value"
-                    />
+                    <md-filled-text-field :value="task.title" @input="task.title = $event.target.value" label="Title" />
+                    <md-filled-text-field :value="task.subtitle" @input="task.subtitle = $event.target.value" label="Subtitle" />
+                    <md-filled-text-field :value="task.tags.toString()" @input="task.tags = $event.target.value.split(',')" label="Tag" />
+                    <md-filled-text-field :value="task.note" @input="task.note = $event.target.value" label="Note" />
                 </template>
 
                 <!-- Goal -->
@@ -62,7 +46,6 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
-import { useTasks } from '@/hooks/useTasks'
 import { reactive, ref } from 'vue'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -73,6 +56,7 @@ import '@material/web/segmentedbutton/outlined-segmented-button'
 import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
 import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
+import { TASKS_TYPE, useTaskStore } from '@/store'
 
 
 
@@ -100,13 +84,15 @@ const goal = reactive<Goal>({
     description: '',
 })
 
+const store = useTaskStore()
+
 
 /**
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
  */
 const submit = () => {
     if(targetType.value === 'task') {
-        useTasks().get().taskList.push(task)
+        store.push(task, TASKS_TYPE.NORMAL)
     } else if(targetType.value === 'goal') {
         let goals = Array<Goal>()
         for(let i = 0; i < goalCount.value; i ++) {
@@ -114,28 +100,27 @@ const submit = () => {
         }
         getGlobalGoalsList().push(useGoals(goalSchedule.value, goals).get())
     }
-    clear()
+    // clear()
     props.closeDialog()
 }
 const cancel = () => {
-    clear()
     props.closeDialog()
 }
 
-const clear = () => {
-    task.title = ''
-    task.subtitle = ''
-    task.tags = ['']
-    task.note = ''
-    task.date = ''
-    task.steps = [{
-        text: '',
-        done: false
-    }]
-    targetType.value = null
-    goalSchedule.value = 'daily'
-    goalCount.value = 1
-    goal.title = ''
-    goal.description = ''
-}
+// const clear = () => {
+//     task.title = ''
+//     task.subtitle = ''
+//     task.tags = ['']
+//     task.note = ''
+//     task.date = ''
+//     task.steps = [{
+//         text: '',
+//         done: false
+//     }]
+//     targetType.value = null
+//     goalSchedule.value = 'daily'
+//     goalCount.value = 1
+//     goal.title = ''
+//     goal.description = ''
+// }
 </script>

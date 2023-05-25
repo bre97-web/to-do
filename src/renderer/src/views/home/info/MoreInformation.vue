@@ -153,16 +153,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router'
 import { Item } from '@/hooks/useList/lib/useItem'
 import Info from '@/components/task/info/Info.vue'
-import { useTasks } from '@/hooks/useTasks'
-
 import '@material/web/button/text-button'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/iconbutton/standard-icon-button'
+import { useTaskStore } from '@/store';
 
+
+const store = useTaskStore()
 
 
 /**
@@ -174,23 +175,40 @@ const router = useRouter()
 /**
  * 用于Info组件，用于修改元素
  */
-const task = ref<Item>(JSON.parse(router.currentRoute.value.query.task as string))
+const task = reactive<Item>(JSON.parse(router.currentRoute.value.query.task as string))
 
 /**
  * 用于创建新的step元素
  */
 const newStepValue = ref<string>('')
 const createStep = () => {
-    task.value.steps.push({
+    task.steps.push({
         text: newStepValue.value,
         done: false
     })
 }
 
-watch(task.value, () => {
-    useTasks().get().taskList.edit(task.value, {
-        ...task.value,
-        steps: task.value.steps
-    })
+watch(task, () => {
+    for(let index = 0; index < store.getFocus.length; index ++) {
+        if(store.tasks.focus[index].index === task.index) {
+            store.tasks.focus[index] = {
+                ...task
+            }
+        }
+    }
+    for(let index = 0; index < store.getNormal.length; index ++) {
+        if(store.tasks.normal[index].index === task.index) {
+            store.tasks.normal[index] = {
+                ...task
+            }
+        }
+    }
+    for(let index = 0; index < store.getRecycle.length; index ++) {
+        if(store.tasks.recycle[index].index === task.index) {
+            store.tasks.recycle[index] = {
+                ...task
+            }
+        }
+    }
 })
 </script>

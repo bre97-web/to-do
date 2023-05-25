@@ -109,6 +109,51 @@
                 </md-menu>
             </div>
         </div>
+
+        <div>
+            <md-outlined-text-field
+                label="Push to Focus Pinia Test"
+                :value="input"
+                @input="input = $event.target.value"
+            ></md-outlined-text-field>
+            <md-tonal-button @click="store.push({
+                title: input,
+                subtitle: '',
+                tags: [],
+                steps: [{
+                text: '',
+                done: false
+                }],
+                note: '',
+                type: 'task'
+                }, TASKS_TYPE.FOCUS)"
+            >Push</md-tonal-button>
+
+            <ul>
+                <li><h1>Focus</h1></li>
+                <li v-for="(e, index) in store.getFocus" :key="index">
+                    {{ e }}
+                    <md-text-button @click="store.remove(e, TASKS_TYPE.FOCUS)">Remove</md-text-button>
+                    <md-text-button @click="store.move(e, TASKS_TYPE.FOCUS, TASKS_TYPE.RECYCLE)">Delete</md-text-button>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h1>Normal</h1></li>
+                <li v-for="(e, index) in store.getNormal" :key="index">
+                    {{ e }}
+                    <md-text-button @click="store.remove(e, TASKS_TYPE.NORMAL)">Remove</md-text-button>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h1>Recycle</h1></li>
+                <li v-for="(e, index) in store.getRecycle" :key="index">
+                    {{ e }}
+                    <md-text-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">Remove</md-text-button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -125,6 +170,7 @@ import '@material/web/button/outlined-button'
 import '@material/web/button/tonal-button'
 import '@material/web/button/filled-button'
 import '@material/web/textfield/filled-text-field'
+import '@material/web/textfield/outlined-text-field'
 import '@material/web/dialog/dialog'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
@@ -135,8 +181,20 @@ import '@material/web/navigationtab/navigation-tab'
 import '@material/web/fab/branded-fab'
 import '@material/web/linearprogress/linear-progress'
 import '@material/web/circularprogress/circular-progress'
+import { ref, watch } from 'vue'
+import { TASKS_TYPE, useTaskStore } from '@/store/index'
 
 
+/**
+ * Pinia Test
+ */
+const input = ref('')
+const store = useTaskStore()
+
+watch(store.tasks, () => {
+    console.log(store.tasks);
+    
+})
 </script>
 
 <style scoped>

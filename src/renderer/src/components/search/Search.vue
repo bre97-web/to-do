@@ -31,7 +31,12 @@
                 </template>
             </Task>
 
-            <CreatorInSearch v-if="get.length === 0" :input="input.value"></CreatorInSearch>
+            <div v-if="get.length === 0">
+                <p class="text-right font-bold">{{ input.value }} is not found</p>
+                <div class="flex justify-end items-center gap-2">
+                    <md-tonal-button @click="add">Create</md-tonal-button>
+                </div>
+            </div>
         </main>
 
         <Footer :get="get"></Footer>
@@ -44,15 +49,13 @@ import { useRouter } from 'vue-router'
 import { Header } from './lib/Header'
 import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
-import { useTasks } from '@/hooks/useTasks'
-import { CreatorInSearch } from '@/components/search/lib/CreatorInSearch'
 import { Search, SearchType } from '@/assets/js/search'
 import { Items } from '@/hooks/useList/lib/useItem'
-
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
 import '@material/web/iconbutton/standard-icon-button'
+import { useTaskStore, TASKS_TYPE } from '@/store'
 
 
 
@@ -65,17 +68,19 @@ import '@material/web/iconbutton/standard-icon-button'
 var searchInput = Search()
 const input = reactive<SearchType>(searchInput.get())
 
+
+const store = useTaskStore()
+
 /**
- * 使用tasks并获取所有的元素
+ * 获取所有的元素
  */
-const tasks = useTasks()
-var get = computed<Items>(() => {
+const get = computed<Items>(() => {
     var results: Items = new Array()
-    var lists: Items = Array.from([
-        ...tasks.get().taskList.get(), 
-        ...tasks.get().focusList.get(),
-        ...tasks.get().binList.get()
-    ])
+    var lists: Items = [
+        ...store.tasks.focus,
+        ...store.tasks.normal,
+        ...store.tasks.recycle
+    ]
 
     /**
      * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
@@ -88,6 +93,19 @@ var get = computed<Items>(() => {
 
     return results
 })
+const add = (): any => {
+    store.push({
+        title: input.value,
+        subtitle: '',
+        tags: [],
+        note: '',
+        steps: [{
+            text: '',
+            done: false
+        }],
+        type: 'task',
+    }, TASKS_TYPE.NORMAL)
+}
 
 /**
  * 用于edit功能的路由
