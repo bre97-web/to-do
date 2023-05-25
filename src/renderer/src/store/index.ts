@@ -1,4 +1,6 @@
+import { useIndex } from '@/hooks/useIndex'
 import { Item, Items } from '@/hooks/useList/lib/useItem'
+import moment from 'moment'
 import { defineStore } from 'pinia'
 
 interface TasksInterface {
@@ -6,12 +8,23 @@ interface TasksInterface {
     normal: Items
     recycle: Items
 }
-
 enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
     RECYCLE
 }
+
+/**
+ * 使用moment().format('x')时间戳作为每个元素的index
+ */
+const createIndex = (): number => useIndex()
+
+/**
+ * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
+ * @returns 返回一个YYYY-MM-DD格式的日期
+ */
+const createDate = (): string => moment().format('YYYY-MM-DD')
+
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({
@@ -29,12 +42,17 @@ const useTaskStore = defineStore('task_store', {
     },
     actions: {
         push(e: Item, to: TASKS_TYPE) {
+            var obj = {
+                ...e,
+                date: e['date'] === undefined ? createDate() : e.date,
+                index: e['index'] === undefined ? createIndex() : e.index,    
+            }
             if (to === TASKS_TYPE.FOCUS) {
-                this.tasks.focus.push(e)
+                this.tasks.focus.push(obj)
             } else if (to === TASKS_TYPE.NORMAL) {
-                this.tasks.normal.push(e)
+                this.tasks.normal.push(obj)
             } else if (to === TASKS_TYPE.RECYCLE) {
-                this.tasks.recycle.push(e)
+                this.tasks.recycle.push(obj)
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
