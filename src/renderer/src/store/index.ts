@@ -17,7 +17,39 @@ const useTaskStore = defineStore('task_store', {
     state: () => ({
         tasks: {
             focus: [],
-            normal: [],
+            normal: [{
+                title: '1',
+                subtitle: '',
+                tags: [],
+                steps: [{
+                text: '',
+                done: false
+                }],
+                note: '',
+                type: 'task'
+                },
+                {
+                    title: '2',
+                    subtitle: '',
+                    tags: [],
+                    steps: [{
+                    text: '',
+                    done: false
+                    }],
+                    note: '',
+                    type: 'task'
+                    },
+                    {
+                        title: '3',
+                        subtitle: '',
+                        tags: [],
+                        steps: [{
+                        text: '',
+                        done: false
+                        }],
+                        note: '',
+                        type: 'task'
+                        }],
             recycle: []
         } as TasksInterface
     }),
