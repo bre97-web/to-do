@@ -20,8 +20,16 @@ import '@/assets/css/material-web-style.css'
 import "@fontsource/roboto/unicode.json"
 import "@fontsource/noto-sans-sc/unicode.json"
 
+/**
+ * Pinia
+ */
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
+
 const app = createApp(App)
  app.use(Router)
+    .use(pinia)
     .mount('#app')
 
 app.config.performance = true
