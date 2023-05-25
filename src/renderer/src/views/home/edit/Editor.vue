@@ -42,7 +42,7 @@ import '@material/web/button/filled-button'
 import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/dialog/dialog'
-import { TasksInterface, useTaskStore } from '@/store'
+import { useTaskStore } from '@/store'
 
 
 const store = useTaskStore()
