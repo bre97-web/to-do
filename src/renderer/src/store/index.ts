@@ -17,86 +17,90 @@ const useTaskStore = defineStore('task_store', {
     state: () => ({
         tasks: {
             focus: [],
-            normal: [{
-                title: '1',
-                subtitle: '',
-                tags: [],
-                steps: [{
-                text: '',
-                done: false
-                }],
-                note: '',
-                type: 'task'
+            normal: [
+                {
+                    title: '1',
+                    subtitle: '',
+                    tags: [],
+                    steps: [{
+                        text: '',
+                        done: false
+                    }],
+                    note: '',
+                    type: 'task',
+                    index: 1
                 },
                 {
                     title: '2',
                     subtitle: '',
                     tags: [],
                     steps: [{
-                    text: '',
-                    done: false
-                    }],
-                    note: '',
-                    type: 'task'
-                    },
-                    {
-                        title: '3',
-                        subtitle: '',
-                        tags: [],
-                        steps: [{
                         text: '',
                         done: false
-                        }],
-                        note: '',
-                        type: 'task'
-                        }],
+                    }],
+                    note: '',
+                    type: 'task',
+                    index: 2
+                },
+                {
+                    title: '3',
+                    subtitle: '',
+                    tags: [],
+                    steps: [{
+                        text: '',
+                        done: false
+                    }],
+                    note: '',
+                    type: 'task',
+                    index: 3
+                }],
             recycle: []
         } as TasksInterface
     }),
     getters: {
-        getAll: (state) => state.tasks,
-        getFocus: (state) => state.tasks.focus,
-        getNormal: (state) => state.tasks.normal,
-        getRecycle: (state) => state.tasks.recycle,
+        getAll: (state): TasksInterface => state.tasks,
+        getFocus: (state): Items => state.tasks.focus,
+        getNormal: (state): Items => state.tasks.normal,
+        getRecycle: (state): Items => state.tasks.recycle,
     },
     actions: {
         push(e: Item, to: TASKS_TYPE) {
-            if(to === TASKS_TYPE.FOCUS) {
+            if (to === TASKS_TYPE.FOCUS) {
                 this.tasks.focus.push(e)
-            } else if(to === TASKS_TYPE.NORMAL) {
+            } else if (to === TASKS_TYPE.NORMAL) {
                 this.tasks.normal.push(e)
-            } else if(to === TASKS_TYPE.RECYCLE) {
+            } else if (to === TASKS_TYPE.RECYCLE) {
                 this.tasks.recycle.push(e)
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
-            if(to === TASKS_TYPE.FOCUS) {
+            if (to === TASKS_TYPE.FOCUS) {
                 this.tasks.focus = this.tasks.focus.filter(el => el !== e)
-            } else if(to === TASKS_TYPE.NORMAL) {
+            } else if (to === TASKS_TYPE.NORMAL) {
                 this.tasks.normal = this.tasks.normal.filter(el => el !== e)
-            } else if(to === TASKS_TYPE.RECYCLE) {
+            } else if (to === TASKS_TYPE.RECYCLE) {
                 this.tasks.recycle = this.tasks.recycle.filter(el => el !== e)
             }
         },
         move(e: Item, from: TASKS_TYPE, to: TASKS_TYPE) {
             var fromE: Item
-            if(from === TASKS_TYPE.FOCUS) {
+            if (from === TASKS_TYPE.FOCUS) {
                 fromE = this.tasks.focus.filter(el => e === el)[0]
                 this.tasks.focus = this.tasks.focus.filter(el => e !== el)
-            } else if(from === TASKS_TYPE.NORMAL) {
+            } else if (from === TASKS_TYPE.NORMAL) {
                 fromE = this.tasks.normal.filter(el => e === el)[0]
                 this.tasks.normal = this.tasks.normal.filter(el => e !== el)
-            } else if(from === TASKS_TYPE.RECYCLE) {
+            } else if (from === TASKS_TYPE.RECYCLE) {
                 fromE = this.tasks.recycle.filter(el => e === el)[0]
                 this.tasks.recycle = this.tasks.recycle.filter(el => e !== el)
             } else {
-                return 
+                return
             }
-            if(to === TASKS_TYPE.FOCUS) {
+            if (to === TASKS_TYPE.FOCUS) {
                 this.tasks.focus.push(fromE)
-            } else if(to === TASKS_TYPE.NORMAL) {
+            } else if (to === TASKS_TYPE.NORMAL) {
                 this.tasks.normal.push(fromE)
-            } else if(to === TASKS_TYPE.RECYCLE) {
+            } else if (to === TASKS_TYPE.RECYCLE) {
                 this.tasks.recycle.push(fromE)
             }
         }

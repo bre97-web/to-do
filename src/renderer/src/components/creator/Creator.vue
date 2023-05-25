@@ -85,10 +85,7 @@ const goal = reactive<Goal>({
 })
 
 const store = useTaskStore()
-watch(store.tasks, () => {
-    console.log(store.tasks);
-    
-})
+
 
 /**
  * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
