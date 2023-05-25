@@ -11,6 +11,8 @@
 </template>
 
 <script lang="ts" setup>
+import '@material/web/linearprogress/linear-progress'
+
 </script>
 
 <style scoped>

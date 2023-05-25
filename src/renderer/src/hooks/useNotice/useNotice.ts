@@ -15,7 +15,8 @@ function useNotice({title, option}: NotificationInterface) {
     const notification = new Notification(title, {
         body: option?.body,
         icon: './src/renderer/src/assets/img/icon.png',
-    })    
+    })
+    notification.addEventListener('show', () => {})
 }
 
 function checkPermission() {

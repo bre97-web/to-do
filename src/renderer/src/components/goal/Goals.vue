@@ -37,6 +37,15 @@ import { reactive } from 'vue'
 import { GoalsInterface } from '@/hooks/useList/lib/useGoal'
 import { useRouter } from 'vue-router'
 
+import '@material/web/checkbox/checkbox'
+import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/list/list'
+import '@material/web/list/list-item'
+import '@material/web/divider/divider'
+
+
+
+
 const router = useRouter()
 
 const globalGoals = reactive(getGlobalGoalsList())

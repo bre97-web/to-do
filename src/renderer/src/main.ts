@@ -17,7 +17,6 @@ import '@/assets/css/index.css'
  */
 import 'material-icons/iconfont/material-icons.css'
 import '@/assets/css/material-web-style.css'
-import '@/assets/js/out/bundle'
 import "@fontsource/roboto/unicode.json"
 import "@fontsource/noto-sans-sc/unicode.json"
 

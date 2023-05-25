@@ -15,5 +15,8 @@
 </template>
 
 <script lang="ts" setup>
+import '@material/web/focus/focus-ring'
+import '@material/web/elevation/elevation'
+
 
 </script>

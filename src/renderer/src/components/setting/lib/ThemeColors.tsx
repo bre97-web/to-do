@@ -1,5 +1,8 @@
 import useTheme from '@/hooks/useTheme'
 
+import '@material/web/radio/radio'
+
+
 const theme = useTheme()
 
 const ThemeColors = () => (

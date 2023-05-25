@@ -100,6 +100,8 @@ import { useTasks } from '@/hooks/useTasks'
 import Profile from '@/components/personal/Profile.vue'
 import { useTags } from '@/hooks/useTags'
 
+import '@material/web/button/text-button'
+
 
 
 /**

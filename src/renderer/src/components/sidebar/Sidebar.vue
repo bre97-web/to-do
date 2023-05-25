@@ -26,5 +26,8 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 
+import '@material/web/button/tonal-button'
+
+
 const router = useRouter()
 </script>

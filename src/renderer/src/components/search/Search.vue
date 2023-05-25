@@ -49,6 +49,15 @@ import { CreatorInSearch } from '@/components/search/lib/CreatorInSearch'
 import { Search, SearchType } from '@/assets/js/search'
 import { Items } from '@/hooks/useList/lib/useItem'
 
+import '@material/web/list/list'
+import '@material/web/list/list-item'
+import '@material/web/divider/divider'
+import '@material/web/iconbutton/standard-icon-button'
+
+
+
+
+
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
