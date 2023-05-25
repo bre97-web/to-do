@@ -18,7 +18,7 @@ export default defineConfig({
             },
         }),
         vueJsx({
-            isCustomElement: (tag: string): boolean => tag.startsWith('md-')
+            isCustomElement: (tag: string): boolean => tag.startsWith('md-') || tag.startsWith('lit')
         }),
     ],
     root: './src/renderer/',

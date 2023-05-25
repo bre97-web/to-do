@@ -17,44 +17,8 @@ const useTaskStore = defineStore('task_store', {
     state: () => ({
         tasks: {
             focus: [],
-            normal: [
-                {
-                    title: '1',
-                    subtitle: '',
-                    tags: [],
-                    steps: [{
-                        text: '',
-                        done: false
-                    }],
-                    note: '',
-                    type: 'task',
-                    index: 1
-                },
-                {
-                    title: '2',
-                    subtitle: '',
-                    tags: [],
-                    steps: [{
-                        text: '',
-                        done: false
-                    }],
-                    note: '',
-                    type: 'task',
-                    index: 2
-                },
-                {
-                    title: '3',
-                    subtitle: '',
-                    tags: [],
-                    steps: [{
-                        text: '',
-                        done: false
-                    }],
-                    note: '',
-                    type: 'task',
-                    index: 3
-                }],
-            recycle: []
+            normal: [],
+            recycle: [],
         } as TasksInterface
     }),
     getters: {
@@ -104,7 +68,9 @@ const useTaskStore = defineStore('task_store', {
                 this.tasks.recycle.push(fromE)
             }
         }
-    }
+    },
+    // Don't worring
+    persist: true,
 })
 
 export {

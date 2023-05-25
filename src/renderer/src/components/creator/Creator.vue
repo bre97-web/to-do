@@ -46,7 +46,7 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref } from 'vue'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
 import '@material/web/button/filled-button'

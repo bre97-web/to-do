@@ -24,8 +24,10 @@ import "@fontsource/noto-sans-sc/unicode.json"
  * Pinia
  */
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
  app.use(Router)
