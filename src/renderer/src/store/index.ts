@@ -15,11 +15,11 @@ enum TASKS_TYPE {
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({
-        tasks: {
+        tasks:<TasksInterface> {
             focus: [],
             normal: [],
             recycle: [],
-        } as TasksInterface
+        }
     }),
     getters: {
         getAll: (state): TasksInterface => state.tasks,
@@ -69,7 +69,6 @@ const useTaskStore = defineStore('task_store', {
             }
         }
     },
-    // Don't worring
     persist: true,
 })
 
