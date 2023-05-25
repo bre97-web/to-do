@@ -1,6 +1,6 @@
 import useTheme from '@/hooks/useTheme'
 import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
+// import { customElement } from 'lit/decorators.js'
 
 import '@material/web/switch/switch'
 
@@ -11,7 +11,7 @@ interface Switch {
 
 const theme = useTheme()
 
-@customElement('lit-dark-switch')
+// @customElement('lit-dark-switch')
 class DarkSwitch extends LitElement {
 
     private selected = theme.getCurrent().isDark
@@ -28,11 +28,14 @@ class DarkSwitch extends LitElement {
             <label>
                 <p>Dark</p>
                 <md-switch
+                    selected=${this.selected}
                     @click=${this.setSelected}
                 ></md-switch>
             </label>
         `
     }
 }
+
+window.customElements.define('lit-dark-switch', DarkSwitch)
 
 export default DarkSwitch
