@@ -29,6 +29,7 @@ const routes: RouteRecordRaw[] = [
             {
                 name: 'HomePage',
                 path: '/home',
+                redirect: '/home/overview',
                 components: {
                     MainBoardView: HomePage
                 },

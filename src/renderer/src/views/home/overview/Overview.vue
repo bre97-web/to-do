@@ -50,10 +50,22 @@
 
 <script setup lang="ts">
 import Task from '@/components/task/Task.vue';
+import { Item } from '@/hooks/useList/lib/useItem';
 import { useTaskStore, TASKS_TYPE } from '@/store';
+import { useRouter } from 'vue-router';
 
 
 const store = useTaskStore()
+
+const router = useRouter()
+const push = (path: string, e: Item) => {
+    router.push({
+        path: path,
+        query: {
+            task: JSON.stringify(e)
+        }
+    })
+}
 </script>
 
 <style scoped>
