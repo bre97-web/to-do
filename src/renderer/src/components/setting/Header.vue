@@ -12,15 +12,15 @@
                     <MenuButton class="relative inline-flex w-10 h-10">
                         <Avatar></Avatar>
                     </MenuButton>
-                    <MenuItems class="absolute right-4 flex flex-col gap-2 border rounded-md px-4 py-2 bg-white dark:bg-black">
+                    <MenuItems class="absolute right-4 flex flex-col gap-4 rounded-md shadow p-4 bg-white dark:bg-black">
                         <MenuItem>
-                            <router-link to="/me">Account</router-link>
+                            <router-link to="/me"><p>Account</p></router-link>
                         </MenuItem>
 
                         <md-divider></md-divider>
 
                         <MenuItem>
-                            <router-link to="/dashboard">Dashboard</router-link>  
+                            <router-link to="/dashboard"><p>Dashboard</p></router-link>  
                         </MenuItem>
                     </MenuItems>
                 </Menu>
