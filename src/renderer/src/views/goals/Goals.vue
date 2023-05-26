@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="page">
         <header>
             <h1>Goals</h1>
         </header>

@@ -116,10 +116,14 @@
 
 
     #root > div > main.main {
-        @apply px-4 w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-24;
+        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-32;
     }
     #root > footer {
         @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32 mt-32;
+    }
+
+    .page {
+        @apply px-4 -mt-10;
     }
 
 
@@ -173,7 +177,7 @@
 
 
     .topBar {
-        @apply z-40 border-b dark:border-none flex items-center justify-start bg-transparent;
+        @apply z-40 border-b dark:border-none flex flex-col items-center justify-start bg-transparent;
         transition: none;
     }
     header.topBar {

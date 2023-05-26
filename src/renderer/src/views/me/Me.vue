@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="page">
         <Profile></Profile>
 
         <main class="mt-12 relative">

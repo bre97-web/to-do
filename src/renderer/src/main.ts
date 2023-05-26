@@ -16,6 +16,7 @@ import '@/assets/css/index.css'
  * Google's Material Design
  */
 import 'material-icons/iconfont/material-icons.css'
+import 'material-symbols/index.css'
 import '@/assets/css/material-web-style.css'
 import "@fontsource/roboto/unicode.json"
 import "@fontsource/noto-sans-sc/unicode.json"
