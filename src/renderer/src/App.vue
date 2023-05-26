@@ -10,15 +10,6 @@
             <component :is="Component"></component>
         </router-view>
 
-        <footer>
-            <div class="p-8 flex flex-col md:flex-row gap-2 flex-wrap">
-                <div>
-                    <h1>To-Do</h1>
-                    <h2>bre97-web</h2>
-                </div>
-            </div>
-        </footer>
-
         <Events></Events>
     </div>
 </template>

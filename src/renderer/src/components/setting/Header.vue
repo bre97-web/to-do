@@ -7,18 +7,32 @@
             <!-- Search input -->
             <SearchInput></SearchInput>
 
-            <!-- Settings and other buttons -->
-            <Settings></Settings>
+            <div class="text-right">
+                <Menu as="div">
+                    <MenuButton class="relative inline-flex w-10 h-10">
+                        <Avatar></Avatar>
+                    </MenuButton>
+                    <MenuItems class="absolute right-4 flex flex-col gap-4 rounded-md shadow p-4 bg-white dark:bg-black">
+                        <MenuItem>
+                            <router-link to="/me"><p>Account</p></router-link>
+                        </MenuItem>
 
-            <!-- Users avatar-->
-            <Avatar></Avatar>
+                        <md-divider></md-divider>
+
+                        <MenuItem>
+                            <router-link to="/dashboard"><p>Dashboard</p></router-link>  
+                        </MenuItem>
+                    </MenuItems>
+                </Menu>
+            </div>
         </div>
     </header>
 </template>
 
 <script lang="tsx" setup>
-import { Settings } from '@/components/setting/lib/Setting'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import Avatar from '@/components/setting/lib/Avatar'
+import '@material/web/divider/divider'
 
 interface Props {
     input: string

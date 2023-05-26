@@ -12,7 +12,7 @@ import Goals from "@/views/goals/Goals.vue"
 import Overview from '@/views/home/overview/Overview.vue'
 import Recycle from '@/views/home/recycle/Recycle.vue'
 import Focus from '@/views/home/focus/Focus.vue'
-
+import Dashboard from '@/views/dashboard/Dashboard.vue'
 import TestPage from '@/views/test/TestPage.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -112,6 +112,10 @@ const routes: RouteRecordRaw[] = [
                 }
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        component: Dashboard,
     },
     {
         name: 'Test',

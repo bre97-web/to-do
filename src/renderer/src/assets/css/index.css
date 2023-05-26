@@ -132,7 +132,6 @@
         @apply flex flex-row items-center justify-between gap-2;
     }
 
-
     /* h1 ~ h6的字体宽度 */
     h1 {
         @apply font-bold;
@@ -169,7 +168,7 @@
     
     
     header > h1 {
-        @apply text-xl;
+        @apply text-2xl;
     }
     header > p {
         @apply text-secondary;
