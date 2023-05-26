@@ -1,32 +1,35 @@
 <template>
-    <Task
-        style="grid-row:3;"
-        :class="{ 'opacity-25': store.getRecycle.length === 0 }"
-        title="Recycle Bin"
-        subtitle="完成的任务会在这里"
-    >
+    <Task>
         <template #>
-            <md-list>
-                <div
-                    v-for="e in store.getRecycle"
-                    :key="e['index']"
-                    class="relative"
-                >
-                    <md-list-item
-                        class="line-through italic"
-                        :headline="e.title"
-                        :supportingText="e.subtitle"
+            <template v-if="store.getRecycle.length !== 0">
+                <md-list>
+                    <template
+                        v-for="e in store.getRecycle"
+                        :key="e['index']"
+                        class="relative"
                     >
-                        <md-checkbox checked @click="store.move(e, TASKS_TYPE.RECYCLE, TASKS_TYPE.NORMAL)" slot="start"></md-checkbox>
-                        <div slot="end">
-                            <md-standard-icon-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">
-                                <md-icon class="material-icons">delete_forever</md-icon>
-                            </md-standard-icon-button>
-                        </div>
-                    </md-list-item>
-                    <md-divider></md-divider>
+                        <md-list-item
+                            class="line-through italic"
+                            :headline="e.title"
+                            :supportingText="e.subtitle"
+                        >
+                            <md-checkbox checked @click="store.move(e, TASKS_TYPE.RECYCLE, TASKS_TYPE.NORMAL)" slot="start"></md-checkbox>
+                            <div slot="end">
+                                <md-standard-icon-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">
+                                    <md-icon class="material-icons">delete_forever</md-icon>
+                                </md-standard-icon-button>
+                            </div>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </template>
+                </md-list>
+            </template>
+            <template v-else >
+                <div class="space-y-4 pt-24 text-center">
+                    <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
+                    <p class="text-center italic">All done</p>
                 </div>
-            </md-list>
+            </template>
         </template>
     </Task>
 </template>
