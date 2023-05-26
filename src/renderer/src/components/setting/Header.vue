@@ -20,18 +20,11 @@
                         <md-divider></md-divider>
 
                         <MenuItem>
-                            <router-link to="/settings">Settings</router-link>  
+                            <router-link to="/dashboard">Dashboard</router-link>  
                         </MenuItem>
                     </MenuItems>
                 </Menu>
             </div>
-
-
-            <!-- Settings and other buttons -->
-            <!-- <Settings></Settings> -->
-
-            <!-- Users avatar-->
-            <!-- <Avatar></Avatar> -->
         </div>
     </header>
 </template>

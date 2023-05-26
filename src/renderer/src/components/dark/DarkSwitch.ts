@@ -23,13 +23,10 @@ class DarkSwitch extends LitElement {
 
     render() {
         return html`
-            <label>
-                <p>Dark</p>
-                <md-switch
-                    selected=${this.selected}
-                    @click=${this.setSelected}
-                ></md-switch>
-            </label>
+            <md-switch
+                selected=${this.selected}
+                @click=${this.setSelected}
+            ></md-switch>
         `
     }
 }
