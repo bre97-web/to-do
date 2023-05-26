@@ -14,15 +14,9 @@
                                 <!-- <md-checkbox @click="tasks.moveTo(e, )" slot="start"></md-checkbox> -->
 
                                 <div slot="end">
-                                    <!-- <md-standard-icon-button @click="tasks.moveToFocus(e)">
-                                        <md-icon class="material-icons">favorite</md-icon>
-                                    </md-standard-icon-button> -->
-                                    <md-standard-icon-button @click="push('/Edit', e)">
-                                        <md-icon class="material-icons">edit</md-icon>
+                                    <md-standard-icon-button @click="push('/info', e)">
+                                        <md-icon class="material-icons">more</md-icon>
                                     </md-standard-icon-button>
-                                    <!-- <md-standard-icon-button @click="tasks.removeBin(e)">
-                                        <md-icon class="material-icons">delete_forever</md-icon>
-                                    </md-standard-icon-button> -->
                                 </div>
                             </md-list-item>
                             <md-divider></md-divider>

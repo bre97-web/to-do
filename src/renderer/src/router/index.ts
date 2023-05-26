@@ -5,7 +5,6 @@ import HomePage from '@/views/home/HomePage.vue'
 import Info   from '@/views/home/info/MoreInformation.vue'
 import Me     from '@/views/home/me/Me.vue'
 import Helper from '@/views/home/me/helper/Helper.vue'
-import Editor from '@/views/home/edit/Editor.vue'
 import ChooseGoal from '@/views/home/chooseGoal/ChooseGoal.vue'
 import Template from "@/views/home/chooseGoal/goalTemplate/Template.vue"
 import TemplateDesc from "@/views/home/chooseGoal/goalTemplate/goalTemplateDesc/TemplateDesc.vue"
@@ -31,13 +30,6 @@ const routes: RouteRecordRaw[] = [
                     MainBoardView: HomePage
                 },
                 children: [
-                    {
-                        path: '/Edit',
-                        name: 'Editor',
-                        components: {
-                            HomePageInnerBoardView: Editor
-                        }
-                    },
                     {
                         path: '/info',
                         name: 'Info',
