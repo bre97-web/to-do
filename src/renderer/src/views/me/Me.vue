@@ -1,5 +1,5 @@
 <template>
-    <div class="page pb-28">
+    <div class="pt-8 px-4">
         <Profile></Profile>
 
         <main class="mt-12 relative space-y-4">

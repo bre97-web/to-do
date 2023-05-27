@@ -2,7 +2,7 @@
     <div>
         <Header :input="input.value" @setInput="setInput"></Header>
         
-        <main class="main">
+        <main class="main border-x">
             <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>

@@ -138,7 +138,7 @@
 
     
     #root > div > main.main {
-        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-32;
+        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-[3.55rem];
     }
 
     .page {
