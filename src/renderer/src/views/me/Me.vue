@@ -80,13 +80,15 @@
                 <ul class="group">
                     <li>
                         <h1>Helper</h1>
-                        <md-text-button
-                            @click="router.push('/helper')"
-                        >Look</md-text-button>
+                        <md-text-button @click="router.push('/helper')">Look</md-text-button>
+                    </li>
+                    <li>
+                        <h1>Dashboard</h1>
+                        <md-text-button @click="router.push('/dashboard')"><p>Open</p></md-text-button>  
                     </li>
                 </ul>
             </div>
-
+                        
             <router-view v-slot="{ Component }" name="MeInnerBoard">
                 <component :is="Component"></component>
             </router-view>
