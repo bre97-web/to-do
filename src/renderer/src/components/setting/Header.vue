@@ -1,13 +1,13 @@
 <template>
     <header class="topBar">
-        <div class="px-4 py-2 flex flex-row items-center justify-between w-full gap-2">
+        <div class="px-2 md:px-4 py-1 flex flex-row items-center justify-between w-full gap-2">
             <!-- Web Title -->
             <Title></Title>
 
             <!-- Search input -->
             <SearchInput></SearchInput>
 
-            <div class="text-right">
+            <div class="text-right flex-none">
                 <Menu as="div">
                     <MenuButton class="relative inline-flex w-10 h-10">
                         <Avatar></Avatar>
@@ -52,11 +52,10 @@ const Title = () => (
     </div>    
 )
 const SearchInput = () => (
-    <div class="relative w-full flex items-center justify-center">
-        <md-icon class="material-icons relative left-10 text-base">search</md-icon>
+    <div class="relative w-full max-w-md flex items-center justify-center">
         <input
             value={props.input}
-            type="text"
+            type="search"
             placeholder="Search"
             onInput={(e) => emits('setInput', (e.target as HTMLInputElement).value)}
         />
