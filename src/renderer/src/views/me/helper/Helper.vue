@@ -1,5 +1,5 @@
 <template>
-    <div class="relative border rounded-md px-4 py-2">
+    <div class="relative surfaceContainer border rounded-md px-4 py-2">
         <nav class="absolute right-1 top-1">
             <md-text-button @click="router.back()">Hidden</md-text-button>
         </nav>

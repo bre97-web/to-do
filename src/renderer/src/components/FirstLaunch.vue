@@ -6,7 +6,7 @@
         :class="{ 'hidden ': !isFirstLaunch }"
     >
         <div
-            class="space-y-4 md:space-y-8 lg:space-y-16 w-2/3 max-w-2xl mx-auto border mt-16 bg-white dark:bg-slate-900 rounded-md px-4 md:px-8 lg:px-16 py-2 md:py-4 lg:py-8"
+            class="space-y-4 md:space-y-8 lg:space-y-16 w-2/3 max-w-2xl mx-auto border mt-16 background rounded-md px-4 md:px-8 lg:px-16 py-2 md:py-4 lg:py-8"
         >
             <header>
                 <h1>Welcome to To-Do</h1>
