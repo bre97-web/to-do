@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="relative">
         <Header :input="input.value" @setInput="setInput"></Header>
         
-        <main class="main">
+        <main class="main border-x relative">
             <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>
@@ -14,7 +14,7 @@
             <div class="fab">
                 <md-branded-fab
                     label="Create"
-                    :class="{ 'opacity-0': activeIndex > 1 }"
+                    :class="{ 'opacity-0 pointer-events-none': activeIndex > 1 }"
                     @click="dialog.open = true"
                 >
                     <md-icon slot="icon" class="material-icons">create</md-icon>

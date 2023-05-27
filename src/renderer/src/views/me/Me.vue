@@ -1,10 +1,10 @@
 <template>
-    <div class="page">
+    <div class="pt-8 px-4">
         <Profile></Profile>
 
-        <main class="mt-12 relative">
+        <main class="mt-12 relative space-y-4">
             <!-- 待办等统计按钮，悬停时显示详细信息 -->
-            <div>
+            <div class="surfaceContainer p-4 rounded-xl">
                 <header>
                     <h1>Tasks</h1>
                 </header>
@@ -58,7 +58,7 @@
                 </main>
             </div>
 
-            <div v-if="useTags(store.getNormal).keys() === null">
+            <div v-if="useTags(store.getNormal).keys() === null" class=" surfaceContainer p-4 rounded-xl">
                 <header>
                     <h1>Tag</h1>
                 </header>
@@ -76,17 +76,19 @@
                 </main>
             </div>
 
-            <div class="mt-12 mb-2">
+            <div class="surfaceContainer p-4 rounded-xl">
                 <ul class="group">
                     <li>
                         <h1>Helper</h1>
-                        <md-text-button
-                            @click="router.push('/helper')"
-                        >Look</md-text-button>
+                        <md-text-button @click="router.push('/helper')">Look</md-text-button>
+                    </li>
+                    <li>
+                        <h1>Dashboard</h1>
+                        <md-text-button @click="router.push('/dashboard')"><p>Open</p></md-text-button>  
                     </li>
                 </ul>
             </div>
-
+                        
             <router-view v-slot="{ Component }" name="MeInnerBoard">
                 <component :is="Component"></component>
             </router-view>

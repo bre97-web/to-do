@@ -1,11 +1,13 @@
 <template>
     <div>
-        <div v-if="globalGoals.values().length === 0" class="flex flex-col items-center justify-center gap-4">
-            <p class="italic">It's nothing</p>
-            <md-tonal-button @click="router.push('/chooseGoal')">Create</md-tonal-button>
-        </div>
+        <template v-if="globalGoals.values().length === 0">
+            <div class="space-y-4 pt-24 text-center">
+                <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
+                <p class="text-center italic">All done</p>
+            </div>
+        </template>
 
-        <div v-else v-for="(obj, index) in globalGoals.valuesOfGoalsInterface()" :key="index">
+        <template v-else v-for="(obj, index) in globalGoals.valuesOfGoalsInterface()" :key="index">
             <template v-if="obj.currentGoal() !== null">
                 <md-list-item
                     :key="index"
@@ -27,7 +29,7 @@
                 </md-list-item>
                 <md-divider></md-divider>
             </template>
-        </div>
+        </template>
     </div>
 </template>
 
@@ -35,18 +37,11 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { reactive } from 'vue'
 import { GoalsInterface } from '@/hooks/useList/lib/useGoal'
-import { useRouter } from 'vue-router'
-
 import '@material/web/checkbox/checkbox'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
-
-
-
-
-const router = useRouter()
 
 const globalGoals = reactive(getGlobalGoalsList())
 

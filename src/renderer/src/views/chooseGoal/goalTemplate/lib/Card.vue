@@ -1,9 +1,9 @@
 <template>
-    <div class="surface bg-white dark:bg-black/50">
+    <div class="surface surfaceContainer rounded-3xl w-48 md:w-96">
         <md-elevation></md-elevation>
         <md-focus-ring></md-focus-ring>
         
-        <header>
+        <header class="overflow-clip rounded-3xl w-48 md:w-96 max-h-32 md:max-h-64">
             <slot name="header"></slot>
         </header>
 

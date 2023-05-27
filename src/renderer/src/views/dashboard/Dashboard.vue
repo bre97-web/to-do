@@ -3,7 +3,7 @@
         <TabGroup as="div" class="relative flex flex-col md:flex-row h-screen">
             <TabList as="div" class="relative flex flex-row md:flex-col border w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8 gap-1">
                 <div class="md:absolute md:bottom-4">
-                    <md-text-button @click="router.push('/')">
+                    <md-text-button @click="router.push('/me')">
                         <span class="material-symbols-outlined">arrow_back</span>
                         back
                     </md-text-button>

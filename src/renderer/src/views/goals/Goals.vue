@@ -1,8 +1,5 @@
 <template>
-    <div class="page">
-        <header>
-            <h1>Goals</h1>
-        </header>
+    <div>
         <main class="mt-12 relative">
             <Goals></Goals>
         </main>

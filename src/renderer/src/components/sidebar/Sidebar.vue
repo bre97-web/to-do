@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed hidden lg:block left-0 pl-4 w-44 h-96">
+    <div class="fixed hidden lg:block top-28 left-0 pl-4 w-44 h-96">
         <div class="sidebar">
             <h1>Sidebar</h1>
             <ul>

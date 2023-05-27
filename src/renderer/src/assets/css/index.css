@@ -88,11 +88,33 @@
     * {
         @apply ring-black/50 dark:ring-white/50;
     }
-
-
     /* 不显示滚动条 */
     ::-webkit-scrollbar {
         @apply hidden;
+    }
+
+    .background {
+        background-color: var(--md-sys-color-background);
+    }
+    .surfaceContainer {
+        background-color: var(--md-sys-color-surface-container);
+    }
+    .surface {
+        @apply relative;
+        transition-duration: 250ms;
+        transition-timing-function: ease-in-out;
+        /* background-color: var(--md-sys-color-surface); */
+    }
+    .surface:hover {
+        --md-elevation-level: 2;
+    }
+    .surface:active {
+        --md-elevation-level: 0;
+    }
+
+    .focus {
+        @apply relative;
+        --md-focus-ring-shape: 1.5rem;
     }
 
 
@@ -114,12 +136,9 @@
         @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip shadow-md;
     }
 
-
+    
     #root > div > main.main {
-        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-32;
-    }
-    #root > footer {
-        @apply bg-white/75 dark:bg-gray-500/75 pb-20 lg:pb-32 mt-32;
+        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-[3rem];
     }
 
     .page {
@@ -183,7 +202,8 @@
         @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
     }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg hover:shadow-md focus:ring pl-12 py-2 bg-white shadow dark:bg-slate-800 text-base;
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg focus:ring pl-4 py-2;
+        background-color: var(--md-sys-color-surface-container);
     }
 
 
@@ -243,10 +263,7 @@
         @apply fixed z-50;
     }
     div.fixedWindow.fullScreen {
-        @apply w-full h-full min-h-screen bg-white dark:bg-black top-0 right-0;
-    }
-    div.fixedWindow.fullScreen > div.background {
-        @apply w-full bg-white dark:bg-black;
+        @apply w-full h-full min-h-screen top-0 right-0;
     }
     div.fixedWindow.fullScreen.withBackButton > nav{
         @apply mb-8;
@@ -319,22 +336,7 @@
         @apply flex flex-row justify-end;
     }
     
-    .surface {
-        @apply relative;
-        transition-duration: 250ms;
-        transition-timing-function: ease-in-out;
-    }
-    .surface:hover {
-        --md-elevation-level: 2;
-    }
-    .surface:active {
-        --md-elevation-level: 0;
-    }
 
-    .focus {
-        @apply relative;
-        --md-focus-ring-shape: 1.5rem;
-    }
 
 
 

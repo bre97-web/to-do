@@ -1,6 +1,6 @@
 <template>
-    <div class="fixedWindow top-0 left-0 w-screen h-screen bg-black/25 p-0 md:p-4">
-        <div class="relative h-screen md:h-full md:max-w-2xl lg:max-w-4xl mx-auto bg-off-base border dark:border-none shadow rounded-xl px-8 py-4">
+    <div class="fixedWindow background top-0 left-0 w-screen h-screen">
+        <div class="relative h-screen md:h-full md:max-w-2xl lg:max-w-4xl mx-auto p-4 md:pt-12">
             <header>
                 <h1>Goals</h1>
                 <p></p>

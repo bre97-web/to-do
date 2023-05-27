@@ -2,7 +2,7 @@
     <div class="space-y-8">
         <main class="relative flex items-center justify-evenly flex-wrap gap-4">
             <Card
-                class="goalDescription ring-black dark:ring-white"
+                class="ring-black dark:ring-white"
                 :class="{'ring': currentIndex === 0}"
                 @click="setIndex(0)"
             >
@@ -21,7 +21,7 @@
             </Card>
 
             <Card
-                class="goalDescription ring-black dark:ring-white"
+                class="ring-black dark:ring-white"
                 :class="{'ring': currentIndex === 1}"
                 @click="setIndex(1)"
             >

@@ -1,13 +1,13 @@
 <template>
     <div
         v-show="input.value.length != 0"
-        class="border dark:border-none bg-transparent dark:bg-slate-800 rounded-md px-4 py-2 my-4"
+        class="border dark:border-none surfaceContainer rounded-md px-4 py-2 my-4"
     >
         <Header :input="input.value"></Header>
 
         <main>
             <Task title="" subtitle="">
-                <template #>
+                <template v-if="get.length !== 0" #>
                     <md-list class="tasks">
                         <div v-for="e in get" :key="e.index">
                             <md-list-item :headline="e.title" :supporttingText="e.subtitle">
