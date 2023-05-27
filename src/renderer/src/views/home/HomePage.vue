@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-[3rem]">
-        <div class="w-full">
+    <div class="mt-[3rem] relative">
+        <div class="w-full sticky top-[0px] z-50">
             <md-tabs>
                 <md-tab @click="router.push('/home/overview')">Overview</md-tab>
                 <md-tab @click="router.push('/home/focus')">Focus</md-tab>

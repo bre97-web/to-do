@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="relative">
         <Header :input="input.value" @setInput="setInput"></Header>
         
-        <main class="main border-x">
+        <main class="main border-x relative">
             <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
                 <component :is="Component"></component>
