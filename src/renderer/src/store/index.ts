@@ -69,28 +69,42 @@ const useTaskStore = defineStore('task_store', {
             events.get().push(useEvent('The task is Deleted', true, rollBackFn))
         },
         move(e: Item, from: TASKS_TYPE, to: TASKS_TYPE) {
-            var fromE: Item
+            let stepOne: () => any
+            let stepTwo: () => any
+
             if (from === TASKS_TYPE.FOCUS) {
-                fromE = this.tasks.focus.filter(el => e === el)[0]
+                stepOne = () => this.tasks.focus.push(e)
                 this.tasks.focus = this.tasks.focus.filter(el => e !== el)
             } else if (from === TASKS_TYPE.NORMAL) {
-                fromE = this.tasks.normal.filter(el => e === el)[0]
+                stepOne = () => this.tasks.normal.push(e)
                 this.tasks.normal = this.tasks.normal.filter(el => e !== el)
             } else if (from === TASKS_TYPE.RECYCLE) {
-                fromE = this.tasks.recycle.filter(el => e === el)[0]
+                stepOne = () => this.tasks.recycle.push(e)
                 this.tasks.recycle = this.tasks.recycle.filter(el => e !== el)
             } else {
                 return
             }
             if (to === TASKS_TYPE.FOCUS) {
-                events.get().push(useEvent('Move to Focus'))
-                this.tasks.focus.push(fromE)
+                stepTwo = () => this.tasks.focus = this.tasks.focus.filter(el => e !== el)
+                events.get().push(useEvent('Move to Focus', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.focus.push(e)
             } else if (to === TASKS_TYPE.NORMAL) {
-                events.get().push(useEvent('Move to Overview'))
-                this.tasks.normal.push(fromE)
+                stepTwo = () => this.tasks.normal = this.tasks.normal.filter(el => e !== el)
+                events.get().push(useEvent('Move to Overview', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.normal.push(e)
             } else if (to === TASKS_TYPE.RECYCLE) {
-                events.get().push(useEvent('Move to Recycle'))
-                this.tasks.recycle.push(fromE)
+                stepTwo = () => this.tasks.recycle = this.tasks.recycle.filter(el => e !== el)
+                events.get().push(useEvent('Move to Recycle', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.recycle.push(e)
             }
 
         }
