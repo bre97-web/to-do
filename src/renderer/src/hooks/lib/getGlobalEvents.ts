@@ -1,12 +1,10 @@
-import { reactive, watch } from "vue";
+import { reactive } from "vue";
 import { EventsInterface, useEvents } from "../useEvent";
 
 
 const GLOBAL_EVENTS = reactive<EventsInterface>(useEvents())
 
-watch(() => GLOBAL_EVENTS, () => console.log('12'))
-
-function GlobalEvents() {
+function getGlobalEvents() {
 
     const get = () => GLOBAL_EVENTS
 
@@ -16,5 +14,5 @@ function GlobalEvents() {
 }
 
 export {
-    GlobalEvents
+    getGlobalEvents
 }

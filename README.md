@@ -39,7 +39,7 @@ You can make suggestions in issues.
 |Feature|Dev|Perview|Release|
 |:--|--:|--:|--:|
 |Event Snackbars|✅|🟡|❌|
-|Event Snackbars Actions|❌|❌|❌|
+|Event Snackbars Actions|✅|🟡|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
 |Notify|✅|❌|❌|

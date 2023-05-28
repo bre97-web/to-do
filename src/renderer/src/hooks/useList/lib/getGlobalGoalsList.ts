@@ -1,8 +1,7 @@
 import { Ref, reactive, ref, watch } from "vue";
 import { Goals, GoalsInterface, useGoals } from "./useGoal";
-import { GlobalEvents } from "@/hooks/lib/GlobalEventsObject";
+import { getGlobalEvents } from "@/hooks/lib/getGlobalEvents";
 import { useEvent } from "@/hooks/useEvent";
-
 
 var GLOBAL_GOALS_LIST: Ref<Array<Goals>> = ref(JSON.parse(localStorage.getItem('bre97-web-todo-goals') as string) || [])
 
@@ -13,7 +12,7 @@ watch(GLOBAL_GOALS_LIST.value, () => {
     localStorage.setItem('bre97-web-todo-goals', JSON.stringify(GLOBAL_GOALS_LIST.value))
 })
 
-const events = reactive(GlobalEvents().get())
+const events = reactive(getGlobalEvents().get())
 
 interface GlobalGoalsInterface {
     values: () => Array<Goals>
@@ -39,11 +38,16 @@ function getGlobalGoalsList(): GlobalGoalsInterface {
     const getGoals = (index: number): GoalsInterface => useGoals(GLOBAL_GOALS_LIST.value[index].schedule, GLOBAL_GOALS_LIST.value[index].goals)
     const push = (e: Goals) => {
         GLOBAL_GOALS_LIST.value.push(e)
-        events.push(useEvent('Move goal is successfully'))
+        events.push(useEvent('The step is created'))
     }
     const remove = (index: number) => {
+        
+        let tmpGoal = GLOBAL_GOALS_LIST.value[index]
+        let rollBackFn = () => {
+            GLOBAL_GOALS_LIST.value.push(tmpGoal)
+        }
         GLOBAL_GOALS_LIST.value.splice(index, 1)
-        events.push(useEvent('Remove goal is successfully'))
+        events.push(useEvent('The goal is deleted', true, rollBackFn))
     }
     const removeCompeleted = (): any => {
         for(let i = 0; i < GLOBAL_GOALS_LIST.value.length; i ++) {

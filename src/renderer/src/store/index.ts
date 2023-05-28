@@ -1,18 +1,17 @@
+import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
+import { useEvent } from '@/hooks/useEvent'
 import { useIndex } from '@/hooks/useIndex'
 import { Item, Items } from '@/hooks/useList/lib/useItem'
 import moment from 'moment'
 import { defineStore } from 'pinia'
 
-interface TasksInterface {
-    focus: Items
-    normal: Items
-    recycle: Items
-}
 enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
     RECYCLE
 }
+
+const events = getGlobalEvents()
 
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
@@ -28,14 +27,14 @@ const createDate = (): string => moment().format('YYYY-MM-DD')
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({
-        tasks:<TasksInterface> {
-            focus: [],
-            normal: [],
-            recycle: [],
+        tasks: {
+            focus: [] as Items,
+            normal: [] as Items,
+            recycle: [] as Items,
         }
     }),
     getters: {
-        getAll: (state): TasksInterface => state.tasks,
+        getAll: (state) => state.tasks,
         getFocus: (state): Items => state.tasks.focus,
         getNormal: (state): Items => state.tasks.normal,
         getRecycle: (state): Items => state.tasks.recycle,
@@ -56,35 +55,58 @@ const useTaskStore = defineStore('task_store', {
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
+            let rollBackFn
             if (to === TASKS_TYPE.FOCUS) {
+                rollBackFn = () => this.tasks.focus.push(e)
                 this.tasks.focus = this.tasks.focus.filter(el => el !== e)
             } else if (to === TASKS_TYPE.NORMAL) {
+                rollBackFn = () => this.tasks.normal.push(e)
                 this.tasks.normal = this.tasks.normal.filter(el => el !== e)
             } else if (to === TASKS_TYPE.RECYCLE) {
+                rollBackFn = () => this.tasks.recycle.push(e)
                 this.tasks.recycle = this.tasks.recycle.filter(el => el !== e)
             }
+            events.get().push(useEvent('The task is Deleted', true, rollBackFn))
         },
         move(e: Item, from: TASKS_TYPE, to: TASKS_TYPE) {
-            var fromE: Item
+            let stepOne: () => any
+            let stepTwo: () => any
+
             if (from === TASKS_TYPE.FOCUS) {
-                fromE = this.tasks.focus.filter(el => e === el)[0]
+                stepOne = () => this.tasks.focus.push(e)
                 this.tasks.focus = this.tasks.focus.filter(el => e !== el)
             } else if (from === TASKS_TYPE.NORMAL) {
-                fromE = this.tasks.normal.filter(el => e === el)[0]
+                stepOne = () => this.tasks.normal.push(e)
                 this.tasks.normal = this.tasks.normal.filter(el => e !== el)
             } else if (from === TASKS_TYPE.RECYCLE) {
-                fromE = this.tasks.recycle.filter(el => e === el)[0]
+                stepOne = () => this.tasks.recycle.push(e)
                 this.tasks.recycle = this.tasks.recycle.filter(el => e !== el)
             } else {
                 return
             }
             if (to === TASKS_TYPE.FOCUS) {
-                this.tasks.focus.push(fromE)
+                stepTwo = () => this.tasks.focus = this.tasks.focus.filter(el => e !== el)
+                events.get().push(useEvent('Move to Focus', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.focus.push(e)
             } else if (to === TASKS_TYPE.NORMAL) {
-                this.tasks.normal.push(fromE)
+                stepTwo = () => this.tasks.normal = this.tasks.normal.filter(el => e !== el)
+                events.get().push(useEvent('Move to Overview', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.normal.push(e)
             } else if (to === TASKS_TYPE.RECYCLE) {
-                this.tasks.recycle.push(fromE)
+                stepTwo = () => this.tasks.recycle = this.tasks.recycle.filter(el => e !== el)
+                events.get().push(useEvent('Move to Recycle', true, () => {
+                    stepOne()
+                    stepTwo()
+                }))
+                this.tasks.recycle.push(e)
             }
+
         }
     },
     persist: true,
@@ -93,8 +115,4 @@ const useTaskStore = defineStore('task_store', {
 export {
     useTaskStore,
     TASKS_TYPE
-}
-
-export type {
-    TasksInterface,
 }
