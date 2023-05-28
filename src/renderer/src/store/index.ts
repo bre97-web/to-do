@@ -1,5 +1,5 @@
 import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
-import { useEvent, useEvents } from '@/hooks/useEvent'
+import { useEvent } from '@/hooks/useEvent'
 import { useIndex } from '@/hooks/useIndex'
 import { Item, Items } from '@/hooks/useList/lib/useItem'
 import moment from 'moment'
@@ -11,11 +11,12 @@ enum TASKS_TYPE {
     RECYCLE
 }
 
+const events = getGlobalEvents()
+
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
  */
 const createIndex = (): number => useIndex()
-const events = getGlobalEvents()
 
 /**
  * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
@@ -54,14 +55,18 @@ const useTaskStore = defineStore('task_store', {
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
+            let rollBackFn
             if (to === TASKS_TYPE.FOCUS) {
+                rollBackFn = () => this.tasks.focus.push(e)
                 this.tasks.focus = this.tasks.focus.filter(el => el !== e)
             } else if (to === TASKS_TYPE.NORMAL) {
+                rollBackFn = () => this.tasks.normal.push(e)
                 this.tasks.normal = this.tasks.normal.filter(el => el !== e)
             } else if (to === TASKS_TYPE.RECYCLE) {
+                rollBackFn = () => this.tasks.recycle.push(e)
                 this.tasks.recycle = this.tasks.recycle.filter(el => el !== e)
             }
-            events.get().push(useEvent('The task is Deleted'))
+            events.get().push(useEvent('The task is Deleted', true, rollBackFn))
         },
         move(e: Item, from: TASKS_TYPE, to: TASKS_TYPE) {
             var fromE: Item
