@@ -1,11 +1,32 @@
 <template>
     <div
         v-show="input.value.length != 0"
-        class="border dark:border-none surfaceContainer rounded-md px-4 py-2 my-4"
+        class="border mx-2 dark:border-none rounded-md px-4 py-2 my-4"
     >
         <Header :input="input.value"></Header>
 
         <main>
+            <!-- 关键字搜索相关设置 -->
+            <div>
+                
+                <!-- 匹配项 -->
+                <ul class="flex flex-col gap-1">
+                    <template v-for="(e, index) in search">
+                        <li
+                            v-if="e.keyword.indexOf(input.value) !== -1"
+                            :key="index"
+                            class="surfaceContainerHigh px-4 py-2 rounded-md surface"
+                            @click="router.push(e.path)"
+                        >
+                            <md-elevation></md-elevation>
+                            <h1 >
+                                {{ e.title }}
+                            </h1>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
             <Task title="" subtitle="">
                 <template v-if="get.length !== 0" #>
                     <md-list class="tasks">
@@ -50,9 +71,9 @@ import '@material/web/list/list-item'
 import '@material/web/divider/divider'
 import '@material/web/iconbutton/standard-icon-button'
 import { useTaskStore, TASKS_TYPE } from '@/store'
+import searchTarget from '@/assets/json/searchTarget.json'
 
-
-
+const search = searchTarget
 
 
 /**
