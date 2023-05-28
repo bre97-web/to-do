@@ -11,7 +11,7 @@
 <script lang="tsx" setup>
 import { EventsInterface } from '@/hooks/useEvent';
 import { Event } from './lib/Event'
-import { GlobalEvents } from '@/hooks/lib/GlobalEventsObject';
+import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents';
 
-const events:EventsInterface = GlobalEvents().get()
+const events:EventsInterface = getGlobalEvents().get()
 </script>

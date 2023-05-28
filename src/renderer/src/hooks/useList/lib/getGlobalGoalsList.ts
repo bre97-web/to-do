@@ -1,6 +1,6 @@
 import { Ref, reactive, ref, watch } from "vue";
 import { Goals, GoalsInterface, useGoals } from "./useGoal";
-import { GlobalEvents } from "@/hooks/lib/GlobalEventsObject";
+import { getGlobalEvents } from "@/hooks/lib/getGlobalEvents";
 import { useEvent } from "@/hooks/useEvent";
 
 
@@ -13,7 +13,7 @@ watch(GLOBAL_GOALS_LIST.value, () => {
     localStorage.setItem('bre97-web-todo-goals', JSON.stringify(GLOBAL_GOALS_LIST.value))
 })
 
-const events = reactive(GlobalEvents().get())
+const events = reactive(getGlobalEvents().get())
 
 interface GlobalGoalsInterface {
     values: () => Array<Goals>
