@@ -51,7 +51,7 @@ You can make suggestions in issues.
 |Sort|❌|❌|❌|
 |Today's Tasks|❌|❌|❌|
 |Task Step|✅|✅|❌|
-|Search Advanced|❌|❌|❌|
+|Search Advanced|🟡|❌|❌|
 |PWA Support|❌|❌|❌|
 |Sidebar|✅|🟡|❌|
 |Sidebar Actions|❌|❌|❌|
