@@ -275,7 +275,7 @@
 
 
     div.eventsSurface {
-        @apply fixed bottom-24 lg:bottom-5 left-4 w-1/2 md:w-52 xl:w-96;
+        @apply fixed z-40 bottom-24 lg:bottom-5 left-4 w-1/2 md:w-52 xl:w-96;
     }
     div.eventsSurface > ul.events {
         @apply flex flex-col w-full gap-2;

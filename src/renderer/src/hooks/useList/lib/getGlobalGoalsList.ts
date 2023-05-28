@@ -2,8 +2,6 @@ import { Ref, reactive, ref, watch } from "vue";
 import { Goals, GoalsInterface, useGoals } from "./useGoal";
 import { getGlobalEvents } from "@/hooks/lib/getGlobalEvents";
 import { useEvent } from "@/hooks/useEvent";
-import { RefSymbol } from "@vue/reactivity";
-
 
 var GLOBAL_GOALS_LIST: Ref<Array<Goals>> = ref(JSON.parse(localStorage.getItem('bre97-web-todo-goals') as string) || [])
 
