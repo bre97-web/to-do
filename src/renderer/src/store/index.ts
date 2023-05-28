@@ -3,11 +3,6 @@ import { Item, Items } from '@/hooks/useList/lib/useItem'
 import moment from 'moment'
 import { defineStore } from 'pinia'
 
-interface TasksInterface {
-    focus: Items
-    normal: Items
-    recycle: Items
-}
 enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
@@ -28,14 +23,14 @@ const createDate = (): string => moment().format('YYYY-MM-DD')
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({
-        tasks:<TasksInterface> {
-            focus: [],
-            normal: [],
-            recycle: [],
+        tasks: {
+            focus: [] as Items,
+            normal: [] as Items,
+            recycle: [] as Items,
         }
     }),
     getters: {
-        getAll: (state): TasksInterface => state.tasks,
+        getAll: (state) => state.tasks,
         getFocus: (state): Items => state.tasks.focus,
         getNormal: (state): Items => state.tasks.normal,
         getRecycle: (state): Items => state.tasks.recycle,
@@ -93,8 +88,4 @@ const useTaskStore = defineStore('task_store', {
 export {
     useTaskStore,
     TASKS_TYPE
-}
-
-export type {
-    TasksInterface,
 }
