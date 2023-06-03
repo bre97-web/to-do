@@ -23,7 +23,7 @@
                     <div slot="end" class="flex gap-2 items-center justify-end">
                         <h1>{{ obj.currentIndex() + 1}} / {{ obj.get().goals.length }}</h1>
                         <md-standard-icon-button @click="globalGoals.remove(index)">
-                            <md-icon class="material-icons">delete</md-icon>
+                            <md-icon>delete</md-icon>
                         </md-standard-icon-button>
                     </div>
                 </md-list-item>
@@ -39,6 +39,7 @@ import { reactive } from 'vue'
 import { GoalsInterface } from '@/hooks/useList/lib/useGoal'
 import '@material/web/checkbox/checkbox'
 import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/icon/icon'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'

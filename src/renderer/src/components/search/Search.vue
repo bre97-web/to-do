@@ -36,7 +36,7 @@
 
                                 <div slot="end">
                                     <md-standard-icon-button @click="push('/info', e)">
-                                        <md-icon class="material-icons">more</md-icon>
+                                        <md-icon>more</md-icon>
                                     </md-standard-icon-button>
                                 </div>
                             </md-list-item>
@@ -70,6 +70,7 @@ import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
 import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/icon/icon'
 import { useTaskStore, TASKS_TYPE } from '@/store'
 import searchTarget from '@/assets/json/searchTarget.json'
 

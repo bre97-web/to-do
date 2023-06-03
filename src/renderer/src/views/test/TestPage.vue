@@ -40,19 +40,19 @@
             
             <div>
                 <md-fab>
-                    <i slot="icon" class="material-icons">group</i>
+                    <md-icon slot="icon">group</md-icon>
                 </md-fab>
                 
                 <md-fab lowered>
-                    <i slot="icon" class="material-icons">group</i>
+                    <md-icon slot="icon">group</md-icon>
                 </md-fab>
                 
                 <md-branded-fab label="Test">
-                    <i slot="icon" class="material-icons">group</i>
+                    <md-icon slot="icon">group</md-icon>
                 </md-branded-fab>
                 
                 <md-branded-fab label="Test" lowered>
-                    <i slot="icon" class="material-icons">group</i>
+                    <md-icon slot="icon">group</md-icon>
                 </md-branded-fab>
             </div>
             
@@ -82,13 +82,13 @@
                     <md-divider></md-divider>
                     
                     <md-list-item headline="Test">
-                        <md-icon data-variant="icon" class="material-icons" slot="start">group</md-icon>
+                        <md-icon slot="start">group</md-icon>
                     </md-list-item>
                     <md-divider></md-divider>
                     
                     <md-list-item headline="Test">
-                        <md-icon data-variant="icon" class="material-icons" slot="start">group</md-icon>
-                        <md-icon data-variant="icon" class="material-icons" slot="end">group</md-icon>
+                        <md-icon slot="start">group</md-icon>
+                        <md-icon slot="end">group</md-icon>
                     </md-list-item>
                     <md-divider></md-divider>
                 </md-list>
@@ -174,6 +174,7 @@ import '@material/web/dialog/dialog'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
+import '@material/web/icon/icon'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/navigationbar/navigation-bar'
 import '@material/web/navigationtab/navigation-tab'

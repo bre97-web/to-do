@@ -12,13 +12,13 @@
         <!-- Create and Bottom Navigation -->
         <nav>
             <div class="fab">
-                <md-branded-fab
+                <md-fab
                     label="Create"
                     :class="{ 'opacity-0 pointer-events-none': activeIndex > 1 }"
                     @click="dialog.open = true"
                 >
-                    <md-icon slot="icon" class="material-icons">create</md-icon>
-                </md-branded-fab>
+                    <md-icon slot="icon">create</md-icon>
+                </md-fab>
                 <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
             </div>
             <div class="navigation">
@@ -33,7 +33,7 @@
                                 }
                             "
                         >
-                            <md-icon slot="icon" class="material-icons">home</md-icon>
+                            <md-icon slot="icon">home</md-icon>
                         </md-navigation-tab>
 
                         <md-navigation-tab
@@ -45,7 +45,7 @@
                                 }
                             "
                         >
-                            <md-icon class="material-icons">home</md-icon>
+                            <md-icon>home</md-icon>
                         </md-navigation-tab>
 
                         <md-navigation-tab
@@ -57,7 +57,7 @@
                                 }
                             "
                         >
-                            <md-icon slot="icon" class="material-icons">home</md-icon>
+                            <md-icon>home</md-icon>
                         </md-navigation-tab>
                     </md-navigation-bar>
                 </div>
@@ -73,10 +73,11 @@ import Creator from '@/components/creator/Creator.vue'
 import Header from '@/components/setting/Header.vue'
 import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
-
 import '@material/web/navigationbar/navigation-bar'
 import '@material/web/navigationtab/navigation-tab'
-import '@material/web/fab/branded-fab'
+import '@material/web/fab/fab'
+import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/icon/icon'
 
 
 

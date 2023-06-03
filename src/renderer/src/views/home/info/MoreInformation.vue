@@ -7,7 +7,7 @@
                         router.push('/home')
                     }"
                 >
-                    <md-icon slot="icon" class="material-icons">arrow_back</md-icon>
+                    <md-icon slot="icon">arrow_back</md-icon>
                     Back
                 </md-text-button>
             </div>
@@ -23,7 +23,7 @@
                 <!-- Title -->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">title</md-icon>
+                        <md-icon>title</md-icon>
                     </template>
                     <template #content :task="task">
                         <md-outlined-text-field
@@ -39,7 +39,7 @@
                 <!-- Subtitle-->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">subtitles</md-icon>
+                        <md-icon>subtitles</md-icon>
                     </template>
                     <template #content :task="task">
                         <md-outlined-text-field
@@ -55,7 +55,7 @@
                 <!-- Note  -->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">description</md-icon>
+                        <md-icon>description</md-icon>
                     </template>
                     <template #content :task="task">
                         <md-outlined-text-field
@@ -71,7 +71,7 @@
                 <!-- CreatedTime -->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">schedule</md-icon>
+                        <md-icon>schedule</md-icon>
                     </template>
                     <template #content :task="task">
                         <md-outlined-text-field
@@ -87,7 +87,7 @@
                 <!-- Tags -->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">tag</md-icon>
+                        <md-icon>tag</md-icon>
                     </template>
                     <template #content :task="task">    
                         <md-outlined-text-field
@@ -110,7 +110,7 @@
                 <!-- Steps -->
                 <Info>
                     <template #header>
-                        <md-icon class="material-icons">checklist</md-icon>
+                        <md-icon>checklist</md-icon>
                     </template>
                     <template #content :task="task">
                         <div class="flex items-center gap-2">
@@ -120,7 +120,7 @@
                                 @input="newStepValue = $event.target.value"
                             ></md-outlined-text-field>
                             <md-standard-icon-button @click="createStep">
-                                <md-icon class="material-icons">add</md-icon>
+                                <md-icon>add</md-icon>
                             </md-standard-icon-button>
                         </div>
                         <md-list>
@@ -138,7 +138,7 @@
                                         slot="end"
                                         @click="() => task.steps.splice(index, 1)"
                                     >
-                                        <md-icon class="material-icons">delete_outlined</md-icon>
+                                        <md-icon>delete_outlined</md-icon>
                                     </md-standard-icon-button>
                                 </md-list-item>
                                 <md-divider></md-divider>
@@ -160,6 +160,7 @@ import Info from '@/components/task/info/Info.vue'
 import '@material/web/button/text-button'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/icon/icon'
 import { useTaskStore } from '@/store';
 
 
