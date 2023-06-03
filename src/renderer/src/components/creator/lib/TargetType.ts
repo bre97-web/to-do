@@ -16,9 +16,12 @@ export default class TargetType extends LitElement {
                 label="Type"
                 required
             >
-                <md-select-option @click=${() => {
-                    this.setType('task')    
-                }} value="task" headline="Task"></md-select-option>
+                <md-select-option
+                    selected
+                    @click=${() => {
+                        this.setType('task')    
+                    }} value="task" headline="Task"
+                ></md-select-option>
                 <md-select-option @click=${() => {
                     this.setType('goal')    
                 }} value="goal" headline="Goal"></md-select-option>
