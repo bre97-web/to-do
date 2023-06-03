@@ -6,7 +6,7 @@
             </div>
 
             <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
-                <lit-target-type :setType="(value: Type | null) => targetType = value"></lit-target-type>
+                <lit-target-type :setType="(value: Type) => targetType = value"></lit-target-type>
 
                 <!-- Task -->
                 <template v-if="targetType === 'task'">
@@ -59,7 +59,7 @@ const props = defineProps(['dialog', 'closeDialog'])
 /**
  * 将要创建的目标类型
  */
-const targetType = ref<Type | null>(null)
+const targetType = ref<Type>("task")
 
 const task = reactive<Item>({
     title: '',
