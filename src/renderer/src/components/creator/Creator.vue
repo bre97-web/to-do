@@ -5,7 +5,7 @@
                 <h1>Create</h1>
             </div>
 
-            <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
+            <form class="flex flex-col gap-2 min-h-screen overflow-scroll p-2">
                 <lit-target-type :setType="(value: Type) => targetType = value"></lit-target-type>
 
                 <!-- Task -->
@@ -21,7 +21,7 @@
                     <md-filled-text-field label="Title" :value="goal.title" @input="goal.title = $event.target.value"></md-filled-text-field>
                     <md-filled-text-field label="Description" :value="goal.description" @input="goal.description = $event.target.value"></md-filled-text-field>
                     <md-outlined-segmented-button-set label="Schedule">
-                        <md-outlined-segmented-button @click="goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
+                        <md-outlined-segmented-button selected @click="goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
                     </md-outlined-segmented-button-set>
