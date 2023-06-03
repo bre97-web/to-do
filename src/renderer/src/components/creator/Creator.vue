@@ -5,15 +5,8 @@
                 <h1>Create</h1>
             </div>
 
-            <div class="flex flex-col gap-2 h-screen md:h-96 overflow-scroll pt-2">
-                <md-outlined-select
-                    label="Type"
-                    :value="targetType"
-                    @input="(e: InputEvent) => targetType = ((e.target as HTMLInputElement).value as Type)"
-                >
-                    <md-select-option value="task" headline="Task"></md-select-option>
-                    <md-select-option value="goal" headline="Goal"></md-select-option>
-                </md-outlined-select>
+            <form class="flex flex-col gap-2 min-h-screen overflow-scroll p-2">
+                <lit-target-type :setType="(value: Type) => targetType = value"></lit-target-type>
 
                 <!-- Task -->
                 <template v-if="targetType === 'task'">
@@ -28,16 +21,18 @@
                     <md-filled-text-field label="Title" :value="goal.title" @input="goal.title = $event.target.value"></md-filled-text-field>
                     <md-filled-text-field label="Description" :value="goal.description" @input="goal.description = $event.target.value"></md-filled-text-field>
                     <md-outlined-segmented-button-set label="Schedule">
-                        <md-outlined-segmented-button @click="goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
+                        <md-outlined-segmented-button selected @click="goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
                     </md-outlined-segmented-button-set>
                     <md-filled-text-field label="Count" type="number" :value="goalCount" @input="goalCount = ($event.target.value as number)"></md-filled-text-field>
                 </template>
-            </div>
+            </form>
 
-            <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
-            <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
+            <footer slot="footer" class="space-x-2">
+                <md-text-button @click="cancel">Cancel</md-text-button>
+                <md-filled-button @click="submit">Apply</md-filled-button>
+            </footer>
         </md-dialog>
     </teleport>
 </template>
@@ -46,6 +41,7 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
+import './lib/TargetType.ts'
 import { reactive, ref } from 'vue'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -54,8 +50,6 @@ import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/segmentedbutton/outlined-segmented-button'
 import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
-import '@material/web/select/outlined-select'
-import '@material/web/select/select-option'
 import { TASKS_TYPE, useTaskStore } from '@/store'
 
 
@@ -65,7 +59,8 @@ const props = defineProps(['dialog', 'closeDialog'])
 /**
  * 将要创建的目标类型
  */
-const targetType = ref<Type | null>(null)
+const targetType = ref<Type>("task")
+
 const task = reactive<Item>({
     title: '',
     subtitle: '',
