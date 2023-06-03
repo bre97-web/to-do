@@ -5,15 +5,8 @@
                 <h1>Create</h1>
             </div>
 
-            <div class="flex flex-col gap-2 h-screen md:h-96 overflow-scroll pt-2">
-                <md-outlined-select
-                    label="Type"
-                    :value="targetType"
-                    @input="(e: InputEvent) => targetType = ((e.target as HTMLInputElement).value as Type)"
-                >
-                    <md-select-option value="task" headline="Task"></md-select-option>
-                    <md-select-option value="goal" headline="Goal"></md-select-option>
-                </md-outlined-select>
+            <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
+                <lit-target-type :setType="(value: Type | null) => targetType = value"></lit-target-type>
 
                 <!-- Task -->
                 <template v-if="targetType === 'task'">
@@ -34,10 +27,12 @@
                     </md-outlined-segmented-button-set>
                     <md-filled-text-field label="Count" type="number" :value="goalCount" @input="goalCount = ($event.target.value as number)"></md-filled-text-field>
                 </template>
-            </div>
+            </form>
 
-            <md-text-button @click="cancel" slot="footer">Cancel</md-text-button>
-            <md-filled-button @click="submit" slot="footer">Apply</md-filled-button>
+            <footer slot="footer" class="space-x-2">
+                <md-text-button @click="cancel">Cancel</md-text-button>
+                <md-filled-button @click="submit">Apply</md-filled-button>
+            </footer>
         </md-dialog>
     </teleport>
 </template>
@@ -46,6 +41,7 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
+import './lib/TargetType.ts'
 import { reactive, ref } from 'vue'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -54,8 +50,6 @@ import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/segmentedbutton/outlined-segmented-button'
 import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
-import '@material/web/select/outlined-select'
-import '@material/web/select/select-option'
 import { TASKS_TYPE, useTaskStore } from '@/store'
 
 
@@ -66,6 +60,7 @@ const props = defineProps(['dialog', 'closeDialog'])
  * 将要创建的目标类型
  */
 const targetType = ref<Type | null>(null)
+
 const task = reactive<Item>({
     title: '',
     subtitle: '',
