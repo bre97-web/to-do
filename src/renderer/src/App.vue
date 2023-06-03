@@ -42,27 +42,27 @@ const router = useRouter()
         hotkey: "alt+m",
         mdIcon: "map",
         handler: () => {
-            router.push('/dashboard')
+            router.push('/dashboard/shortcutMap')
         },
     },
     {
         id: "Settings",
         title: "Dashboard",
         hotkey: "alt+s",
-        mdIcon: "setting",
+        mdIcon: "settings",
         handler: () => {
             router.push('/dashboard')
         },
     },
     {
         id: "Theme",
-        title: "Settings",
-        mdIcon: "setting",
+        title: "Theme",
+        mdIcon: "invert_colors",
         children: [
             {
                 id: "Dark",
                 title: "Dark",
-                mdIcon: "dark",
+                mdIcon: "dark_mode",
                 handler: () => {
                     useTheme().set({
                         isDark: true
@@ -72,7 +72,7 @@ const router = useRouter()
             {
                 id: "Light",
                 title: "Light",
-                mdIcon: "light",
+                mdIcon: "light_mode",
                 handler: () => {
                     useTheme().set({
                         isDark: false

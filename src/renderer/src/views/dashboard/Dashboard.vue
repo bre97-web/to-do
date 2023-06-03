@@ -18,6 +18,7 @@
                     <md-text-button @click="router.push('/dashboard/profile')">Account</md-text-button>
                     <md-text-button @click="router.push('/dashboard/theme')">Theme</md-text-button>
                     <md-text-button @click="router.push('/dashboard/system')">System</md-text-button>
+                    <md-text-button @click="router.push('/dashboard/shortcutMap')">Shortcut Map</md-text-button>
                 </div>
             </div>
 
