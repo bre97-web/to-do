@@ -16,7 +16,7 @@
                             <md-checkbox checked @click="store.move(e, TASKS_TYPE.RECYCLE, TASKS_TYPE.NORMAL)" slot="start"></md-checkbox>
                             <div slot="end">
                                 <md-standard-icon-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">
-                                    <md-icon class="material-icons">delete_forever</md-icon>
+                                    <md-icon>delete_forever</md-icon>
                                 </md-standard-icon-button>
                             </div>
                         </md-list-item>
@@ -26,7 +26,7 @@
             </template>
             <template v-else >
                 <div class="space-y-4 pt-24 text-center">
-                    <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
+                    <md-icon class="scale-[4] text-gray-500">done_all</md-icon>
                     <p class="text-center italic">All done</p>
                 </div>
             </template>
@@ -36,6 +36,7 @@
 
 <script setup lang="ts">
 import Task from '@/components/task/Task.vue';
+import '@material/web/icon/icon'
 import { useTaskStore, TASKS_TYPE } from '@/store';
 
 

@@ -18,10 +18,10 @@
                             <!-- Buttons -->
                             <div slot="end">
                                 <md-standard-icon-button @click="store.move(e, TASKS_TYPE.NORMAL, TASKS_TYPE.FOCUS)">
-                                    <md-icon class="material-icons">favorite_outlined</md-icon>
+                                    <md-icon>favorite</md-icon>
                                 </md-standard-icon-button>
                                 <md-standard-icon-button @click="push('/info', e)">
-                                    <md-icon class="material-icons">more</md-icon>
+                                    <md-icon>more</md-icon>
                                 </md-standard-icon-button>
                             </div>
                         </md-list-item>
@@ -44,7 +44,7 @@
             </template>
             <template v-else >
                 <div class="space-y-4 pt-24 text-center">
-                    <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
+                    <smd-icon class="scale-[4] text-gray-500">done_all</smd-icon>
                     <p class="text-center italic">All done</p>
                 </div>
             </template>
@@ -53,8 +53,10 @@
 </template>
 
 <script setup lang="ts">
-    import Task from '@/components/task/Task.vue';
-    import { Item } from '@/hooks/useList/lib/useItem';
+import Task from '@/components/task/Task.vue';
+import '@material/web/icon/icon'
+import '@material/web/iconbutton/standard-icon-button'
+import { Item } from '@/hooks/useList/lib/useItem';
 import { useTaskStore, TASKS_TYPE } from '@/store';
 import { useRouter } from 'vue-router';
 

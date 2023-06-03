@@ -16,7 +16,7 @@
 
                             <div class="buttonGroup" slot="end">
                                 <md-standard-icon-button @click="store.move(e, TASKS_TYPE.FOCUS, TASKS_TYPE.NORMAL)">
-                                    <md-icon class="material-icons">favorite</md-icon>
+                                    <md-icon>favorite</md-icon>
                                 </md-standard-icon-button>
                             </div>
                         </md-list-item>
@@ -39,7 +39,7 @@
             </template>
             <template v-else >
                 <div class="space-y-4 pt-24 text-center">
-                    <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
+                    <md-icon class="scale-[4] text-gray-500">done_all</md-icon>
                     <p class="text-center italic">All done</p>
                 </div>
             </template>
@@ -48,6 +48,8 @@
 </template>
 
 <script setup lang="ts">
+import '@material/web/icon/icon'
+import '@material/web/divider/divider'
 import Task from '@/components/task/Task.vue';
 import { useTaskStore, TASKS_TYPE } from '@/store';
 
