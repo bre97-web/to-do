@@ -6,7 +6,7 @@
         <main class="space-y-4 mt-8">
             <div>
                 <h1>Dark mode</h1>
-                <lit-dark-switch></lit-dark-switch>
+                <DarkSwitch></DarkSwitch>
                 <p class="italic text-gray-500">深色模式将会禁用部分效果。</p>
             </div>
 
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import '@/components/dark/DarkSwitch'
+import DarkSwitch from '@/components/dark/DarkSwitch.vue'
 import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
 import '@material/web//segmentedbutton/outlined-segmented-button'
 import useTheme from '@/hooks/useTheme';

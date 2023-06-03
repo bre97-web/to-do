@@ -13,7 +13,7 @@ export default defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag: string): boolean => tag.startsWith('md') || tag.startsWith('lit')
+                    isCustomElement: (tag: string): boolean => tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
                 }
             },
         }),

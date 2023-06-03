@@ -14,7 +14,3 @@ import { ref } from 'vue'
 
 const user = ref(personal().get())
 </script>
-
-<style scoped>
-
-</style>

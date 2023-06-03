@@ -6,8 +6,7 @@
         <FirstLaunch></FirstLaunch>
         
         <ninja-keys
-            @selected=""
-            @change=""
+            class="z-50"
             placeholder="placeholder"
             :data="hotkeys"
         ></ninja-keys>
@@ -27,20 +26,62 @@ import { ref } from 'vue'
 import FirstLaunch from './components/FirstLaunch.vue'
 import Loading from './components/Loading.vue'
 import Events from '@/components/event/Events.vue'
+import { useRouter } from "vue-router"
+import useTheme from '@/hooks/useTheme'
+
+
+const router = useRouter()
 
 /**
  * Hotkeys
  */
  const hotkeys = [
     {
-        id: "Open Search",
-        title: "Search",
-        hotkey: "cmd+k",
-        mdIcon: "home",
+        id: "Shortcut Map",
+        title: "Shortcut Map",
+        hotkey: "alt+m",
+        mdIcon: "map",
         handler: () => {
-            console.log(1)
-        }
-    }
+            router.push('/dashboard')
+        },
+    },
+    {
+        id: "Settings",
+        title: "Dashboard",
+        hotkey: "alt+s",
+        mdIcon: "setting",
+        handler: () => {
+            router.push('/dashboard')
+        },
+    },
+    {
+        id: "Theme",
+        title: "Settings",
+        mdIcon: "setting",
+        children: [
+            {
+                id: "Dark",
+                title: "Dark",
+                mdIcon: "dark",
+                handler: () => {
+                    useTheme().set({
+                        isDark: true
+                    })
+                },
+            },
+            {
+                id: "Light",
+                title: "Light",
+                mdIcon: "light",
+                handler: () => {
+                    useTheme().set({
+                        isDark: false
+                    })
+                },
+            },
+        ]
+    },
+    
 ]
 
 /**
