@@ -8,7 +8,7 @@
 
 
         <div class="controller">
-            <lit-dark-switch></lit-dark-switch>
+            <DarkSwitch></DarkSwitch>
             <ThemeColors></ThemeColors>
         </div>
 
@@ -159,8 +159,7 @@
 
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
-import '@/components/dark/DarkSwitch'
-
+import DarkSwitch from '@/components/dark/DarkSwitch.vue'
 import '@material/web/checkbox/checkbox'
 import '@material/web/radio/radio'
 import '@material/web/switch/switch'

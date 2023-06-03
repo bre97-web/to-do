@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import '@/components/dark/DarkSwitch'
-
 const clear = () => {
     localStorage.clear()
 }

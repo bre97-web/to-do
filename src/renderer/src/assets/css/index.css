@@ -99,11 +99,13 @@
     .surfaceContainer {
         background-color: var(--md-sys-color-surface-container);
     }
+    .surfaceContainerHigh {
+        background-color: var(--md-sys-color-surface-container-high);
+    }
     .surface {
         @apply relative;
         transition-duration: 250ms;
         transition-timing-function: ease-in-out;
-        /* background-color: var(--md-sys-color-surface); */
     }
     .surface:hover {
         --md-elevation-level: 2;

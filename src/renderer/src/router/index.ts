@@ -13,6 +13,10 @@ import Overview from '@/views/home/overview/Overview.vue'
 import Recycle from '@/views/home/recycle/Recycle.vue'
 import Focus from '@/views/home/focus/Focus.vue'
 import Dashboard from '@/views/dashboard/Dashboard.vue'
+import Profile from '@/views/dashboard/lib/Profile.vue'
+import System from '@/views/dashboard/lib/System.vue'
+import Theme from '@/views/dashboard/lib/Theme.vue'
+import ShortcutMap from '@/views/dashboard/lib/ShortcutMap.vue'
 import TestPage from '@/views/test/TestPage.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -116,6 +120,34 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/dashboard',
         component: Dashboard,
+        redirect: '/dashboard/profile',
+        children: [
+            {
+                path: '/dashboard/profile',
+                components: {
+                    dashboardView: Profile
+                }
+            },
+            {
+                path: '/dashboard/theme',
+                components: {
+                    dashboardView: Theme
+                }
+            },
+            {
+                path: '/dashboard/system',
+                components: {
+                    dashboardView: System
+                }
+            },
+            {
+                path: '/dashboard/shortcutMap',
+                components: {
+                    dashboardView: ShortcutMap
+                }
+            },
+            
+        ]
     },
     {
         name: 'Test',
