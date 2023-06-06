@@ -1,6 +1,6 @@
 {
   "name": "to-do",
-  "version": "1.0.0-pre.0",
+  "version": "1.0.0-pre.2",
   "author": "bre97-web",
   "description": "Written by Vue 3 and Electron with Vite.",
   "private": false,

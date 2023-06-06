@@ -38,8 +38,8 @@ You can make suggestions in issues.
 
 |Feature|Dev|Perview|Release|
 |:--|--:|--:|--:|
-|Event Snackbars|✅|🟡|❌|
-|Event Snackbars Actions|✅|🟡|❌|
+|Event Snackbars|✅|✅|❌|
+|Event Snackbars Actions|✅|✅|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
 |Notify|✅|❌|❌|
@@ -51,10 +51,10 @@ You can make suggestions in issues.
 |Sort|❌|❌|❌|
 |Today's Tasks|❌|❌|❌|
 |Task Step|✅|✅|❌|
-|Search Advanced|✅|🟡|❌|
+|Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|
-|Sidebar|✅|🟡|❌|
+|Sidebar|✅|✅|❌|
 |Sidebar Actions|❌|❌|❌|
-|Tabs|✅|🟡|❌|
-|Goals|✅|🟡|❌|
+|Tabs|✅|✅|❌|
+|Goals|✅|✅|❌|
 |Element Slide|❌|❌|❌|
