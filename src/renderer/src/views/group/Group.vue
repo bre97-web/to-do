@@ -6,6 +6,11 @@
                     <template #header>
                         <h1>{{ map[0] }}</h1>
                     </template>
+                    <template #nav>
+                        <md-standard-icon-button>
+                            <md-icon>more</md-icon>
+                        </md-standard-icon-button>
+                    </template>
                     <ul class="rounded-xl" v-for="tag in map[1].slice(0, 5)">
 
                         <li>{{ tag.title }}</li> 
@@ -18,8 +23,10 @@
 
 <script setup lang="ts">
 import Card from '@/components/card/Card.vue'
-import { useTags } from '@/hooks/useTags';
-import { useTaskStore } from '@/store';
+import { useTags } from '@/hooks/useTags'
+import { useTaskStore } from '@/store'
+import '@material/web/icon/icon'
+import '@material/web/iconbutton/standard-icon-button'
 
 
 const tasks = useTaskStore()

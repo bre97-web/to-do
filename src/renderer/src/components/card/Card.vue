@@ -12,6 +12,10 @@
         <footer>
             <slot name="footer"></slot>
         </footer>
+
+        <nav class="absolute bottom-0 right-0 p-2 w-full flex justify-end">
+            <slot name="nav"></slot>
+        </nav>
     </div>
 </template>
 
