@@ -49,6 +49,18 @@
                         </md-navigation-tab>
 
                         <md-navigation-tab
+                            label="Group"
+                            @click="
+                                () => {
+                                    activeIndex = 2
+                                    push('/home/group')
+                                }
+                            "
+                        >
+                            <md-icon slot="icon">group</md-icon>
+                        </md-navigation-tab>
+
+                        <md-navigation-tab
                             label="Me"
                             @click="
                                 () => {
