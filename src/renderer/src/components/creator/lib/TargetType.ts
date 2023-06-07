@@ -8,7 +8,7 @@ import { customElement, property } from 'lit/decorators.js'
 @customElement('lit-target-type')
 export default class TargetType extends LitElement {
 
-    @property() setType = (value: Type) => {}
+    @property() setType: any
 
     render() {
         return html`
