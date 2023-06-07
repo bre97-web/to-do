@@ -1,5 +1,5 @@
 <template>
-    <div class="surface select-none">
+    <div class="surface ">
         <md-ripple></md-ripple>
         <md-elevation></md-elevation>
 
