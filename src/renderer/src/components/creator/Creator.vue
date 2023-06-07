@@ -48,8 +48,8 @@ import '@material/web/button/text-button'
 import '@material/web/button/filled-button'
 import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
-import '@material/web/segmentedbutton/outlined-segmented-button'
-import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
+import '@material/web/labs/segmentedbutton/outlined-segmented-button'
+import '@material/web/labs/segmentedbuttonset/outlined-segmented-button-set'
 import { TASKS_TYPE, useTaskStore } from '@/store'
 
 
