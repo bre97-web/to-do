@@ -48,7 +48,7 @@ You can make suggestions in issues.
 |Startup Animation|✅|✅|❌|
 |First Launch|✅|✅|❌|
 |Tag|✅|✅|❌|
-|Sort|❌|❌|❌|
+|Sort|🟡|❌|❌|
 |Today's Tasks|❌|❌|❌|
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
