@@ -31,8 +31,8 @@
 
 <script setup lang="ts">
 import DarkSwitch from '@/components/dark/DarkSwitch.vue'
-import '@material/web/segmentedbuttonset/outlined-segmented-button-set'
-import '@material/web//segmentedbutton/outlined-segmented-button'
+import '@material/web/labs/segmentedbuttonset/outlined-segmented-button-set'
+import '@material/web/labs/segmentedbutton/outlined-segmented-button'
 import useTheme from '@/hooks/useTheme';
 
 const theme = useTheme()
