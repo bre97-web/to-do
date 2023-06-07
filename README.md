@@ -24,9 +24,9 @@ If you want to contribute code, please refer to the form below:
 
 |Language|Position|
 |:--|:--|
-|Vue 3|`./src/renderer/**/*.vue`|
-|Tailwindcss|`./src/renderer/assets/index.css`|
-|JavaScript|`./src/renderer/**/*.js`|
+|Vue|`./src/renderer/**/*.vue`|
+|Tailwindcss|`./src/renderer/assets/css/index.css`|
+|JavaScript or TypeScript|`./src/renderer/**/*.{js,ts}`|
 
 ## Roadmap
 
@@ -36,7 +36,7 @@ You can make suggestions in issues.
 - 🟡 In progress or waiting
 - ✅ Complete
 
-|Feature|Dev|Perview|Release|
+|Feature|Web (Chrome)|Electron App|Release|
 |:--|--:|--:|--:|
 |Event Snackbars|✅|✅|❌|
 |Event Snackbars Actions|✅|✅|❌|
