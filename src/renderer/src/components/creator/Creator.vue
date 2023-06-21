@@ -6,26 +6,26 @@
             </div>
 
             <form class="flex flex-col gap-2 min-h-screen overflow-scroll p-2">
-                <lit-target-type :setType="(value: Type) => targetType = value"></lit-target-type>
+                <lit-target-type :setType="(value: Type) => target.type = value"></lit-target-type>
 
                 <!-- Task -->
-                <template v-if="targetType === 'task'">
-                    <md-filled-text-field :value="task.title" @input="task.title = $event.target.value" label="Title" />
-                    <md-filled-text-field :value="task.subtitle" @input="task.subtitle = $event.target.value" label="Subtitle" />
-                    <md-filled-text-field :value="task.tags.toString()" @input="task.tags = $event.target.value.split(',')" label="Tag" />
-                    <md-filled-text-field :value="task.note" @input="task.note = $event.target.value" label="Note" />
+                <template v-if="target.type === 'task'">
+                    <md-filled-text-field v-model="target.task.title" label="Title" />
+                    <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
+                    <md-filled-text-field :value="target.task.tags.toString()" @input="target.task.tags = $event.target.value.split(/[,，]/)" label="Tag" />
+                    <md-filled-text-field v-model="target.task.note" label="Note" />
                 </template>
 
                 <!-- Goal -->
-                <template v-if="targetType === 'goal'">
-                    <md-filled-text-field label="Title" :value="goal.title" @input="goal.title = $event.target.value"></md-filled-text-field>
-                    <md-filled-text-field label="Description" :value="goal.description" @input="goal.description = $event.target.value"></md-filled-text-field>
+                <template v-if="target.type === 'goal'">
+                    <md-filled-text-field label="Title" v-model="target.goal.title"></md-filled-text-field>
+                    <md-filled-text-field label="Description" v-model="target.goal.description"></md-filled-text-field>
                     <md-outlined-segmented-button-set label="Schedule">
-                        <md-outlined-segmented-button selected @click="goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
-                        <md-outlined-segmented-button @click="goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
-                        <md-outlined-segmented-button @click="goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
+                        <md-outlined-segmented-button selected @click="target.goalConfig.goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
+                        <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
+                        <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
                     </md-outlined-segmented-button-set>
-                    <md-filled-text-field label="Count" type="number" :value="goalCount" @input="goalCount = ($event.target.value as number)"></md-filled-text-field>
+                    <md-filled-text-field label="Count" type="number" v-model="target.goalConfig.goalCount"></md-filled-text-field>
                 </template>
             </form>
 
@@ -41,8 +41,7 @@
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Item, Type } from '@/hooks/useList/lib/useItem'
-import './lib/TargetType.ts'
-import { reactive, ref } from 'vue'
+import './lib/TargetType'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
 import '@material/web/button/filled-button'
@@ -52,70 +51,89 @@ import '@material/web/labs/segmentedbutton/outlined-segmented-button'
 import '@material/web/labs/segmentedbuttonset/outlined-segmented-button-set'
 import { TASKS_TYPE, useTaskStore } from '@/store'
 
-
-
 const props = defineProps(['dialog', 'closeDialog'])
 
-/**
- * 将要创建的目标类型
- */
-const targetType = ref<Type>("task")
+// target的默认值，在clear函数中使用initTarget对象初始化target对象
+const initTarget = {
+    type: "task" as Type,
+    task: {
+        title: '',
+        subtitle: '',
+        tags: [],
+        note: '',
+        steps: [{
+            text: '',
+            done: false
+        }],
+        type: 'task',
+    } as Item,
+    goalConfig: {
+        goalSchedule: 'daily' as Schedule,
+        goalCount: 1 as number,
+    },
+    goal: {
+        title: '',
+        description: '',
+    } as Goal,
+}
+const target = {
+    // 将要创建的目标类型
+    type: "task" as Type,
 
-const task = reactive<Item>({
-    title: '',
-    subtitle: '',
-    tags: [],
-    note: '',
-    steps: [{
-        text: '',
-        done: false
-    }],
-    type: 'task',
-})
-const goalSchedule = ref<Schedule>('daily')
-const goalCount = ref<number>(1)
-const goal = reactive<Goal>({
-    title: '',
-    description: '',
-})
+    // 目标类型为task
+    task: {
+        title: '',
+        subtitle: '',
+        tags: [],
+        note: '',
+        steps: [{
+            text: '',
+            done: false
+        }],
+        type: 'task',
+    } as Item,
+
+    // 目标类型为goal
+    goal: {
+        title: '',
+        description: '',
+    } as Goal,
+    // goal相关的配置
+    goalConfig: {
+        goalSchedule: 'daily' as Schedule,
+        goalCount: 1 as number,
+    },
+
+}
 
 const store = useTaskStore()
 
 
 /**
- * 将用户输入的信息推送到位于useList.js中的对象中，关闭对话框时清空输入数据
+ * 将用户输入的信息推送到store中，关闭对话框时清空输入数据
  */
 const submit = () => {
-    if(targetType.value === 'task') {
-        store.push(task, TASKS_TYPE.NORMAL)
-    } else if(targetType.value === 'goal') {
+    if(target.type === 'task') {
+        store.push(target.task, TASKS_TYPE.NORMAL)
+    } else if(target.type === 'goal') {
         let goals = Array<Goal>()
-        for(let i = 0; i < goalCount.value; i ++) {
-            goals.push(useGoal(goal))
+        for(let i = 0; i < target.goalConfig.goalCount; i ++) {
+            goals.push(useGoal(target.goal))
         }
-        getGlobalGoalsList().push(useGoals(goalSchedule.value, goals).get())
+        getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
     }
-    // clear()
+    clear()
     props.closeDialog()
 }
 const cancel = () => {
+    clear()
     props.closeDialog()
 }
 
-// const clear = () => {
-//     task.title = ''
-//     task.subtitle = ''
-//     task.tags = ['']
-//     task.note = ''
-//     task.date = ''
-//     task.steps = [{
-//         text: '',
-//         done: false
-//     }]
-//     targetType.value = null
-//     goalSchedule.value = 'daily'
-//     goalCount.value = 1
-//     goal.title = ''
-//     goal.description = ''
-// }
+/**
+ * 初始化target对象
+ */
+const clear = () => {
+    Object.assign(target, initTarget)
+}
 </script>
