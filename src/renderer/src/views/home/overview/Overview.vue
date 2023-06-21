@@ -60,6 +60,12 @@ import { Item } from '@/hooks/useList/lib/useItem';
 import { useTaskStore, TASKS_TYPE } from '@/store';
 import { useRouter } from 'vue-router';
 
+const props = defineProps<{
+    filter: string
+}>()
+
+console.log(props.filter);
+
 
 const store = useTaskStore()
 
