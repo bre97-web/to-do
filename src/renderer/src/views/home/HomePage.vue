@@ -22,10 +22,10 @@
         </nav>
 
         <!-- ChipSet -->
-        <!-- <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
+        <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
             <md-filter-chip label="q1">1</md-filter-chip>
             <md-filter-chip label="q1">1</md-filter-chip>
-        </div> -->
+        </div>
         
         <router-view v-slot="{ Component }" name="HomePageInnerBoardView">
             <component :is="Component"></component>
