@@ -10,17 +10,7 @@
         </main>
 
         <!-- Create and Bottom Navigation -->
-        <nav>
-            <div class="fab">
-                <md-fab
-                    label="Create"
-                    :class="{ 'opacity-0 pointer-events-none': activeIndex > 1 }"
-                    @click="dialog.open = true"
-                >
-                    <md-icon slot="icon">create</md-icon>
-                </md-fab>
-                <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
-            </div>
+        <nav class="fixed bottom-0 w-full flex flex-col">
             <div class="navigation overflow-clip">
                 <div>
                     <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
@@ -81,15 +71,13 @@
 <script lang="tsx" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import Creator from '@/components/creator/Creator.vue'
 import Header from '@/components/setting/Header.vue'
 import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
 import '@material/web/labs/navigationbar/navigation-bar'
 import '@material/web/labs/navigationtab/navigation-tab'
-import '@material/web/fab/fab'
-import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/icon/icon'
+import '@material/web/iconbutton/standard-icon-button'
 
 
 
@@ -114,12 +102,4 @@ const push = (path: string) => router.push({
  * 控制md-navigation-bar的activeIndex属性，请在push时更改此activeIndex的值
  */
 const activeIndex: any = ref(0)
-
-/**
- * 控制fab按钮点击后显示的dialog窗口
- */
-const dialog: any = reactive({
-    open: false
-})
-const closeDialog = () => (dialog.open = false)
 </script>
