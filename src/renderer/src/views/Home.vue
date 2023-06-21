@@ -21,7 +21,7 @@
                 </md-fab>
                 <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
             </div>
-            <div class="navigation">
+            <div class="navigation overflow-clip">
                 <div>
                     <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
                         <md-navigation-tab

@@ -135,7 +135,7 @@
         @apply fixed right-0 bottom-0 w-full lg:bottom-5 z-30;
     }
     nav .navigation div {
-        @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip shadow-md;
+        @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip;
     }
 
     
