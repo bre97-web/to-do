@@ -1,5 +1,9 @@
 <template>
     <div class="relative background">
+        <div class="pt-2 m-2">
+            <Search></Search>
+        </div>
+
         <TabGroup as="div" class="w-full sticky z-40 top-[0px]">
             <TabList as="md-tabs">
                 <Tab as="md-tab">Overview</Tab>
@@ -18,8 +22,6 @@
                 </TabPanel>
             </TabPanels>
         </TabGroup>
-
-        <Search></Search>
 
         <!-- Create button -->
         <nav class="fab">
