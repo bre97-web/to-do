@@ -1,14 +1,10 @@
 <template>
     <div class="relative background">
-        <div class="w-full sticky z-40 top-[0px]">
-            <md-tabs>
-                <md-tab @click="router.push('/home/overview')">Overview</md-tab>
-                <md-tab @click="router.push('/home/focus')">Focus</md-tab>
-                <md-tab @click="router.push('/home/recycle')">Recycle</md-tab>
-            </md-tabs>
+        <div class="pt-0 m-0">
+            <Search></Search>
         </div>
 
-        <Search></Search>
+        <Content :targetType="targetType" :setTargetType="setTargetType" :currentFilter="currentFilter" :clearCurrentFilter="clearCurrentFilter" :tasks="store.tasks"></Content>
 
         <!-- Create button -->
         <nav class="fab">
@@ -22,29 +18,101 @@
         </nav>
 
         <!-- ChipSet -->
-        <!-- <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
-            <md-filter-chip label="q1">1</md-filter-chip>
-            <md-filter-chip label="q1">1</md-filter-chip>
-        </div> -->
-        
-        <router-view v-slot="{ Component }" name="HomePageInnerBoardView">
-            <component :is="Component"></component>
-        </router-view>
+        <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
+            <Chips :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
+        </div>
+
     </div>
 </template>
 
 <script lang="ts" setup>
 import Creator from '@/components/creator/Creator.vue'
 import Search from '@/components/search/Search.vue'
+import Content from './lib/Content.vue'
 import '@material/web/tabs/tab'
 import '@material/web/tabs/tabs'
 import '@material/web/fab/fab'
 import '@material/web/icon/icon'
-import '@material/web/chips/filter-chip'
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, reactive, ref, watch } from 'vue';
+import Chips from './lib/Chips.vue'
+import { useTags } from '@/hooks/useTags'
+import { useTaskStore } from '@/store'
+import { Item } from '@/hooks/useList/lib/useItem'
 
-const router = useRouter()
+const store = useTaskStore()
+
+/**
+ * 当前显示的Task类型（Overview，Focus，Recycle）
+ */
+enum TaskType {
+    OVERVIEW = 0,
+    FOCUS,
+    RECYCLE
+}
+const targetType = ref<TaskType>(TaskType.OVERVIEW)
+const setTargetType = (e: TaskType) => targetType.value = e
+
+
+/**
+ * 当前选择的过滤标签
+ */
+const currentFilter = ref<string[]>([])
+
+/**
+ * 清除currentFilter对象的元素
+ */
+const clearCurrentFilter = () => {
+    currentFilter.value = []
+}
+/**
+ * 向currentFilter对象toggle一个元素e
+ */
+const pushCurrentFilter = (e: string) => {
+    if(currentFilter.value.includes(e)) {
+        currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
+    } else {
+        currentFilter.value.push(e)
+    }
+}
+
+/**
+ * 此监视器将在store中tasks发生变化时更新currentFilter
+ */
+watch(store.tasks, () => {
+    let map = getTags.value.map
+
+    let found: string[] = []
+    map.forEach((_, k) => {
+        if(currentFilter.value.includes(k)) {
+            found.push(k)
+        }
+    })
+
+    currentFilter.value = found
+})
+
+/**
+ * 取得所有Item的tags，返回值作为过滤标签，用于过滤器
+ */
+ const getTags = computed(() => {
+    let result: string[] = []
+    let iterable = useTags(store.getAll.normal)
+    
+    if(targetType.value === TaskType.FOCUS) {
+        iterable = useTags(store.getAll.focus)
+    } else if(targetType.value === TaskType.RECYCLE) {
+        iterable = useTags(store.getAll.recycle)
+    }
+
+    for(const e of iterable.keys()) {
+        result.push(e)
+    }
+
+    return {
+        map: iterable as Map<string, Item[]>,
+        getString: result
+    }
+})
 
 /**
  * 控制fab按钮点击后显示的dialog窗口
@@ -53,4 +121,7 @@ const dialog: any = reactive({
     open: false
 })
 const closeDialog = () => (dialog.open = false)
+
+
+
 </script>

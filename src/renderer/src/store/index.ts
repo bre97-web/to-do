@@ -107,7 +107,17 @@ const useTaskStore = defineStore('task_store', {
                 this.tasks.recycle.push(e)
             }
 
-        }
+        },
+        include(container: TASKS_TYPE, e: Item): boolean {
+            if (container === TASKS_TYPE.FOCUS) {
+                return this.tasks.focus.includes(e)
+            } else if (container === TASKS_TYPE.NORMAL) {
+                return this.tasks.normal.includes(e)
+            } else if (container === TASKS_TYPE.RECYCLE) {
+                return this.tasks.recycle.includes(e)
+            }
+            return false
+        },
     },
     persist: true,
 })
