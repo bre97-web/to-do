@@ -80,21 +80,15 @@ const pushCurrentFilter = (e: string) => {
  */
 watch(store.tasks, () => {
     let map = getTags.value.map
-    map.forEach((v, k) => {
-        console.log(v);
-        
-        if(currentFilter.value.includes(k) && (v == null || v.length === 0)) {
-            currentFilter.value.splice(currentFilter.value.indexOf(k), 1)
+
+    let found: string[] = []
+    map.forEach((_, k) => {
+        if(currentFilter.value.includes(k)) {
+            found.push(k)
         }
     })
 
-
-    
-
-
-
-    console.log(currentFilter.value);
-
+    currentFilter.value = found
 })
 
 /**
