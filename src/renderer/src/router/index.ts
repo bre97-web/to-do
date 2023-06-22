@@ -60,13 +60,7 @@ const routes: RouteRecordRaw[] = [
                             HomePageInnerBoardView: Recycle
                         }
                     },
-                    {
-                        path: '/info',
-                        name: 'Info',
-                        components: {
-                            HomePageInnerBoardView: Info
-                        }
-                    },
+
                 ]
             },
             {
@@ -161,7 +155,12 @@ const routes: RouteRecordRaw[] = [
         name: 'Test',
         path: '/test',
         component: TestPage,
-    }
+    },
+    {
+        path: '/info',
+        name: 'Info',
+        component: Info
+    },
 ]
 
 const Router:Router = createRouter({

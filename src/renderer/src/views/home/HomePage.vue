@@ -1,21 +1,23 @@
 <template>
     <div class="relative background">
-        <div class="w-full sticky z-40 top-[0px]">
-            <md-tabs>
-                <md-tab @click="() => {
-                    targetType = TaskType.OVERVIEW
-                    router.push('/home/overview')
-                }">Overview</md-tab>
-                <md-tab @click="() => {
-                    targetType = TaskType.FOCUS
-                    router.push('/home/focus')
-                }">Focus</md-tab>
-                <md-tab @click="() => {
-                    targetType = TaskType.RECYCLE
-                    router.push('/home/recycle')
-                }">Recycle</md-tab>
-            </md-tabs>
-        </div>
+            <TabGroup>
+                <TabList as="md-tabs">
+                    <Tab as="md-tab">Overview</Tab>
+                    <Tab as="md-tab">Focus</Tab>
+                    <Tab as="md-tab">Recycle</Tab>
+                </TabList>
+                <TabPanels>
+                    <TabPanel>
+                        <Result :itemsFilted="currentFilter" :items="store.getNormal"></Result>
+                    </TabPanel>
+                    <TabPanel>
+                        <Result :itemsFilted="currentFilter" :items="store.getFocus"></Result>
+                    </TabPanel>
+                    <TabPanel>
+                        <Result :itemsFilted="currentFilter" :items="store.getRecycle"></Result>
+                    </TabPanel>
+                </TabPanels>
+            </TabGroup>
 
         <Search></Search>
 
@@ -33,17 +35,22 @@
         <!-- ChipSet -->
         <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
             <template v-for="e in getTags()">
-                <md-filter-chip @click="putCurrentFilter(e[0])" :label="e[0]"></md-filter-chip>
+                <md-filter-chip @click="putCurrentFilter(e)" :label="e[0]"></md-filter-chip>
             </template>
         </div>
         
-        <router-view v-slot="{ Component }" name="HomePageInnerBoardView" filter="qq">
+        <!-- <router-view v-slot="{ Component }" name="HomePageInnerBoardView" :filtedItem="currentFilter">
             <component :is="Component"></component>
-        </router-view>
+        </router-view> -->
+        <!-- <Result></Result> -->
+        
+
+
     </div>
 </template>
 
 <script lang="ts" setup>
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Creator from '@/components/creator/Creator.vue'
 import Search from '@/components/search/Search.vue'
 import '@material/web/tabs/tab'
@@ -51,11 +58,13 @@ import '@material/web/tabs/tabs'
 import '@material/web/fab/fab'
 import '@material/web/icon/icon'
 import '@material/web/chips/filter-chip'
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store'
 import { Item } from '@/hooks/useList/lib/useItem'
+import Result from './lib/Result.vue';
+import Overview from './overview/Overview.vue'
 
 const router = useRouter()
 
@@ -92,19 +101,24 @@ const getTags = (): Map<string, Item[]> => {
     } else if(targetType.value === TaskType.RECYCLE) {
         result = useTags([...store.getAll.recycle])
     }
-    console.log(result.values());
     return result
 }
 
 /**
  * 当前选择的过滤标签
  */
-const currentFilter = ref<string[]>([])
-const putCurrentFilter = (e: string) => {
-    if(currentFilter.value.includes(e)) {
-        currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
+const currentFilter = ref<Map<string, Item[]>>(new Map<string, Item[]>())
+const putCurrentFilter = (e: [string, Item[]]) => {
+    if(currentFilter.value.get(e[0])) {
+        currentFilter.value.delete(e[0])
     } else {
-        currentFilter.value.push(e)
+        currentFilter.value?.set(e[0], e[1])
     }
 }
+/**
+ * 当当前显示的Task类型变化后，清空currentFilter
+ */
+watch(() => targetType.value, () => currentFilter.value = new Map<string, Item[]>())
+
+
 </script>

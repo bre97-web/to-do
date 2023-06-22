@@ -4,6 +4,7 @@
             <template v-if="store.getNormal.length !== 0">
                 <md-list>
                     <template
+                        v-if="props.filtedItem.size === 0"
                         v-for="e in store.getNormal"
                         :key="e['index']"
                         class="relative"
@@ -40,6 +41,42 @@
                         </ul>
                         <md-divider></md-divider>
                     </template>
+                    <template v-else v-for="items in props.filtedItem.values()">
+                        <template v-for="item in items">
+                            <md-list-item
+                                :headline="item.title"
+                                :supportingText="item.subtitle"
+                            >
+                                <!-- 完成按钮 -->
+                                <md-checkbox @click="store.move(item, TASKS_TYPE.NORMAL, TASKS_TYPE.RECYCLE)" slot="start"></md-checkbox>
+                                
+                                <!-- Buttons -->
+                                <div slot="end">
+                                    <md-standard-icon-button @click="store.move(item, TASKS_TYPE.NORMAL, TASKS_TYPE.FOCUS)">
+                                        <md-icon>favorite</md-icon>
+                                    </md-standard-icon-button>
+                                    <md-standard-icon-button @click="push('/info', item)">
+                                        <md-icon>more</md-icon>
+                                    </md-standard-icon-button>
+                                </div>
+                            </md-list-item>
+                        
+                            <!-- Tags -->
+                            <ul
+                                v-if="item.tags && item.tags.length !== 0 && item.tags[0] !== ''"
+                                class="relative bottom-0 px-4 py-2"
+                            >
+                                <li
+                                    v-for="(tag, index) in item.tags"
+                                    :key="index"
+                                >
+                                    <p>{{ tag }}</p>
+                                </li>
+                            </ul>
+                            <md-divider></md-divider>
+                        </template>
+
+                    </template>
                 </md-list>
             </template>
             <template v-else >
@@ -61,11 +98,8 @@ import { useTaskStore, TASKS_TYPE } from '@/store';
 import { useRouter } from 'vue-router';
 
 const props = defineProps<{
-    filter: string
+    filtedItem: Map<string, Item[]>
 }>()
-
-console.log(props.filter);
-
 
 const store = useTaskStore()
 
