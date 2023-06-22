@@ -1,23 +1,23 @@
 <template>
     <div class="relative background">
-            <TabGroup>
-                <TabList as="md-tabs">
-                    <Tab as="md-tab">Overview</Tab>
-                    <Tab as="md-tab">Focus</Tab>
-                    <Tab as="md-tab">Recycle</Tab>
-                </TabList>
-                <TabPanels>
-                    <TabPanel>
-                        <Result :itemsFilted="currentFilter" :items="store.getNormal"></Result>
-                    </TabPanel>
-                    <TabPanel>
-                        <Result :itemsFilted="currentFilter" :items="store.getFocus"></Result>
-                    </TabPanel>
-                    <TabPanel>
-                        <Result :itemsFilted="currentFilter" :items="store.getRecycle"></Result>
-                    </TabPanel>
-                </TabPanels>
-            </TabGroup>
+        <TabGroup as="div" class="w-full sticky z-40 top-[0px]">
+            <TabList as="md-tabs">
+                <Tab as="md-tab">Overview</Tab>
+                <Tab as="md-tab">Focus</Tab>
+                <Tab as="md-tab">Recycle</Tab>
+            </TabList>
+            <TabPanels>
+                <TabPanel>
+                    <Result :itemsFilted="currentFilter" :items="store.getNormal"></Result>
+                </TabPanel>
+                <TabPanel>
+                    <Result :itemsFilted="currentFilter" :items="store.getFocus"></Result>
+                </TabPanel>
+                <TabPanel>
+                    <Result :itemsFilted="currentFilter" :items="store.getRecycle"></Result>
+                </TabPanel>
+            </TabPanels>
+        </TabGroup>
 
         <Search></Search>
 
@@ -38,13 +38,6 @@
                 <md-filter-chip @click="putCurrentFilter(e)" :label="e[0]"></md-filter-chip>
             </template>
         </div>
-        
-        <!-- <router-view v-slot="{ Component }" name="HomePageInnerBoardView" :filtedItem="currentFilter">
-            <component :is="Component"></component>
-        </router-view> -->
-        <!-- <Result></Result> -->
-        
-
 
     </div>
 </template>
