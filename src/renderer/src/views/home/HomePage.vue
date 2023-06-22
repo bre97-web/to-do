@@ -52,14 +52,10 @@ import '@material/web/fab/fab'
 import '@material/web/icon/icon'
 import '@material/web/chips/filter-chip'
 import { reactive, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store'
 import { Item } from '@/hooks/useList/lib/useItem'
 import Result from './lib/Result.vue';
-import Overview from './overview/Overview.vue'
-
-const router = useRouter()
 
 /**
  * 控制fab按钮点击后显示的dialog窗口

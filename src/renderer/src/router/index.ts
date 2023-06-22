@@ -9,9 +9,6 @@ import ChooseGoal from '@/views/chooseGoal/ChooseGoal.vue'
 import Template from "@/views/chooseGoal/goalTemplate/Template.vue"
 import TemplateDesc from "@/views/chooseGoal/goalTemplate/goalTemplateDesc/TemplateDesc.vue"
 import Goals from "@/views/goals/Goals.vue"
-import Overview from '@/views/home/overview/Overview.vue'
-import Recycle from '@/views/home/recycle/Recycle.vue'
-import Focus from '@/views/home/focus/Focus.vue'
 import Dashboard from '@/views/dashboard/Dashboard.vue'
 import Profile from '@/views/dashboard/lib/Profile.vue'
 import System from '@/views/dashboard/lib/System.vue'
@@ -34,34 +31,9 @@ const routes: RouteRecordRaw[] = [
             {
                 name: 'HomePage',
                 path: '/home',
-                redirect: '/home/overview',
                 components: {
                     MainBoardView: HomePage
                 },
-                children: [
-                    {
-                        path: '/home/overview',
-                        name: 'Overview',
-                        components: {
-                            HomePageInnerBoardView: Overview
-                        }
-                    },
-                    {
-                        path: '/home/focus',
-                        name: 'Focus',
-                        components: {
-                            HomePageInnerBoardView: Focus
-                        }
-                    },
-                    {
-                        path: '/home/recycle',
-                        name: 'Recycle',
-                        components: {
-                            HomePageInnerBoardView: Recycle
-                        }
-                    },
-
-                ]
             },
             {
                 name: 'Me',
