@@ -1,27 +1,10 @@
 <template>
     <div class="relative background">
-        <div class="pt-2 m-2">
+        <div class="pt-0 m-0">
             <Search></Search>
         </div>
 
-        <TabGroup as="div" class="w-full sticky z-40 top-[0px]">
-            <TabList as="md-tabs">
-                <Tab as="md-tab">Overview</Tab>
-                <Tab as="md-tab">Focus</Tab>
-                <Tab as="md-tab">Recycle</Tab>
-            </TabList>
-            <TabPanels>
-                <TabPanel>
-                    <Result :itemsFilted="currentFilter" :items="store.getNormal"></Result>
-                </TabPanel>
-                <TabPanel>
-                    <Result :itemsFilted="currentFilter" :items="store.getFocus"></Result>
-                </TabPanel>
-                <TabPanel>
-                    <Result :itemsFilted="currentFilter" :items="store.getRecycle"></Result>
-                </TabPanel>
-            </TabPanels>
-        </TabGroup>
+        <Content :targetType="targetType" :setTargetType="setTargetType" :currentFilter="currentFilter" :clearCurrentFilter="clearCurrentFilter" :tasks="store.tasks"></Content>
 
         <!-- Create button -->
         <nav class="fab">
@@ -36,36 +19,25 @@
 
         <!-- ChipSet -->
         <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
-            <template v-for="e in getTags()">
-                <md-filter-chip @click="putCurrentFilter(e)" :label="e[0]"></md-filter-chip>
-            </template>
+            <Chips :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
         </div>
 
     </div>
 </template>
 
 <script lang="ts" setup>
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Creator from '@/components/creator/Creator.vue'
 import Search from '@/components/search/Search.vue'
+import Content from './lib/Content.vue'
 import '@material/web/tabs/tab'
 import '@material/web/tabs/tabs'
 import '@material/web/fab/fab'
 import '@material/web/icon/icon'
-import '@material/web/chips/filter-chip'
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
+import Chips from './lib/Chips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store'
 import { Item } from '@/hooks/useList/lib/useItem'
-import Result from './lib/Result.vue';
-
-/**
- * 控制fab按钮点击后显示的dialog窗口
- */
-const dialog: any = reactive({
-    open: false
-})
-const closeDialog = () => (dialog.open = false)
 
 const store = useTaskStore()
 
@@ -78,38 +50,84 @@ enum TaskType {
     RECYCLE
 }
 const targetType = ref<TaskType>(TaskType.OVERVIEW)
+const setTargetType = (e: TaskType) => targetType.value = e
 
-/**
- * 取得所有Item的tags，返回值作为过滤标签，用于过滤器
- */
-const getTags = (): Map<string, Item[]> => {
-    let result: Map<string, Item[]> = new Map()
-
-    if(targetType.value === TaskType.OVERVIEW) {
-        result = useTags([...store.getAll.normal])
-    } else if(targetType.value === TaskType.FOCUS) {
-        result = useTags([...store.getAll.focus])
-    } else if(targetType.value === TaskType.RECYCLE) {
-        result = useTags([...store.getAll.recycle])
-    }
-    return result
-}
 
 /**
  * 当前选择的过滤标签
  */
-const currentFilter = ref<Map<string, Item[]>>(new Map<string, Item[]>())
-const putCurrentFilter = (e: [string, Item[]]) => {
-    if(currentFilter.value.get(e[0])) {
-        currentFilter.value.delete(e[0])
-    } else {
-        currentFilter.value?.set(e[0], e[1])
-    }
+const currentFilter = ref<string[]>([])
+
+/**
+ * 清除currentFilter对象的元素
+ */
+const clearCurrentFilter = () => {
+    currentFilter.value = []
 }
 /**
- * 当当前显示的Task类型变化后，清空currentFilter
+ * 向currentFilter对象toggle一个元素e
  */
-watch(() => targetType.value, () => currentFilter.value = new Map<string, Item[]>())
+const pushCurrentFilter = (e: string) => {
+    if(currentFilter.value.includes(e)) {
+        currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
+    } else {
+        currentFilter.value.push(e)
+    }
+}
+
+/**
+ * 此监视器将在store中tasks发生变化时更新currentFilter
+ */
+watch(store.tasks, () => {
+    let map = getTags.value.map
+    map.forEach((v, k) => {
+        console.log(v);
+        
+        if(currentFilter.value.includes(k) && (v == null || v.length === 0)) {
+            currentFilter.value.splice(currentFilter.value.indexOf(k), 1)
+        }
+    })
+
+
+    
+
+
+
+    console.log(currentFilter.value);
+
+})
+
+/**
+ * 取得所有Item的tags，返回值作为过滤标签，用于过滤器
+ */
+ const getTags = computed(() => {
+    let result: string[] = []
+    let iterable = useTags(store.getAll.normal)
+    
+    if(targetType.value === TaskType.FOCUS) {
+        iterable = useTags(store.getAll.focus)
+    } else if(targetType.value === TaskType.RECYCLE) {
+        iterable = useTags(store.getAll.recycle)
+    }
+
+    for(const e of iterable.keys()) {
+        result.push(e)
+    }
+
+    return {
+        map: iterable as Map<string, Item[]>,
+        getString: result
+    }
+})
+
+/**
+ * 控制fab按钮点击后显示的dialog窗口
+ */
+const dialog: any = reactive({
+    open: false
+})
+const closeDialog = () => (dialog.open = false)
+
 
 
 </script>

@@ -117,7 +117,7 @@ const useTaskStore = defineStore('task_store', {
                 return this.tasks.recycle.includes(e)
             }
             return false
-        }
+        },
     },
     persist: true,
 })
