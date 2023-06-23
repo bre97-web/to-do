@@ -30,8 +30,8 @@
         </template>
         <template v-else>
             <div class="space-y-4 pt-24 text-center">
-                <md-icon class="scale-[4] text-gray-500">done_all</md-icon>
-                <p class="text-center italic">All done</p>
+                <md-icon class="scale-[4] text-secondary">done_all</md-icon>
+                <p class="text-center italic text-secondary">All done</p>
             </div>
         </template>
     </div>

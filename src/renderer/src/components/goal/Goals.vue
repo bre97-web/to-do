@@ -1,9 +1,9 @@
-<template>
+ text-secondary<template>
     <div>
         <template v-if="globalGoals.values().length === 0">
             <div class="space-y-4 pt-24 text-center">
-                <span class="material-symbols-outlined scale-[4] text-gray-500">done_all</span>
-                <p class="text-center italic">All done</p>
+                <span class="material-symbols-outlined scale-[4] text-secondary">done_all</span>
+                <p class="text-center italic text-secondary">All done</p>
             </div>
         </template>
 
