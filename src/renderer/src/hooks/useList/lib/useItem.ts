@@ -1,5 +1,5 @@
+import { useDate } from "@/hooks/useDate"
 import { useIndex } from "@/hooks/useIndex"
-import moment from "moment"
 
 type Title = string
 type Subtitle = string
@@ -85,7 +85,7 @@ const createIndex = (): number => useIndex()
  * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
  * @returns 返回一个YYYY-MM-DD格式的日期
  */
-const createDate = (): string => moment().format('YYYY-MM-DD')
+const createDate = (): string => useDate()
 
 /**
  * 返回一个Item类型的对象

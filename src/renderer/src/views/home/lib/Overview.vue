@@ -47,7 +47,7 @@ const Task = ({item}: {
         <md-elevation></md-elevation>
         <header>
             <h1>{ item.title }</h1>
-            <p class="text-xs">Created in { item.date }</p>
+            <p class="text-xs">Created in { item.createdDate }</p>
         </header>
     </li>
 )
