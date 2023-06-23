@@ -1,11 +1,15 @@
 <template>
     <TabGroup as="div" class="w-full sticky z-40 top-[0px]">
         <TabList as="md-tabs">
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.OVERVIEW)">Overview</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NONE)">Overview</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NORMAL)">Todo</Tab>
             <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.FOCUS)">Focus</Tab>
             <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.RECYCLE)">Recycle</Tab>
         </TabList>
         <TabPanels>
+            <TabPanel>
+                <Overview></Overview>
+            </TabPanel>
             <TabPanel>
                 <Result :itemsFilted="props.currentFilter" :items="props.tasks.normal"></Result>
             </TabPanel>
@@ -22,10 +26,12 @@
 <script setup lang="ts">
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Result from './Result.vue';
+import Overview from './Overview.vue'
 import { Items } from '@/hooks/useList/lib/useItem';
 
 enum TaskType {
-    OVERVIEW = 0,
+    NONE = 0,
+    NORMAL,
     FOCUS,
     RECYCLE
 }

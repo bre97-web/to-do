@@ -19,7 +19,7 @@
 
         <!-- ChipSet -->
         <div class="fixed bottom-24 lg:bottom-28 z-30 backdrop-blur-md fab flex gap-2 mx-4">
-            <Chips :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
+            <Chips v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0" :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
         </div>
 
     </div>
@@ -45,11 +45,12 @@ const store = useTaskStore()
  * 当前显示的Task类型（Overview，Focus，Recycle）
  */
 enum TaskType {
-    OVERVIEW = 0,
+    NONE = 0,
+    NORMAL,
     FOCUS,
     RECYCLE
 }
-const targetType = ref<TaskType>(TaskType.OVERVIEW)
+const targetType = ref<TaskType>(TaskType.NORMAL)
 const setTargetType = (e: TaskType) => targetType.value = e
 
 

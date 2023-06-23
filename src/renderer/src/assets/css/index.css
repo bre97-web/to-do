@@ -589,8 +589,22 @@
     }
     
 
-
-
+    .shake {
+        transition: all 1s;
+    }
+    .shake:hover {
+        animation: shakingHand infinite 1s;
+    }
+    @keyframes shakingHand {
+        from {
+            transform: rotate(0deg)
+        } 50% {
+            transform: rotate(12deg)
+        } to {
+            transform: rotate(0deg)
+            
+        }
+    }
 
 
 
