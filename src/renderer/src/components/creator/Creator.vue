@@ -26,7 +26,7 @@
                         <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
                     </md-outlined-segmented-button-set>
-                    <md-filled-text-field label="Count" type="number" v-model="target.goalConfig.goalCount"></md-filled-text-field>
+                    <md-filled-text-field label="Times" type="number" value="1" @input="target.goalConfig.goalCount = $event.target.value"></md-filled-text-field>
                 </template>
             </form>
 
@@ -67,7 +67,7 @@ const initTarget = {
     },
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
-        goalCount: 1 as number,
+        goalCount: 1,
     },
     goal: {
         title: '',
