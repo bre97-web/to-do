@@ -1,5 +1,5 @@
 <template>
-    <div id="loading" class="background">
+    <div id="loading" class="bg-background">
         <div>
             <img src="../assets/img/icon.png" alt="To-Do" class="max-w-xs" />
             <div>
