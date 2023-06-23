@@ -1,4 +1,5 @@
 import { Goal, Goals } from "@/hooks/useList/lib/useGoal";
+import moment from "moment";
 import { defineStore } from "pinia";
 
 
@@ -36,7 +37,9 @@ const useGoalStore = defineStore('goal_store', {
             e.currentIndex = e.maxIndex
             e.compelete = true
         },
-
+        geuCurrentDate(e: Goals): string {
+            return moment(e.createdDate, 'YYYY-MM-DD').add((e.currentIndex + 1) * (e.schedule === "daily" ? 1 : e.schedule === "monthly" ? 30 : 7), 'd').format('YYYY-MM-DD')
+        }
 
     },
 

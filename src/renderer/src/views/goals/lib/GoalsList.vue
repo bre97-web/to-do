@@ -3,20 +3,24 @@
         <template
             v-if="goalStore.getGoals.length !== 0"
             v-for="goals in goalStore.getGoals"
+            :key="goals.index"
         >
 
             <md-list-item
                 :headline="goals.compelete ? goals.goals[goals.maxIndex !== 0 ? goals.maxIndex - 1 : 0].title : goals.goals[goals.currentIndex].title"
-                :supportingText="'Next times '"
-                :class="{ 'text-secondary': goals.compelete }"
+                :supportingText="goals.compelete ? '' : 'Next times ' + goalStore.geuCurrentDate(goals)"
             >
                 <!-- 下一步按钮 -->
-                <md-checkbox
-                    slot="start"
-                    :checked="goals.compelete"
-                    :disabled="goals.compelete"
-                    @click="goalStore.nextGoal(goals)"
-                ></md-checkbox>
+                <div slot="start" class="ml-2">
+                    <md-standard-icon-button slot="start" :disabled="goals.compelete" @click="goalStore.nextGoal(goals)">
+                        <md-icon v-if="!goals.compelete" >radio_button_unchecked</md-icon>
+                        <md-icon v-else>check</md-icon>
+                    </md-standard-icon-button>
+                </div>
+
+                <template>
+
+                </template>
 
                 <!-- 删除按钮 -->
                 <div slot="end" class="flex gap-2 items-center justify-end">

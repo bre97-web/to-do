@@ -36,6 +36,7 @@ interface Goals {
     createdDate: Date
     targetDate: Date | null
     compelete: boolean
+    index: number
 }
 
 /**
@@ -77,7 +78,8 @@ function useGoals({ goalList, schedule = "daily", currentIndex = 0, maxIndex = g
         maxIndex: maxIndex,
         createdDate: useDate(),
         targetDate: targetDate,
-        compelete: compelete
+        compelete: compelete,
+        index: useIndex()
     }
 }
 
