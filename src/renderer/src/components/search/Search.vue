@@ -63,7 +63,7 @@ import { Header } from './lib/Header'
 import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import { Items } from '@/hooks/useList/lib/useItem'
+import { Items, useItem } from '@/hooks/useList/lib/useItem'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
@@ -108,17 +108,9 @@ const get = computed<Items>(() => {
     return results
 })
 const add = (): any => {
-    store.push({
-        title: input.value,
-        subtitle: '',
-        tags: [],
-        note: '',
-        steps: [{
-            text: '',
-            done: false
-        }],
-        type: 'task',
-    }, TASKS_TYPE.NORMAL)
+    store.push(useItem({
+        title: input.value
+    }), TASKS_TYPE.NORMAL)
 }
 
 /**

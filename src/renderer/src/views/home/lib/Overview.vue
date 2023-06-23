@@ -44,7 +44,7 @@ const Title = ({title, subtitle}: {
 const Task = ({item}: {
     item: Item
 }) => (
-    <li class="elevation rounded-3xl p-4 text-onSurface surfaceContainer">
+    <li class="elevation rounded-3xl p-4 text-onSurface surfaceContainer z-0">
         <md-elevation></md-elevation>
         <header>
             <h1>{ item.title }</h1>

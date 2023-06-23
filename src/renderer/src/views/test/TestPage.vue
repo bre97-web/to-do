@@ -116,17 +116,7 @@
                 :value="input"
                 @input="input = $event.target.value"
             ></md-outlined-text-field>
-            <md-tonal-button @click="store.push({
-                title: input,
-                subtitle: '',
-                tags: [],
-                steps: [{
-                text: '',
-                done: false
-                }],
-                note: '',
-                type: 'task'
-                }, TASKS_TYPE.FOCUS)"
+            <md-tonal-button @click="store.push(useItem({ title: 'test'}), TASKS_TYPE.FOCUS)"
             >Push</md-tonal-button>
 
             <ul>
@@ -183,6 +173,7 @@ import '@material/web/linearprogress/linear-progress'
 import '@material/web/circularprogress/circular-progress'
 import { ref, watch } from 'vue'
 import { TASKS_TYPE, useTaskStore } from '@/store/index'
+import { useItem } from '@/hooks/useList/lib/useItem'
 
 
 /**
