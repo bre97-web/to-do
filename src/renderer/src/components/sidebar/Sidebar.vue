@@ -1,10 +1,10 @@
 <template>
     <div class="fixed hidden lg:block top-28 left-0 pl-4 w-44 h-96">
-        <div class="sidebar">
-            <h1>Sidebar</h1>
+        <div class="sidebar bg-surface">
+            <h1 class="text-onSurface">Sidebar</h1>
             <ul>
                 <li>
-                    <header>
+                    <header class="text-onSurface">
                         <h1>Set a goal to do it</h1>
                         <p>Including some steps</p>
                     </header>
@@ -16,7 +16,7 @@
                 </li>
 
                 <li>
-                    <p class="italic">More features is coming.</p>
+                    <p class="italic text-onSurface">More features is coming.</p>
                 </li>
             </ul>
         </div>
