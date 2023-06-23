@@ -50,9 +50,6 @@
     header > h1 {
         @apply text-2xl;
     }
-    header > p {
-        color: var(--md-sys-color-secondary);
-    }
 
     /* 
      * Material Web Components Baseline color scheme tokens
