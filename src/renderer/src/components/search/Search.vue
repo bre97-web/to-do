@@ -19,7 +19,7 @@
                             @click="router.push(e.path)"
                         >
                             <md-elevation></md-elevation>
-                            <h1 >
+                            <h1 class="text-onBackground">
                                 {{ e.title }}
                             </h1>
                         </li>
@@ -45,7 +45,7 @@
             </Task>
 
             <div v-if="get.length === 0">
-                <p class="text-right font-bold">{{ input.value }} is not found</p>
+                <p class="text-right font-bold text-onBackground">{{ input.value }} is not found</p>
                 <div class="flex justify-end items-center gap-2">
                     <md-tonal-button @click="add">Create</md-tonal-button>
                 </div>
