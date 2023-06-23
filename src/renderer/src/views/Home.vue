@@ -10,7 +10,7 @@
         </main>
 
         <!-- Create and Bottom Navigation -->
-        <nav class="fixed bottom-0 w-full flex flex-col">
+        <nav class="fixed bottom-0 lg:bottom-4 w-full flex flex-col">
             <div class="navigation overflow-clip">
                 <div>
                     <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
