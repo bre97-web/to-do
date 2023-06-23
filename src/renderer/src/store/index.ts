@@ -41,18 +41,12 @@ const useTaskStore = defineStore('task_store', {
     },
     actions: {
         push(e: Item, to: TASKS_TYPE) {
-            var obj = {
-                ...e,
-                createdDate: e['createdDate'] === undefined ? createDate() : e.createdDate,
-                targetDate: e['targetDate'] === undefined ? createDate() : e.targetDate,
-                index: e['index'] === undefined ? createIndex() : e.index,    
-            }
             if (to === TASKS_TYPE.FOCUS) {
-                this.tasks.focus.push(obj)
+                this.tasks.focus.push(e)
             } else if (to === TASKS_TYPE.NORMAL) {
-                this.tasks.normal.push(obj)
+                this.tasks.normal.push(e)
             } else if (to === TASKS_TYPE.RECYCLE) {
-                this.tasks.recycle.push(obj)
+                this.tasks.recycle.push(e)
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
