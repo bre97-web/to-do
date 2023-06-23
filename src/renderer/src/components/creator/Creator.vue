@@ -14,6 +14,7 @@
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
                     <md-filled-text-field :value="target.task.tags.toString()" @input="target.task.tags = $event.target.value.split(/[,，]/)" label="Tag" />
                     <md-filled-text-field v-model="target.task.note" label="Note" />
+                    <md-filled-text-field v-model="target.task.targetDate" type="date" label="Target Date" />
                 </template>
 
                 <!-- Goal -->
@@ -40,7 +41,7 @@
 <script lang="ts" setup>
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
-import { Item, Type } from '@/hooks/useList/lib/useItem'
+import { Item, Type, useItem, Date } from '@/hooks/useList/lib/useItem'
 import './lib/TargetType'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -80,18 +81,14 @@ const target = {
     // 将要创建的目标类型
     type: "task" as Type,
 
-    // 目标类型为task
+    // 目标类型为task时，当需要使用store的push方法时请使用useItem方法创建Item作为参数
     task: {
         title: '',
         subtitle: '',
-        tags: [],
+        tags: [] as string[],
         note: '',
-        steps: [{
-            text: '',
-            done: false
-        }],
-        type: 'task',
-    } as Item,
+        targetDate: '' as Date | null,
+    },
 
     // 目标类型为goal
     goal: {
@@ -114,16 +111,20 @@ const store = useTaskStore()
  */
 const submit = () => {
     if(target.type === 'task') {
-        store.push(target.task, TASKS_TYPE.NORMAL)
+        createTask()
     } else if(target.type === 'goal') {
-        let goals = Array<Goal>()
-        for(let i = 0; i < target.goalConfig.goalCount; i ++) {
-            goals.push(useGoal(target.goal))
-        }
-        getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
+        createGoal()
     }
     clear()
     props.closeDialog()
+}
+const createTask = () => store.push(useItem(target.task), TASKS_TYPE.NORMAL)
+const createGoal = () => {
+    let goals = Array<Goal>()
+    for(let i = 0; i < target.goalConfig.goalCount; i ++) {
+        goals.push(useGoal(target.goal))
+    }
+    getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
 }
 const cancel = () => {
     clear()

@@ -1,6 +1,5 @@
 import { useDate } from "@/hooks/useDate"
 import { useIndex } from "@/hooks/useIndex"
-import { fchown } from "fs"
 
 type Title = string
 type Subtitle = string
@@ -41,12 +40,12 @@ interface Item {
      * 谨慎修改
      * tags是一个重要的属性，它用于给自身打上标记，在关于Item显示的组件中经常使用tags
      */
-    tags: Tags,
+    tags?: Tags,
 
     /**
      * steps是一个包含text和done的对象，它用于给自身添加步骤说明
      */
-    steps: Steps,
+    steps?: Steps,
 
     /**
      * 创建Item时的可选项
@@ -74,7 +73,7 @@ interface Item {
     /**
      * [目前作用未知]
      */
-    type: Type,
+    type?: Type,
 }
 type Items = Item[]
 
@@ -93,7 +92,7 @@ const createDate = (): string => useDate()
  * 返回一个Item类型的对象
  * 需要指定title,剩余参数提供了缺省值
  */
-function useItem({title, subtitle = "", note = "", tags = [], steps = [], targetDate = null,type = "task"}: Item): Item {
+function useItem({title, subtitle = "", note = "", tags = [], steps = [], targetDate = null, type = "task"}: Item): Item {
     return {
         title: title,
         subtitle: subtitle,
