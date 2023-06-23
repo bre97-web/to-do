@@ -1,5 +1,5 @@
 <template>
-    <div class="relative background">
+    <div class="relative">
         <div class="pt-0 m-0">
             <Search></Search>
         </div>

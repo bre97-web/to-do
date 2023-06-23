@@ -389,35 +389,50 @@
 @layer components {
 
 
-    .primary {
-        color: var(--md-sys-color-primary);
+    .text-primary {
+        color: var(--md-sys-color-primary) !important;
     }
-    .onPrimary {
-        color: var(--md-sys-color-on-primary);
+    .bg-primary {
+        background-color: var(--md-sys-color-primary) !important;
     }
-    .secondary {
-        color: var(--md-sys-color-secondary);
+    .text-onPrimary {
+        color: var(--md-sys-color-on-primary) !important;
     }
-    .onSecondary {
-        color: var(--md-sys-color-on-secondary);
+    .bg-onPrimary {
+        background-color: var(--md-sys-color-on-primary) !important;
     }
-    .background {
-        background-color: var(--md-sys-color-background);
+    .text-secondary {
+        color: var(--md-sys-color-secondary) !important;
     }
-    .onBackground {
-        background-color: var(--md-sys-color-on-background);
+    .bg-secondary {
+        background-color: var(--md-sys-color-secondary) !important;
     }
-    .surface {
-        color: var(--md-sys-color-surface);
+    .text-onSecondary {
+        color: var(--md-sys-color-on-secondary) !important;
     }
-    .onSurface {
-        color: var(--md-sys-color-on-surface);
+    .bg-onSecondary {
+        background-color: var(--md-sys-color-on-secondary) !important;
+    }
+    .bg-background {
+        background-color: var(--md-sys-color-background) !important;
+    }
+    .text-onBackground {
+        background-color: var(--md-sys-color-on-background) !important;
+    }
+    .bg-surface {
+        color: var(--md-sys-color-surface) !important;
+    }
+    .text-onSurface {
+        color: var(--md-sys-color-surface) !important;
+    }
+    .bg-onSurface {
+        background-color: var(--md-sys-color-surface) !important;
     }
     .surfaceContainer {
-        background-color: var(--md-sys-color-surface-container);
+        background-color: var(--md-sys-color-surface-container) !important;
     }
     .surfaceContainerHigh {
-        background-color: var(--md-sys-color-surface-container-high);
+        background-color: var(--md-sys-color-surface-container-high) !important;
     }
     .elevation {
         @apply relative;
@@ -480,12 +495,9 @@
 
 
 
-    .topBar {
-        @apply z-40 border-b dark:border-none flex flex-col items-center justify-start bg-transparent;
-        transition: none;
-    }
     header.topBar {
-        @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
+        @apply z-40 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
+        transition: none;
     }
     header.topBar input {
         @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg focus:ring pl-4 py-2;
