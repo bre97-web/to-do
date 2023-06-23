@@ -1,9 +1,9 @@
 <template>
     <div>
         <template v-if="tags.size !== 0">
-            <main class="p-8 relative w-full mt-16 flex flex-col md:flex-row flex-wrap rounded-xl gap-2 md:items-start md:justify-evenly">
+            <main class="p-8 relative w-full flex flex-col md:flex-row flex-wrap rounded-xl gap-2 md:items-start md:justify-evenly">
                 <template v-for="map in tags">
-                    <Card class="border rounded-xl p-4 md:w-1/4 md:h-48 surface surfaceContainer md:flex-grow md:flex-shrink">
+                    <Card class="border rounded-xl p-4 md:w-1/4 md:h-48 elevation surfaceContainer md:flex-grow md:flex-shrink">
                         <template #header>
                             <h1>{{ map[0] }}</h1>
                         </template>

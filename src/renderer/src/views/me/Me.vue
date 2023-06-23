@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-8 px-4">
+    <div class="background pt-8 px-4">
         <Profile></Profile>
 
         <main class="mt-12 relative space-y-4">
@@ -76,13 +76,15 @@
                 </main>
             </div>
 
-            <div class="surfaceContainer p-4 rounded-xl">
+            <div class="p-4 rounded-xl">
                 <ul class="group">
-                    <li>
+                    <li class="elevation">
+                        <md-elevation></md-elevation>
                         <h1>Helper</h1>
                         <md-text-button @click="router.push('/helper')">Look</md-text-button>
                     </li>
-                    <li>
+                    <li class="elevation">
+                        <md-elevation></md-elevation>
                         <h1>Dashboard</h1>
                         <md-text-button @click="router.push('/dashboard')"><p>Open</p></md-text-button>  
                     </li>
@@ -101,6 +103,7 @@ import { useRouter } from 'vue-router'
 import Profile from '@/components/personal/Profile.vue'
 import { useTags } from '@/hooks/useTags'
 import '@material/web/button/text-button'
+import '@material/web/elevation/elevation'
 import { useTaskStore } from '@/store'
 
 

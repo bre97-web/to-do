@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative background">
         <Header :input="input.value" @setInput="setInput"></Header>
         
         <main class="main border-x dark:border-none relative">

@@ -389,9 +389,29 @@
 @layer components {
 
 
-
+    .primary {
+        color: var(--md-sys-color-primary);
+    }
+    .onPrimary {
+        color: var(--md-sys-color-on-primary);
+    }
+    .secondary {
+        color: var(--md-sys-color-secondary);
+    }
+    .onSecondary {
+        color: var(--md-sys-color-on-secondary);
+    }
     .background {
         background-color: var(--md-sys-color-background);
+    }
+    .onBackground {
+        background-color: var(--md-sys-color-on-background);
+    }
+    .surface {
+        color: var(--md-sys-color-surface);
+    }
+    .onSurface {
+        color: var(--md-sys-color-on-surface);
     }
     .surfaceContainer {
         background-color: var(--md-sys-color-surface-container);
@@ -399,15 +419,15 @@
     .surfaceContainerHigh {
         background-color: var(--md-sys-color-surface-container-high);
     }
-    .surface {
+    .elevation {
         @apply relative;
         transition-duration: 250ms;
         transition-timing-function: ease-in-out;
     }
-    .surface:hover {
+    .elevation:hover {
         --md-elevation-level: 2;
     }
-    .surface:active {
+    .elevation:active {
         --md-elevation-level: 0;
     }
 
@@ -473,57 +493,12 @@
     }
 
 
-    ul.list {
-        @apply flex flex-row gap-2 flex-wrap;
-    }
-    ul.list > li {
-        @apply rounded-md p-4 relative bg-off-base bg-white dark:bg-black/50;
-    }
-    ul.list > li .list-inner-page {
-        @apply z-30 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-4 shadow rounded-md;
-    }
-    ul.list > li .list-inner-page:hover,
-    ul.list > li:hover .list-inner-page {
-        @apply block;
-    }
-
-
-
     ul.group {
-        @apply flex flex-wrap gap-4;
+        @apply flex flex-wrap gap-2;
     }
     ul.group li {
-        @apply border bg-white dark:bg-black/50 dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
+        @apply rounded-md p-4 flex flex-col justify-center items-center;
     }
-
-
-    .setting .item {
-        @apply hidden;
-    }
-    .setting:active .item,
-    .setting .item:hover {
-        @apply block;
-    }
-    .setting .item li {
-        @apply space-y-2;
-    }
-    .setting .item li label h1 {
-        @apply font-bold text-base;
-    }
-
-
-    div.page > .innerPage,
-    div.pageToggle ~ .innerPage {
-        @apply hidden;
-    }
-    div.pageToggle:active {
-        @apply opacity-0;
-    }
-    div.page:active > .innerPage,
-    div.pageToggle:active ~ .innerPage {
-        @apply block;
-    }
-
 
     div.fixedWindow {
         @apply fixed z-50;
