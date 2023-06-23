@@ -1,8 +1,6 @@
 import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
 import { useEvent } from '@/hooks/useEvent'
-import { useIndex } from '@/hooks/useIndex'
 import { Item, Items } from '@/hooks/useList/lib/useItem'
-import moment from 'moment'
 import { defineStore } from 'pinia'
 
 enum TASKS_TYPE {
@@ -12,18 +10,6 @@ enum TASKS_TYPE {
 }
 
 const events = getGlobalEvents()
-
-/**
- * 使用moment().format('x')时间戳作为每个元素的index
- */
-const createIndex = (): number => useIndex()
-
-/**
- * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
- * @returns 返回一个YYYY-MM-DD格式的日期
- */
-const createDate = (): string => moment().format('YYYY-MM-DD')
-
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({

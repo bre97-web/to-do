@@ -24,8 +24,7 @@
                         <md-outlined-text-field
                             label="Title"
                             type="text"
-                            :value="task.title"
-                            @input="(e: InputEvent) => task.title = (e.target as HTMLInputElement).value"
+                            v-model="task.title"
                         >
                         </md-outlined-text-field>
                     </template>
@@ -40,8 +39,7 @@
                         <md-outlined-text-field
                             label="Subtitle"
                             type="text"
-                            :value="task.subtitle"
-                            @input="(e: InputEvent) => task.subtitle = (e.target as HTMLInputElement).value"
+                            v-model="task.subtitle"
                         >
                         </md-outlined-text-field>
                     </template>
@@ -56,8 +54,7 @@
                         <md-outlined-text-field
                             label="Note"
                             type="text"
-                            :value="task.note"
-                            @input="(e: InputEvent) => task.note = (e.target as HTMLInputElement).value"
+                            v-model="task.note"
                         >
                         </md-outlined-text-field>
                     </template>
@@ -66,14 +63,28 @@
                 <!-- CreatedTime -->
                 <Info>
                     <template #header>
-                        <md-icon>schedule</md-icon>
+                        <md-icon>calendar_month</md-icon>
                     </template>
                     <template #content :task="task">
                         <md-outlined-text-field
                             label="Created time"
                             type="date"
-                            :value="task.date"
-                            @input="(e: InputEvent) => task.date = (e.target as HTMLInputElement).value"
+                            v-model="task.createdDate"
+                        >
+                        </md-outlined-text-field>
+                    </template>
+                </Info>
+
+                <!-- TargetTime -->
+                <Info>
+                    <template #header>
+                        <md-icon>event</md-icon>
+                    </template>
+                    <template #content :task="task">
+                        <md-outlined-text-field
+                            label="Target time"
+                            type="date"
+                            v-model="task.targetDate"
                         >
                         </md-outlined-text-field>
                     </template>
@@ -109,11 +120,7 @@
                     </template>
                     <template #content :task="task">
                         <div class="flex items-center gap-2">
-                            <md-outlined-text-field
-                                label="Step"
-                                :value="newStepValue"
-                                @input="newStepValue = $event.target.value"
-                            ></md-outlined-text-field>
+                            <md-outlined-text-field label="Step" v-model="newStepValue"></md-outlined-text-field>
                             <md-standard-icon-button @click="createStep">
                                 <md-icon>add</md-icon>
                             </md-standard-icon-button>
