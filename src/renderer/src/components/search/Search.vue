@@ -19,7 +19,7 @@
                             @click="router.push(e.path)"
                         >
                             <md-elevation></md-elevation>
-                            <h1 >
+                            <h1 class="text-onBackground">
                                 {{ e.title }}
                             </h1>
                         </li>
@@ -27,13 +27,11 @@
                 </ul>
             </div>
 
-            <Task title="" subtitle="">
+            <Task>
                 <template v-if="get.length !== 0" #>
                     <md-list class="tasks">
                         <div v-for="e in get" :key="e.index">
                             <md-list-item :headline="e.title" :supporttingText="e.subtitle">
-                                <!-- <md-checkbox @click="tasks.moveTo(e, )" slot="start"></md-checkbox> -->
-
                                 <div slot="end">
                                     <md-standard-icon-button @click="push('/info', e)">
                                         <md-icon>more</md-icon>
@@ -47,7 +45,7 @@
             </Task>
 
             <div v-if="get.length === 0">
-                <p class="text-right font-bold">{{ input.value }} is not found</p>
+                <p class="text-right font-bold text-onBackground">{{ input.value }} is not found</p>
                 <div class="flex justify-end items-center gap-2">
                     <md-tonal-button @click="add">Create</md-tonal-button>
                 </div>

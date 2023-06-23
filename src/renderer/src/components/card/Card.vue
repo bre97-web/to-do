@@ -1,5 +1,5 @@
 <template>
-    <div class="surface ">
+    <div class="elevation focus">
         <md-ripple></md-ripple>
         <md-elevation></md-elevation>
 

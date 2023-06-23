@@ -1,5 +1,5 @@
 <template>
-    <div class="fixedWindow fullScreen background withBackButton overflow-y-scroll">
+    <div class="fixedWindow fullScreen bg-background withBackButton overflow-y-scroll">
         <nav class="backButton">
             <div class="max-w-lg mx-auto">
                 <md-text-button 
@@ -13,12 +13,7 @@
             </div>
         </nav>
         
-        <div class="px-8 space-y-8 max-w-xl w-full mx-auto">
-            <header>
-                <h1 class="text-6xl">{{ task.title }}</h1>
-                <p class="text-xl">{{ task.subtitle }}</p>
-            </header>
-
+        <div class="px-8 space-y-8 max-w-xl w-full mx-auto bg-surface">
             <main class="space-y-2 pb-16">
                 <!-- Title -->
                 <Info>

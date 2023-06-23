@@ -1,5 +1,5 @@
 <template>
-    <div class="fixedWindow background top-0 left-0 w-screen h-screen">
+    <div class="fixedWindow bg-background top-0 left-0 w-screen h-screen">
         <div class="relative h-screen md:h-full md:max-w-2xl lg:max-w-4xl mx-auto p-4 md:pt-12">
             <header>
                 <h1>Goals</h1>

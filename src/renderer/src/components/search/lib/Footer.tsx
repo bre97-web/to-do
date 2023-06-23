@@ -6,7 +6,7 @@ interface ItemsInnerInterface {
 
 const Footer = ({get}: ItemsInnerInterface) => (
     <footer>
-        <p class="text-right text-gray-500 dark:text-gray-300">
+        <p class="text-right text-onBackground">
             Accumulate { get.length } results
         </p>
     </footer>

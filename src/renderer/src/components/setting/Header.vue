@@ -1,6 +1,6 @@
 <template>
-    <header class="topBar">
-        <div class="px-2 md:px-4 py-1 flex flex-row items-center justify-between w-full gap-2">
+    <header class="topBar bg-background">
+        <div class="px-2 md:px-4 py-1 flex flex-row items-center justify-between w-full">
             <!-- Web Title -->
             <Title></Title>
 
@@ -31,12 +31,12 @@ const emits = defineEmits(['setInput'])
  */
 const Title = () => (
     <div class="flex flex-col flex-none">
-        <h1 class="text-base">To-Do</h1>
-        <p class="text-xs">Preview</p>
+        <h1 class="text-base text-onBackground">To-Do</h1>
+        <p class="text-xs text-onBackground">Preview</p>
     </div>    
 )
 const SearchInput = () => (
-    <div class="relative w-full max-w-md flex items-center justify-center">
+    <div class="relative w-full max-w-md flex items-center justify-center bg-surface">
         <input
             value={props.input}
             type="search"

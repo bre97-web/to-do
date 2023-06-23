@@ -5,86 +5,11 @@
 
 @layer base {
     /* 默认配色 */
-    :root,
-    .default {
-        --color-base: theme('colors.transparent');
-        --color-off-base: theme('colors.gray.100');
-        /* --color-text-muted: theme('colors.gray.600'); */
-        /* --color-text-muted-hover: theme('colors.gray.500'); */
-        --color-text-base: theme('colors.black');
-        --color-primary: theme('colors.black');
-        --color-secondary: theme('colors.gray.500');
-    }
-    .dark.default {
-        --color-primary: theme('colors.white');
-        --color-secondary: theme('colors.gray.300');
+    body {
+        font-family: "Roboto", "Noto Sans SC";
     }
 
-
-
-
-    .green {
-        --color-base: #E8F5E9;
-        --color-off-base: #C8E6C9;
-        --color-text-base: #1B5E20;
-        --color-primary: #1B5E20;
-        --color-secondary: #388E3C;
-    }
-    .dark.green {
-        --color-base: theme('colors.slate.900');
-        --color-text-base: #E8F5E9;
-        --color-primary: #C8E6C9;
-        --color-secondary: #81C784;
-    }
-
-
-
-
-
-    .red {
-        --color-base: #FFEBEE;
-        --color-off-base: #FFCDD2;
-        --color-text-base: #B71C1C;
-        --color-primary: #B71C1C;
-        --color-secondary: #D32F2F;
-    }
-    .dark.red {
-        --color-base: theme('colors.slate.900');
-        --color-text-base: #FFEBEE;
-        --color-primary: #FFCDD2;
-        --color-secondary: #E57373;
-    }
-
-
-
-
-    .blue {
-        --color-base: #E3F2FD;
-        --color-off-base: #BBDEFB;
-        --color-text-base: #0D47A1;
-        --color-primary: #0D47A1;
-        --color-secondary: #1976D2;
-    }
-    .dark.blue {
-        --color-base: theme('colors.slate.900');
-        --color-text-base: #E3F2FD;
-        --color-primary: #BBDEFB;
-        --color-secondary: #64B5F6;
-    }
-
-
-
-
-    /* 深色模式只会修改必要的配色 */
-    .dark {
-        --color-base: theme('colors.slate.900');
-        --color-off-base: theme('colors.gray.800');
-        --color-text-base: theme('colors.white');
-    }
-}
-
-@layer components {
-    /* 全局聚焦环 */
+    /* 全局聚焦配色 */
     * {
         @apply ring-black/50 dark:ring-white/50;
     }
@@ -93,24 +18,433 @@
         @apply hidden;
     }
 
-    .background {
-        background-color: var(--md-sys-color-background);
+    /* label默认针对checkbox、radio、switch组件 */
+    label {
+        @apply flex flex-row items-center justify-between gap-2;
+    }
+
+    /* h1 ~ h6的字体宽度 */
+    h1 {
+        @apply font-bold;
+    }
+    h2,
+    h3 {
+        @apply font-bold;
+    }
+    p {
+        @apply font-normal;
+    }
+    /* 字体颜色 */
+    h1,
+    h2,
+    h3,
+    p,
+    b,
+    i,
+    mark {
+        color: var(--md-sys-color-primary)
+    }
+    mark {
+        @apply bg-green-200/50 px-2;
+        color: var(--md-sys-color-primary)
+    }
+    header > h1 {
+        @apply text-2xl;
+    }
+
+    md-icon {
+        color: var(--md-sys-color-on-background);
+    }
+
+    /* 
+     * Material Web Components Baseline color scheme tokens
+     * https://m3.material.io/styles/color/the-color-system/tokens#7fd4440e-986d-443f-8b3a-4933bff16646
+     * https://lit.dev/playground/#gist=abcc77f636c1b76506df860db6dc0faf&view-mode=preview
+     */
+    :root {
+        --md-sys-color-background: #f9f9f9;
+        --md-sys-color-on-background: #1b1b1b;
+        --md-sys-color-surface: #f9f9f9;
+        --md-sys-color-surface-dim: #dadada;
+        --md-sys-color-surface-bright: #f9f9f9;
+        --md-sys-color-surface-container-lowest: #ffffff;
+        --md-sys-color-surface-container-low: #f3f3f3;
+        --md-sys-color-surface-container: #eeeeee;
+        --md-sys-color-surface-container-high: #e8e8e8;
+        --md-sys-color-surface-container-highest: #e2e2e2;
+        --md-sys-color-on-surface: #1b1b1b;
+        --md-sys-color-surface-variant: #e2e2e2;
+        --md-sys-color-on-surface-variant: #474747;
+        --md-sys-color-inverse-surface: #303030;
+        --md-sys-color-inverse-on-surface: #f1f1f1;
+        --md-sys-color-outline: #747474;
+        --md-sys-color-outline-variant: #c6c6c6;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #5e5e5e;
+        --md-sys-color-primary: #000000;
+        --md-sys-color-on-primary: #e2e2e2;
+        --md-sys-color-primary-container: #3b3b3b;
+        --md-sys-color-on-primary-container: #ffffff;
+        --md-sys-color-inverse-primary: #c6c6c6;
+        --md-sys-color-inverse-on-primary: #303030;
+        --md-sys-color-secondary: #5e5e5e;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #d4d4d4;
+        --md-sys-color-on-secondary-container: #1b1b1b;
+        --md-sys-color-tertiary: #3b3b3b;
+        --md-sys-color-on-tertiary: #e2e2e2;
+        --md-sys-color-tertiary-container: #747474;
+        --md-sys-color-on-tertiary-container: #ffffff;
+        --md-sys-color-error: #ba1a1a;
+        --md-sys-color-on-error: #ffffff;
+        --md-sys-color-error-container: #ffdad6;
+        --md-sys-color-on-error-container: #410002;
+    }
+    
+    html > .dark {
+        --md-sys-color-background: #131313;
+        --md-sys-color-on-background: #e2e2e2;
+        --md-sys-color-surface: #131313;
+        --md-sys-color-surface-dim: #131313;
+        --md-sys-color-surface-bright: #393939;
+        --md-sys-color-surface-container-lowest: #0e0e0e;
+        --md-sys-color-surface-container-low: #1b1b1b;
+        --md-sys-color-surface-container: #1f1f1f;
+        --md-sys-color-surface-container-high: #2a2a2a;
+        --md-sys-color-surface-container-highest: #353535;
+        --md-sys-color-on-surface: #e2e2e2;
+        --md-sys-color-surface-variant: #474747;
+        --md-sys-color-on-surface-variant: #c6c6c6;
+        --md-sys-color-inverse-surface: #e2e2e2;
+        --md-sys-color-inverse-on-surface: #303030;
+        --md-sys-color-outline: #747474;
+        --md-sys-color-outline-variant: #474747;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #c6c6c6;
+        --md-sys-color-primary: #ffffff;
+        --md-sys-color-on-primary: #1b1b1b;
+        --md-sys-color-primary-container: #d4d4d4;
+        --md-sys-color-on-primary-container: #000000;
+        --md-sys-color-inverse-primary: #5e5e5e;
+        --md-sys-color-inverse-on-primary: #ffffff;
+        --md-sys-color-secondary: #c6c6c6;
+        --md-sys-color-on-secondary: #1b1b1b;
+        --md-sys-color-secondary-container: #474747;
+        --md-sys-color-on-secondary-container: #e2e2e2;
+        --md-sys-color-tertiary: #e2e2e2;
+        --md-sys-color-on-tertiary: #1b1b1b;
+        --md-sys-color-tertiary-container: #919191;
+        --md-sys-color-on-tertiary-container: #000000;
+        --md-sys-color-error: #ffb4ab;
+        --md-sys-color-on-error: #690005;
+        --md-sys-color-error-container: #93000a;
+        --md-sys-color-on-error-container: #ffdad6;
+    }
+    
+    html > .green {
+        --md-sys-color-background: #fafaf2;
+        --md-sys-color-on-background: #1b1c18;
+        --md-sys-color-surface: #fafaf2;
+        --md-sys-color-surface-dim: #dbdad3;
+        --md-sys-color-surface-bright: #fafaf2;
+        --md-sys-color-surface-container-lowest: #ffffff;
+        --md-sys-color-surface-container-low: #f5f4ec;
+        --md-sys-color-surface-container: #efeee7;
+        --md-sys-color-surface-container-high: #e9e8e1;
+        --md-sys-color-surface-container-highest: #e3e3db;
+        --md-sys-color-on-surface: #1b1c18;
+        --md-sys-color-surface-variant: #dee5d9;
+        --md-sys-color-on-surface-variant: #424940;
+        --md-sys-color-inverse-surface: #30312c;
+        --md-sys-color-inverse-on-surface: #f2f1e9;
+        --md-sys-color-outline: #6f776d;
+        --md-sys-color-outline-variant: #c1c9be;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #006e2b;
+        --md-sys-color-primary: #006e2b;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #91f49c;
+        --md-sys-color-on-primary-container: #00722d;
+        --md-sys-color-inverse-primary: #79db87;
+        --md-sys-color-inverse-on-primary: #003913;
+        --md-sys-color-secondary: #006c47;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #8ff9c3;
+        --md-sys-color-on-secondary-container: #00744d;
+        --md-sys-color-tertiary: #006e2b;
+        --md-sys-color-on-tertiary: #ffffff;
+        --md-sys-color-tertiary-container: #8df59a;
+        --md-sys-color-on-tertiary-container: #00722c;
+        --md-sys-color-error: #ba1a1a;
+        --md-sys-color-on-error: #ffffff;
+        --md-sys-color-error-container: #ffdad6;
+        --md-sys-color-on-error-container: #410002;
+    }
+    html > .green.dark {
+        --md-sys-color-background: #121410;
+        --md-sys-color-on-background: #e3e3db;
+        --md-sys-color-surface: #121410;
+        --md-sys-color-surface-dim: #121410;
+        --md-sys-color-surface-bright: #383a35;
+        --md-sys-color-surface-container-lowest: #0d0f0b;
+        --md-sys-color-surface-container-low: #1b1c18;
+        --md-sys-color-surface-container: #1f201c;
+        --md-sys-color-surface-container-high: #292a26;
+        --md-sys-color-surface-container-highest: #343530;
+        --md-sys-color-on-surface: #e3e3db;
+        --md-sys-color-surface-variant: #424940;
+        --md-sys-color-on-surface-variant: #c1c9be;
+        --md-sys-color-inverse-surface: #e3e3db;
+        --md-sys-color-inverse-on-surface: #30312c;
+        --md-sys-color-outline: #6f776d;
+        --md-sys-color-outline-variant: #424940;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #79db87;
+        --md-sys-color-primary: #ffffff;
+        --md-sys-color-on-primary: #005f24;
+        --md-sys-color-primary-container: #87ea93;
+        --md-sys-color-on-primary-container: #006a29;
+        --md-sys-color-inverse-primary: #006e2b;
+        --md-sys-color-inverse-on-primary: #ffffff;
+        --md-sys-color-secondary: #71dba7;
+        --md-sys-color-on-secondary: #003823;
+        --md-sys-color-secondary-container: #007d53;
+        --md-sys-color-on-secondary-container: #beffd9;
+        --md-sys-color-tertiary: #fefff9;
+        --md-sys-color-on-tertiary: #005f24;
+        --md-sys-color-tertiary-container: #82ea90;
+        --md-sys-color-on-tertiary-container: #006a29;
+        --md-sys-color-error: #ffb4ab;
+        --md-sys-color-on-error: #690005;
+        --md-sys-color-error-container: #93000a;
+        --md-sys-color-on-error-container: #ffdad6;
+    }
+    
+    html > .red {
+        --md-sys-color-background: #fff8f8;
+        --md-sys-color-on-background: #22191c;
+        --md-sys-color-surface: #fff8f8;
+        --md-sys-color-surface-dim: #e6d6d9;
+        --md-sys-color-surface-bright: #fff8f8;
+        --md-sys-color-surface-container-lowest: #ffffff;
+        --md-sys-color-surface-container-low: #fff0f2;
+        --md-sys-color-surface-container: #faeaed;
+        --md-sys-color-surface-container-high: #f5e4e7;
+        --md-sys-color-surface-container-highest: #efdfe1;
+        --md-sys-color-on-surface: #22191c;
+        --md-sys-color-surface-variant: #f2dde1;
+        --md-sys-color-on-surface-variant: #514347;
+        --md-sys-color-inverse-surface: #372e30;
+        --md-sys-color-inverse-on-surface: #fdedef;
+        --md-sys-color-outline: #817074;
+        --md-sys-color-outline-variant: #d5c2c6;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #904760;
+        --md-sys-color-primary: #904760;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #ffd9e2;
+        --md-sys-color-on-primary-container: #3c031d;
+        --md-sys-color-inverse-primary: #ffb1c8;
+        --md-sys-color-inverse-on-primary: #581932;
+        --md-sys-color-secondary: #74565f;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #ffd9e2;
+        --md-sys-color-on-secondary-container: #2b151c;
+        --md-sys-color-tertiary: #7c5635;
+        --md-sys-color-on-tertiary: #ffffff;
+        --md-sys-color-tertiary-container: #ffdcc1;
+        --md-sys-color-on-tertiary-container: #2e1500;
+        --md-sys-color-error: #ba1a1a;
+        --md-sys-color-on-error: #ffffff;
+        --md-sys-color-error-container: #ffdad6;
+        --md-sys-color-on-error-container: #410002;
+    }
+    html > .red.dark {
+        --md-sys-color-background: #191113;
+        --md-sys-color-on-background: #efdfe1;
+        --md-sys-color-surface: #191113;
+        --md-sys-color-surface-dim: #191113;
+        --md-sys-color-surface-bright: #413739;
+        --md-sys-color-surface-container-lowest: #140c0e;
+        --md-sys-color-surface-container-low: #22191c;
+        --md-sys-color-surface-container: #261d20;
+        --md-sys-color-surface-container-high: #31282a;
+        --md-sys-color-surface-container-highest: #3c3235;
+        --md-sys-color-on-surface: #efdfe1;
+        --md-sys-color-surface-variant: #514347;
+        --md-sys-color-on-surface-variant: #d5c2c6;
+        --md-sys-color-inverse-surface: #efdfe1;
+        --md-sys-color-inverse-on-surface: #372e30;
+        --md-sys-color-outline: #817074;
+        --md-sys-color-outline-variant: #514347;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #ffb1c8;
+        --md-sys-color-primary: #ffb1c8;
+        --md-sys-color-on-primary: #581932;
+        --md-sys-color-primary-container: #733049;
+        --md-sys-color-on-primary-container: #ffd9e2;
+        --md-sys-color-inverse-primary: #904760;
+        --md-sys-color-inverse-on-primary: #ffffff;
+        --md-sys-color-secondary: #e3bdc6;
+        --md-sys-color-on-secondary: #422931;
+        --md-sys-color-secondary-container: #5a3f47;
+        --md-sys-color-on-secondary-container: #ffd9e2;
+        --md-sys-color-tertiary: #efbd94;
+        --md-sys-color-on-tertiary: #48290b;
+        --md-sys-color-tertiary-container: #623f20;
+        --md-sys-color-on-tertiary-container: #ffdcc1;
+        --md-sys-color-error: #ffb4ab;
+        --md-sys-color-on-error: #690005;
+        --md-sys-color-error-container: #93000a;
+        --md-sys-color-on-error-container: #ffdad6;
+    }
+    
+    
+    html > .blue {
+        --md-sys-color-background: #fdf8fd;
+        --md-sys-color-on-background: #1c1b1e;
+        --md-sys-color-surface: #fdf8fd;
+        --md-sys-color-surface-dim: #ddd9dd;
+        --md-sys-color-surface-bright: #fdf8fd;
+        --md-sys-color-surface-container-lowest: #ffffff;
+        --md-sys-color-surface-container-low: #f7f2f7;
+        --md-sys-color-surface-container: #f1ecf1;
+        --md-sys-color-surface-container-high: #ebe7eb;
+        --md-sys-color-surface-container-highest: #e6e1e6;
+        --md-sys-color-on-surface: #1c1b1e;
+        --md-sys-color-surface-variant: #e0e2ec;
+        --md-sys-color-on-surface-variant: #44474e;
+        --md-sys-color-inverse-surface: #313033;
+        --md-sys-color-inverse-on-surface: #f4eff4;
+        --md-sys-color-outline: #71747d;
+        --md-sys-color-outline-variant: #c4c6cf;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #285ea7;
+        --md-sys-color-primary: #114f97;
+        --md-sys-color-on-primary: #edf1ff;
+        --md-sys-color-primary-container: #4375bf;
+        --md-sys-color-on-primary-container: #fefcff;
+        --md-sys-color-inverse-primary: #a9c7ff;
+        --md-sys-color-inverse-on-primary: #003063;
+        --md-sys-color-secondary: #006b57;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #81fcdb;
+        --md-sys-color-on-secondary-container: #007560;
+        --md-sys-color-tertiary: #354b9a;
+        --md-sys-color-on-tertiary: #f1f0ff;
+        --md-sys-color-tertiary-container: #5b70c2;
+        --md-sys-color-on-tertiary-container: #fffcff;
+        --md-sys-color-error: #ba1a1a;
+        --md-sys-color-on-error: #ffffff;
+        --md-sys-color-error-container: #ffdad6;
+        --md-sys-color-on-error-container: #410002;
+    }
+    html > .blue.dark {
+        --md-sys-color-background: #141316;
+        --md-sys-color-on-background: #e6e1e6;
+        --md-sys-color-surface: #141316;
+        --md-sys-color-surface-dim: #141316;
+        --md-sys-color-surface-bright: #3a383c;
+        --md-sys-color-surface-container-lowest: #0f0e11;
+        --md-sys-color-surface-container-low: #1c1b1e;
+        --md-sys-color-surface-container: #201f23;
+        --md-sys-color-surface-container-high: #2b292d;
+        --md-sys-color-surface-container-highest: #363438;
+        --md-sys-color-on-surface: #e6e1e6;
+        --md-sys-color-surface-variant: #44474e;
+        --md-sys-color-on-surface-variant: #c4c6cf;
+        --md-sys-color-inverse-surface: #e6e1e6;
+        --md-sys-color-inverse-on-surface: #313033;
+        --md-sys-color-outline: #71747d;
+        --md-sys-color-outline-variant: #44474e;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #a9c7ff;
+        --md-sys-color-primary: #a9c7ff;
+        --md-sys-color-on-primary: #003063;
+        --md-sys-color-primary-container: #4375bf;
+        --md-sys-color-on-primary-container: #fefcff;
+        --md-sys-color-inverse-primary: #285ea7;
+        --md-sys-color-inverse-on-primary: #ffffff;
+        --md-sys-color-secondary: #5ddbbb;
+        --md-sys-color-on-secondary: #00382c;
+        --md-sys-color-secondary-container: #00846c;
+        --md-sys-color-on-secondary-container: #f4fff9;
+        --md-sys-color-tertiary: #b7c4ff;
+        --md-sys-color-on-tertiary: #0c2878;
+        --md-sys-color-tertiary-container: #5b70c2;
+        --md-sys-color-on-tertiary-container: #fffcff;
+        --md-sys-color-error: #ffb4ab;
+        --md-sys-color-on-error: #690005;
+        --md-sys-color-error-container: #93000a;
+        --md-sys-color-on-error-container: #ffdad6;
+    }
+}
+
+@layer components {
+
+
+    .text-primary {
+        color: var(--md-sys-color-primary) !important;
+    }
+    .bg-primary {
+        background-color: var(--md-sys-color-primary) !important;
+    }
+    .text-onPrimary {
+        color: var(--md-sys-color-on-primary) !important;
+    }
+    .bg-onPrimary {
+        background-color: var(--md-sys-color-on-primary) !important;
+    }
+    .text-secondary {
+        color: var(--md-sys-color-secondary) !important;
+    }
+    .bg-secondary {
+        background-color: var(--md-sys-color-secondary) !important;
+    }
+    .text-onSecondary {
+        color: var(--md-sys-color-on-secondary) !important;
+    }
+    .bg-onSecondary {
+        background-color: var(--md-sys-color-on-secondary) !important;
+    }
+    .bg-background {
+        background-color: var(--md-sys-color-background) !important;
+    }
+    .text-onBackground {
+        color: var(--md-sys-color-on-background) !important;
+    }
+    .bg-surface {
+        color: var(--md-sys-color-surface) !important;
+    }
+    .text-onSurface {
+        color: var(--md-sys-color-on-surface) !important;
+    }
+    .bg-onSurface {
+        background-color: var(--md-sys-color-on-surface) !important;
     }
     .surfaceContainer {
-        background-color: var(--md-sys-color-surface-container);
+        background-color: var(--md-sys-color-surface-container) !important;
     }
     .surfaceContainerHigh {
-        background-color: var(--md-sys-color-surface-container-high);
+        background-color: var(--md-sys-color-surface-container-high) !important;
     }
-    .surface {
+    .elevation {
         @apply relative;
         transition-duration: 250ms;
         transition-timing-function: ease-in-out;
     }
-    .surface:hover {
+    .elevation:hover {
         --md-elevation-level: 2;
     }
-    .surface:active {
+    .elevation:active {
         --md-elevation-level: 0;
     }
 
@@ -148,35 +482,7 @@
     }
 
 
-    /* label默认针对checkbox、radio、switch组件 */
-    label {
-        @apply flex flex-row items-center justify-between gap-2;
-    }
 
-    /* h1 ~ h6的字体宽度 */
-    h1 {
-        @apply font-bold;
-    }
-    h2,
-    h3 {
-        @apply font-bold;
-    }
-    p {
-        @apply font-normal;
-    }
-    /* 字体颜色 */
-    h1,
-    h2,
-    h3,
-    p,
-    b,
-    i,
-    mark {
-        @apply text-base;
-    }
-    mark {
-        @apply bg-green-200 text-black px-2;
-    }
 
 
     /* md-dialog窗口下的h1标题字体大小 */
@@ -188,78 +494,25 @@
     }
     
     
-    header > h1 {
-        @apply text-2xl;
-    }
-    header > p {
-        @apply text-secondary;
-    }
 
 
-    .topBar {
-        @apply z-40 border-b dark:border-none flex flex-col items-center justify-start bg-transparent;
+
+    header.topBar {
+        @apply z-40 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
         transition: none;
     }
-    header.topBar {
-        @apply fixed top-0 right-0 w-screen max-h-16 backdrop-blur-lg;
-    }
     header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full outline-none rounded-lg focus:ring pl-4 py-2;
-        background-color: var(--md-sys-color-surface-container);
+        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full mx-2 outline-none rounded-lg focus:ring pl-4 py-2;
+        background-color: var(--md-sys-color-surface-container-high) !important;
     }
-
-
-    ul.list {
-        @apply flex flex-row gap-2 flex-wrap;
-    }
-    ul.list > li {
-        @apply rounded-md p-4 relative bg-off-base bg-white dark:bg-black/50;
-    }
-    ul.list > li .list-inner-page {
-        @apply z-30 w-64 bg-white dark:bg-slate-700 text-base hidden px-4 py-2 absolute left-4 shadow rounded-md;
-    }
-    ul.list > li .list-inner-page:hover,
-    ul.list > li:hover .list-inner-page {
-        @apply block;
-    }
-
 
 
     ul.group {
-        @apply flex flex-wrap gap-4;
+        @apply flex flex-wrap gap-2;
     }
     ul.group li {
-        @apply border bg-white dark:bg-black/50 dark:border-none hover:shadow-md rounded-md p-4 flex flex-col justify-center items-center;
+        @apply rounded-md p-4 flex flex-col justify-center items-center;
     }
-
-
-    .setting .item {
-        @apply hidden;
-    }
-    .setting:active .item,
-    .setting .item:hover {
-        @apply block;
-    }
-    .setting .item li {
-        @apply space-y-2;
-    }
-    .setting .item li label h1 {
-        @apply font-bold text-base;
-    }
-
-
-    div.page > .innerPage,
-    div.pageToggle ~ .innerPage {
-        @apply hidden;
-    }
-    div.pageToggle:active {
-        @apply opacity-0;
-    }
-    div.page:active > .innerPage,
-    div.pageToggle:active ~ .innerPage {
-        @apply block;
-    }
-
 
     div.fixedWindow {
         @apply fixed z-50;
@@ -271,7 +524,7 @@
         @apply mb-8;
     }
     div.fixedWindow nav.backButton {
-        @apply relative w-full border-b py-2;
+        @apply relative w-full border-b dark:border-none py-2;
     }
 
 
@@ -351,8 +604,9 @@
     p,
     input,
     ul li,
-    .fab,
-    .navigation,
+    nav,
+    nav *,
+    /* .navigation, */
     .eventsSurface,
     .events,
     .event {

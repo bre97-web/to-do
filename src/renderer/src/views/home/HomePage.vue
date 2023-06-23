@@ -1,5 +1,5 @@
 <template>
-    <div class="relative background">
+    <div class="relative">
         <div class="pt-0 m-0">
             <Search></Search>
         </div>
@@ -18,7 +18,7 @@
         </nav>
 
         <!-- ChipSet -->
-        <div class="fixed bottom-24 z-30 backdrop-blur-md fab flex gap-2 mx-4">
+        <div class="fixed bottom-24 lg:bottom-28 z-30 backdrop-blur-md fab flex gap-2 mx-4">
             <Chips :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
         </div>
 

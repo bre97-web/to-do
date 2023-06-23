@@ -1,16 +1,15 @@
-<!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-    <div class="flex flex-row gap-2">
+    <div class="bg-background flex flex-row gap-2">
         <header
             v-if="info.get().name.length !== 0"
-            class="rounded-full border w-20 h-20 flex items-center justify-center bg-off-base"
+            class="rounded-full border w-20 h-20 flex items-center justify-center"
         >
-            <h1 class="text-4xl">{{ info.get().name[0] }}</h1>
+            <h1 class="text-onBackground text-4xl">{{ info.get().name[0] }}</h1>
         </header>
 
-        <main class="flex flex-col">
+        <main class="flex flex-col ">
             <p>Hello</p>
-            <h1 class="underline underline-offset-1 hover:underline-offset-4" @click="open">
+            <h1 class="text-onBackground underline underline-offset-1 hover:underline-offset-4" @click="open">
                 {{ info.get().name }}
             </h1>
         </main>

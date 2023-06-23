@@ -1,7 +1,7 @@
 <template>
-    <div class="relative w-full">
+    <div class="relative w-full bg-background">
         <div class="relative flex flex-col md:flex-row h-screen">
-            <div class="relative border w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8">
+            <div class="relative border dark:border-none w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8">
                 <nav class="flex justify-end md:absolute md:bottom-4">
                     <md-text-button @click="router.push('/me')">
                         back

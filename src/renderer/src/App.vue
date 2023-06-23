@@ -2,7 +2,7 @@
     <Loading v-if="!isLoaded" message="To-Do"></Loading>
     
     <!-- 首屏 -->
-    <div v-else id="root" class="background overflow-x-hidden overflow-y-auto relative h-screen">
+    <div v-else id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
         <FirstLaunch></FirstLaunch>
         
         <ninja-keys

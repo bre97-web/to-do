@@ -1,5 +1,5 @@
 <template>
-    <div class="surface surfaceContainer rounded-3xl w-48 md:w-96">
+    <div class="elevation focus surfaceContainer rounded-3xl w-48 md:w-96">
         <md-elevation></md-elevation>
         <md-focus-ring></md-focus-ring>
         

@@ -1,12 +1,12 @@
 <template>
     <div class="fixed hidden lg:block top-28 left-0 pl-4 w-44 h-96">
         <div class="sidebar">
-            <h1>Sidebar</h1>
+            <h1 class="text-onBackground">Sidebar</h1>
             <ul>
                 <li>
                     <header>
-                        <h1>Set a goal to do it</h1>
-                        <p>Including some steps</p>
+                        <h1 class="text-onBackground">Set a goal to do it</h1>
+                        <p class="text-onBackground">Including some steps</p>
                     </header>
                     <footer class="action">
                         <md-tonal-button
@@ -16,7 +16,7 @@
                 </li>
 
                 <li>
-                    <p class="italic">More features is coming.</p>
+                    <p class="italic text-onBackground">More features is coming.</p>
                 </li>
             </ul>
         </div>
