@@ -29,13 +29,47 @@ type Goal = {
  * Goals类型的对象存储Goal类型的对象
  */
 interface Goals {
+
+    /**
+     * 装载Goal数组的属性
+     */
     goals: Goal[]
+
+    /**
+     * 规定每一个Goal之间的日期间隔
+     */
     schedule: Schedule
+
+    /**
+     * 用于goals数组
+     * 表示当前指向的的goals的坐标
+     */
     currentIndex: number
+
+    /**
+     * currentIndex的最大值
+     */
     maxIndex: number
+
+    /**
+     * Goals对象的创建日期
+     */
     createdDate: Date
+
+    /**
+     * [目前作用未知]
+     */
     targetDate: Date | null
+
+    /**
+     * 当前Goals的完成状态
+     * 当currentIndex达到规定的maxIndex时complete需要被标记为true
+     */
     compelete: boolean
+
+    /**
+     * 当前Goals对象的唯一标识符，取值为当前时间的UNIX时间戳
+     */
     index: number
 }
 
