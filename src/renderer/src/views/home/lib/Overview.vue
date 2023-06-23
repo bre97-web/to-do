@@ -1,45 +1,49 @@
 <template>
-    <div class="bg-background mx-4 mt-4">
-        <div class="p-4 w-full border bg-surface rounded-3xl">
-            <Title></Title>
+    <div class="bg-background mx-4 mt-4 h-[2000px]">
+        <ul class="space-y-8">
+            <li>
+                <Title :title="`You need do`" :subtitle="`${targetDateTasks.length} current todos`"></Title>
+                <NeedDoTasks></NeedDoTasks>
+            </li>
+            <li>
+                <Title :title="`Today ${useDate()}`" :subtitle="`${tasks.length} todos`"></Title>
+                <AllTasks></AllTasks>
+            </li>
 
-            <Tasks></Tasks>
-        </div>
+
+        </ul>
     </div>
 </template>
 
 <script setup lang="tsx">
 import { useDate } from '@/hooks/useDate';
-import { Item } from '@/hooks/useList/lib/useItem';
+import { Item, Items } from '@/hooks/useList/lib/useItem';
 import { useTaskStore } from '@/store';
 import '@material/web/elevation/elevation'
 import '@material/web/icon/icon'
 import { computed } from 'vue';
 
 const store = useTaskStore()
-const allTasks = computed(() => [...store.getNormal, ...store.getFocus])
+const tasks = computed(() => [...store.getNormal, ...store.getFocus])
+const targetDateTasks = computed(() => {
+    const today = useDate()
+    const e = tasks.value.filter(e => e.targetDate === today)
+    console.log(e);
+    
+    return e
+})
 
-const Title = () => (
+const Title = ({title, subtitle}: {
+    title: string,
+    subtitle: string
+}) => (
     <header>
-        <p class="text-xs">Today { useDate() }</p>
-        <h1>{allTasks.value.length} todos</h1>
+        <p class="text-xs">{ title }</p>
+        <h1>{ subtitle }</h1>
     </header>
 )
 
-const Tasks = () => (
-    <ul class="surface rounded-3xl">
-        {
-            allTasks.value.length ? 
-            allTasks.value.map(e => (<Task item={e}></Task>)) :
-            (
-                <div class="text-center m-4">
-                    <md-icon class="text-8xl font-bold shake">waving_hand</md-icon>
-                    <p class="opacity-75">You compeleted all todos</p>
-                </div>
-            )
-        }
-    </ul>
-)
+
 const Task = ({item}: {
     item: Item
 }) => (
@@ -51,8 +55,36 @@ const Task = ({item}: {
         </header>
     </li>
 )
+const allDone = () => (
+    <div class="text-center m-4">
+        <md-icon class="text-8xl font-bold shake">waving_hand</md-icon>
+        <p class="opacity-75">You compeleted all todos</p>
+    </div>
+)
+
+const TasksList = ({element}: {
+    element: Items
+}) => (
+    <ul class="surface rounded-3xl space-y-2">
+        {
+            element.slice(0, 5).map(e => (<Task item={e}></Task>))
+        }
+        {
+            element.length === 0 && <allDone></allDone>
+        }
+    </ul>
+)
+
+const AllTasks = () => (
+    <TasksList element={tasks.value}></TasksList>
+)
+const NeedDoTasks = () => (
+    <TasksList element={targetDateTasks.value}></TasksList>
+)
 </script>
 
 <style scoped>
-
+li {
+    @apply p-4 w-full border bg-surface rounded-3xl;
+}
 </style>

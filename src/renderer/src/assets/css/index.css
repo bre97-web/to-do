@@ -457,7 +457,7 @@
     /* nav位于顶层30 */
     nav,
     nav * {
-        @apply z-30;
+        @apply z-50;
     }
     nav.fab {
         @apply fixed right-5 bottom-24 lg:bottom-5 z-40;
@@ -498,7 +498,7 @@
 
 
     header.topBar {
-        @apply z-40 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
+        @apply z-10 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
         transition: none;
     }
     header.topBar input {
