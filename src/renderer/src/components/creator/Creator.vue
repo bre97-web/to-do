@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
-import { Item, Type, useItem, Date } from '@/hooks/useList/lib/useItem'
+import { Type, useItem, Date, Tags } from '@/hooks/useList/lib/useItem'
 import './lib/TargetType'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -60,14 +60,10 @@ const initTarget = {
     task: {
         title: '',
         subtitle: '',
-        tags: [],
+        tags: [] as Tags,
         note: '',
-        steps: [{
-            text: '',
-            done: false
-        }],
-        type: 'task',
-    } as Item,
+        targetDate: '' as Date | null,
+    },
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
         goalCount: 1 as number,
@@ -85,7 +81,7 @@ const target = {
     task: {
         title: '',
         subtitle: '',
-        tags: [] as string[],
+        tags: [] as Tags,
         note: '',
         targetDate: '' as Date | null,
     },
