@@ -4,7 +4,7 @@ import { Goal, Goals } from "@/hooks/useList/lib/useGoal";
 import moment from "moment";
 import { defineStore } from "pinia";
 
-const events = getGlobalEvents()
+const events = getGlobalEvents().get()
 
 
 const useGoalStore = defineStore('goal_store', {
@@ -19,27 +19,32 @@ const useGoalStore = defineStore('goal_store', {
             this.goalsContainer.push(e)
         },
         removeGoals(e: Goals) {
+            let rollBackFn = () => this.goalsContainer.push(e)
+
             this.goalsContainer = this.goalsContainer.filter(el => el !== e)
-        },
-        removeGoal(container: Goals, e: Goal) {
-            container.goals = container.goals.filter(el => el !== e)
+
+            events.push(useEvent('Remove the goal', true, rollBackFn))
         },
         removeCompeletedGoals() {
             this.goalsContainer = this.goalsContainer.filter(e => !e.compelete)
         },
         nextGoal(e: Goals) {
-            let backup = {...e}
-            const rollBackFn = () => e = backup
+            let backup = JSON.parse(JSON.stringify(e))
+            let rollBackFn = () => {
+                if(this.goalsContainer.includes(e)) {
+                    this.goalsContainer[this.goalsContainer.indexOf(e)] = backup
+                }
+            }
 
             if(e.currentIndex >= e.maxIndex) {
                 e.compelete = true
+            } else {
+                if(e.maxIndex !== 0) {
+                    e.currentIndex ++
+                }
             }
-            if(e.maxIndex === 0) {
-                return
-            }
-            e.currentIndex ++
 
-            events.get().push(useEvent('Next the goal', true, rollBackFn))
+            events.push(useEvent('Next the goal', true, rollBackFn))
         },
         setCompelete(e: Goals) {
             e.currentIndex = e.maxIndex
