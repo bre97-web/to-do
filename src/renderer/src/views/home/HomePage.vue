@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <div class="pt-0 m-0">
+        <div>
             <Search></Search>
         </div>
 
