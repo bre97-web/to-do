@@ -29,12 +29,13 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
+import { Goal, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { ref } from 'vue'
 import template from '@/views/chooseGoal/goalTemplate/lib/template.json'
 
 import '@material/web/button/text-button'
 import '@material/web/button/tonal-button'
+import { useGoalStore } from '@/store/useGoalStore'
 
 
 const goalTemplates = template
@@ -68,16 +69,24 @@ const next = () => {
  * 用于上一步按钮
  */
 const last = () => router.back()
+
+const goalStore = useGoalStore()
 /**
  * 将选择的goal模板保存到全局BLOBAL_GOALS中
  */
 const create = () => {
-    var goals = useGoals()
+    var goalsList: Goal[] = []
 
-    goalTemplates[currentIndex.value].forEach(e => goals.push(useGoal(e)))
+    for(let i = 0; i < goalTemplates[currentIndex.value].length; i ++) {
+        goalsList.push(useGoal({
+            title: goalTemplates[currentIndex.value][i].title
+        }))
+    }
 
-    getGlobalGoalsList().push(goals.get())
-
+    goalStore.push(useGoals({
+        goalList: goalsList
+    }))
+    
     router.push('/goals')
 }
 </script>

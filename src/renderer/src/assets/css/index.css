@@ -515,7 +515,7 @@
     }
 
     div.fixedWindow {
-        @apply fixed z-50;
+        @apply fixed z-[60];
     }
     div.fixedWindow.fullScreen {
         @apply w-full h-full min-h-screen top-0 right-0;
