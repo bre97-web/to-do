@@ -43,7 +43,8 @@ const useTaskStore = defineStore('task_store', {
         push(e: Item, to: TASKS_TYPE) {
             var obj = {
                 ...e,
-                date: e['date'] === undefined ? createDate() : e.date,
+                createdDate: e['createdDate'] === undefined ? createDate() : e.createdDate,
+                targetDate: e['targetDate'] === undefined ? createDate() : null,
                 index: e['index'] === undefined ? createIndex() : e.index,    
             }
             if (to === TASKS_TYPE.FOCUS) {
