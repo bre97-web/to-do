@@ -1,14 +1,16 @@
 import { useDate } from "@/hooks/useDate"
 import { useIndex } from "@/hooks/useIndex"
+import { fchown } from "fs"
 
 type Title = string
 type Subtitle = string
 type Note = string
 type Tags = string[]
-type Steps = {
+type Step = {
     text: string,
     done: boolean
-}[]
+}
+type Steps = Step[]
 type Index = number
 type Date = string
 type Type = "task" | "goal"
@@ -104,6 +106,12 @@ function useItem({title, subtitle = "", note = "", tags = [], steps = [], target
         type: type,
     }
 }
+function useStep({text, done = false}: Step): Step {
+    return {
+        text: text,
+        done: done
+    }
+}
 
 export type {
     Item,
@@ -112,11 +120,13 @@ export type {
     Subtitle,
     Note,
     Tags,
+    Step,
     Steps,
     Index,
     Date,
     Type,
 }
 export {
-    useItem
+    useItem,
+    useStep
 }
