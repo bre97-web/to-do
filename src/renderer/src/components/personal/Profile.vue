@@ -3,7 +3,7 @@
     <div class="flex flex-row gap-2">
         <header
             v-if="info.get().name.length !== 0"
-            class="rounded-full border w-20 h-20 flex items-center justify-center bg-off-base"
+            class="rounded-full border w-20 h-20 flex items-center justify-center"
         >
             <h1 class="text-4xl">{{ info.get().name[0] }}</h1>
         </header>
