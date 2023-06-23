@@ -414,16 +414,16 @@
         background-color: var(--md-sys-color-background) !important;
     }
     .text-onBackground {
-        background-color: var(--md-sys-color-on-background) !important;
+        color: var(--md-sys-color-on-background) !important;
     }
     .bg-surface {
         color: var(--md-sys-color-surface) !important;
     }
     .text-onSurface {
-        color: var(--md-sys-color-surface) !important;
+        color: var(--md-sys-color-on-surface) !important;
     }
     .bg-onSurface {
-        background-color: var(--md-sys-color-surface) !important;
+        background-color: var(--md-sys-color-on-surface) !important;
     }
     .surfaceContainer {
         background-color: var(--md-sys-color-surface-container) !important;
