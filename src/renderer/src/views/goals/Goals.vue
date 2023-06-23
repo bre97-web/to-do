@@ -1,8 +1,6 @@
 <template>
     <div>
-        <main class="mt-12 relative">
-            <Goals></Goals>
-        </main>
+        <GoalsList></GoalsList>
 
         <nav class="fab">
             <md-fab
@@ -18,7 +16,7 @@
 
 <script lang="ts" setup>
 import Creator from '@/components/creator/Creator.vue'
-import Goals from '@/components/goal/Goals.vue'
+import GoalsList from './lib/GoalsList.vue'
 import { reactive } from 'vue';
 
 /**

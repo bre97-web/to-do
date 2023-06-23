@@ -8,7 +8,7 @@ const useGoalStore = defineStore('goal_store', {
         goalsContainer: [] as Goals[]
     }),
     getters: {
-        getGoals: (state) => state.goalsContainer
+        getGoals: (state): Goals[] => state.goalsContainer
     },
     actions: {
         push(e: Goals) {
@@ -24,9 +24,13 @@ const useGoalStore = defineStore('goal_store', {
             this.goalsContainer = this.goalsContainer.filter(e => !e.compelete)
         },
         nextGoal(e: Goals) {
-            if(e.currentIndex !== e.maxIndex) {
-                e.currentIndex ++
+            if(e.currentIndex >= e.maxIndex) {
+                e.compelete = true
             }
+            if(e.maxIndex === 0) {
+                return
+            }
+            e.currentIndex ++
         },
         setCompelete(e: Goals) {
             e.currentIndex = e.maxIndex

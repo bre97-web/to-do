@@ -1,4 +1,4 @@
- text-secondary<template>
+<template>
     <div>
         <template v-if="globalGoals.values().length === 0">
             <div class="space-y-4 pt-24 text-center">
@@ -36,7 +36,6 @@
 <script lang="ts" setup>
 import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { reactive } from 'vue'
-import { GoalsInterface } from '@/hooks/useList/lib/useGoal'
 import '@material/web/checkbox/checkbox'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/icon/icon'

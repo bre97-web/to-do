@@ -117,11 +117,6 @@ const submit = () => {
 }
 const createTask = () => taskStore.push(useItem(target.task), TASKS_TYPE.NORMAL)
 const createGoal = () => {
-    // let goals = Array<Goal>()
-    // for(let i = 0; i < target.goalConfig.goalCount; i ++) {
-        // goals.push(useGoal(target.goal))
-    // }
-    // getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
     let goalsList: Goal[] = []
     for(let i = 0; i < target.goalConfig.goalCount; i ++) {
         goalsList.push(useGoal({
@@ -132,7 +127,6 @@ const createGoal = () => {
     let goals = useGoals({
         goalList: goalsList,
         schedule: target.goalConfig.goalSchedule,
-        maxIndex: target.goalConfig.goalCount - 1,
     })
 
     console.log(goals);

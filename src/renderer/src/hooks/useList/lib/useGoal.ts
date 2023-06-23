@@ -62,7 +62,7 @@ function useGoal({title, description = ''}: {
  * 创建一个用于装载Goal数组的容器对象
  * 请使用useGoal()来创建Goal类型的对象
  */
-function useGoals({ goalList, schedule = "daily", currentIndex = 0, maxIndex = 3, targetDate = null, compelete = false }: {
+function useGoals({ goalList, schedule = "daily", currentIndex = 0, maxIndex = goalList.length - 1, targetDate = null, compelete = false }: {
     goalList: Goal[],
     schedule?: Schedule, 
     currentIndex?: number
