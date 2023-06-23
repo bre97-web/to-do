@@ -31,7 +31,6 @@
 import { useRouter } from 'vue-router'
 import { useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { ref } from 'vue'
-import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import template from '@/views/chooseGoal/goalTemplate/lib/template.json'
 
 import '@material/web/button/text-button'
@@ -73,7 +72,7 @@ const last = () => router.back()
  * 将选择的goal模板保存到全局BLOBAL_GOALS中
  */
 const create = () => {
-    var goals = useGoals('weekly')
+    var goals = useGoals()
 
     goalTemplates[currentIndex.value].forEach(e => goals.push(useGoal(e)))
 
