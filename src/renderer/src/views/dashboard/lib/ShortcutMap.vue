@@ -6,7 +6,7 @@
         </div>
         <div class="line">
             <b>Open Navigate</b>
-            <p>2</p>
+            <p>Ctrl + k</p>
         </div>
         <div class="line">
             <b>Open Shortcut Map</b>
