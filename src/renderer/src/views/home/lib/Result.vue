@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
 import Task from '@/components/task/Task.vue';
-import { Item } from '@/hooks/useList/lib/useItem';
+import { Item } from '@/hooks/useItem'
 import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore';
 import { useRouter } from 'vue-router';
 
@@ -94,4 +94,4 @@ const tagIncludes = (container: string[], e: Item): boolean => {
 
 <style scoped>
 
-</style>@/store/useTaskStore
+</style>@/store/useTaskStore@/hooks/useItem

@@ -1,4 +1,4 @@
-import type { Item } from './useList/lib/useItem'
+import type { Item } from './useItem'
 
 /**
  * 读取list中的每一个Tag属性，将所有的Tag属性统计为Map

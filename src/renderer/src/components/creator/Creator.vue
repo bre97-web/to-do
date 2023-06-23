@@ -39,8 +39,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
-import { Type, useItem, Date, Tags } from '@/hooks/useList/lib/useItem'
+import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useGoal'
+import { Type, useItem, Date, Tags } from '@/hooks/useItem'
 import './lib/TargetType'
 import '@material/web/dialog/dialog'
 import '@material/web/button/text-button'
@@ -144,4 +144,4 @@ const cancel = () => {
 const clear = () => {
     Object.assign(target, initTarget)
 }
-</script>
+</script>@/hooks/useGoal@/hooks/useItem

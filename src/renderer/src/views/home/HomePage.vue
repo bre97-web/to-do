@@ -37,7 +37,7 @@ import { computed, reactive, ref, watch } from 'vue';
 import Chips from './lib/Chips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
-import { Item } from '@/hooks/useList/lib/useItem'
+import { Item } from '@/hooks/useItem'
 
 const store = useTaskStore()
 
@@ -126,4 +126,4 @@ const closeDialog = () => (dialog.open = false)
 
 
 </script>
-@/store/useTaskStore
+@/store/useTaskStore@/hooks/useItem

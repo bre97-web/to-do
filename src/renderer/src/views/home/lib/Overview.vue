@@ -17,7 +17,7 @@
 
 <script setup lang="tsx">
 import { useDate } from '@/hooks/useDate';
-import { Item, Items } from '@/hooks/useList/lib/useItem';
+import { Item, Items } from '@/hooks/useItem'
 import { useTaskStore } from '@/store/useTaskStore';
 import '@material/web/elevation/elevation'
 import '@material/web/icon/icon'
@@ -84,4 +84,4 @@ const NeedDoTasks = () => (
 li {
     @apply p-4 w-full border bg-surface rounded-3xl;
 }
-</style>@/store/useTaskStore
+</style>@/store/useTaskStore@/hooks/useItem

@@ -1,6 +1,6 @@
 import { getGlobalEvents } from "@/hooks/lib/getGlobalEvents";
 import { useEvent } from "@/hooks/useEvent";
-import { Goal, Goals } from "@/hooks/useList/lib/useGoal";
+import { Goals } from "@/hooks/useGoal";
 import moment from "moment";
 import { defineStore } from "pinia";
 

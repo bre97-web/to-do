@@ -63,7 +63,7 @@ import { Header } from './lib/Header'
 import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import { Items, useItem } from '@/hooks/useList/lib/useItem'
+import { Items, useItem } from '@/hooks/useItem'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
@@ -124,4 +124,4 @@ const push = (path: string, e: any) => router.push({
     }
 })
 </script>
-@/store/useTaskStore
+@/store/useTaskStore@/hooks/useItem

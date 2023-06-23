@@ -1,4 +1,4 @@
-import { Type } from '@/hooks/useList/lib/useItem'
+import { Type } from '@/hooks/useItem'
 import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
 import { LitElement, html } from 'lit'

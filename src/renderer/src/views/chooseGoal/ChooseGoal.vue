@@ -29,10 +29,9 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { Goal, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
+import { Goal, useGoal, useGoals } from '@/hooks/useGoal'
 import { ref } from 'vue'
 import template from '@/views/chooseGoal/goalTemplate/lib/template.json'
-
 import '@material/web/button/text-button'
 import '@material/web/button/tonal-button'
 import { useGoalStore } from '@/store/useGoalStore'
@@ -90,3 +89,4 @@ const create = () => {
     router.push('/goals')
 }
 </script>
+@/hooks/useGoal

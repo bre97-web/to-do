@@ -173,7 +173,7 @@ import '@material/web/linearprogress/linear-progress'
 import '@material/web/circularprogress/circular-progress'
 import { ref, watch } from 'vue'
 import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
-import { useItem } from '@/hooks/useList/lib/useItem'
+import { useItem } from '@/hooks/useItem'
 
 
 /**
@@ -202,4 +202,4 @@ watch(store.tasks, () => {
     @apply relative flex flex-row gap-2 items-start justify-start my-4;
 }
 
-</style>@/store/useTaskStore
+</style>@/store/useTaskStore@/hooks/useItem
