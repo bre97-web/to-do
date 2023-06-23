@@ -2,7 +2,7 @@
     <Task>
         <template #>
             <md-list>
-                <template v-if="props.items.length !== 0" v-for="e in props.items">
+                <template v-if="props.items.length !== 0" v-for="e in props.items" :key="e.index">
                     <template v-if="props.itemsFilted.length === 0 || tagIncludes(props.itemsFilted, e)">
                         <md-list-item
                             :headline="e.title"
