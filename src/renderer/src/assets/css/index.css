@@ -460,7 +460,7 @@
         @apply z-50;
     }
     nav.fab {
-        @apply fixed right-5 bottom-24 lg:bottom-5 z-40;
+        @apply fixed right-5 bottom-24 lg:bottom-5 z-[60];
     }
     nav.fab * {
         @apply z-40;

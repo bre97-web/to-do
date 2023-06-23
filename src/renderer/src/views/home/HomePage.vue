@@ -50,7 +50,7 @@ enum TaskType {
     FOCUS,
     RECYCLE
 }
-const targetType = ref<TaskType>(TaskType.NORMAL)
+const targetType = ref<TaskType>(TaskType.NONE)
 const setTargetType = (e: TaskType) => targetType.value = e
 
 

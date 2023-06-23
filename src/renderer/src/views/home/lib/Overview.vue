@@ -1,12 +1,12 @@
 <template>
-    <div class="bg-background mx-4 mt-4 h-[2000px]">
+    <div class="bg-background mx-4 mt-4">
         <ul class="space-y-8">
             <li>
-                <Title :title="`You need do`" :subtitle="`${targetDateTasks.length} current todos`"></Title>
+                <Title :title="`Today ${useDate()}, you need to do`" :subtitle="`${targetDateTasks.length} current todos`"></Title>
                 <NeedDoTasks></NeedDoTasks>
             </li>
             <li>
-                <Title :title="`Today ${useDate()}`" :subtitle="`${tasks.length} todos`"></Title>
+                <Title :title="`You need to do`" :subtitle="`${tasks.length} todos`"></Title>
                 <AllTasks></AllTasks>
             </li>
 
@@ -27,10 +27,7 @@ const store = useTaskStore()
 const tasks = computed(() => [...store.getNormal, ...store.getFocus])
 const targetDateTasks = computed(() => {
     const today = useDate()
-    const e = tasks.value.filter(e => e.targetDate === today)
-    console.log(e);
-    
-    return e
+    return tasks.value.filter(e => e.targetDate === today)
 })
 
 const Title = ({title, subtitle}: {
@@ -55,24 +52,24 @@ const Task = ({item}: {
         </header>
     </li>
 )
-const allDone = () => (
-    <div class="text-center m-4">
-        <md-icon class="text-8xl font-bold shake">waving_hand</md-icon>
-        <p class="opacity-75">You compeleted all todos</p>
-    </div>
-)
 
 const TasksList = ({element}: {
     element: Items
 }) => (
-    <ul class="surface rounded-3xl space-y-2">
+    <div>
+        <ul class="surface rounded-3xl space-y-2 xl:flex">
+            {
+                element.slice(0, 5).map(e => (<Task item={e}></Task>))
+            }
+        </ul>
         {
-            element.slice(0, 5).map(e => (<Task item={e}></Task>))
+            element.length === 0 &&
+            <div class="m-4 text-center">
+                <md-icon class="text-secondary text-8xl font-bold shake">waving_hand</md-icon>
+                <p class="text-secondary">You compeleted all todos</p>
+            </div>
         }
-        {
-            element.length === 0 && <allDone></allDone>
-        }
-    </ul>
+    </div>
 )
 
 const AllTasks = () => (
