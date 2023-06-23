@@ -49,7 +49,7 @@ You can make suggestions in issues.
 |First Launch|✅|✅|❌|
 |Tag|✅|✅|❌|
 |Sort|✅|🟡|❌|
-|Today's Tasks|❌|❌|❌|
+|Today's Tasks|✅|🟡|❌|
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|
