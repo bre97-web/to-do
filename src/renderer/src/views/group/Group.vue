@@ -5,7 +5,7 @@
                 <template v-for="map in tags">
                     <Card class="rounded-xl p-4 md:w-1/4 md:h-48 elevation surfaceContainer md:flex-grow md:flex-shrink">
                         <template #header>
-                            <h1>{{ map[0] }}</h1>
+                            <h1 class="text-onSurface">{{ map[0] }}</h1>
                         </template>
                         <template #>
                             <ul class="rounded-xl flex flex-row flex-wrap items-start gap-2">
