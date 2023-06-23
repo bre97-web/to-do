@@ -1,6 +1,6 @@
 <template>
-    <TabGroup as="div" class="w-full sticky z-40 top-[0px]">
-        <TabList as="md-tabs">
+    <TabGroup as="div" class="relative w-full z-40">
+        <TabList as="md-tabs" class="sticky top-[0px]">
             <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NONE)">Overview</Tab>
             <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NORMAL)">Todo</Tab>
             <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.FOCUS)">Focus</Tab>
