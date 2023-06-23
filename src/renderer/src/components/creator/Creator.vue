@@ -39,7 +39,6 @@
 </template>
 
 <script lang="ts" setup>
-import { getGlobalGoalsList } from '@/hooks/useList/lib/getGlobalGoalsList'
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useList/lib/useGoal'
 import { Type, useItem, Date, Tags } from '@/hooks/useList/lib/useItem'
 import './lib/TargetType'
@@ -51,6 +50,7 @@ import '@material/web/textfield/outlined-text-field'
 import '@material/web/labs/segmentedbutton/outlined-segmented-button'
 import '@material/web/labs/segmentedbuttonset/outlined-segmented-button-set'
 import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
+import { useGoalStore } from '@/store/useGoalStore.ts'
 import { ref } from 'vue'
 
 const props = defineProps(['dialog', 'closeDialog'])
@@ -72,7 +72,7 @@ const initTarget = {
     goal: {
         title: '',
         description: '',
-    } as Goal,
+    },
 }
 const target = {
     // 将要创建的目标类型
@@ -91,7 +91,7 @@ const target = {
     goal: {
         title: '',
         description: '',
-    } as Goal,
+    },
     // goal相关的配置
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
@@ -100,8 +100,8 @@ const target = {
 
 }
 
-const store = useTaskStore()
-
+const taskStore = useTaskStore()
+const goalStore = useGoalStore()
 
 /**
  * 将用户输入的信息推送到store中，关闭对话框时清空输入数据
@@ -115,13 +115,29 @@ const submit = () => {
     clear()
     props.closeDialog()
 }
-const createTask = () => store.push(useItem(target.task), TASKS_TYPE.NORMAL)
+const createTask = () => taskStore.push(useItem(target.task), TASKS_TYPE.NORMAL)
 const createGoal = () => {
-    let goals = Array<Goal>()
+    // let goals = Array<Goal>()
+    // for(let i = 0; i < target.goalConfig.goalCount; i ++) {
+        // goals.push(useGoal(target.goal))
+    // }
+    // getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
+    let goalsList: Goal[] = []
     for(let i = 0; i < target.goalConfig.goalCount; i ++) {
-        goals.push(useGoal(target.goal))
+        goalsList.push(useGoal({
+            title: target.goal.title,
+            description: target.goal.description
+        }))
     }
-    getGlobalGoalsList().push(useGoals(target.goalConfig.goalSchedule, goals).get())
+    let goals = useGoals({
+        goalList: goalsList,
+        schedule: target.goalConfig.goalSchedule,
+        maxIndex: target.goalConfig.goalCount - 1,
+    })
+
+    console.log(goals);
+    
+    goalStore.push(goals)
 }
 const cancel = () => {
     clear()
@@ -135,4 +151,3 @@ const clear = () => {
     Object.assign(target, initTarget)
 }
 </script>
-@/store/useTaskStore
