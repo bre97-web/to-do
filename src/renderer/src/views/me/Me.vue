@@ -5,12 +5,12 @@
         <main class="mt-12 relative space-y-4">
             <div class="p-4 rounded-xl">
                 <ul class="group">
-                    <li class="elevation bg-surface">
+                    <li class="elevation surfaceContainer">
                         <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Helper</h1>
                         <md-text-button @click="router.push('/helper')">Look</md-text-button>
                     </li>
-                    <li class="elevation bg-surface">
+                    <li class="elevation surfaceContainer">
                         <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Dashboard</h1>
                         <md-text-button @click="router.push('/dashboard')"><p>Open</p></md-text-button>  

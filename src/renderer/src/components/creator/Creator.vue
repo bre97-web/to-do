@@ -5,7 +5,7 @@
                 <h1>Create</h1>
             </div>
 
-            <form class="flex flex-col gap-2 min-h-screen overflow-scroll p-2">
+            <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
                 <lit-target-type :setType="(value: Type) => target.type = value"></lit-target-type>
 
                 <!-- Task -->
