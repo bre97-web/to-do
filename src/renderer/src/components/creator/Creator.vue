@@ -21,7 +21,7 @@
                 <template v-if="target.type.value === 'goal'">
                     <md-filled-text-field label="Title" v-model="target.goal.title"></md-filled-text-field>
                     <md-filled-text-field label="Description" v-model="target.goal.description"></md-filled-text-field>
-                    <md-outlined-segmented-button-set label="Schedule">
+                    <md-outlined-segmented-button-set label="Schedule" class="mx-1">
                         <md-outlined-segmented-button selected @click="target.goalConfig.goalSchedule = 'daily'" label="Day"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'weekly'" label="Week"></md-outlined-segmented-button>
                         <md-outlined-segmented-button @click="target.goalConfig.goalSchedule = 'monthly'" label="Month"></md-outlined-segmented-button>
