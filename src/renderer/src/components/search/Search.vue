@@ -27,13 +27,11 @@
                 </ul>
             </div>
 
-            <Task title="" subtitle="">
+            <Task>
                 <template v-if="get.length !== 0" #>
                     <md-list class="tasks">
                         <div v-for="e in get" :key="e.index">
                             <md-list-item :headline="e.title" :supporttingText="e.subtitle">
-                                <!-- <md-checkbox @click="tasks.moveTo(e, )" slot="start"></md-checkbox> -->
-
                                 <div slot="end">
                                     <md-standard-icon-button @click="push('/info', e)">
                                         <md-icon>more</md-icon>
