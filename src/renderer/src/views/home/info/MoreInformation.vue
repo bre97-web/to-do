@@ -163,7 +163,7 @@ import '@material/web/button/text-button'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/icon/icon'
-import { useTaskStore } from '@/store';
+import { useTaskStore } from '@/store/useTaskStore';
 
 
 const store = useTaskStore()
@@ -215,3 +215,4 @@ watch(task, () => {
     }
 })
 </script>
+@/store/useTaskStore

@@ -50,7 +50,7 @@ import '@material/web/textfield/filled-text-field'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/labs/segmentedbutton/outlined-segmented-button'
 import '@material/web/labs/segmentedbuttonset/outlined-segmented-button-set'
-import { TASKS_TYPE, useTaskStore } from '@/store'
+import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
 import { ref } from 'vue'
 
 const props = defineProps(['dialog', 'closeDialog'])
@@ -135,3 +135,4 @@ const clear = () => {
     Object.assign(target, initTarget)
 }
 </script>
+@/store/useTaskStore
