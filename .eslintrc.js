@@ -5,12 +5,10 @@ module.exports = {
     root: true,
     globals: {
         defineEmits: 'readonly',
-        defineProps: 'readonly',
+        defineProps: 'readonly'
     },
     parser: '@typescript-eslint/parser',
-    plugins: [
-        '@typescript-eslint'
-    ],
+    plugins: ['@typescript-eslint', 'prettier'],
     env: {
         browser: true,
         commonjs: true,
@@ -27,12 +25,13 @@ module.exports = {
         '@vue/eslint-config-prettier',
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
-        'plugin:@typescript-eslint/recommended'
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended'
     ],
     rules: {
         'vue/require-default-prop': 'off',
         'vue/multi-word-component-names': 'off',
-        'no-console': "warn",
-        'no-loops/no-loops': "error"
+        'no-console': 'warn',
+        'prettier/prettier': 'error'
     }
 }
