@@ -55,7 +55,3 @@ const setTargetTypeWithResetFilter = (e: TaskType) => {
     props.clearCurrentFilter()
 }
 </script>
-
-<style scoped>
-
-</style>@/hooks/useItem

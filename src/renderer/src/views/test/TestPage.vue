@@ -109,83 +109,12 @@
                 </md-menu>
             </div>
         </div>
-
-        <div>
-            <md-outlined-text-field
-                label="Push to Focus Pinia Test"
-                :value="input"
-                @input="input = $event.target.value"
-            ></md-outlined-text-field>
-            <md-tonal-button @click="store.push(useItem({ title: 'test'}), TASKS_TYPE.FOCUS)"
-            >Push</md-tonal-button>
-
-            <ul>
-                <li><h1>Focus</h1></li>
-                <li v-for="(e, index) in store.getFocus" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.FOCUS)">Remove</md-text-button>
-                    <md-text-button @click="store.move(e, TASKS_TYPE.FOCUS, TASKS_TYPE.RECYCLE)">Delete</md-text-button>
-                </li>
-            </ul>
-
-            <ul>
-                <li><h1>Normal</h1></li>
-                <li v-for="(e, index) in store.getNormal" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.NORMAL)">Remove</md-text-button>
-                </li>
-            </ul>
-
-            <ul>
-                <li><h1>Recycle</h1></li>
-                <li v-for="(e, index) in store.getRecycle" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">Remove</md-text-button>
-                </li>
-            </ul>
-        </div>
     </div>
 </template>
 
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
 import DarkSwitch from '@/components/dark/DarkSwitch.vue'
-import '@material/web/checkbox/checkbox'
-import '@material/web/radio/radio'
-import '@material/web/switch/switch'
-import '@material/web/button/text-button'
-import '@material/web/button/elevated-button'
-import '@material/web/button/outlined-button'
-import '@material/web/button/tonal-button'
-import '@material/web/button/filled-button'
-import '@material/web/textfield/filled-text-field'
-import '@material/web/textfield/outlined-text-field'
-import '@material/web/dialog/dialog'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-import '@material/web/divider/divider'
-import '@material/web/icon/icon'
-import '@material/web/iconbutton/standard-icon-button'
-import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/labs/navigationtab/navigation-tab'
-import '@material/web/fab/branded-fab'
-import '@material/web/linearprogress/linear-progress'
-import '@material/web/circularprogress/circular-progress'
-import { ref, watch } from 'vue'
-import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
-import { useItem } from '@/hooks/useItem'
-
-
-/**
- * Pinia Test
- */
-const input = ref('')
-const store = useTaskStore()
-
-watch(store.tasks, () => {
-    console.log(store.tasks);
-    
-})
 </script>
 
 <style scoped>
@@ -202,4 +131,4 @@ watch(store.tasks, () => {
     @apply relative flex flex-row gap-2 items-start justify-start my-4;
 }
 
-</style>@/store/useTaskStore@/hooks/useItem
+</style>

@@ -19,8 +19,6 @@
 import { useDate } from '@/hooks/useDate';
 import { Item, Items } from '@/hooks/useItem'
 import { useTaskStore } from '@/store/useTaskStore';
-import '@material/web/elevation/elevation'
-import '@material/web/icon/icon'
 import { computed } from 'vue';
 
 const store = useTaskStore()
@@ -84,4 +82,4 @@ const NeedDoTasks = () => (
 li {
     @apply p-4 w-full border bg-surface rounded-3xl;
 }
-</style>@/store/useTaskStore@/hooks/useItem
+</style>
