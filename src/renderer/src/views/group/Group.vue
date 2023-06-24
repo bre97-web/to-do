@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import Card from '@/components/card/Card.vue'
 import { useTags } from '@/hooks/useTags'
-import { useTaskStore } from '@/store'
+import { useTaskStore } from '@/store/useTaskStore'
 import '@material/web/icon/icon'
 import '@material/web/iconbutton/standard-icon-button'
 import { useRouter } from 'vue-router'
@@ -53,4 +53,4 @@ const tags = useTags(Array.from([...tasks.getNormal, ...tasks.getFocus, ...tasks
 
 <style scoped>
 
-</style>
+</style>@/store/useTaskStore

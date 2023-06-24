@@ -1,0 +1,58 @@
+<template>
+    <md-item>
+        <template
+            v-if="goalStore.getGoals.length !== 0"
+            v-for="goals in goalStore.getGoals"
+            :key="goals.index"
+        >
+
+            <md-list-item
+                :headline="goals.compelete ? goals.goals[goals.maxIndex !== 0 ? goals.maxIndex - 1 : 0].title : goals.goals[goals.currentIndex].title"
+                :supportingText="goals.compelete ? '' : 'Next times ' + goalStore.geuCurrentDate(goals)"
+            >
+                <!-- 下一步按钮 -->
+                <div slot="start" class="ml-2">
+                    <md-standard-icon-button slot="start" :disabled="goals.compelete" @click="goalStore.nextGoal(goals)">
+                        <md-icon v-if="!goals.compelete" >radio_button_unchecked</md-icon>
+                        <md-icon v-else>check</md-icon>
+                    </md-standard-icon-button>
+                </div>
+
+                <template>
+
+                </template>
+
+                <!-- 删除按钮 -->
+                <div slot="end" class="flex gap-2 items-center justify-end">
+                    <h1>
+                        {{ !goals.compelete ? `${goals.currentIndex + 1} / ${goals.maxIndex + 1}` : `Compeleted` }}
+                    </h1>
+                    <md-standard-icon-button @click="goalStore.removeGoals(goals)">
+                        <md-icon>delete</md-icon>
+                    </md-standard-icon-button>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+        </template>
+        <template v-else>
+            <div class="space-y-4 pt-24 text-center">
+                <span class="material-symbols-outlined scale-[4] text-secondary">done_all</span>
+                <p class="text-center italic text-secondary">All done</p>
+            </div>
+        </template>
+    </md-item>
+</template>
+
+<script lang="ts" setup>
+import { useGoalStore } from '@/store/useGoalStore.ts'
+import '@material/web/checkbox/checkbox'
+import '@material/web/icon/icon'
+import '@material/web/iconbutton/standard-icon-button'
+import '@material/web/list/list'
+import '@material/web/list/list-item'
+
+
+const goalStore = useGoalStore()
+
+
+</script>

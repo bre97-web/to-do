@@ -27,7 +27,7 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Result from './Result.vue';
 import Overview from './Overview.vue'
-import { Items } from '@/hooks/useList/lib/useItem';
+import { Items } from '@/hooks/useItem'
 
 enum TaskType {
     NONE = 0,
@@ -58,4 +58,4 @@ const setTargetTypeWithResetFilter = (e: TaskType) => {
 
 <style scoped>
 
-</style>
+</style>@/hooks/useItem

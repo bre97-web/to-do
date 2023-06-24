@@ -157,13 +157,13 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router'
-import { Item } from '@/hooks/useList/lib/useItem'
+import { Item } from '@/hooks/useItem'
 import Info from '@/components/task/info/Info.vue'
 import '@material/web/button/text-button'
 import '@material/web/textfield/outlined-text-field'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/icon/icon'
-import { useTaskStore } from '@/store';
+import { useTaskStore } from '@/store/useTaskStore';
 
 
 const store = useTaskStore()
@@ -215,3 +215,4 @@ watch(task, () => {
     }
 })
 </script>
+@/store/useTaskStore@/hooks/useItem

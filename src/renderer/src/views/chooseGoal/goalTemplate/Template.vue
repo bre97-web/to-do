@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Goals } from '@/hooks/useList/lib/useGoal';
+import { Goals } from '@/hooks/useGoal'
 import Card from './lib/Card.vue'
 
 const props = defineProps<{
@@ -55,3 +55,4 @@ const props = defineProps<{
 const setIndex = (index: number) => props.setCurrentIndex(index)
 
 </script>
+@/hooks/useGoal

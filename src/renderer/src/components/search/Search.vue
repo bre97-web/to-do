@@ -63,13 +63,13 @@ import { Header } from './lib/Header'
 import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import { Items, useItem } from '@/hooks/useList/lib/useItem'
+import { Items, useItem } from '@/hooks/useItem'
 import '@material/web/list/list'
 import '@material/web/list/list-item'
 import '@material/web/divider/divider'
 import '@material/web/iconbutton/standard-icon-button'
 import '@material/web/icon/icon'
-import { useTaskStore, TASKS_TYPE } from '@/store'
+import { useTaskStore, TASKS_TYPE } from '@/store/useTaskStore'
 import searchTarget from '@/assets/json/searchTarget.json'
 
 const search = searchTarget
@@ -124,3 +124,4 @@ const push = (path: string, e: any) => router.push({
     }
 })
 </script>
+@/store/useTaskStore@/hooks/useItem

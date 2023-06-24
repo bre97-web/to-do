@@ -2,7 +2,7 @@
     <Task>
         <template #>
             <md-list>
-                <template v-if="props.items.length !== 0" v-for="e in props.items">
+                <template v-if="props.items.length !== 0" v-for="e in props.items" :key="e.index">
                     <template v-if="props.itemsFilted.length === 0 || tagIncludes(props.itemsFilted, e)">
                         <md-list-item
                             :headline="e.title"
@@ -67,8 +67,8 @@
 
 <script setup lang="ts">
 import Task from '@/components/task/Task.vue';
-import { Item } from '@/hooks/useList/lib/useItem';
-import { TASKS_TYPE, useTaskStore } from '@/store';
+import { Item } from '@/hooks/useItem'
+import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore';
 import { useRouter } from 'vue-router';
 
 const props = defineProps<{
@@ -94,4 +94,4 @@ const tagIncludes = (container: string[], e: Item): boolean => {
 
 <style scoped>
 
-</style>
+</style>@/store/useTaskStore@/hooks/useItem

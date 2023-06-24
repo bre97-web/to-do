@@ -1,6 +1,6 @@
 import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
 import { useEvent } from '@/hooks/useEvent'
-import { Item, Items } from '@/hooks/useList/lib/useItem'
+import { Item, Items } from '@/hooks/useItem'
 import { defineStore } from 'pinia'
 
 enum TASKS_TYPE {
