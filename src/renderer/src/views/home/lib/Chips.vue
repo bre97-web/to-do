@@ -11,8 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import '@material/web/chips/filter-chip'
-import '@material/web/chips/suggestion-chip'
 import { ref } from 'vue';
 
 interface Select {
@@ -32,10 +30,4 @@ const props = defineProps<{
     clearCurrentFilter: () => void,
     getTags: string[]
 }>()
-
-
 </script>
-
-<style scoped>
-
-</style>

@@ -55,4 +55,3 @@ const props = defineProps<{
 const setIndex = (index: number) => props.setCurrentIndex(index)
 
 </script>
-@/hooks/useGoal

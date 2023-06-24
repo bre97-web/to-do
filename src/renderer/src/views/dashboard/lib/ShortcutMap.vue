@@ -15,10 +15,6 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import '@material/web/divider/divider'
-</script>
-
 <style scoped>
     div.line {
         @apply grid grid-cols-2 border gap-2 px-4 py-2;

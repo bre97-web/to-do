@@ -45,14 +45,6 @@
 
 <script lang="ts" setup>
 import { useGoalStore } from '@/store/useGoalStore.ts'
-import '@material/web/checkbox/checkbox'
-import '@material/web/icon/icon'
-import '@material/web/iconbutton/standard-icon-button'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-
 
 const goalStore = useGoalStore()
-
-
 </script>

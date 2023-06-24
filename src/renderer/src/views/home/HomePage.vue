@@ -29,10 +29,6 @@
 import Creator from '@/components/creator/Creator.vue'
 import Search from '@/components/search/Search.vue'
 import Content from './lib/Content.vue'
-import '@material/web/tabs/tab'
-import '@material/web/tabs/tabs'
-import '@material/web/fab/fab'
-import '@material/web/icon/icon'
 import { computed, reactive, ref, watch } from 'vue';
 import Chips from './lib/Chips.vue'
 import { useTags } from '@/hooks/useTags'
@@ -122,8 +118,4 @@ const dialog: any = reactive({
     open: false
 })
 const closeDialog = () => (dialog.open = false)
-
-
-
 </script>
-@/store/useTaskStore@/hooks/useItem
