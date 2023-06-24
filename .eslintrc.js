@@ -32,6 +32,19 @@ module.exports = {
         'vue/require-default-prop': 'off',
         'vue/multi-word-component-names': 'off',
         'no-console': 'warn',
-        'prettier/prettier': 'error'
+        'prettier/prettier': 'error',
+        semi: ['off', 'awalys'],
+        'no-mixed-space-and-tabs': 'error',
+        'no-alert': 'warn',
+        'no-debugger': 'error',
+        eqeqeq: 'warn',
+        'no-eval': 'error',
+        'no-dupe-args': 'error',
+        'no-dupe-keys': 'error',
+        'no-self-compare': 'error',
+        'no-unused-vars': 'warn',
+        'no-func-assign': 'error',
+        ident: ['warn', 4],
+        quotes: ['warn', 'single']
     }
 }

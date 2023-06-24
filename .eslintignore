@@ -2,3 +2,5 @@ node_modules
 dist
 out
 .gitignore
+tsconfig.json
+tsconfig.node.json

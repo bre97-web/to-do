@@ -29,7 +29,11 @@ export default defineConfig({
     build: {
         outDir: '../../docs',
         emptyOutDir: true,
+        assetsDir: 'assets',
+        assetsInlineLimit: 4096,
         sourcemap: true,
-
+        manifest: true,
+        minify: 'terser',
+        chunkSizeWarningLimit: 500
     }
 })

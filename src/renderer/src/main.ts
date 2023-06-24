@@ -16,8 +16,8 @@ import '@/assets/css/index.css'
  * Google's Material Design
  */
 import 'material-symbols/outlined.css'
-import "@fontsource/roboto/unicode.json"
-import "@fontsource/noto-sans-sc/unicode.json"
+import '@fontsource/roboto/unicode.json'
+import '@fontsource/noto-sans-sc/unicode.json'
 
 /**
  * Pinia
