@@ -3,8 +3,14 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
     root: true,
+    globals: {
+        defineEmits: 'readonly',
+        defineProps: 'readonly',
+    },
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
+    plugins: [
+        '@typescript-eslint'
+    ],
     env: {
         browser: true,
         commonjs: true,
@@ -18,17 +24,15 @@ module.exports = {
     },
     extends: [
         'plugin:vue/vue3-recommended',
-        'eslint:recommended',
         '@vue/eslint-config-prettier',
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
-        'plugin:@typescript-eslint/recommended',
-        'no-loops'
+        'plugin:@typescript-eslint/recommended'
     ],
     rules: {
         'vue/require-default-prop': 'off',
         'vue/multi-word-component-names': 'off',
-        'no-console': 1,
-        'no-loops/no-loops': 2
+        'no-console': "warn",
+        'no-loops/no-loops': "error"
     }
 }
