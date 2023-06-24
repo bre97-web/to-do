@@ -7,8 +7,8 @@ module.exports = {
         defineEmits: 'readonly',
         defineProps: 'readonly'
     },
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint', 'prettier'],
+    parser: 'vue-eslint-parser',
+    plugins: ['@typescript-eslint', 'prettier', 'vue'],
     env: {
         browser: true,
         commonjs: true,
@@ -18,7 +18,8 @@ module.exports = {
     },
     parserOptions: {
         sourceType: 'module',
-        ecmaVersion: 2021
+        ecmaVersion: 2021,
+        parser: '@typescript-eslint/parser'
     },
     extends: [
         'plugin:vue/vue3-recommended',
@@ -34,7 +35,7 @@ module.exports = {
         'no-console': 'warn',
         'prettier/prettier': 'error',
         semi: ['off', 'awalys'],
-        'no-mixed-space-and-tabs': 'error',
+        'no-mixed-spaces-and-tabs': 'error',
         'no-alert': 'warn',
         'no-debugger': 'error',
         eqeqeq: 'warn',
@@ -44,7 +45,7 @@ module.exports = {
         'no-self-compare': 'error',
         'no-unused-vars': 'warn',
         'no-func-assign': 'error',
-        ident: ['warn', 4],
+        indent: ['warn', 4],
         quotes: ['warn', 'single']
     }
 }
