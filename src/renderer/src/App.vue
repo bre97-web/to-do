@@ -1,8 +1,6 @@
 <template>
-    <Loading v-if="!isLoaded" message="To-Do"></Loading>
-    
     <!-- 首屏 -->
-    <div v-else id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
+    <div id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
         <FirstLaunch></FirstLaunch>
         
         <ninja-keys
@@ -22,9 +20,7 @@
 
 <script lang="ts" setup>
 import "ninja-keys"
-import { ref } from 'vue'
 import FirstLaunch from './components/FirstLaunch.vue'
-import Loading from './components/Loading.vue'
 import Events from '@/components/event/Events.vue'
 import { useRouter } from "vue-router"
 import useTheme from '@/hooks/useTheme'
@@ -35,7 +31,7 @@ const router = useRouter()
 /**
  * Hotkeys
  */
- const hotkeys = [
+const hotkeys = [
     {
         id: "Shortcut Map",
         title: "Shortcut Map",
@@ -83,12 +79,4 @@ const router = useRouter()
     },
     
 ]
-
-/**
- * 在window.load时isLoaded变为true，延迟1秒
- */
-const isLoaded = ref<boolean>(false)
-window.addEventListener('load', () => {
-    setTimeout(() => (isLoaded.value = true), 1000)
-})
 </script>
