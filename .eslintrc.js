@@ -1,23 +1,35 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
     root: true,
-    plugins: ['@typescript-eslint', 'prettier'],
+    plugins: ['@typescript-eslint', 'prettier', 'vue'],
     env: {
         browser: true,
         commonjs: true,
         es6: true,
-        node: true,
-        'vue/setup-compiler-macros': true
+        node: true
     },
-    parser: '@typescript-eslint/parser',
+    parser: 'vue-eslint-parser',
     parserOptions: {
         sourceType: 'module',
-        ecmaVersion: 2021
+        ecmaVersion: 2021,
+        ecmaFeatures: {
+            jsx: true,
+            globalReturn: false,
+            impliedStrict: false
+        },
+        parser: '@typescript-eslint/parser',
+        vueFeatures: {
+            filter: true,
+            interpolationAsNonHTML: true,
+            styleCSSVariableInjection: true,
+            customMacros: []
+        }
     },
     extends: [
         '@vue/eslint-config-prettier',
+        'plugin:vue/vue3-recommended',
+        'plugin:vue/essential',
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
@@ -40,6 +52,7 @@ module.exports = {
         indent: ['warn', 4],
         quotes: ['warn', 'single'],
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-empty-function': 'off'
+        '@typescript-eslint/no-empty-function': 'off',
+        'vue/multi-word-component-names': 'off'
     }
 }

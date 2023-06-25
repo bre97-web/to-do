@@ -4,5 +4,8 @@ out
 .gitignore
 tsconfig.json
 tsconfig.node.json
-*.vue
-*.md
+*.ttf
+*.woff
+*.woff2
+bin
+index.html

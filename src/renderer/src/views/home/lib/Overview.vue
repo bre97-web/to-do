@@ -38,7 +38,6 @@ const Title = ({title, subtitle}: {
     </header>
 )
 
-
 const Task = ({item}: {
     item: Item
 }) => (
