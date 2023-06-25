@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
-import Result from './Result.vue';
+import Result from './Result.vue'
 import Overview from './Overview.vue'
 import { Items } from '@/hooks/useItem'
 
@@ -36,14 +36,14 @@ enum TaskType {
     RECYCLE
 }
 const props = defineProps<{
-    targetType: TaskType,
-    setTargetType: (e: TaskType) => {},
-    currentFilter: string[],
-    clearCurrentFilter: () => void,
+    targetType: TaskType
+    setTargetType: (e: TaskType) => void
+    currentFilter: string[]
+    clearCurrentFilter: () => void
     tasks: {
-        focus: Items;
-        normal: Items;
-        recycle: Items;
+        focus: Items
+        normal: Items
+        recycle: Items
     }
 }>()
 
@@ -55,3 +55,5 @@ const setTargetTypeWithResetFilter = (e: TaskType) => {
     props.clearCurrentFilter()
 }
 </script>
+
+<style scoped></style>

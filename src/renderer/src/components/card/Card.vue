@@ -18,12 +18,3 @@
         </nav>
     </div>
 </template>
-
-<script setup lang="ts">
-import '@material/web/ripple/ripple'
-import '@material/web/elevation/elevation'
-</script>
-
-<style scoped>
-
-</style>

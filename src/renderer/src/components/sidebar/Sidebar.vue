@@ -9,9 +9,9 @@
                         <p class="text-onBackground">Including some steps</p>
                     </header>
                     <footer class="action">
-                        <md-tonal-button
-                            @click="router.push('/chooseGoal')"
-                        >Create</md-tonal-button>
+                        <md-tonal-button @click="router.push('/chooseGoal')"
+                            >Create</md-tonal-button
+                        >
                     </footer>
                 </li>
 
@@ -25,9 +25,6 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-
-import '@material/web/button/tonal-button'
-
 
 const router = useRouter()
 </script>

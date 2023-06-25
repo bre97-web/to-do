@@ -3,12 +3,12 @@
         <main class="relative flex items-center justify-evenly flex-wrap gap-4">
             <Card
                 class="ring-black dark:ring-white"
-                :class="{'ring': currentIndex === 0}"
+                :class="{ ring: currentIndex === 0 }"
                 @click="setIndex(0)"
             >
                 <template #header>
                     <div>
-                        <img src="@/assets/img/pexels-susan-flores.jpg">
+                        <img src="@/assets/img/pexels-susan-flores.jpg" />
                     </div>
                 </template>
                 <template #content>
@@ -22,12 +22,12 @@
 
             <Card
                 class="ring-black dark:ring-white"
-                :class="{'ring': currentIndex === 1}"
+                :class="{ ring: currentIndex === 1 }"
                 @click="setIndex(1)"
             >
                 <template #header>
                     <div>
-                        <img src="@/assets/img/pexels-pixabay.jpg" alt="">
+                        <img src="@/assets/img/pexels-pixabay.jpg" alt="" />
                     </div>
                 </template>
                 <template #content>
@@ -53,5 +53,4 @@ const props = defineProps<{
 }>()
 
 const setIndex = (index: number) => props.setCurrentIndex(index)
-
 </script>

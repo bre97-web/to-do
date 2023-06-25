@@ -1,48 +1,47 @@
-import { useDate } from "@/hooks/useDate"
-import { useIndex } from "@/hooks/useIndex"
+import { useDate } from '@/hooks/useDate'
+import { useIndex } from '@/hooks/useIndex'
 
 type Title = string
 type Subtitle = string
 type Note = string
 type Tags = string[]
 type Step = {
-    text: string,
+    text: string
     done: boolean
 }
 type Steps = Step[]
 type Index = number
 type Date = string
-type Type = "task" | "goal"
+type Type = 'task' | 'goal'
 
 /**
  * 一个Item相当于一个Todo（或Goal）
  * 请使用useItem(...)来创建一个Item类型的对象，useItem已经提供了部分缺省参数
  */
 interface Item {
-
     // Item最终显示的标题
-    title: Title,
+    title: Title
 
     /**
      * 最终会显示的描述性标题
      */
-    subtitle: Subtitle,
+    subtitle: Subtitle
 
     /**
      * 一般不会直接显式note属性，它仅仅用于用户对一个Item的详细说明
      */
-    note: Note,
+    note: Note
 
     /**
      * 谨慎修改
      * tags是一个重要的属性，它用于给自身打上标记，在关于Item显示的组件中经常使用tags
      */
-    tags: Tags,
+    tags: Tags
 
     /**
      * steps是一个包含text和done的对象，它用于给自身添加步骤说明
      */
-    steps: Steps,
+    steps: Steps
 
     /**
      * 创建Item时的可选项
@@ -50,14 +49,14 @@ interface Item {
      * 此属性不需要由用户提供，也不需要在创建Item时手动赋值，它的值是当前的UNIX时间戳
      * 在store中调用push时会自动赋值
      */
-    index: Index,
+    index: Index
 
     /**
      * 创建Item时的可选项
      * 创建日期
      * （在store中调用push时会自动赋值）
      */
-    createdDate: Date,
+    createdDate: Date
 
     /**
      * 创建Item时的可选项
@@ -65,12 +64,12 @@ interface Item {
      * 目标日期（由用户指定指定的需要完成的日期）
      * （在store中调用push时会自动赋值）
      */
-    targetDate: Date | null,
+    targetDate: Date | null
 
     /**
      * [目前作用未知]
      */
-    type: Type,
+    type: Type
 }
 type Items = Item[]
 
@@ -89,13 +88,21 @@ const createDate = (): string => useDate()
  * 返回一个Item类型的对象
  * 需要指定title,剩余参数提供了缺省值
  */
-function useItem({title, subtitle = "", note = "", tags = [], steps = [], targetDate = null, type = "task"}: {
-    title: string,
-    subtitle?: string,
-    note?: string,
-    tags?: Tags,
-    steps?: Steps,
-    targetDate?: Date | null,
+function useItem({
+    title,
+    subtitle = '',
+    note = '',
+    tags = [],
+    steps = [],
+    targetDate = null,
+    type = 'task'
+}: {
+    title: string
+    subtitle?: string
+    note?: string
+    tags?: Tags
+    steps?: Steps
+    targetDate?: Date | null
     type?: Type
 }): Item {
     return {
@@ -107,30 +114,15 @@ function useItem({title, subtitle = "", note = "", tags = [], steps = [], target
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
-        type: type,
+        type: type
     }
 }
-function useStep({text, done = false}: Step): Step {
+function useStep({ text, done = false }: Step): Step {
     return {
         text: text,
         done: done
     }
 }
 
-export type {
-    Item,
-    Items,
-    Title,
-    Subtitle,
-    Note,
-    Tags,
-    Step,
-    Steps,
-    Index,
-    Date,
-    Type,
-}
-export {
-    useItem,
-    useStep
-}
+export type { Item, Items, Title, Subtitle, Note, Tags, Step, Steps, Index, Date, Type }
+export { useItem, useStep }

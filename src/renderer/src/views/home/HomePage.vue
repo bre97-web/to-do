@@ -4,24 +4,32 @@
             <Search></Search>
         </div>
 
-        <Content :targetType="targetType" :setTargetType="setTargetType" :currentFilter="currentFilter" :clearCurrentFilter="clearCurrentFilter" :tasks="store.tasks"></Content>
+        <Content
+            :target-type="targetType"
+            :set-target-type="setTargetType"
+            :current-filter="currentFilter"
+            :clear-current-filter="clearCurrentFilter"
+            :tasks="store.tasks"
+        ></Content>
 
         <!-- Create button -->
         <nav class="fab">
-            <md-fab
-                label="Create"
-                @click="dialog.open = true"
-            >
+            <md-fab label="Create" @click="dialog.open = true">
                 <md-icon slot="icon">create</md-icon>
             </md-fab>
-            <Creator :dialog="dialog" :closeDialog="closeDialog"></Creator>
+            <Creator :dialog="dialog" :close-dialog="closeDialog"></Creator>
         </nav>
 
         <!-- ChipSet -->
         <div class="fixed bottom-24 lg:bottom-28 z-30 backdrop-blur-md fab flex gap-2 mx-4">
-            <Chips v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0" :currentFilter="currentFilter" :pushCurrentFilter="pushCurrentFilter" :clearCurrentFilter="clearCurrentFilter" :getTags="getTags.getString"></Chips>
+            <Chips
+                v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0"
+                :current-filter="currentFilter"
+                :push-current-filter="pushCurrentFilter"
+                :clear-current-filter="clearCurrentFilter"
+                :get-tags="getTags.getString"
+            ></Chips>
         </div>
-
     </div>
 </template>
 
@@ -29,7 +37,7 @@
 import Creator from '@/components/creator/Creator.vue'
 import Search from '@/components/search/Search.vue'
 import Content from './lib/Content.vue'
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue'
 import Chips from './lib/Chips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
@@ -47,8 +55,7 @@ enum TaskType {
     RECYCLE
 }
 const targetType = ref<TaskType>(TaskType.NONE)
-const setTargetType = (e: TaskType) => targetType.value = e
-
+const setTargetType = (e: TaskType) => (targetType.value = e)
 
 /**
  * 当前选择的过滤标签
@@ -65,7 +72,7 @@ const clearCurrentFilter = () => {
  * 向currentFilter对象toggle一个元素e
  */
 const pushCurrentFilter = (e: string) => {
-    if(currentFilter.value.includes(e)) {
+    if (currentFilter.value.includes(e)) {
         currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
     } else {
         currentFilter.value.push(e)
@@ -80,7 +87,7 @@ watch(store.tasks, () => {
 
     let found: string[] = []
     map.forEach((_, k) => {
-        if(currentFilter.value.includes(k)) {
+        if (currentFilter.value.includes(k)) {
             found.push(k)
         }
     })
@@ -91,17 +98,17 @@ watch(store.tasks, () => {
 /**
  * 取得所有Item的tags，返回值作为过滤标签，用于过滤器
  */
- const getTags = computed(() => {
+const getTags = computed(() => {
     let result: string[] = []
     let iterable = useTags(store.getAll.normal)
-    
-    if(targetType.value === TaskType.FOCUS) {
+
+    if (targetType.value === TaskType.FOCUS) {
         iterable = useTags(store.getAll.focus)
-    } else if(targetType.value === TaskType.RECYCLE) {
+    } else if (targetType.value === TaskType.RECYCLE) {
         iterable = useTags(store.getAll.recycle)
     }
 
-    for(const e of iterable.keys()) {
+    for (const e of iterable.keys()) {
         result.push(e)
     }
 
@@ -114,7 +121,9 @@ watch(store.tasks, () => {
 /**
  * 控制fab按钮点击后显示的dialog窗口
  */
-const dialog: any = reactive({
+const dialog = reactive<{
+    open: boolean
+}>({
     open: false
 })
 const closeDialog = () => (dialog.open = false)

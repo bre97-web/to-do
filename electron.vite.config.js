@@ -20,7 +20,8 @@ export default defineConfig({
             vue({
                 template: {
                     compilerOptions: {
-                        isCustomElement: (tag) => tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
+                        isCustomElement: (tag) =>
+                            tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
                     }
                 }
             }),

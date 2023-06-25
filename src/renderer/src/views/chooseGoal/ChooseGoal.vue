@@ -8,20 +8,39 @@
 
             <main class="overflow-y-scroll p-2 h-4/5 md:max-h-screen my-8">
                 <router-view v-slot="{ Component }" name="ChooseGoalInnerViewBoard">
-                    <component :is="Component" :currentIndex="currentIndex" :setCurrentIndex="setCurrentIndex" :goalTemplates="goalTemplates"></component>
+                    <component
+                        :is="Component"
+                        :current-index="currentIndex"
+                        :set-current-index="setCurrentIndex"
+                        :goal-templates="goalTemplates"
+                    ></component>
                 </router-view>
             </main>
 
             <!-- Back to /home -->
             <nav class="absolute bottom-4 right-4 flex justify-end items-center gap-2">
-                <md-text-button 
-                    @click="() => {
-                        router.push('/goals')
-                    }"
-                >Close</md-text-button>
-                <md-text-button :disabled="router.currentRoute.value.path === '/chooseGoal/goalTemplate'"  @click="last">Previous</md-text-button>
-                <md-tonal-button v-if="router.currentRoute.value.path === '/chooseGoal/goalTemplate'" :disabled="currentIndex === -1" @click="next">Next</md-tonal-button>
-                <md-tonal-button v-else :disabled="currentIndex === -1" @click="create">Done</md-tonal-button>
+                <md-text-button
+                    @click="
+                        () => {
+                            router.push('/goals')
+                        }
+                    "
+                    >Close</md-text-button
+                >
+                <md-text-button
+                    :disabled="router.currentRoute.value.path === '/chooseGoal/goalTemplate'"
+                    @click="last"
+                    >Previous</md-text-button
+                >
+                <md-tonal-button
+                    v-if="router.currentRoute.value.path === '/chooseGoal/goalTemplate'"
+                    :disabled="currentIndex === -1"
+                    @click="next"
+                    >Next</md-tonal-button
+                >
+                <md-tonal-button v-else :disabled="currentIndex === -1" @click="create"
+                    >Done</md-tonal-button
+                >
             </nav>
         </div>
     </div>
@@ -34,7 +53,6 @@ import { ref } from 'vue'
 import template from '@/views/chooseGoal/goalTemplate/lib/template.json'
 import { useGoalStore } from '@/store/useGoalStore'
 
-
 const goalTemplates = template
 
 const router = useRouter()
@@ -44,12 +62,12 @@ const router = useRouter()
  * 默认为-1（没有选择）
  */
 const currentIndex = ref(-1)
-const setCurrentIndex = (index: number) => currentIndex.value = index
+const setCurrentIndex = (index: number) => (currentIndex.value = index)
 /**
  * 根据currentIndex值作为goalTemplates的索引，路由到选择的goal模板的详细信息界面
  */
 const next = () => {
-    if(currentIndex.value === -1) {
+    if (currentIndex.value === -1) {
         return undefined
     }
     router.push({
@@ -74,17 +92,20 @@ const goalStore = useGoalStore()
 const create = () => {
     var goalsList: Goal[] = []
 
-    for(let i = 0; i < goalTemplates[currentIndex.value].length; i ++) {
-        goalsList.push(useGoal({
-            title: goalTemplates[currentIndex.value][i].title
-        }))
+    for (let i = 0; i < goalTemplates[currentIndex.value].length; i++) {
+        goalsList.push(
+            useGoal({
+                title: goalTemplates[currentIndex.value][i].title
+            })
+        )
     }
 
-    goalStore.push(useGoals({
-        goalList: goalsList
-    }))
-    
+    goalStore.push(
+        useGoals({
+            goalList: goalsList
+        })
+    )
+
     router.push('/goals')
 }
 </script>
-@/hooks/useGoal

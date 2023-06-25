@@ -1,4 +1,3 @@
-
 interface NotificationInterface {
     title: string
     option?: {
@@ -8,25 +7,22 @@ interface NotificationInterface {
     }
 }
 
-function useNotice({title, option}: NotificationInterface) {
-    if (!("Notification" in window) || Notification.permission !== "granted") {
+function useNotice({ title, option }: NotificationInterface) {
+    if (!('Notification' in window) || Notification.permission !== 'granted') {
         return undefined
     }
     const notification = new Notification(title, {
         body: option?.body,
-        icon: './src/renderer/src/assets/img/icon.png',
+        icon: './src/renderer/src/assets/img/icon.png'
     })
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     notification.addEventListener('show', () => {})
 }
 
 function checkPermission() {
-    if (Notification.permission !== "denied") {
+    if (Notification.permission !== 'denied') {
         Notification.requestPermission()
     }
 }
 
-
-export {
-    useNotice,
-    checkPermission
-}
+export { useNotice, checkPermission }

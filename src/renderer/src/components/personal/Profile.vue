@@ -7,9 +7,12 @@
             <h1 class="text-onBackground text-4xl">{{ info.get().name[0] }}</h1>
         </header>
 
-        <main class="flex flex-col ">
+        <main class="flex flex-col">
             <p>Hello</p>
-            <h1 class="text-onBackground underline underline-offset-1 hover:underline-offset-4" @click="open">
+            <h1
+                class="text-onBackground underline underline-offset-1 hover:underline-offset-4"
+                @click="open"
+            >
                 {{ info.get().name }}
             </h1>
         </main>
@@ -43,10 +46,6 @@ import '@material/web/button/filled-button'
 import '@material/web/textfield/filled-text-field'
 import '@material/web/dialog/dialog'
 
-
-
-
-
 /**
  * 关于打开与关闭dialog的操作和业务逻辑
  */
@@ -68,5 +67,3 @@ const cancel = () => {
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)
 </script>
-
-<style scoped></style>

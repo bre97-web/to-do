@@ -16,8 +16,8 @@ import '@/assets/css/index.css'
  * Google's Material Design
  */
 import 'material-symbols/outlined.css'
-import "@fontsource/roboto/unicode.json"
-import "@fontsource/noto-sans-sc/unicode.json"
+import '@fontsource/roboto/unicode.json'
+import '@fontsource/noto-sans-sc/unicode.json'
 
 /**
  * Pinia
@@ -29,9 +29,6 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
- app
- .use(pinia)
- .use(Router)
- .mount('#app')
+app.use(pinia).use(Router).mount('#app')
 
 app.config.performance = true
