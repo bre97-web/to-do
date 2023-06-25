@@ -3,11 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
     root: true,
-    globals: {
-        defineEmits: 'readonly',
-        defineProps: 'readonly'
-    },
-    plugins: ['@typescript-eslint', 'prettier', 'vue'],
+    plugins: ['@typescript-eslint', 'prettier'],
     env: {
         browser: true,
         commonjs: true,
@@ -21,7 +17,6 @@ module.exports = {
         ecmaVersion: 2021
     },
     extends: [
-        'plugin:vue/vue3-recommended',
         '@vue/eslint-config-prettier',
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
@@ -29,8 +24,6 @@ module.exports = {
         'plugin:prettier/recommended'
     ],
     rules: {
-        'vue/require-default-prop': 'off',
-        'vue/multi-word-component-names': 'off',
         'no-console': 'warn',
         'prettier/prettier': 'error',
         semi: ['off', 'awalys'],
@@ -47,8 +40,6 @@ module.exports = {
         indent: ['warn', 4],
         quotes: ['warn', 'single'],
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-empty-function': 'off',
-        'vue/no-deprecated-slot-attribute': 'off',
-        'vue/no-use-v-if-with-v-for': 'off'
+        '@typescript-eslint/no-empty-function': 'off'
     }
 }
