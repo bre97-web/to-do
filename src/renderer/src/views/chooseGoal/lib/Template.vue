@@ -44,7 +44,7 @@
 
 <script lang="ts" setup>
 import { Goals } from '@/hooks/useGoal'
-import Card from './lib/Card.vue'
+import Card from '@/views/chooseGoal/lib/Card.vue'
 
 const props = defineProps<{
     currentIndex: number

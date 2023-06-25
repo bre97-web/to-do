@@ -50,7 +50,7 @@
 import { useRouter } from 'vue-router'
 import { Goal, useGoal, useGoals } from '@/hooks/useGoal'
 import { ref } from 'vue'
-import template from '@/views/chooseGoal/goalTemplate/lib/template.json'
+import template from '@/views/chooseGoal/lib/template.json'
 import { useGoalStore } from '@/store/useGoalStore'
 
 const goalTemplates = template

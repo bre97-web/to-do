@@ -63,10 +63,10 @@
 <script lang="tsx" setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import Task from '@/components/task/Task.vue'
+import Task from '@/components/Task.vue'
 import { Items, useItem } from '@/hooks/useItem'
 import { useTaskStore, TASKS_TYPE } from '@/store/useTaskStore'
-import searchTemplate from '@/assets/json/searchTarget.json'
+import searchTemplate from '@/assets/resources/json/searchTarget.json'
 import { useSearchStore } from '@/store/useSearchStore'
 
 /**

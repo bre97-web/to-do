@@ -117,7 +117,7 @@ function useItem({
         type: type
     }
 }
-function useStep({ text, done = false }: Step): Step {
+function useStep({ text, done = false }: { text: string; done?: boolean }): Step {
     return {
         text: text,
         done: done

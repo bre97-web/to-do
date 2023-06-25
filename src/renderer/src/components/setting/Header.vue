@@ -18,7 +18,7 @@
 
 <script lang="tsx" setup>
 import { useUserStore } from '@/store/useUserStore'
-import SearchInput from '../search/SearchInput.vue'
+import SearchInput from '@/components/SearchInput.vue'
 
 const Title = () => (
     <div class="flex flex-col flex-none">

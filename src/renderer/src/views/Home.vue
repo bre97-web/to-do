@@ -72,7 +72,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from '@/components/setting/Header.vue'
-import Sidebar from '@/components/sidebar/Sidebar.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）

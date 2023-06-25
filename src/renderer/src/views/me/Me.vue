@@ -1,6 +1,6 @@
 <template>
     <div class="bg-background pt-8 px-4">
-        <Profile></Profile>
+        <ProfileCard></ProfileCard>
 
         <main class="mt-12 relative space-y-4">
             <div class="p-4 rounded-xl">
@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import Profile from '@/components/personal/Profile.vue'
+import ProfileCard from '@/components/ProfileCard.vue'
 
 /**
  * 路由

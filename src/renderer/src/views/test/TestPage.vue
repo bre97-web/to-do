@@ -112,7 +112,7 @@
 
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
-import DarkSwitch from '@/components/dark/DarkSwitch.vue'
+import DarkSwitch from '@/components/DarkSwitch.vue'
 </script>
 
 <style scoped>
