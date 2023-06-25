@@ -8,14 +8,16 @@
             <SearchInput></SearchInput>
 
             <div class="flex-none">
-                <router-link to="/me"><Avatar></Avatar></router-link>
+                <router-link to="/me">
+                    <Avatar></Avatar>
+                </router-link>
             </div>
         </div>
     </header>
 </template>
 
 <script lang="tsx" setup>
-import Avatar from '@/components/setting/lib/Avatar'
+import { useUserStore } from '@/store/useUserStore'
 
 interface Props {
     input: string
@@ -25,9 +27,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emits = defineEmits(['set-input'])
 
-/**
- * Component
- */
 const Title = () => (
     <div class="flex flex-col flex-none">
         <h1 class="text-base text-onBackground">To-Do</h1>
@@ -42,6 +41,13 @@ const SearchInput = () => (
             placeholder="Search"
             onInput={(e) => emits('set-input', (e.target as HTMLInputElement).value)}
         />
+    </div>
+)
+
+const userStore = useUserStore()
+const Avatar = () => (
+    <div class="flex-none rounded-full overflow-clip border w-10 h-10 flex items-center justify-center">
+        <h1>{userStore.getName[0]}</h1>
     </div>
 )
 </script>
