@@ -113,7 +113,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { Item } from '@/hooks/useItem'
+import { Item, useStep } from '@/hooks/useItem'
 import { useTaskStore } from '@/store/useTaskStore'
 
 const store = useTaskStore()
@@ -133,34 +133,29 @@ const task = reactive<Item>(JSON.parse(router.currentRoute.value.query.task as s
  */
 const newStepValue = ref<string>('')
 const createStep = () => {
-    task.steps.push({
-        text: newStepValue.value,
-        done: false
-    })
+    task.steps.push(
+        useStep({
+            text: newStepValue.value
+        })
+    )
 }
 
+const updateStoreValue = (e: Item): Item => {
+    if (e.index === task.index) {
+        return {
+            ...task
+        }
+    } else {
+        return e
+    }
+}
 watch(task, () => {
-    for (let index = 0; index < store.getFocus.length; index++) {
-        if (store.tasks.focus[index].index === task.index) {
-            store.tasks.focus[index] = {
-                ...task
-            }
-        }
-    }
-    for (let index = 0; index < store.getNormal.length; index++) {
-        if (store.tasks.normal[index].index === task.index) {
-            store.tasks.normal[index] = {
-                ...task
-            }
-        }
-    }
-    for (let index = 0; index < store.getRecycle.length; index++) {
-        if (store.tasks.recycle[index].index === task.index) {
-            store.tasks.recycle[index] = {
-                ...task
-            }
-        }
-    }
+    store.tasks.normal = store.getNormal.map(updateStoreValue)
+    store.tasks.focus = store.getFocus.map(updateStoreValue)
+    /**
+     * 没有给Recycle中的元素提供编辑功能
+     */
+    // store.tasks.recycle = store.getRecycle.map(updateStoreValue)
 })
 </script>
 
