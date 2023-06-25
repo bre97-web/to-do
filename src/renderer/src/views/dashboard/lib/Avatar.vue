@@ -1,15 +1,14 @@
 <template>
     <div class="space-y-4">
         <div class="w-64 h-64 rounded-full flex items-center justify-center border">
-            <p class="text-8xl font-black">{{ user.name[0] }}</p>
+            <p class="text-8xl font-black">{{ userStore.getName[0] }}</p>
         </div>
-        <h1 class="text-right text-gray-500">{{ user.name }}</h1>
+        <h1 class="text-right text-gray-500">{{ userStore.getName }}</h1>
     </div>
 </template>
 
 <script setup lang="ts">
-import personal from '@/assets/js/personal'
-import { ref } from 'vue'
+import { useUserStore } from '@/store/useUserStore'
 
-const user = ref(personal().get())
+const userStore = useUserStore()
 </script>

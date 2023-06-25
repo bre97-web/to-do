@@ -50,7 +50,7 @@ module.exports = {
         'no-unused-vars': 'off',
         'no-func-assign': 'error',
         indent: ['warn', 4],
-        quotes: ['warn', 'single'],
+        quotes: ['off', 'single'],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         'vue/multi-word-component-names': 'off',
