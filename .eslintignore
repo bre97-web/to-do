@@ -4,3 +4,5 @@ out
 .gitignore
 tsconfig.json
 tsconfig.node.json
+*.vue
+*.md

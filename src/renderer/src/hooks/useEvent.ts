@@ -5,7 +5,7 @@ import { useIndex } from './useIndex'
 interface EventInterface {
     msg: string
     isRollback: boolean
-    fn?: () => any
+    fn: () => void
     index?: number
 }
 interface EventsInterface {
@@ -34,7 +34,7 @@ function useEvents(): EventsInterface {
     }
 }
 
-function useEvent(_msg: string, _isRollback: boolean, _fn: () => any): EventInterface {
+function useEvent(_msg: string, _isRollback: boolean, _fn: () => void): EventInterface {
     return {
         msg: _msg,
         isRollback: _isRollback,

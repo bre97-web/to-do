@@ -7,7 +7,6 @@ module.exports = {
         defineEmits: 'readonly',
         defineProps: 'readonly'
     },
-    parser: 'vue-eslint-parser',
     plugins: ['@typescript-eslint', 'prettier', 'vue'],
     env: {
         browser: true,
@@ -16,10 +15,10 @@ module.exports = {
         node: true,
         'vue/setup-compiler-macros': true
     },
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         sourceType: 'module',
-        ecmaVersion: 2021,
-        parser: '@typescript-eslint/parser'
+        ecmaVersion: 2021
     },
     extends: [
         'plugin:vue/vue3-recommended',
@@ -48,6 +47,7 @@ module.exports = {
         indent: ['warn', 4],
         quotes: ['warn', 'single'],
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
         'vue/no-deprecated-slot-attribute': 'off',
         'vue/no-use-v-if-with-v-for': 'off'
     }

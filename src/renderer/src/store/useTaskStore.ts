@@ -36,7 +36,7 @@ const useTaskStore = defineStore('task_store', {
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
-            let rollBackFn
+            let rollBackFn = () => {}
             if (to === TASKS_TYPE.FOCUS) {
                 rollBackFn = () => this.tasks.focus.push(e)
                 this.tasks.focus = this.tasks.focus.filter((el) => el !== e)

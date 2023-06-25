@@ -1,16 +1,14 @@
 <template>
     <div class="bg-background mx-4 mt-4 mb-12 h-[3000px]">
         <ul class="space-y-8">
-            <li>
+            <li class="p-4 w-full border bg-surface rounded-3xl">
                 <Title :title="`Today ${useDate()}, you need to do`" :subtitle="`${targetDateTasks.length} current todos`"></Title>
                 <NeedDoTasks></NeedDoTasks>
             </li>
-            <li>
+            <li class="p-4 w-full border bg-surface rounded-3xl">
                 <Title :title="`You need to do`" :subtitle="`${tasks.length} todos`"></Title>
                 <AllTasks></AllTasks>
             </li>
-
-
         </ul>
     </div>
 </template>
@@ -44,7 +42,7 @@ const Title = ({title, subtitle}: {
 const Task = ({item}: {
     item: Item
 }) => (
-    <li class="elevation rounded-3xl p-4 text-onSurface surfaceContainer z-0">
+    <li class="elevation p-4 rounded-3xl text-onSurface surfaceContainer">
         <md-elevation></md-elevation>
         <header>
             <h1>{ item.title }</h1>
@@ -79,9 +77,3 @@ const NeedDoTasks = () => (
     <TasksList element={targetDateTasks.value}></TasksList>
 )
 </script>
-
-<style scoped>
-li {
-    @apply p-4 w-full border bg-surface rounded-3xl;
-}
-</style>@/store/useTaskStore@/hooks/useItem
