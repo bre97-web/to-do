@@ -10,7 +10,7 @@ import Router from '@/router/index'
 /**
  * Tailwindcss
  */
-import '@/assets/css/index.css'
+import '@/assets/index.css'
 
 /**
  * Google's Material Design
