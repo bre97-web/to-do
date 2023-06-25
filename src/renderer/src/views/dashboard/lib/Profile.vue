@@ -10,6 +10,5 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from './Avatar.vue';
-
+import Avatar from './Avatar.vue'
 </script>

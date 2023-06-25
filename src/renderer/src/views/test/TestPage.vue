@@ -1,11 +1,10 @@
 <template>
     <div id="testDiv">
         <header class="text-center my-4 space-y-4">
-            <md-icon class="material-icons  scale-[2]">waving_hand</md-icon>
+            <md-icon class="material-icons scale-[2]">waving_hand</md-icon>
             <h1 class="font-black text-4xl text-center">Welcome to the TestPage</h1>
             <md-divider></md-divider>
         </header>
-
 
         <div class="controller">
             <DarkSwitch></DarkSwitch>
@@ -27,7 +26,6 @@
             <p class="font-thin">人人生而自由，在尊严和权利上一律平等。</p>
         </div>
 
-
         <div class="md">
             <h1>Material Web Components Test Page</h1>
             <div>
@@ -37,55 +35,55 @@
                 <md-text-button>Test</md-text-button>
                 <md-tonal-button>Test</md-tonal-button>
             </div>
-            
+
             <div>
                 <md-fab>
                     <md-icon slot="icon">group</md-icon>
                 </md-fab>
-                
+
                 <md-fab lowered>
                     <md-icon slot="icon">group</md-icon>
                 </md-fab>
-                
+
                 <md-branded-fab label="Test">
                     <md-icon slot="icon">group</md-icon>
                 </md-branded-fab>
-                
+
                 <md-branded-fab label="Test" lowered>
                     <md-icon slot="icon">group</md-icon>
                 </md-branded-fab>
             </div>
-            
+
             <div>
                 <md-filled-text-field label="Test"></md-filled-text-field>
                 <md-outlined-text-field label="Test"></md-outlined-text-field>
             </div>
-            
+
             <div>
                 <md-navigation-bar></md-navigation-bar>
-                
+
                 <md-navigation-bar>
                     <md-navigation-tab label="Test"></md-navigation-tab>
                     <md-navigation-tab label="Test"></md-navigation-tab>
                 </md-navigation-bar>
             </div>
-            
+
             <div>
                 <md-switch></md-switch>
                 <md-checkbox></md-checkbox>
                 <md-radio></md-radio>
             </div>
-            
+
             <div>
                 <md-list>
                     <md-list-item headline="Test"></md-list-item>
                     <md-divider></md-divider>
-                    
+
                     <md-list-item headline="Test">
                         <md-icon slot="start">group</md-icon>
                     </md-list-item>
                     <md-divider></md-divider>
-                    
+
                     <md-list-item headline="Test">
                         <md-icon slot="start">group</md-icon>
                         <md-icon slot="end">group</md-icon>
@@ -93,56 +91,21 @@
                     <md-divider></md-divider>
                 </md-list>
             </div>
-            
+
             <div>
                 <md-linear-progress progress="75"></md-linear-progress>
                 <md-linear-progress indeterminate></md-linear-progress>
-                <md-linear-progress indeterminate fourColors></md-linear-progress>
+                <md-linear-progress indeterminate four-colors></md-linear-progress>
                 <md-circular-progress progress="0.75"></md-circular-progress>
                 <md-circular-progress indeterminate></md-circular-progress>
-                <md-circular-progress indeterminate fourColor></md-circular-progress>
+                <md-circular-progress indeterminate four-color></md-circular-progress>
             </div>
-            
+
             <div>
                 <md-menu>
                     <md-menu-item header="Test"></md-menu-item>
                 </md-menu>
             </div>
-        </div>
-
-        <div>
-            <md-outlined-text-field
-                label="Push to Focus Pinia Test"
-                :value="input"
-                @input="input = $event.target.value"
-            ></md-outlined-text-field>
-            <md-tonal-button @click="store.push(useItem({ title: 'test'}), TASKS_TYPE.FOCUS)"
-            >Push</md-tonal-button>
-
-            <ul>
-                <li><h1>Focus</h1></li>
-                <li v-for="(e, index) in store.getFocus" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.FOCUS)">Remove</md-text-button>
-                    <md-text-button @click="store.move(e, TASKS_TYPE.FOCUS, TASKS_TYPE.RECYCLE)">Delete</md-text-button>
-                </li>
-            </ul>
-
-            <ul>
-                <li><h1>Normal</h1></li>
-                <li v-for="(e, index) in store.getNormal" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.NORMAL)">Remove</md-text-button>
-                </li>
-            </ul>
-
-            <ul>
-                <li><h1>Recycle</h1></li>
-                <li v-for="(e, index) in store.getRecycle" :key="index">
-                    {{ e }}
-                    <md-text-button @click="store.remove(e, TASKS_TYPE.RECYCLE)">Remove</md-text-button>
-                </li>
-            </ul>
         </div>
     </div>
 </template>
@@ -150,42 +113,6 @@
 <script lang="tsx" setup>
 import { ThemeColors } from '@/components/setting/lib/ThemeColors'
 import DarkSwitch from '@/components/dark/DarkSwitch.vue'
-import '@material/web/checkbox/checkbox'
-import '@material/web/radio/radio'
-import '@material/web/switch/switch'
-import '@material/web/button/text-button'
-import '@material/web/button/elevated-button'
-import '@material/web/button/outlined-button'
-import '@material/web/button/tonal-button'
-import '@material/web/button/filled-button'
-import '@material/web/textfield/filled-text-field'
-import '@material/web/textfield/outlined-text-field'
-import '@material/web/dialog/dialog'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-import '@material/web/divider/divider'
-import '@material/web/icon/icon'
-import '@material/web/iconbutton/standard-icon-button'
-import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/labs/navigationtab/navigation-tab'
-import '@material/web/fab/branded-fab'
-import '@material/web/linearprogress/linear-progress'
-import '@material/web/circularprogress/circular-progress'
-import { ref, watch } from 'vue'
-import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
-import { useItem } from '@/hooks/useItem'
-
-
-/**
- * Pinia Test
- */
-const input = ref('')
-const store = useTaskStore()
-
-watch(store.tasks, () => {
-    console.log(store.tasks);
-    
-})
 </script>
 
 <style scoped>
@@ -201,5 +128,4 @@ watch(store.tasks, () => {
 #testDiv > div.md > div {
     @apply relative flex flex-row gap-2 items-start justify-start my-4;
 }
-
-</style>@/store/useTaskStore@/hooks/useItem
+</style>

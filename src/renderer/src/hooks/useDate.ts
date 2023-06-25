@@ -1,4 +1,4 @@
-import moment from "moment"
+import moment from 'moment'
 
 /**
  * 使用YYYY-MM-DD格式的日期作为每一个元素的日期
@@ -6,6 +6,4 @@ import moment from "moment"
  */
 const useDate = (): string => moment().format('YYYY-MM-DD')
 
-export {
-    useDate
-}
+export { useDate }

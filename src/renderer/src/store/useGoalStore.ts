@@ -1,11 +1,10 @@
-import { getGlobalEvents } from "@/hooks/lib/getGlobalEvents";
-import { useEvent } from "@/hooks/useEvent";
-import { Goals } from "@/hooks/useGoal";
-import moment from "moment";
-import { defineStore } from "pinia";
+import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
+import { useEvent } from '@/hooks/useEvent'
+import { Goals } from '@/hooks/useGoal'
+import moment from 'moment'
+import { defineStore } from 'pinia'
 
 const events = getGlobalEvents().get()
-
 
 const useGoalStore = defineStore('goal_store', {
     state: () => ({
@@ -19,28 +18,28 @@ const useGoalStore = defineStore('goal_store', {
             this.goalsContainer.push(e)
         },
         removeGoals(e: Goals) {
-            let rollBackFn = () => this.goalsContainer.push(e)
+            const rollBackFn = () => this.goalsContainer.push(e)
 
-            this.goalsContainer = this.goalsContainer.filter(el => el !== e)
+            this.goalsContainer = this.goalsContainer.filter((el) => el !== e)
 
             events.push(useEvent('Remove the goal', true, rollBackFn))
         },
         removeCompeletedGoals() {
-            this.goalsContainer = this.goalsContainer.filter(e => !e.compelete)
+            this.goalsContainer = this.goalsContainer.filter((e) => !e.compelete)
         },
         nextGoal(e: Goals) {
-            let backup = JSON.parse(JSON.stringify(e))
-            let rollBackFn = () => {
-                if(this.goalsContainer.includes(e)) {
+            const backup = JSON.parse(JSON.stringify(e))
+            const rollBackFn = () => {
+                if (this.goalsContainer.includes(e)) {
                     this.goalsContainer[this.goalsContainer.indexOf(e)] = backup
                 }
             }
 
-            if(e.currentIndex >= e.maxIndex) {
+            if (e.currentIndex >= e.maxIndex) {
                 e.compelete = true
             } else {
-                if(e.maxIndex !== 0) {
-                    e.currentIndex ++
+                if (e.maxIndex !== 0) {
+                    e.currentIndex++
                 }
             }
 
@@ -51,14 +50,17 @@ const useGoalStore = defineStore('goal_store', {
             e.compelete = true
         },
         geuCurrentDate(e: Goals): string {
-            return moment(e.createdDate, 'YYYY-MM-DD').add((e.currentIndex + 1) * (e.schedule === "daily" ? 1 : e.schedule === "monthly" ? 30 : 7), 'd').format('YYYY-MM-DD')
+            return moment(e.createdDate, 'YYYY-MM-DD')
+                .add(
+                    (e.currentIndex + 1) *
+                        (e.schedule === 'daily' ? 1 : e.schedule === 'monthly' ? 30 : 7),
+                    'd'
+                )
+                .format('YYYY-MM-DD')
         }
-
     },
 
-    persist: true,
+    persist: true
 })
 
-export {
-    useGoalStore
-}
+export { useGoalStore }

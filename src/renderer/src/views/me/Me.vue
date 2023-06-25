@@ -13,11 +13,13 @@
                     <li class="elevation surfaceContainer">
                         <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Dashboard</h1>
-                        <md-text-button @click="router.push('/dashboard')"><p>Open</p></md-text-button>  
+                        <md-text-button @click="router.push('/dashboard')"
+                            ><p>Open</p></md-text-button
+                        >
                     </li>
                 </ul>
             </div>
-                        
+
             <router-view v-slot="{ Component }" name="MeInnerBoard">
                 <component :is="Component"></component>
             </router-view>

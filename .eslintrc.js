@@ -43,9 +43,12 @@ module.exports = {
         'no-dupe-args': 'error',
         'no-dupe-keys': 'error',
         'no-self-compare': 'error',
-        'no-unused-vars': 'warn',
+        'no-unused-vars': 'off',
         'no-func-assign': 'error',
         indent: ['warn', 4],
-        quotes: ['warn', 'single']
+        quotes: ['warn', 'single'],
+        '@typescript-eslint/no-explicit-any': 'off',
+        'vue/no-deprecated-slot-attribute': 'off',
+        'vue/no-use-v-if-with-v-for': 'off'
     }
 }

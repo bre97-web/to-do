@@ -24,7 +24,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     input: ''
 })
-const emits = defineEmits(['setInput'])
+const emits = defineEmits(['set-input'])
 
 /**
  * Component
@@ -41,7 +41,7 @@ const SearchInput = () => (
             value={props.input}
             type="search"
             placeholder="Search"
-            onInput={(e) => emits('setInput', (e.target as HTMLInputElement).value)}
+            onInput={(e) => emits('set-input', (e.target as HTMLInputElement).value)}
         />
     </div>
 )

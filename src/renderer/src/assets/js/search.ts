@@ -13,7 +13,7 @@ const GLOBAL_OBJECT: SearchType = {
 
 function Search() {
     const get = (): SearchType => GLOBAL_OBJECT
-    const set = (value: string) => GLOBAL_OBJECT.value = value
+    const set = (value: string) => (GLOBAL_OBJECT.value = value)
 
     return {
         get,
@@ -21,9 +21,5 @@ function Search() {
     }
 }
 
-export {
-    Search
-}
-export type {
-    SearchType
-}
+export { Search }
+export type { SearchType }

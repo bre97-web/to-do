@@ -32,38 +32,48 @@ const THEME = reactive<Theme>({
         /**
          * 当前使用的主题色
          */
-        color: 'default',
+        color: 'default'
     }
 })
 
 /**
  * 监测深色模式与切换, 当THEME.current.isDark为true时为document.body添加dark类
  */
-watch(() => THEME.current.isDark, () => {
-    if(THEME.current.isDark) {
-        document.body.classList.add('dark')
-    } else {
-        document.body.classList.remove('dark')
-    }
-}, {immediate: true})
+watch(
+    () => THEME.current.isDark,
+    () => {
+        if (THEME.current.isDark) {
+            document.body.classList.add('dark')
+        } else {
+            document.body.classList.remove('dark')
+        }
+    },
+    { immediate: true }
+)
 
 /**
  * 切换主题色
  */
-watch(() => THEME.current.color, () => {
-    THEME.color.forEach(element => {
-        document.body.classList.remove(element)
-    })
-    document.body.classList.add(THEME.current.color)
-}, {immediate: true})
+watch(
+    () => THEME.current.color,
+    () => {
+        THEME.color.forEach((element) => {
+            document.body.classList.remove(element)
+        })
+        document.body.classList.add(THEME.current.color)
+    },
+    { immediate: true }
+)
 
 /**
  * 当THEME状态变化时将THEME保存到localStorage
  */
-watch(() => THEME.current, () => localStorage.setItem('theme-current', JSON.stringify(THEME.current)))
+watch(
+    () => THEME.current,
+    () => localStorage.setItem('theme-current', JSON.stringify(THEME.current))
+)
 
 export default function useDark() {
-
     /**
      * 得到全局的THEME
      * @returns const Object THEME
@@ -91,10 +101,4 @@ export default function useDark() {
     }
 }
 
-export type {
-    Theme,
-    Colors,
-    CurrentTheme,
-    Dark,
-    Color
-}
+export type { Theme, Colors, CurrentTheme, Dark, Color }

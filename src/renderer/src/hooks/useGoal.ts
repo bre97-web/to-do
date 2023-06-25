@@ -1,5 +1,5 @@
-import { useDate } from "@/hooks/useDate"
-import { useIndex } from "@/hooks/useIndex"
+import { useDate } from '@/hooks/useDate'
+import { useIndex } from '@/hooks/useIndex'
 
 type Date = string
 
@@ -8,7 +8,6 @@ type Date = string
  * 通过useGoal()来创建一个Goal类型的对象,将其装载至useGoals()
  */
 type Goal = {
-
     /**
      * index是当前Goal的唯一标识符，它取值为当前的UNIX时间戳
      */
@@ -29,7 +28,6 @@ type Goal = {
  * Goals类型的对象存储Goal类型的对象
  */
 interface Goals {
-
     /**
      * 装载Goal数组的属性
      */
@@ -76,20 +74,17 @@ interface Goals {
 /**
  * Goals中的每个Goal相隔的距离
  */
-type Schedule = "daily" | "weekly" | "monthly"
+type Schedule = 'daily' | 'weekly' | 'monthly'
 
 /**
  * 创建一个Goal类型的对象
  * Goal需要添加到Goals类型的对象中
  */
-function useGoal({title, description = ''}: {
-    title: string,
-    description?: string
-}): Goal {
+function useGoal({ title, description = '' }: { title: string; description?: string }): Goal {
     return {
         index: useIndex(),
         title: title,
-        description: description,
+        description: description
     }
 }
 
@@ -97,12 +92,19 @@ function useGoal({title, description = ''}: {
  * 创建一个用于装载Goal数组的容器对象
  * 请使用useGoal()来创建Goal类型的对象
  */
-function useGoals({ goalList, schedule = "daily", currentIndex = 0, maxIndex = goalList.length - 1, targetDate = null, compelete = false }: {
-    goalList: Goal[],
-    schedule?: Schedule, 
+function useGoals({
+    goalList,
+    schedule = 'daily',
+    currentIndex = 0,
+    maxIndex = goalList.length - 1,
+    targetDate = null,
+    compelete = false
+}: {
+    goalList: Goal[]
+    schedule?: Schedule
     currentIndex?: number
-    maxIndex?: number,
-    targetDate?: Date | null,
+    maxIndex?: number
+    targetDate?: Date | null
     compelete?: boolean
 }): Goals {
     return {
@@ -117,14 +119,6 @@ function useGoals({ goalList, schedule = "daily", currentIndex = 0, maxIndex = g
     }
 }
 
-export type {
-    Goal,
-    Goals,
-    Schedule,
-    Date,
-}
+export type { Goal, Goals, Schedule, Date }
 
-export {
-    useGoal,
-    useGoals,
-}
+export { useGoal, useGoals }

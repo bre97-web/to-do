@@ -1,14 +1,10 @@
 <template>
-    <div
-        v-show="input.value.length != 0"
-        class="px-4 py-2"
-    >
+    <div v-show="input.value.length != 0" class="px-4 py-2">
         <Header :input="input.value"></Header>
 
         <main>
             <!-- 关键字搜索相关设置 -->
             <div>
-                
                 <!-- 匹配项 -->
                 <ul class="flex flex-col gap-1">
                     <template v-for="(e, index) in search">
@@ -28,10 +24,10 @@
             </div>
 
             <Task>
-                <template v-if="get.length !== 0" #>
+                <template v-if="get.length !== 0">
                     <md-list class="tasks">
                         <div v-for="e in get" :key="e.index">
-                            <md-list-item :headline="e.title" :supporttingText="e.subtitle">
+                            <md-list-item :headline="e.title" :supportting-text="e.subtitle">
                                 <div slot="end">
                                     <md-standard-icon-button @click="push('/info', e)">
                                         <md-icon>more</md-icon>
@@ -74,7 +70,6 @@ import searchTarget from '@/assets/json/searchTarget.json'
 
 const search = searchTarget
 
-
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象
  * 使用时请带上.value
@@ -82,25 +77,20 @@ const search = searchTarget
 var searchInput = Search()
 const input = reactive<SearchType>(searchInput.get())
 
-
 const store = useTaskStore()
 
 /**
  * 获取所有的元素
  */
 const get = computed<Items>(() => {
-    var results: Items = new Array()
-    var lists: Items = [
-        ...store.tasks.focus,
-        ...store.tasks.normal,
-        ...store.tasks.recycle
-    ]
+    var results: Items = []
+    var lists: Items = [...store.tasks.focus, ...store.tasks.normal, ...store.tasks.recycle]
 
     /**
      * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
      */
-    lists.forEach(e => {
-        if(e.title.toLowerCase().indexOf(input.value.toLowerCase()) !== -1) {
+    lists.forEach((e) => {
+        if (e.title.toLowerCase().indexOf(input.value.toLowerCase()) !== -1) {
             results.push(e)
         }
     })
@@ -108,20 +98,24 @@ const get = computed<Items>(() => {
     return results
 })
 const add = (): any => {
-    store.push(useItem({
-        title: input.value
-    }), TASKS_TYPE.NORMAL)
+    store.push(
+        useItem({
+            title: input.value
+        }),
+        TASKS_TYPE.NORMAL
+    )
 }
 
 /**
  * 用于edit功能的路由
  */
 const router = useRouter()
-const push = (path: string, e: any) => router.push({
-    path: path,
-    query: {
-        task: JSON.stringify(e) 
-    }
-})
+const push = (path: string, e: any) =>
+    router.push({
+        path: path,
+        query: {
+            task: JSON.stringify(e)
+        }
+    })
 </script>
 @/store/useTaskStore@/hooks/useItem

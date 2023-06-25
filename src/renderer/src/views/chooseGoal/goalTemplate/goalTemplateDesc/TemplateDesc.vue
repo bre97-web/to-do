@@ -13,11 +13,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 import '@material/web/divider/divider'
-
 
 const router = useRouter()
 
