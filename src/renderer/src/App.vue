@@ -10,14 +10,14 @@
             <component :is="Component"></component>
         </router-view>
 
-        <Events></Events>
+        <EventSnackbar></EventSnackbar>
     </div>
 </template>
 
 <script lang="ts" setup>
 import 'ninja-keys'
 import FirstLaunch from './components/FirstLaunch.vue'
-import Events from '@/components/event/Events.vue'
+import EventSnackbar from '@/components/EventSnackbar.vue'
 import { useRouter } from 'vue-router'
 import useTheme from '@/hooks/useTheme'
 

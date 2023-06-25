@@ -1,7 +1,7 @@
 <template>
     <div class="relative">
         <div>
-            <Search></Search>
+            <SearchResult></SearchResult>
         </div>
 
         <Content
@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import Creator from '@/components/creator/Creator.vue'
-import Search from '@/components/search/Search.vue'
+import SearchResult from '@/components/SearchResult.vue'
 import Content from './lib/Content.vue'
 import { computed, reactive, ref, watch } from 'vue'
 

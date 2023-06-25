@@ -15,133 +15,97 @@
             </div>
         </nav>
 
-        <div class="px-8 space-y-8 max-w-xl w-full mx-auto bg-surface">
-            <main class="space-y-2 pb-16">
-                <!-- Title -->
-                <Info>
-                    <template #header>
-                        <md-icon>title</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field v-model="task.title" label="Title" type="text">
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
+        <div class="panel px-8 bg-surface flex flex-col gap-2 items-start max-w-xl mx-auto">
+            <!-- Title -->
+            <div>
+                <md-icon>title</md-icon>
 
-                <!-- Subtitle-->
-                <Info>
-                    <template #header>
-                        <md-icon>subtitles</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field
-                            v-model="task.subtitle"
-                            label="Subtitle"
-                            type="text"
-                        >
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
+                <md-outlined-text-field v-model="task.title" label="Title" type="text">
+                </md-outlined-text-field>
+            </div>
 
-                <!-- Note  -->
-                <Info>
-                    <template #header>
-                        <md-icon>description</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field v-model="task.note" label="Note" type="text">
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
+            <!-- Subtitle-->
+            <div>
+                <md-icon>subtitles</md-icon>
 
-                <!-- CreatedTime -->
-                <Info>
-                    <template #header>
-                        <md-icon>calendar_month</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field
-                            v-model="task.createdDate"
-                            label="Created time"
-                            type="date"
-                        >
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
+                <md-outlined-text-field v-model="task.subtitle" label="Subtitle" type="text">
+                </md-outlined-text-field>
+            </div>
 
-                <!-- TargetTime -->
-                <Info>
-                    <template #header>
-                        <md-icon>event</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field
-                            v-model="task.targetDate"
-                            label="Target time"
-                            type="date"
-                        >
-                        </md-outlined-text-field>
-                    </template>
-                </Info>
+            <!-- Note  -->
+            <div>
+                <md-icon>description</md-icon>
 
-                <!-- Tags -->
-                <Info>
-                    <template #header>
-                        <md-icon>tag</md-icon>
-                    </template>
-                    <template #content>
-                        <md-outlined-text-field
-                            label="Tags"
-                            supportingText="Tags中每一个Tag使用逗号分隔"
-                            type="text"
-                            :value="task.tags"
-                            @input="(e: InputEvent) => task.tags = (e.target as HTMLInputElement).value.split(/[,，]/)"
-                        >
-                        </md-outlined-text-field>
-                        <ul class="flex items-center justify-start gap-2 flex-wrap">
-                            <md-filled-field v-for="(e, index) in task.tags" :key="index">{{
-                                e
-                            }}</md-filled-field>
-                        </ul>
-                    </template>
-                </Info>
+                <md-outlined-text-field v-model="task.note" label="Note" type="text">
+                </md-outlined-text-field>
+            </div>
 
-                <!-- Steps -->
-                <Info>
-                    <template #header>
-                        <md-icon>checklist</md-icon>
-                    </template>
-                    <template #content>
-                        <div class="flex items-center gap-2">
-                            <md-outlined-text-field
-                                v-model="newStepValue"
-                                label="Step"
-                            ></md-outlined-text-field>
-                            <md-standard-icon-button @click="createStep">
-                                <md-icon>add</md-icon>
+            <!-- CreatedTime -->
+            <div>
+                <md-icon>calendar_month</md-icon>
+
+                <md-outlined-text-field v-model="task.createdDate" label="Created time" type="date">
+                </md-outlined-text-field>
+            </div>
+
+            <!-- TargetTime -->
+            <div>
+                <md-icon>event</md-icon>
+
+                <md-outlined-text-field v-model="task.targetDate" label="Target time" type="date">
+                </md-outlined-text-field>
+            </div>
+
+            <!-- Tags -->
+            <div>
+                <md-icon>tag</md-icon>
+
+                <md-outlined-text-field
+                    label="Tags"
+                    supportingText="Tags中每一个Tag使用逗号分隔"
+                    type="text"
+                    :value="task.tags"
+                    @input="(e: InputEvent) => task.tags = (e.target as HTMLInputElement).value.split(/[,，]/)"
+                >
+                </md-outlined-text-field>
+                <ul class="flex items-center justify-start gap-2 flex-wrap">
+                    <md-filled-field v-for="(e, index) in task.tags" :key="index">{{
+                        e
+                    }}</md-filled-field>
+                </ul>
+            </div>
+
+            <!-- Steps -->
+            <div>
+                <md-icon>checklist</md-icon>
+                <div class="flex items-center gap-2">
+                    <md-outlined-text-field
+                        v-model="newStepValue"
+                        label="Step"
+                    ></md-outlined-text-field>
+                    <md-standard-icon-button @click="createStep">
+                        <md-icon>add</md-icon>
+                    </md-standard-icon-button>
+                </div>
+                <md-list>
+                    <div v-for="(e, index) in task.steps" :key="index">
+                        <md-list-item :headline="e.text">
+                            <md-checkbox
+                                slot="start"
+                                :checked="e.done"
+                                @click="() => (e.done = !e.done)"
+                            ></md-checkbox>
+                            <md-standard-icon-button
+                                slot="end"
+                                @click="() => task.steps.splice(index, 1)"
+                            >
+                                <md-icon>delete_outlined</md-icon>
                             </md-standard-icon-button>
-                        </div>
-                        <md-list>
-                            <div v-for="(e, index) in task.steps" :key="index">
-                                <md-list-item :headline="e.text">
-                                    <md-checkbox
-                                        slot="start"
-                                        :checked="e.done"
-                                        @click="() => (e.done = !e.done)"
-                                    ></md-checkbox>
-                                    <md-standard-icon-button
-                                        slot="end"
-                                        @click="() => task.steps.splice(index, 1)"
-                                    >
-                                        <md-icon>delete_outlined</md-icon>
-                                    </md-standard-icon-button>
-                                </md-list-item>
-                                <md-divider></md-divider>
-                            </div>
-                        </md-list>
-                    </template>
-                </Info>
-            </main>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </div>
+                </md-list>
+            </div>
         </div>
     </div>
 </template>
@@ -150,7 +114,6 @@
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Item } from '@/hooks/useItem'
-import Info from '@/components/task/info/Info.vue'
 import { useTaskStore } from '@/store/useTaskStore'
 
 const store = useTaskStore()
@@ -200,3 +163,9 @@ watch(task, () => {
     }
 })
 </script>
+
+<style lang="css">
+.panel > div {
+    @apply flex items-center justify-center gap-4;
+}
+</style>

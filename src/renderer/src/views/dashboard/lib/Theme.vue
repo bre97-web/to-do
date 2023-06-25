@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import DarkSwitch from '@/components/dark/DarkSwitch.vue'
+import DarkSwitch from '@/components/DarkSwitch.vue'
 import useTheme from '@/hooks/useTheme'
 
 const theme = useTheme()
