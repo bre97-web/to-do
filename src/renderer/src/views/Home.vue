@@ -74,10 +74,6 @@ import { useRouter } from 'vue-router'
 import Header from '@/components/setting/Header.vue'
 import Sidebar from '@/components/sidebar/Sidebar.vue'
 import { Search, SearchType } from '@/assets/js/search'
-import '@material/web/labs/navigationbar/navigation-bar'
-import '@material/web/labs/navigationtab/navigation-tab'
-import '@material/web/icon/icon'
-import '@material/web/iconbutton/standard-icon-button'
 
 /**
  * 由search.js提供搜索词，它应该转变为一个响应式对象

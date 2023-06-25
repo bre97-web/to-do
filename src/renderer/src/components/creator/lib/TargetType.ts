@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable indent */
 import { Type } from '@/hooks/useItem'
 import '@material/web/select/outlined-select'

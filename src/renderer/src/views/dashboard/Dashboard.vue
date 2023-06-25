@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import '@material/web/button/text-button'
-import '@material/web/icon/icon'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

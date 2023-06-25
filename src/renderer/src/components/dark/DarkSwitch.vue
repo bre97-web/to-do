@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import '@material/web/switch/switch'
 import useTheme from '@/hooks/useTheme'
 import { onMounted, ref } from 'vue'
 

@@ -15,9 +15,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import '@material/web/divider/divider'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 div.line {

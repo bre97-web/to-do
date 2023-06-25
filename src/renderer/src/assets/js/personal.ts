@@ -5,7 +5,7 @@ interface PersonalInterface {
 }
 interface InfoInterface {
     get: () => PersonalInterface
-    set: ({}: PersonalInterface) => any
+    set: ({ name }: PersonalInterface) => any
 }
 
 const PERSONAL = reactive<PersonalInterface>(

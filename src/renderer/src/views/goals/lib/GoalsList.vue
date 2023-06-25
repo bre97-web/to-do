@@ -1,11 +1,9 @@
 <template>
     <md-item>
-        <template
-            v-for="goals in goalStore.getGoals"
-            v-if="goalStore.getGoals.length !== 0"
-            :key="goals.index"
-        >
+        <template v-if="goalStore.getGoals.length !== 0">
             <md-list-item
+                v-for="goals in goalStore.getGoals"
+                :key="goals.index"
                 :headline="
                     goals.compelete
                         ? goals.goals[goals.maxIndex !== 0 ? goals.maxIndex - 1 : 0].title
@@ -54,11 +52,6 @@
 
 <script lang="ts" setup>
 import { useGoalStore } from '@/store/useGoalStore.ts'
-import '@material/web/checkbox/checkbox'
-import '@material/web/icon/icon'
-import '@material/web/iconbutton/standard-icon-button'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
 
 const goalStore = useGoalStore()
 </script>

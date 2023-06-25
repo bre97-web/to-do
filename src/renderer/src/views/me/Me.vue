@@ -30,8 +30,6 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import Profile from '@/components/personal/Profile.vue'
-import '@material/web/button/text-button'
-import '@material/web/elevation/elevation'
 
 /**
  * 路由

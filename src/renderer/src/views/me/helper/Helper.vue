@@ -37,7 +37,6 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import '@material/web/button/text-button'
 
 const router = useRouter()
 </script>

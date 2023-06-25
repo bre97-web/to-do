@@ -53,6 +53,9 @@ module.exports = {
         quotes: ['warn', 'single'],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-function': 'off',
-        'vue/multi-word-component-names': 'off'
+        'vue/multi-word-component-names': 'off',
+        'vue/no-deprecated-slot-attribute': 'off',
+        'vue/no-use-v-if-with-v-for': 'off',
+        'vue/attribute-hyphenation': 'off'
     }
 }

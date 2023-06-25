@@ -49,9 +49,6 @@
 <script lang="ts" setup>
 import { ref, onBeforeMount, Ref } from 'vue'
 
-import '@material/web/button/text-button'
-import '@material/web/button/filled-button'
-
 var isFirstLaunch: Ref<boolean>
 try {
     isFirstLaunch = ref<Ref<boolean>>(
