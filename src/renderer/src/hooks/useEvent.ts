@@ -1,22 +1,21 @@
-import { ref } from "vue"
-import { useIndex } from "./useIndex"
+/* eslint-disable no-unused-vars */
+import { ref } from 'vue'
+import { useIndex } from './useIndex'
 
 interface EventInterface {
-    msg: string,
-    isRollback: boolean,
-    fn: () => any,
-    index?: number,
+    msg: string
+    isRollback: boolean
+    fn: () => void
+    index?: number
 }
 interface EventsInterface {
-    push: (e: EventItem) => void,
+    push: (e: EventItem) => void
     getAll: () => EventItem[]
 }
 
 type EventItem = EventInterface
 
-
 function useEvents(): EventsInterface {
-
     const Events = ref<EventItem[]>([])
 
     const push = (e: EventItem) => {
@@ -24,7 +23,7 @@ function useEvents(): EventsInterface {
         Events.value.push(e)
 
         setTimeout(() => {
-            Events.value = Events.value.filter(el => e.index !== el.index)
+            Events.value = Events.value.filter((el) => e.index !== el.index)
         }, 5000)
     }
     const getAll = () => Events.value
@@ -35,24 +34,14 @@ function useEvents(): EventsInterface {
     }
 }
 
-
-function useEvent(msg:string, isRollback = false, fn = () => {}): EventInterface {
-
-    var event: EventItem = {
-        msg: msg,
-        isRollback: isRollback,
-        fn: fn
+function useEvent(_msg: string, _isRollback: boolean, _fn: () => void): EventInterface {
+    return {
+        msg: _msg,
+        isRollback: _isRollback,
+        fn: _fn
     }
-    
-    return event
 }
 
-export {
-    useEvent,
-    useEvents
-}
+export { useEvent, useEvents }
 
-export type {
-    EventInterface,
-    EventsInterface
-}
+export type { EventInterface, EventsInterface }

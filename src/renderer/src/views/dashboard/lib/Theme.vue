@@ -18,9 +18,12 @@
                         v-for="(e, index) in theme.getThemeColor()"
                         :key="index"
                         :label="e.toUpperCase()"
-                        @click="() => theme.set({
-                            color: e
-                        })"
+                        @click="
+                            () =>
+                                theme.set({
+                                    color: e
+                                })
+                        "
                     >
                     </md-outlined-segmented-button>
                 </md-outlined-segmented-button-set>
@@ -31,7 +34,7 @@
 
 <script setup lang="ts">
 import DarkSwitch from '@/components/dark/DarkSwitch.vue'
-import useTheme from '@/hooks/useTheme';
+import useTheme from '@/hooks/useTheme'
 
 const theme = useTheme()
 </script>

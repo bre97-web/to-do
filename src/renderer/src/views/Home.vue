@@ -1,7 +1,7 @@
 <template>
     <div class="relative bg-background">
-        <Header :input="input.value" @setInput="setInput"></Header>
-        
+        <Header :input="input.value" @set-input="setInput"></Header>
+
         <main class="main border-x dark:border-none relative">
             <Sidebar></Sidebar>
             <router-view v-slot="{ Component }" name="MainBoardView">
@@ -13,7 +13,7 @@
         <nav class="fixed bottom-0 lg:bottom-4 w-full flex flex-col">
             <div class="navigation overflow-clip">
                 <div>
-                    <md-navigation-bar :activeIndex="activeIndex" class="lg:max-w-lg flex mx-auto">
+                    <md-navigation-bar :active-index="activeIndex" class="lg:max-w-lg flex mx-auto">
                         <md-navigation-tab
                             label="Home"
                             @click="
@@ -81,16 +81,17 @@ import { Search, SearchType } from '@/assets/js/search'
  */
 const searchInput = Search()
 const input = reactive<SearchType>(searchInput.get())
-const setInput = (value: string) => input.value = value
+const setInput = (value: string) => (input.value = value)
 watch(input, () => searchInput.set(input.value))
 
 /**
  * 路由功能，用于跳转，获取当前路由地址（通过路由地址确定是否显示nav中的按钮）
  */
 const router = useRouter()
-const push = (path: string) => router.push({ 
-    path: path,
-})
+const push = (path: string) =>
+    router.push({
+        path: path
+    })
 
 /**
  * 控制md-navigation-bar的activeIndex属性，请在push时更改此activeIndex的值

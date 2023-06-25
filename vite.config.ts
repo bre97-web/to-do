@@ -13,13 +13,15 @@ export default defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag: string): boolean => tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
+                    isCustomElement: (tag: string): boolean =>
+                        tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
                 }
-            },
+            }
         }),
         vueJsx({
-            isCustomElement: (tag: string): boolean => tag.startsWith('md-') || tag.startsWith('lit')
-        }),
+            isCustomElement: (tag: string): boolean =>
+                tag.startsWith('md-') || tag.startsWith('lit')
+        })
     ],
     root: './src/renderer/',
     publicDir: 'public',
@@ -29,7 +31,11 @@ export default defineConfig({
     build: {
         outDir: '../../docs',
         emptyOutDir: true,
+        assetsDir: 'assets',
+        assetsInlineLimit: 4096,
         sourcemap: true,
-
+        manifest: true,
+        minify: 'esbuild',
+        chunkSizeWarningLimit: 500
     }
 })

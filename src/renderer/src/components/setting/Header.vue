@@ -16,7 +16,6 @@
 
 <script lang="tsx" setup>
 import Avatar from '@/components/setting/lib/Avatar'
-import '@material/web/divider/divider'
 
 interface Props {
     input: string
@@ -24,7 +23,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     input: ''
 })
-const emits = defineEmits(['setInput'])
+const emits = defineEmits(['set-input'])
 
 /**
  * Component
@@ -33,7 +32,7 @@ const Title = () => (
     <div class="flex flex-col flex-none">
         <h1 class="text-base text-onBackground">To-Do</h1>
         <p class="text-xs text-onBackground">Preview</p>
-    </div>    
+    </div>
 )
 const SearchInput = () => (
     <div class="relative w-full max-w-md flex items-center justify-center bg-surface">
@@ -41,7 +40,7 @@ const SearchInput = () => (
             value={props.input}
             type="search"
             placeholder="Search"
-            onInput={(e) => emits('setInput', (e.target as HTMLInputElement).value)}
+            onInput={(e) => emits('set-input', (e.target as HTMLInputElement).value)}
         />
     </div>
 )

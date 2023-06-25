@@ -6,13 +6,13 @@ import type { Item } from './useItem'
 function useTags(list: Item[]): Map<string, Item[]> {
     const tags = new Map<string, Item[]>()
 
-    list.forEach(element => {
-        element['tags'].forEach(e => {
+    list.forEach((element) => {
+        element['tags'].forEach((e) => {
             if (e !== '') {
                 if (!tags.has(e)) {
                     tags.set(e, [element])
                 } else {
-                    tags.set(e, [...tags.get(e) || [], element])
+                    tags.set(e, [...(tags.get(e) || []), element])
                 }
             }
         })
@@ -21,6 +21,4 @@ function useTags(list: Item[]): Map<string, Item[]> {
     return tags
 }
 
-export {
-    useTags
-}
+export { useTags }

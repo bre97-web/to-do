@@ -9,7 +9,7 @@ module.exports = {
             normal: '400',
             medium: '500',
             bold: '700',
-            black: '900',
+            black: '900'
         },
         extend: {
             backgroundColor: {

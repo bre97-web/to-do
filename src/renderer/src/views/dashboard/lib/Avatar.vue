@@ -4,7 +4,6 @@
             <p class="text-8xl font-black">{{ user.name[0] }}</p>
         </div>
         <h1 class="text-right text-gray-500">{{ user.name }}</h1>
-
     </div>
 </template>
 
