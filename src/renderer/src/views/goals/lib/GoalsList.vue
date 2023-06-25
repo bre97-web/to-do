@@ -55,3 +55,4 @@ import { useGoalStore } from '@/store/useGoalStore.ts'
 
 const goalStore = useGoalStore()
 </script>
+
