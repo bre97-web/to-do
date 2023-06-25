@@ -54,4 +54,3 @@ const tags = useTags(Array.from([...tasks.getNormal, ...tasks.getFocus, ...tasks
 </script>
 
 <style scoped></style>
-@/store/useTaskStore
