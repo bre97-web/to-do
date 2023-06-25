@@ -1,15 +1,20 @@
 <template>
-    <div v-show="input.value.length != 0" class="px-4 py-2">
-        <Header :input="input.value"></Header>
+    <div v-show="hasInput" class="px-4 py-2">
+        <header class="flex flex-row items-end justify-start gap-2">
+            <h1 class="text-onBackground">Search</h1>
+            <h1 class="text-onBackground underline underline-offset-1">
+                <mark>{{ searchStore.getKeyword }}</mark>
+            </h1>
+        </header>
 
         <main>
             <!-- 关键字搜索相关设置 -->
             <div>
                 <!-- 匹配项 -->
                 <ul class="flex flex-col gap-1">
-                    <template v-for="(e, index) in search">
+                    <template v-for="(e, index) in searchJson">
                         <li
-                            v-if="e.keyword.indexOf(input.value) !== -1"
+                            v-if="e.keyword.includes(searchStore.getKeyword)"
                             :key="index"
                             class="surfaceContainerHigh px-4 py-2 rounded-md surface"
                             @click="router.push(e.path)"
@@ -23,10 +28,10 @@
                 </ul>
             </div>
 
-            <Task>
-                <template v-if="get.length !== 0">
+            <template v-if="getTasks.length !== 0">
+                <Task>
                     <md-list class="tasks">
-                        <div v-for="e in get" :key="e.index">
+                        <div v-for="e in getTasks" :key="e.index">
                             <md-list-item :headline="e.title" :supportting-text="e.subtitle">
                                 <div slot="end">
                                     <md-standard-icon-button @click="push('/info', e)">
@@ -37,60 +42,67 @@
                             <md-divider></md-divider>
                         </div>
                     </md-list>
-                </template>
-            </Task>
-
-            <div v-if="get.length === 0">
-                <p class="text-right font-bold text-onBackground">{{ input.value }} is not found</p>
+                </Task>
+            </template>
+            <template v-else>
+                <p class="text-right font-bold text-onBackground">
+                    {{ searchStore.getKeyword }} is not found
+                </p>
                 <div class="flex justify-end items-center gap-2">
                     <md-tonal-button @click="add">Create</md-tonal-button>
                 </div>
-            </div>
+            </template>
         </main>
 
-        <Footer :get="get"></Footer>
+        <footer>
+            <p class="text-right text-onBackground">Accumulate {{ getTasks.length }} results</p>
+        </footer>
     </div>
 </template>
 
 <script lang="tsx" setup>
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Header } from './lib/Header'
-import { Footer } from './lib/Footer'
 import Task from '@/components/task/Task.vue'
-import { Search, SearchType } from '@/assets/js/search'
 import { Items, useItem } from '@/hooks/useItem'
-import '@material/web/list/list'
-import '@material/web/list/list-item'
-import '@material/web/divider/divider'
-import '@material/web/iconbutton/standard-icon-button'
-import '@material/web/icon/icon'
 import { useTaskStore, TASKS_TYPE } from '@/store/useTaskStore'
-import searchTarget from '@/assets/json/searchTarget.json'
-
-const search = searchTarget
-
-/**
- * 由search.js提供搜索词，它应该转变为一个响应式对象
- * 使用时请带上.value
- */
-var searchInput = Search()
-const input = reactive<SearchType>(searchInput.get())
-
-const store = useTaskStore()
+import searchTemplate from '@/assets/json/searchTarget.json'
+import { useSearchStore } from '@/store/useSearchStore'
 
 /**
- * 获取所有的元素
+ * searchStore.getKeyword是此组件的关键，组件依赖此属性值来搜索结果
+ * 搜索的目标是taskStore和searchJson
  */
-const get = computed<Items>(() => {
+const searchStore = useSearchStore()
+const taskStore = useTaskStore()
+/**
+ * searchJson来自本地的searchTarget.json
+ * 它提供了一套预制的搜索模板
+ */
+const searchJson = searchTemplate
+
+/**
+ * template需要在searchStore.getKeyword的情况下显示DOM
+ * 此计算属性在keyword不为空的情况下返回真
+ */
+const hasInput = computed(() => searchStore.getKeyword.length !== 0)
+
+/**
+ * 获取所有的Task元素
+ */
+const getTasks = computed<Items>(() => {
     var results: Items = []
-    var lists: Items = [...store.tasks.focus, ...store.tasks.normal, ...store.tasks.recycle]
+    var lists: Items = [
+        ...taskStore.tasks.focus,
+        ...taskStore.tasks.normal,
+        ...taskStore.tasks.recycle
+    ]
 
     /**
      * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
      */
     lists.forEach((e) => {
-        if (e.title.toLowerCase().indexOf(input.value.toLowerCase()) !== -1) {
+        if (e.title.toLowerCase().includes(searchStore.getKeyword.toLowerCase())) {
             results.push(e)
         }
     })
@@ -98,9 +110,9 @@ const get = computed<Items>(() => {
     return results
 })
 const add = (): any => {
-    store.push(
+    taskStore.push(
         useItem({
-            title: input.value
+            title: searchStore.getKeyword
         }),
         TASKS_TYPE.NORMAL
     )
@@ -118,4 +130,3 @@ const push = (path: string, e: any) =>
         }
     })
 </script>
-@/store/useTaskStore@/hooks/useItem

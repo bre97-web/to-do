@@ -18,29 +18,12 @@
 
 <script lang="tsx" setup>
 import { useUserStore } from '@/store/useUserStore'
-
-interface Props {
-    input: string
-}
-const props = withDefaults(defineProps<Props>(), {
-    input: ''
-})
-const emits = defineEmits(['set-input'])
+import SearchInput from '../search/SearchInput.vue'
 
 const Title = () => (
     <div class="flex flex-col flex-none">
         <h1 class="text-base text-onBackground">To-Do</h1>
         <p class="text-xs text-onBackground">Preview</p>
-    </div>
-)
-const SearchInput = () => (
-    <div class="relative w-full max-w-md flex items-center justify-center bg-surface">
-        <input
-            value={props.input}
-            type="search"
-            placeholder="Search"
-            onInput={(e) => emits('set-input', (e.target as HTMLInputElement).value)}
-        />
     </div>
 )
 
