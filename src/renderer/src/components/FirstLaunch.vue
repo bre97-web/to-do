@@ -15,7 +15,11 @@
                 <div
                     class="w-full mx-auto text-center font-black text-6xl flex flex-row items-center justify-center"
                 >
-                    <img class="w-1/3" src="@/assets/img/icon.png" alt="To-Do" />
+                    <img
+                        class="w-1/3"
+                        src="@/assets/resources/img/to-do-fulltransparent.png"
+                        alt="To-Do"
+                    />
                     <span
                         class="w-2/3 text-transparent bg-clip-text bg-gradient-to-br from-blue-300 to-blue-500"
                     >
@@ -23,10 +27,14 @@
                     </span>
                 </div>
 
-                <p>welcome! Add your goals and use our To-Do to easily complete your tasks!</p>
                 <p>
-                    We very much welcome everyone to help us on GitHub, give us suggestions or
-                    criticism. If you have time, you can visit our GitHub page
+                    welcome! Add your goals and use our To-Do to easily complete
+                    your tasks!
+                </p>
+                <p>
+                    We very much welcome everyone to help us on GitHub, give us
+                    suggestions or criticism. If you have time, you can visit
+                    our GitHub page
                     <a
                         class="text-blue-500"
                         target="_blank"
@@ -47,32 +55,35 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onBeforeMount, Ref } from 'vue'
+import { ref, onBeforeMount, Ref } from "vue";
 
-var isFirstLaunch: Ref<boolean>
+var isFirstLaunch: Ref<boolean>;
 try {
     isFirstLaunch = ref<Ref<boolean>>(
-        JSON.parse(localStorage.getItem('bre97-web-todo-firstLaunch') as string)
-    )
+        JSON.parse(localStorage.getItem("bre97-web-todo-firstLaunch") as string)
+    );
 } catch {
     // 'Please check your Applications Local Storage, We have been delete your invaild local storage.'
 
-    localStorage.clear()
+    localStorage.clear();
 
-    location.reload()
+    location.reload();
 }
 
 onBeforeMount(() => {
     if (isFirstLaunch.value === undefined || isFirstLaunch.value === null) {
-        isFirstLaunch.value = true
+        isFirstLaunch.value = true;
     }
-})
+});
 
 const submit = () => {
-    isFirstLaunch.value = false
-    localStorage.setItem('bre97-web-todo-firstLaunch', JSON.stringify(isFirstLaunch.value))
-}
-const close = () => (isFirstLaunch.value = false)
+    isFirstLaunch.value = false;
+    localStorage.setItem(
+        "bre97-web-todo-firstLaunch",
+        JSON.stringify(isFirstLaunch.value)
+    );
+};
+const close = () => (isFirstLaunch.value = false);
 </script>
 
 <style scoped></style>

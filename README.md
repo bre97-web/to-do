@@ -6,9 +6,9 @@ To Do is a task management app that helps you easily keep track of your daily ta
 
 <div align="center">
 
-![To-Do](./resources/To-Do-Logo.png?raw=true)
+![To-Do](./resources/todo-1280x640.png?raw=true)
 
-![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.0/total)
+![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.3/total)
 
 ![](https://img.shields.io/github/last-commit/bre97-web/To-Do)
 
@@ -42,6 +42,7 @@ You can make suggestions in issues.
 |Event Snackbars Actions|✅|✅|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
+|Startup Settings|❌|❌|❌|
 |Notify|✅|❌|❌|
 |Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
