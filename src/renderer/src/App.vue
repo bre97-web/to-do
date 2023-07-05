@@ -3,7 +3,11 @@
     <div id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
         <FirstLaunch></FirstLaunch>
 
-        <ninja-keys class="z-50" placeholder="placeholder" :data="hotkeys"></ninja-keys>
+        <ninja-keys
+            class="z-50"
+            placeholder="placeholder"
+            :data="hotkeys"
+        ></ninja-keys>
 
         <!-- 启动后/重定向到/home -->
         <router-view v-slot="{ Component }">
