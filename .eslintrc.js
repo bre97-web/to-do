@@ -23,7 +23,6 @@ module.exports = {
             filter: true,
             interpolationAsNonHTML: true,
             styleCSSVariableInjection: true,
-            customMacros: []
         }
     },
     extends: [
@@ -56,6 +55,7 @@ module.exports = {
         'vue/multi-word-component-names': 'off',
         'vue/no-deprecated-slot-attribute': 'off',
         'vue/no-use-v-if-with-v-for': 'off',
-        'vue/attribute-hyphenation': 'off'
+        'vue/attribute-hyphenation': 'off',
+        'vue/component-definition-name-casing': 'off'
     }
 }

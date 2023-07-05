@@ -23,12 +23,7 @@
             </div>
 
             <div class="flex flex-col gap-2">
-                <md-filled-text-field
-                    label="Name"
-                    type="text"
-                    :value="newName"
-                    @input="newName = $event.target.value"
-                ></md-filled-text-field>
+                <EditAccountName></EditAccountName>
             </div>
 
             <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
@@ -40,6 +35,7 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/useUserStore'
 import { ref } from 'vue'
+import EditAccountName from './EditAccountName.vue';
 
 const userStore = useUserStore()
 
@@ -50,13 +46,13 @@ const dialogOpen = ref<boolean>(false)
 const open = () => (dialogOpen.value = true)
 const close = () => (dialogOpen.value = false)
 
-const newName = ref<string>('')
+const oldName = userStore.getName
 
 const submit = () => {
     close()
-    userStore.setName(newName.value)
 }
 const cancel = () => {
+    userStore.setName(oldName)
     close()
 }
 </script>

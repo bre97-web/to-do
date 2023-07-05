@@ -1,0 +1,140 @@
+<template>
+    <div class="fixedWindow fullScreen overflow-y-scroll bg-background">
+
+        <!-- background colors -->
+        <div class="fixed top-0 right-0 w-screen h-screen blur-3xl -z-50">
+            <div class="absolute bg-red-200 dark:bg-red-900/50 h-96 w-96 rounded-full"></div>
+            <div class="absolute right-0 bottom-0 bg-green-200 dark:bg-green-900/50 h-96 w-96 rounded-full"></div>
+        </div>
+
+        <div class="container mx-auto max-w-3xl grid place-items-center h-full relative">
+            <!-- Animate -->
+            <div v-if="isAnimated.pedding" :class="{ 'opacity-0': isAnimated.willEnd }" class="absolute">
+                <lottie-player
+                    src="https://assets8.lottiefiles.com/packages/lf20_zvKAYTsxBI.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 300px; height: 300px;"
+                    loop
+                    autoplay
+                ></lottie-player>
+            </div>
+            <!-- OOBE Context -->
+            <div v-if="isAnimated.willEnd" :class="{ 'opacity-100 relative -top-2': isAnimated.delay }" class="m-2 relative top-96 opacity-0 backdrop-blur-3xl rounded-md shadow-md bg-white dark:bg-black bg-opacity-50">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 m-4 lg:m-8">
+                    <div class="mx-auto md:mx-0">
+                        <template v-for="(e, index) in ContentList">
+                            <lottie-player
+                                v-if="index === currentIndex"
+                                :key="index"
+                                :src="e.src"
+                                background="transparent"
+                                speed="1"
+                                style="width: 300px; height: 300px;"
+                                loop
+                                autoplay
+                            >
+                            </lottie-player>
+                        </template>
+                    </div>
+                    <div class="flex flex-col justify-between gap-2">
+                        <Content></Content>
+                        <footer class="space-x-2 self-end">
+                            <md-text-button :disabled="currentIndex === 0" @click="() => currentIndex--">Back</md-text-button>
+                            <md-tonal-button v-if="currentIndex < ContentList.length - 1" @click="() => currentIndex++">Next</md-tonal-button>
+                            <md-tonal-button v-else @click="allDone">Done</md-tonal-button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="tsx">
+import DarkSwitch from '@/components/DarkSwitch.vue'
+import EditAccountName from '@/components/EditAccountName.vue';
+import ThemePicker from '@/components/ThemePicker.vue'
+import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+const allDone = () => {
+    localStorage.setItem(
+        "bre97-web-todo-firstLaunch",
+        JSON.stringify(false)
+    )
+    router.push('/')
+}
+
+const isAnimated = reactive({
+    pedding: true,
+    willEnd: false,
+    delay: false,
+})
+onMounted(() => {
+    setTimeout(() => {
+        isAnimated.willEnd = true
+    }, 2000)
+    setTimeout(() => {
+        isAnimated.pedding = false
+    }, 3500)
+    setTimeout(() => {
+        isAnimated.delay = true
+    }, 3000)
+})
+
+const currentIndex = ref<number>(0)
+const ContentList = [
+    {
+        title: 'Welcome',
+        descript: 'Add your goals and use our To-Do to easily complete your tasks!',
+        src: 'https://assets8.lottiefiles.com/packages/lf20_qbab96r3.json',
+        component: <div>We very much welcome everyone to help us on GitHub, give us suggestions or criticism. If you have time, you can visit our GitHub page To-Do.</div>
+    },
+    {
+        title: 'Theme',
+        descript: 'Set Dark mode',
+        src: 'https://assets8.lottiefiles.com/packages/lf20_s8pbrcfw.json',
+        component: <DarkSwitch></DarkSwitch>
+    },
+    {
+        title: 'Theme',
+        descript: 'Set primary colors',
+        src: 'https://assets8.lottiefiles.com/packages/lf20_daeaejto.json',
+        component: <ThemePicker></ThemePicker>
+    },
+    {
+        title: 'Account',
+        descript: 'Tell me your name',
+        src: 'https://assets9.lottiefiles.com/packages/lf20_qip16iyy.json',
+        component: <EditAccountName></EditAccountName>
+    },
+    {
+        title: 'All done',
+        descript: '',
+        src: 'https://assets8.lottiefiles.com/packages/lf20_wols8vp7.json',
+        component: <div></div>
+    }
+]
+const Content = () => (
+    <div class="space-y-4">
+        <header>
+            <h1>{ContentList[currentIndex.value].title}</h1>
+        </header>
+        <div class="space-y-2">
+            <h1>{ContentList[currentIndex.value].descript}</h1>
+            <div>
+                {ContentList[currentIndex.value].component}
+            </div>
+        </div>
+    </div>
+)
+</script>
+
+<style scoped>
+* {
+    transition: all 1s cubic-bezier(.54, .01, .44, 1.01);
+}
+</style>
