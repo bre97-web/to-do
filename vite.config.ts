@@ -14,7 +14,7 @@ export default defineConfig({
             template: {
                 compilerOptions: {
                     isCustomElement: (tag: string): boolean =>
-                        tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
+                        tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja') || tag.startsWith('lottie-player')
                 }
             }
         }),

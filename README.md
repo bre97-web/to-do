@@ -35,6 +35,7 @@ You can make suggestions in issues.
 - ❌ Not started
 - 🟡 In progress or waiting
 - ✅ Complete
+- ⚫ No longer available or obsolete
 
 |Feature|Web (Chrome)|Electron App|Release|
 |:--|--:|--:|--:|
@@ -42,15 +43,15 @@ You can make suggestions in issues.
 |Event Snackbars Actions|✅|✅|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
-|Startup Settings|❌|❌|❌|
+|Startup Settings|✅|🟡|❌|
 |Notify|✅|❌|❌|
 |Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
 |Startup Animation|✅|✅|❌|
-|First Launch|✅|✅|❌|
+|~~First Launch~~|⚫|⚫|⚫|
 |Tag|✅|✅|❌|
 |Sort|✅|🟡|❌|
-|Today's Tasks|✅|🟡|❌|
+|To_day's Tasks|✅|🟡|❌|
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|

@@ -8,7 +8,7 @@
             >
                 <template #header>
                     <div>
-                        <img src="@/assets/img/pexels-susan-flores.jpg" />
+                        <img src="@/assets/resources/img/pexels-susan-flores.jpg" />
                     </div>
                 </template>
                 <template #content>
@@ -27,7 +27,7 @@
             >
                 <template #header>
                     <div>
-                        <img src="@/assets/img/pexels-pixabay.jpg" alt="" />
+                        <img src="@/assets/resources/img/pexels-pixabay.jpg" alt="" />
                     </div>
                 </template>
                 <template #content>

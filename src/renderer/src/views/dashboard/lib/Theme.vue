@@ -12,21 +12,7 @@
 
             <div>
                 <h1>Primary color</h1>
-
-                <md-outlined-segmented-button-set>
-                    <md-outlined-segmented-button
-                        v-for="(e, index) in theme.getThemeColor()"
-                        :key="index"
-                        :label="e.toUpperCase()"
-                        @click="
-                            () =>
-                                theme.set({
-                                    color: e
-                                })
-                        "
-                    >
-                    </md-outlined-segmented-button>
-                </md-outlined-segmented-button-set>
+                <ThemePicker></ThemePicker>
             </div>
         </main>
     </div>
@@ -34,9 +20,8 @@
 
 <script setup lang="ts">
 import DarkSwitch from '@/components/DarkSwitch.vue'
-import useTheme from '@/hooks/useTheme'
+import ThemePicker from '@/components/ThemePicker.vue'
 
-const theme = useTheme()
 </script>
 
 <style scoped>

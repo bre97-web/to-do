@@ -23,7 +23,6 @@ module.exports = {
             filter: true,
             interpolationAsNonHTML: true,
             styleCSSVariableInjection: true,
-            customMacros: []
         }
     },
     extends: [
@@ -37,7 +36,7 @@ module.exports = {
     ],
     rules: {
         'no-console': 'warn',
-        'prettier/prettier': 'error',
+        'prettier/prettier': 'off',
         semi: ['off', 'awalys'],
         'no-mixed-spaces-and-tabs': 'error',
         'no-alert': 'warn',
@@ -50,12 +49,13 @@ module.exports = {
         'no-unused-vars': 'off',
         'no-func-assign': 'error',
         indent: ['warn', 4],
-        quotes: ['off', 'single'],
+        quotes: ['off','single'],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         'vue/multi-word-component-names': 'off',
         'vue/no-deprecated-slot-attribute': 'off',
         'vue/no-use-v-if-with-v-for': 'off',
-        'vue/attribute-hyphenation': 'off'
+        'vue/attribute-hyphenation': 'off',
+        'vue/component-definition-name-casing': 'off'
     }
 }

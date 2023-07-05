@@ -1,9 +1,12 @@
 <template>
     <!-- 首屏 -->
     <div id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
-        <FirstLaunch></FirstLaunch>
 
-        <ninja-keys class="z-50" placeholder="placeholder" :data="hotkeys"></ninja-keys>
+        <ninja-keys
+            class="z-50"
+            placeholder="placeholder"
+            :data="hotkeys"
+        ></ninja-keys>
 
         <!-- 启动后/重定向到/home -->
         <router-view v-slot="{ Component }">
@@ -16,12 +19,24 @@
 
 <script lang="ts" setup>
 import 'ninja-keys'
-import FirstLaunch from './components/FirstLaunch.vue'
 import EventSnackbar from '@/components/EventSnackbar.vue'
 import { useRouter } from 'vue-router'
 import useTheme from '@/hooks/useTheme'
+import { onBeforeMount } from 'vue'
 
 const router = useRouter()
+
+onBeforeMount(() => {
+    let isFirstLaunch = (
+        JSON.parse(localStorage.getItem("bre97-web-todo-firstLaunch") as string) as boolean
+    )
+    if (isFirstLaunch === undefined || isFirstLaunch === null) {
+        isFirstLaunch = true
+    }
+    if(isFirstLaunch) {
+        router.push('/startup')
+    }
+})
 
 /**
  * Hotkeys
