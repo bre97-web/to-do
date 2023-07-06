@@ -17,18 +17,20 @@
             </h1>
         </main>
 
-        <md-dialog :open="dialogOpen">
-            <div slot="header">
-                <h1>Your Info</h1>
-            </div>
-
-            <div class="flex flex-col gap-2">
-                <EditAccountName></EditAccountName>
-            </div>
-
-            <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
-            <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
-        </md-dialog>
+        <Teleport to="#app">
+            <md-dialog :open="dialogOpen" modeless draggable transition="grow">
+                <div slot="header">
+                    <h1 slot="headline">Your Info</h1>
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <EditAccountName></EditAccountName>
+                </div>
+                
+                <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
+                <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
+            </md-dialog>
+        </Teleport>
     </div>
 </template>
 
