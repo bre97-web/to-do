@@ -1,24 +1,29 @@
 {
   "../../node_modules/material-symbols/material-symbols-outlined.woff2": {
-    "file": "assets/material-symbols-outlined-e342edd4.woff2",
+    "file": "assets/material-symbols-outlined-9d62d361.woff2",
     "src": "../../node_modules/material-symbols/material-symbols-outlined.woff2"
   },
   "index.css": {
-    "file": "assets/index-7a1683b0.css",
+    "file": "assets/index-83ac8b89.css",
     "src": "index.css"
   },
   "index.html": {
     "assets": [
       "assets/pexels-susan-flores-5d74878b.jpg",
       "assets/pexels-pixabay-f1006beb.jpg",
-      "assets/material-symbols-outlined-e342edd4.woff2"
+      "assets/oobe-background-228b9bb7.jpg",
+      "assets/material-symbols-outlined-9d62d361.woff2"
     ],
     "css": [
-      "assets/index-7a1683b0.css"
+      "assets/index-83ac8b89.css"
     ],
-    "file": "assets/index-76d418c5.js",
+    "file": "assets/index-7b36abc7.js",
     "isEntry": true,
     "src": "index.html"
+  },
+  "src/assets/resources/img/oobe-background.jpg": {
+    "file": "assets/oobe-background-228b9bb7.jpg",
+    "src": "src/assets/resources/img/oobe-background.jpg"
   },
   "src/assets/resources/img/pexels-pixabay.jpg": {
     "file": "assets/pexels-pixabay-f1006beb.jpg",
