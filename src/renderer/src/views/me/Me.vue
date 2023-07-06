@@ -4,7 +4,7 @@
 
         <main class="mt-12 relative space-y-4">
             <div class="p-4 rounded-xl">
-                <ul class="group">
+                <ul class="flex flex-wrap gap-2">
                     <li class="elevation surfaceContainer">
                         <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Helper</h1>
@@ -36,3 +36,9 @@ import ProfileCard from '@/components/ProfileCard.vue'
  */
 const router = useRouter()
 </script>
+
+<style scoped lang="css">
+ul li {
+    @apply rounded-md p-4 flex flex-col justify-center items-center;
+}
+</style>

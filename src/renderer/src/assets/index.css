@@ -507,13 +507,7 @@
     }
 
 
-    ul.group {
-        @apply flex flex-wrap gap-2;
-    }
-    ul.group li {
-        @apply rounded-md p-4 flex flex-col justify-center items-center;
-    }
-
+    /* 用于显示最顶层的元素的容器，搭配.fullScreen实现全覆盖的窗口 */
     div.fixedWindow {
         @apply fixed z-[999];
     }
