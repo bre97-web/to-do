@@ -1,13 +1,11 @@
 <template>
-    <div class="space-x-2">
-        <span ref="chipGroup" class="space-x-2">
-            <md-filter-chip
-                v-for="(e, index) in props.getTags"
-                :key="index"
-                :label="e"
-                @click="props.pushCurrentFilter(e)"
-            ></md-filter-chip>
-        </span>
+    <md-chip-set ref="chipGroup">
+        <md-filter-chip
+            v-for="(e, index) in props.getTags"
+            :key="index"
+            :label="e"
+            @click="props.pushCurrentFilter(e)"
+        ></md-filter-chip>
         <md-suggestion-chip
             label="Reset"
             @click="
@@ -17,7 +15,7 @@
                 }
             "
         ></md-suggestion-chip>
-    </div>
+    </md-chip-set>
 </template>
 
 <script setup lang="ts">

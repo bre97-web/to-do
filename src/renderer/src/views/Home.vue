@@ -69,7 +69,7 @@
 <script lang="tsx" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import Header from '@/components/setting/Header.vue'
+import Header from '@/components/Header.vue'
 import Sidebar from '@/components/Sidebar.vue'
 
 /**

@@ -1,6 +1,6 @@
 <template>
     <teleport to="#app">
-        <md-dialog :open="props.dialog.open" fullscreen>
+        <md-dialog :open="props.dialog.open" modeless draggable transition="grow">
             <div slot="header">
                 <h1>Create</h1>
             </div>
