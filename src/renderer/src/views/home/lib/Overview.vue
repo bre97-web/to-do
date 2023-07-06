@@ -32,7 +32,7 @@ const targetDateTasks = computed(() => {
 const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
     <header>
         <p class="text-xs">{title}</p>
-        <h1>{subtitle}</h1>
+        <h1 class="font-medium">{subtitle}</h1>
     </header>
 )
 
