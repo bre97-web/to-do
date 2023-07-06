@@ -14,7 +14,6 @@ import Profile from '@/views/dashboard/lib/Profile.vue'
 import System from '@/views/dashboard/lib/System.vue'
 import Theme from '@/views/dashboard/lib/Theme.vue'
 import ShortcutMap from '@/views/dashboard/lib/ShortcutMap.vue'
-import TestPage from '@/views/test/TestPage.vue'
 import Group from '@/views/group/Group.vue'
 import StartupSetting from '@/views/startup/StartupSetting.vue'
 
@@ -121,11 +120,6 @@ const routes: RouteRecordRaw[] = [
                 }
             }
         ]
-    },
-    {
-        name: 'Test',
-        path: '/test',
-        component: TestPage
     },
     {
         path: '/info',
