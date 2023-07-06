@@ -2,9 +2,9 @@
     <div>
         <GoalsList></GoalsList>
 
-        <nav class="fab">
-            <md-fab label="Create" @click="dialog.open = true">
-                <md-icon slot="icon">create</md-icon>
+        <nav class="fixed right-5 bottom-24 lg:bottom-5">
+            <md-fab @click="dialog.open = true">
+                <md-icon slot="icon">add</md-icon>
             </md-fab>
             <Creator :dialog="dialog" :close-dialog="closeDialog"></Creator>
         </nav>

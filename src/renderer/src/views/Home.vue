@@ -9,60 +9,58 @@
             </router-view>
         </main>
 
-        <!-- Create and Bottom Navigation -->
-        <nav class="fixed bottom-0 lg:bottom-4 w-full flex flex-col">
-            <div class="navigation overflow-clip">
-                <div>
-                    <md-navigation-bar :active-index="activeIndex" class="lg:max-w-lg flex mx-auto">
-                        <md-navigation-tab
-                            label="Home"
-                            @click="
-                                () => {
-                                    activeIndex = 0
-                                    push('/home')
-                                }
-                            "
-                        >
-                            <md-icon slot="icon">home</md-icon>
-                        </md-navigation-tab>
+        <!-- Bottom Navigation -->
+        <nav class="fixed bottom-0 lg:bottom-4 w-full">
+            <div class="lg:rounded-3xl lg:mx-auto lg:max-w-lg overflow-clip">
+                <md-navigation-bar :active-index="activeIndex" class="lg:max-w-lg flex mx-auto">
+                    <md-navigation-tab
+                        label="Home"
+                        @click="
+                            () => {
+                                activeIndex = 0
+                                push('/home')
+                            }
+                        "
+                    >
+                        <md-icon slot="icon">home</md-icon>
+                    </md-navigation-tab>
 
-                        <md-navigation-tab
-                            label="Goals"
-                            @click="
-                                () => {
-                                    activeIndex = 1
-                                    push('/goals')
-                                }
-                            "
-                        >
-                            <md-icon>home</md-icon>
-                        </md-navigation-tab>
+                    <md-navigation-tab
+                        label="Goals"
+                        @click="
+                            () => {
+                                activeIndex = 1
+                                push('/goals')
+                            }
+                        "
+                    >
+                        <md-icon>home</md-icon>
+                    </md-navigation-tab>
 
-                        <md-navigation-tab
-                            label="Group"
-                            @click="
-                                () => {
-                                    activeIndex = 2
-                                    push('/home/group')
-                                }
-                            "
-                        >
-                            <md-icon slot="icon">group</md-icon>
-                        </md-navigation-tab>
+                    <md-navigation-tab
+                        label="Group"
+                        @click="
+                            () => {
+                                activeIndex = 2
+                                push('/home/group')
+                            }
+                        "
+                    >
+                        <md-icon slot="icon">group</md-icon>
+                    </md-navigation-tab>
 
-                        <md-navigation-tab
-                            label="Me"
-                            @click="
-                                () => {
-                                    activeIndex = 2
-                                    push('/me')
-                                }
-                            "
-                        >
-                            <md-icon>home</md-icon>
-                        </md-navigation-tab>
-                    </md-navigation-bar>
-                </div>
+                    <md-navigation-tab
+                        label="Me"
+                        @click="
+                            () => {
+                                activeIndex = 2
+                                push('/me')
+                            }
+                        "
+                    >
+                        <md-icon>home</md-icon>
+                    </md-navigation-tab>
+                </md-navigation-bar>
             </div>
         </nav>
     </div>

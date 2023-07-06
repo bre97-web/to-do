@@ -4,29 +4,32 @@
 @tailwind variants;
 
 @layer base {
-    /* 默认配色 */
+    /* 默认字体 */
     body {
         font-family: "Roboto", "Noto Sans SC";
     }
+
 
     /* 全局聚焦配色 */
     * {
         @apply ring-black/50 dark:ring-white/50;
     }
+
+
     /* 不显示滚动条 */
     ::-webkit-scrollbar {
         @apply hidden;
     }
+
 
     /* label默认针对checkbox、radio、switch组件 */
     label {
         @apply flex flex-row items-center justify-between gap-2;
     }
 
+
     /* h1 ~ h6的字体宽度 */
-    h1 {
-        @apply font-bold;
-    }
+    h1
     h2,
     h3 {
         @apply font-bold;
@@ -42,18 +45,18 @@
     b,
     i,
     mark {
-        color: var(--md-sys-color-primary)
+        color: var(--md-sys-color-primary);
     }
     mark {
         @apply bg-green-200/50 px-2;
-        color: var(--md-sys-color-primary)
+        color: var(--md-sys-color-primary);
     }
     header > h1 {
         @apply text-2xl;
     }
 
     md-icon {
-        color: var(--md-sys-color-on-background);
+        color: var(--md-sys-color-primary);
     }
 
     /* 
@@ -390,7 +393,6 @@
 
 @layer components {
 
-
     .text-primary {
         color: var(--md-sys-color-primary) !important;
     }
@@ -447,148 +449,31 @@
     .elevation:active {
         --md-elevation-level: 0;
     }
-
     .focus {
         @apply relative;
         --md-focus-ring-shape: 1.5rem;
     }
 
-
-    /* nav位于顶层30 */
-    nav,
-    nav * {
-        @apply z-50;
-    }
-    nav.fab {
-        @apply fixed right-5 bottom-24 lg:bottom-5 z-[60];
-    }
-    nav.fab * {
-        @apply z-40;
-    }
-    nav .navigation {
-        @apply right-0 bottom-0 w-full lg:bottom-5 z-30;
-    }
-    nav .navigation div {
-        @apply lg:rounded-3xl lg:mx-auto lg:max-w-lg lg:overflow-clip;
-    }
-
     
+    /* 手动定义的根节点样式 */
     #root > div > main.main {
         @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-[3rem];
     }
 
-    .page {
-        @apply px-4 -mt-10;
-    }
 
-
-
-
-
-    /* md-dialog窗口下的h1标题字体大小 */
-    md-dialog h1 {
-        @apply text-2xl;
-    }
-    md-dialog h1 + p {
-        @apply text-xl;
-    }
-    
-    
-
-
-
-    header.topBar {
-        @apply z-10 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
-        transition: none;
-    }
-    header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full mx-2 outline-none rounded-lg focus:ring pl-4 py-2;
-        background-color: var(--md-sys-color-surface-container-high) !important;
-    }
-
-
-    ul.group {
-        @apply flex flex-wrap gap-2;
-    }
-    ul.group li {
-        @apply rounded-md p-4 flex flex-col justify-center items-center;
-    }
-
+    /* 用于显示最顶层的元素的容器，搭配.fullScreen实现全覆盖的窗口 */
     div.fixedWindow {
-        @apply fixed z-[60];
+        @apply fixed z-[999];
     }
-    div.fixedWindow.fullScreen {
-        @apply w-full h-full min-h-screen top-0 right-0;
+    div.fullScreen {
+        @apply w-full h-full min-h-screen;
     }
-    div.fixedWindow.fullScreen.withBackButton > nav{
-        @apply mb-8;
-    }
-    div.fixedWindow nav.backButton {
-        @apply relative w-full border-b dark:border-none py-2;
+    div.fixdWindow.fullScreen {
+        @apply top-0 right-0;
     }
 
 
-
-    div.eventsSurface {
-        @apply fixed z-50 bottom-24 lg:bottom-5 left-4 w-1/2 md:w-52 xl:w-96;
-    }
-    div.eventsSurface > ul.events {
-        @apply flex flex-col w-full gap-2;
-    }
-    div.event {
-        @apply opacity-0 px-4 py-2 rounded-md shadow flex flex-row items-center justify-between;
-        animation: 5s eventAnimation;
-    }
-
-    @keyframes eventAnimation {
-        from {
-            @apply opacity-0 block;
-        } 20% {
-            @apply opacity-100;
-        } 80% {
-            @apply opacity-100;
-        } to {
-            @apply opacity-0;
-        }
-    }
-
-
-
-
-
-    div.sidebar > ul {
-        @apply flex flex-col gap-4;
-    }
-    div.sidebar > ul > li {
-        @apply rounded-xl space-y-2 px-4 py-2 bg-gradient-to-br from-blue-50/25 to-blue-100/75 dark:to-blue-800/25;
-    }
-    div.sidebar > ul > li > header > h1 {
-        @apply font-medium text-base;
-    }
-    div.sidebar > ul > li > header > h1 + p {
-        @apply font-normal text-sm italic;
-    }
-    div.sidebar > ul > li > footer.action {
-        @apply flex items-center justify-end;
-    }
-
-
-
-
-    .goalDescription {
-        @apply rounded-3xl relative bg-white;
-    }
-    .goalDescription div img {
-        @apply w-64 h-48 rounded-3xl;
-    }
-    .goalDescription h1 {
-        @apply text-2xl font-bold;
-    }
-    .goalDescription div.action {
-        @apply flex flex-row justify-end;
-    }
-    
-
+    /* 首页Overview部分的图标摇晃效果 */
     .shake {
         transition: all 1s;
     }
@@ -607,28 +492,12 @@
     }
 
 
-
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
+    /* 输入框和底部nav栏的过渡动画 */
     input,
-    ul li,
-    nav,
-    nav *,
-    /* .navigation, */
-    .eventsSurface,
-    .events,
-    .event {
+    nav {
         transition: all .15s;
     }
-
     .noTransition {
         transition: all none !important;
     }
 }
-
