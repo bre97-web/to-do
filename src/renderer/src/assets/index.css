@@ -460,7 +460,7 @@
         @apply z-50;
     }
     nav.fab {
-        @apply fixed right-5 bottom-24 lg:bottom-5 z-[60];
+        @apply fixed right-5 bottom-24 lg:bottom-5;
     }
     nav.fab * {
         @apply z-40;
@@ -515,21 +515,14 @@
     }
 
     div.fixedWindow {
-        @apply fixed z-[60];
+        @apply fixed z-[999];
     }
-    div.fixedWindow.fullScreen {
-        @apply w-full h-full min-h-screen top-0 right-0;
+    div.fullScreen {
+        @apply w-full h-full min-h-screen;
     }
-    div.fixedWindow.fullScreen.withBackButton > nav{
-        @apply mb-8;
+    div.fixdWindow.fullScreen {
+        @apply top-0 right-0;
     }
-    div.fixedWindow nav.backButton {
-        @apply relative w-full border-b dark:border-none py-2;
-    }
-
-
-
-
 
 
     /* 首页Overview部分的图标摇晃效果 */
