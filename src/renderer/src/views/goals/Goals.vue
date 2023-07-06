@@ -2,7 +2,7 @@
     <div>
         <GoalsList></GoalsList>
 
-        <nav class="fixed right-5 bottom-24 lg:bottom-5">
+        <nav class="fixed right-5 bottom-24 lg:bottom-5 z-50">
             <md-fab @click="dialog.open = true">
                 <md-icon slot="icon">add</md-icon>
             </md-fab>
