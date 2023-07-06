@@ -56,7 +56,7 @@
 import DarkSwitch from '@/components/DarkSwitch.vue'
 import EditAccountName from '@/components/EditAccountName.vue'
 import ThemePicker from '@/components/ThemePicker.vue'
-import useTheme from '@/hooks/useTheme';
+import useTheme from '@/hooks/useTheme'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router';
 

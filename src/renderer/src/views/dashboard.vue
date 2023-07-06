@@ -31,7 +31,7 @@
             </div>
 
             <main class="relative flex flex-col p-2 md:p-8">
-                <router-view v-slot="{ Component }" name="dashboardView">
+                <router-view v-slot="{ Component }" name="DashboardView">
                     <component :is="Component"></component>
                 </router-view>
             </main>

@@ -36,10 +36,9 @@
 <script lang="ts" setup>
 import Creator from '@/components/creator/Creator.vue'
 import SearchResult from '@/components/SearchResult.vue'
-import Content from './lib/Content.vue'
+import Content from '@/components/TaskPanel.vue'
 import { computed, reactive, ref, watch } from 'vue'
-
-import Chips from './lib/Chips.vue'
+import Chips from '@/components/TaskTagChips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
 import { Item } from '@/hooks/useItem'

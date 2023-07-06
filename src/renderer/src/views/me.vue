@@ -7,11 +7,6 @@
                 <ul class="flex flex-wrap gap-2">
                     <li class="elevation surfaceContainer">
                         <md-elevation></md-elevation>
-                        <h1 class="text-onSurface">Helper</h1>
-                        <md-text-button @click="router.push('/helper')">Look</md-text-button>
-                    </li>
-                    <li class="elevation surfaceContainer">
-                        <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Dashboard</h1>
                         <md-text-button @click="router.push('/dashboard')"
                             ><p>Open</p></md-text-button

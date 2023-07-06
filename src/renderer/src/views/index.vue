@@ -4,7 +4,7 @@
 
         <main class="main border-x dark:border-none relative">
             <Sidebar></Sidebar>
-            <router-view v-slot="{ Component }" name="MainBoardView">
+            <router-view v-slot="{ Component }" name="MainView">
                 <component :is="Component"></component>
             </router-view>
         </main>
@@ -42,7 +42,7 @@
                         @click="
                             () => {
                                 activeIndex = 2
-                                push('/home/group')
+                                push('/group')
                             }
                         "
                     >
