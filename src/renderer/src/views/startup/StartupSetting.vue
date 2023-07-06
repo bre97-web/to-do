@@ -2,61 +2,62 @@
     <div class="fixedWindow fullScreen overflow-y-scroll bg-background">
 
         <!-- background colors -->
-        <div class="fixed top-0 right-0 w-screen h-screen blur-3xl -z-50">
-            <div class="absolute bg-red-200 dark:bg-red-900/50 h-96 w-96 rounded-full"></div>
-            <div class="absolute right-0 bottom-0 bg-green-200 dark:bg-green-900/50 h-96 w-96 rounded-full"></div>
+        <div class="fixed top-0 right-0 w-screen h-screen blur-3xl -z-50 overflow-clip">
+            <img src="@/assets/resources/img/oobe-background.jpg" :class="{'invert': isDark}" class="opacity-50 w-full h-full noTransition">
         </div>
 
-        <div class="container mx-auto max-w-3xl grid place-items-center h-full relative">
-            <!-- Animate -->
-            <div v-if="isAnimated.pedding" :class="{ 'opacity-0': isAnimated.willEnd }" class="absolute">
-                <lottie-player
-                    src="https://assets8.lottiefiles.com/packages/lf20_zvKAYTsxBI.json"
-                    background="transparent"
-                    speed="1"
-                    style="width: 300px; height: 300px;"
-                    loop
-                    autoplay
-                ></lottie-player>
-            </div>
-            <!-- OOBE Context -->
-            <div v-if="isAnimated.willEnd" :class="{ 'opacity-100 relative -top-2': isAnimated.delay }" class="m-2 relative top-96 opacity-0 backdrop-blur-3xl rounded-md shadow-md bg-white dark:bg-black bg-opacity-50">
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 m-4 lg:m-8">
-                    <div class="mx-auto md:mx-0">
-                        <template v-for="(e, index) in ContentList">
-                            <lottie-player
-                                v-if="index === currentIndex"
-                                :key="index"
-                                :src="e.src"
-                                background="transparent"
-                                speed="1"
-                                style="width: 300px; height: 300px;"
-                                loop
-                                autoplay
-                            >
-                            </lottie-player>
-                        </template>
-                    </div>
-                    <div class="flex flex-col justify-between gap-2">
-                        <Content></Content>
-                        <footer class="space-x-2 self-end">
-                            <md-text-button :disabled="currentIndex === 0" @click="() => currentIndex--">Back</md-text-button>
-                            <md-tonal-button v-if="currentIndex < ContentList.length - 1" @click="() => currentIndex++">Next</md-tonal-button>
-                            <md-tonal-button v-else @click="allDone">Done</md-tonal-button>
-                        </footer>
+        <div class="transition container mx-auto max-w-3xl grid place-items-center h-full relative">
+            <Transition mode="out-in">
+                <!-- Animate -->
+                <div v-if="isAnimated.pedding">
+                    <lottie-player
+                        src="https://assets8.lottiefiles.com/packages/lf20_zvKAYTsxBI.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px;"
+                        autoplay
+                    ></lottie-player>
+                </div>
+                <!-- OOBE Context -->
+                <div v-else class="m-2 relative backdrop-blur-3xl rounded-md shadow-md bg-white dark:bg-black bg-opacity-50">
+                    <div class="grid grid-cols-1 md:grid-cols-2 m-4 md:m-8">
+                        <div class="mx-auto md:mx-0">
+                            <template v-for="(e, index) in ContentList">
+                                <lottie-player
+                                    v-if="index === currentIndex"
+                                    :key="index"
+                                    :src="e.src"
+                                    background="transparent"
+                                    speed="1"
+                                    style="width: 300px; height: 300px;"
+                                    loop
+                                    autoplay
+                                >
+                                </lottie-player>
+                            </template>
+                        </div>
+                        <div class="flex flex-col justify-between gap-2">
+                            <Content></Content>
+                            <footer class="space-x-2 self-end">
+                                <md-text-button :disabled="currentIndex === 0" @click="() => currentIndex--">Back</md-text-button>
+                                <md-tonal-button v-if="currentIndex < ContentList.length - 1" @click="() => currentIndex++">Next</md-tonal-button>
+                                <md-tonal-button v-else @click="allDone">Done</md-tonal-button>
+                            </footer>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Transition>
+
         </div>
     </div>
 </template>
 
 <script setup lang="tsx">
 import DarkSwitch from '@/components/DarkSwitch.vue'
-import EditAccountName from '@/components/EditAccountName.vue';
+import EditAccountName from '@/components/EditAccountName.vue'
 import ThemePicker from '@/components/ThemePicker.vue'
-import { onMounted, reactive, ref } from 'vue'
+import useTheme from '@/hooks/useTheme';
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -70,19 +71,11 @@ const allDone = () => {
 
 const isAnimated = reactive({
     pedding: true,
-    willEnd: false,
-    delay: false,
 })
 onMounted(() => {
     setTimeout(() => {
-        isAnimated.willEnd = true
-    }, 2000)
-    setTimeout(() => {
         isAnimated.pedding = false
     }, 3500)
-    setTimeout(() => {
-        isAnimated.delay = true
-    }, 3000)
 })
 
 const currentIndex = ref<number>(0)
@@ -131,10 +124,21 @@ const Content = () => (
         </div>
     </div>
 )
+
+const isDark = computed(() => useTheme().getCurrent().isDark)
 </script>
 
 <style scoped>
-* {
+.transition * {
     transition: all 1s cubic-bezier(.54, .01, .44, 1.01);
+}
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 </style>

@@ -597,11 +597,11 @@
     }
     @keyframes shakingHand {
         from {
-            transform: rotate(0deg)
+            transform: rotate(0deg);
         } 50% {
-            transform: rotate(12deg)
+            transform: rotate(12deg);
         } to {
-            transform: rotate(0deg)
+            transform: rotate(0deg);
             
         }
     }
@@ -625,6 +625,10 @@
     .events,
     .event {
         transition: all .15s;
+    }
+
+    .noTransition {
+        transition: all none !important;
     }
 }
 
