@@ -61,10 +61,8 @@
                 </template>
             </form>
 
-            <footer slot="footer" class="space-x-2">
-                <md-text-button @click="cancel">Cancel</md-text-button>
-                <md-filled-button @click="submit">Apply</md-filled-button>
-            </footer>
+            <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
+            <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
         </md-dialog>
     </teleport>
 </template>
