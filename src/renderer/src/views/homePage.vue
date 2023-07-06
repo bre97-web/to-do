@@ -13,35 +13,28 @@
         ></Content>
 
         <!-- Create button -->
-        <nav class="fixed right-5 bottom-24 lg:bottom-5 z-50">
-            <md-fab @click="dialog.open = true">
-                <md-icon slot="icon">add</md-icon>
-            </md-fab>
-            <Creator :dialog="dialog" :close-dialog="closeDialog"></Creator>
-        </nav>
+        <CreatorFabButton></CreatorFabButton>
 
         <!-- ChipSet -->
-        <div class="fixed bottom-24 lg:bottom-28 z-30 backdrop-blur-md fab flex gap-2 mx-4">
-            <Chips
-                v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0"
-                :current-filter="currentFilter"
-                :push-current-filter="pushCurrentFilter"
-                :clear-current-filter="clearCurrentFilter"
-                :get-tags="getTags.getString"
-            ></Chips>
-        </div>
+        <Chips
+            v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0"
+            :current-filter="currentFilter"
+            :push-current-filter="pushCurrentFilter"
+            :clear-current-filter="clearCurrentFilter"
+            :get-tags="getTags.getString"
+        ></Chips>
     </div>
 </template>
 
 <script lang="ts" setup>
-import Creator from '@/components/creator/Creator.vue'
 import SearchResult from '@/components/SearchResult.vue'
 import Content from '@/components/TaskPanel.vue'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import Chips from '@/components/TaskTagChips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
 import { Item } from '@/hooks/useItem'
+import CreatorFabButton from '@/components/CreatorFabButton.vue'
 
 const store = useTaskStore()
 
@@ -119,14 +112,4 @@ const getTags = computed(() => {
         getString: result
     }
 })
-
-/**
- * 控制fab按钮点击后显示的dialog窗口
- */
-const dialog = reactive<{
-    open: boolean
-}>({
-    open: false
-})
-const closeDialog = () => (dialog.open = false)
 </script>

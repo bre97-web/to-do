@@ -1,44 +1,36 @@
 <template>
-    <div class="fixed z-50 bottom-24 lg:bottom-5 left-4 w-1/2 md:w-52 xl:w-96">
-        <ul class="flex flex-col w-full gap-2">
-            <li v-for="e in events.getAll()" :key="e.index" class="scoped-eventAnimate opacity-0 px-4 py-2 rounded-md shadow flex flex-row items-center justify-between surfaceContainer">
-                <h1>{{ e.msg }}</h1>
-                <div :class="{ invisible: !e.isRollback }">
-                    <md-text-button @click.once="() => e.fn()">Undo</md-text-button>
+    <div class="fixed bottom-24 md:left-0 lg:bottom-5 w-full md:w-64">
+        <div class="mx-4">
+            <Transition>
+                <div v-if="eventStore.getEvent !== null" class="p-2 w-full flex justify-between items-center border dark:border-white/25 rounded-md bg-[var(--md-sys-color-primary-container)]">
+                    <h1 class="text-[var(--md-sys-color-primary-on-container)]">{{ eventStore.getEvent?.name }}</h1>
+                    <md-text-button v-if="eventStore.getEvent?.isRollback" @click.once="run">Undo</md-text-button>
                 </div>
-            </li>
-        </ul>
+            </Transition>
+        </div>
     </div>
 </template>
 
-<script lang="tsx" setup>
-import { EventsInterface } from '@/hooks/useEvent'
-import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
-import '@material/web/button/text-button'
+<script lang="ts" setup>
+import { useEventStore } from '@/store/useEventStore.ts'
 
-const events: EventsInterface = getGlobalEvents().get()
+const eventStore = useEventStore()
+
+const run = () => {
+    eventStore.getEvent?.rollback()
+    eventStore.clear()
+}
 </script>
 
 
 <style scoped>
-.scoped-eventAnimate {
-    animation: 5s eventAnimation;
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
 }
 
-@keyframes eventAnimation {
-    from {
-        @apply opacity-0 block;
-    }
-
-    20% {
-        @apply opacity-100;
-    }
-
-    80% {
-        @apply opacity-100;
-    }
-
-    to {
-        @apply opacity-0;
-    }
-}</style>
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>
