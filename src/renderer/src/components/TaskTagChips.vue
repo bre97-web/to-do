@@ -1,5 +1,5 @@
 <template>
-    <md-chip-set ref="chipGroup">
+    <md-chip-set ref="chipGroup" :class="{'bottom-44': !isNullEvent}" class="fixed bottom-24 lg:bottom-28 z-50 mx-4">
         <md-filter-chip
             v-for="(e, index) in props.getTags"
             :key="index"
@@ -19,7 +19,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useEventStore } from '@/store/useEventStore'
+
+/**
+ * 控制类，当event不为空时需要将元素偏移，保证元素不被EventSnackbar遮挡
+ */
+const event = useEventStore()
+const isNullEvent = computed<boolean>(() => event.getEvent === null)
+
 
 const chipGroup = ref()
 const syncFilterChipState = () => {

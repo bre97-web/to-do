@@ -1,15 +1,12 @@
-import { getGlobalEvents } from '@/hooks/lib/getGlobalEvents'
-import { useEvent } from '@/hooks/useEvent'
 import { Item, Items } from '@/hooks/useItem'
 import { defineStore } from 'pinia'
+import { useEventStore } from './useEventstore'
 
 enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
     RECYCLE
 }
-
-const events = getGlobalEvents()
 
 const useTaskStore = defineStore('task_store', {
     state: () => ({
@@ -36,6 +33,7 @@ const useTaskStore = defineStore('task_store', {
             }
         },
         remove(e: Item, to: TASKS_TYPE) {
+            const event = useEventStore()
             let rollBackFn = () => {}
             if (to === TASKS_TYPE.FOCUS) {
                 rollBackFn = () => this.tasks.focus.push(e)
@@ -47,9 +45,14 @@ const useTaskStore = defineStore('task_store', {
                 rollBackFn = () => this.tasks.recycle.push(e)
                 this.tasks.recycle = this.tasks.recycle.filter((el) => el !== e)
             }
-            events.get().push(useEvent('The task is Deleted', true, rollBackFn))
+            event.set({
+                name: 'The task is Deleted',
+                isRollback: true,
+                rollback: rollBackFn
+            })
         },
         move(e: Item, from: TASKS_TYPE, to: TASKS_TYPE) {
+            const event = useEventStore()
             let stepOne: () => any
             let stepTwo: () => any
 
@@ -67,30 +70,36 @@ const useTaskStore = defineStore('task_store', {
             }
             if (to === TASKS_TYPE.FOCUS) {
                 stepTwo = () => (this.tasks.focus = this.tasks.focus.filter((el) => e !== el))
-                events.get().push(
-                    useEvent('Move to Focus', true, () => {
+                event.set({
+                    name: 'Move to Focus',
+                    isRollback: true,
+                    rollback: () => {
                         stepOne()
                         stepTwo()
-                    })
-                )
+                    }
+                })
                 this.tasks.focus.push(e)
             } else if (to === TASKS_TYPE.NORMAL) {
                 stepTwo = () => (this.tasks.normal = this.tasks.normal.filter((el) => e !== el))
-                events.get().push(
-                    useEvent('Move to Overview', true, () => {
+                event.set({
+                    name: 'Move to Overview',
+                    isRollback: true,
+                    rollback: () => {
                         stepOne()
                         stepTwo()
-                    })
-                )
+                    }
+                })
                 this.tasks.normal.push(e)
             } else if (to === TASKS_TYPE.RECYCLE) {
                 stepTwo = () => (this.tasks.recycle = this.tasks.recycle.filter((el) => e !== el))
-                events.get().push(
-                    useEvent('Move to Recycle', true, () => {
+                event.set({
+                    name: 'Move to Recycle',
+                    isRollback: true,
+                    rollback: () => {
                         stepOne()
                         stepTwo()
-                    })
-                )
+                    }
+                })
                 this.tasks.recycle.push(e)
             }
         },
