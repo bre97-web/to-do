@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-background mx-4 mt-4 mb-12 h-[3000px]">
+    <div class="bg-background mx-4 mt-4 mb-12">
         <ul class="space-y-8">
             <li class="p-4 w-full border bg-surface rounded-3xl">
                 <Title
@@ -48,7 +48,7 @@ const Task = ({ item }: { item: Item }) => (
 
 const TasksList = ({ element }: { element: Items }) => (
     <div>
-        <ul class="surface rounded-3xl space-y-2 xl:flex">
+        <ul class="surface rounded-3xl flex gap-2 flex-col xl:flex-row xl:items-start xl:justify-start w-full h-full">
             {element.slice(0, 5).map((e) => (
                 <Task item={e}></Task>
             ))}
