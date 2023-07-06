@@ -1,95 +1,123 @@
 import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue'
-import HomePage from '@/views/home/HomePage.vue'
-import Info from '@/views/home/lib/MoreInformation.vue'
-import Me from '@/views/me/Me.vue'
-import Helper from '@/views/me/lib/Helper.vue'
-import ChooseGoal from '@/views/chooseGoal/ChooseGoal.vue'
-import Template from '@/views/chooseGoal/lib/Template.vue'
-import TemplateDesc from '@/views/chooseGoal/lib/TemplateDesc.vue'
-import Goals from '@/views/goals/Goals.vue'
-import Dashboard from '@/views/dashboard/Dashboard.vue'
-import Profile from '@/views/dashboard/lib/Profile.vue'
-import System from '@/views/dashboard/lib/System.vue'
-import Theme from '@/views/dashboard/lib/Theme.vue'
-import ShortcutMap from '@/views/dashboard/lib/ShortcutMap.vue'
-import Group from '@/views/group/Group.vue'
-import StartupSetting from '@/views/startup/StartupSetting.vue'
+import Index from '@/views/index.vue'
+import HomePage from '@/views/homePage.vue'
+import Info from '@/views/moreInformation.vue'
+import Me from '@/views/me.vue'
+import ChooseGoal from '@/views/chooseGoal.vue'
+import Template from '@/views/chooseGoal/template.vue'
+import TemplateDesc from '@/views/chooseGoal/templateDesc.vue'
+import Goals from '@/views/goals.vue'
+import Dashboard from '@/views/dashboard.vue'
+import Profile from '@/views/dashboard/profile.vue'
+import System from '@/views/dashboard/system.vue'
+import Theme from '@/views/dashboard/theme.vue'
+import ShortcutMap from '@/views/dashboard/shortcutMap.vue'
+import Group from '@/views/group.vue'
+import StartupSetting from '@/views/startupSetting.vue'
 
 const routes: RouteRecordRaw[] = [
     /**
      * 在App组件中显示主面板（Home组件）
      */
     {
-        name: 'Home',
+        name: 'StartPosition',
         path: '/',
-        component: Home,
+        component: Index,
         redirect: '/home',
+        /**
+         * 子元素显示在index组件的MainView
+         */
         children: [
+            /**
+             *  首页
+             */
             {
                 name: 'HomePage',
                 path: '/home',
                 components: {
-                    MainBoardView: HomePage
+                    MainView: HomePage
                 }
             },
+            /**
+             * 关于我
+             */
             {
                 name: 'Me',
                 path: '/me',
                 components: {
-                    MainBoardView: Me
-                },
-                children: [
-                    {
-                        name: 'Helper',
-                        path: '/helper',
-                        components: {
-                            MeInnerBoard: Helper
-                        }
-                    }
-                ]
+                    MainView: Me
+                }
             },
+            /**
+             * 分组
+             */
             {
                 name: 'Group',
-                path: '/home/group',
+                path: '/group',
                 components: {
-                    MainBoardView: Group
+                    MainView: Group
+                }
+            },
+            /**
+             * Goals
+             */
+            {
+                name: 'Goals',
+                path: '/goals',
+                components: {
+                    MainView: Goals
+                }
+            },
+        ]
+    },
+    /**
+     * Goal模板选择面板
+     */
+    {
+        path: '/chooseGoal',
+        name: 'ChooseGoal',
+        component: ChooseGoal,
+        redirect: '/chooseGoal/goalTemplate',
+        /**
+         * 子元素显示在MainView
+         */
+        children: [
+            {
+                path: '/chooseGoal/goalTemplate',
+                name: 'Template',
+                components: {
+                    ChooseGoalView: Template
                 }
             },
             {
-                path: '/chooseGoal',
-                name: 'ChooseGoal',
+                path: '/chooseGoal/templateDesc',
+                name: 'TemplateDesc',
                 components: {
-                    MainBoardView: ChooseGoal
-                },
-                redirect: '/chooseGoal/goalTemplate',
-                children: [
-                    {
-                        path: '/chooseGoal/goalTemplate',
-                        name: 'Template',
-                        components: {
-                            ChooseGoalInnerViewBoard: Template
-                        }
-                    },
-                    {
-                        path: '/chooseGoal/templateDesc',
-                        name: 'TemplateDesc',
-                        components: {
-                            ChooseGoalInnerViewBoard: TemplateDesc
-                        }
-                    }
-                ]
-            },
-            {
-                path: '/goals',
-                name: 'Goals',
-                components: {
-                    MainBoardView: Goals
+                    ChooseGoalView: TemplateDesc
                 }
             }
         ]
     },
+    /**
+     * 用于编辑Task的面板
+     */
+    {
+        path: '/info',
+        name: 'Info',
+        component: Info
+    },
+    /**
+     * OOBE阶段的设置面板
+     */
+    {
+        name: 'startupSetting',
+        path: '/startupSetting',
+        component: StartupSetting
+    },
+    /**
+     * 控制中心
+     */
     {
         path: '/dashboard',
         component: Dashboard,
@@ -98,39 +126,29 @@ const routes: RouteRecordRaw[] = [
             {
                 path: '/dashboard/profile',
                 components: {
-                    dashboardView: Profile
+                    DashboardView: Profile
                 }
             },
             {
                 path: '/dashboard/theme',
                 components: {
-                    dashboardView: Theme
+                    DashboardView: Theme
                 }
             },
             {
                 path: '/dashboard/system',
                 components: {
-                    dashboardView: System
+                    DashboardView: System
                 }
             },
             {
                 path: '/dashboard/shortcutMap',
                 components: {
-                    dashboardView: ShortcutMap
+                    DashboardView: ShortcutMap
                 }
             }
         ]
     },
-    {
-        path: '/info',
-        name: 'Info',
-        component: Info
-    },
-    {
-        name: 'startup',
-        path: '/startup',
-        component: StartupSetting
-    }
 ]
 
 const Router: Router = createRouter({

@@ -34,7 +34,7 @@ onBeforeMount(() => {
         isFirstLaunch = true
     }
     if(isFirstLaunch) {
-        router.push('/startup')
+        router.push('/startupSetting')
     }
 })
 

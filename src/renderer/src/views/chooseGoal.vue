@@ -7,7 +7,7 @@
             </header>
 
             <main class="overflow-y-scroll p-2 h-4/5 md:max-h-screen my-8">
-                <router-view v-slot="{ Component }" name="ChooseGoalInnerViewBoard">
+                <router-view v-slot="{ Component }" name="ChooseGoalView">
                     <component
                         :is="Component"
                         :current-index="currentIndex"
@@ -50,7 +50,7 @@
 import { useRouter } from 'vue-router'
 import { Goal, useGoal, useGoals } from '@/hooks/useGoal'
 import { ref } from 'vue'
-import template from '@/views/chooseGoal/lib/template.json'
+import template from '@/assets/resources/json/template.json'
 import { useGoalStore } from '@/store/useGoalStore'
 
 const goalTemplates = template
