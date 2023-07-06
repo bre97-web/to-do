@@ -7,7 +7,7 @@
 
             <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
                 <lit-target-type
-                    :set-type="(value: Type) => target.type.value = value"
+                    :setType="(value: Type) => target.type.value = value"
                 ></lit-target-type>
 
                 <!-- Task -->
