@@ -553,42 +553,7 @@
     }
 
 
-
-
-
-    div.sidebar > ul {
-        @apply flex flex-col gap-4;
-    }
-    div.sidebar > ul > li {
-        @apply rounded-xl space-y-2 px-4 py-2 bg-gradient-to-br from-blue-50/25 to-blue-100/75 dark:to-blue-800/25;
-    }
-    div.sidebar > ul > li > header > h1 {
-        @apply font-medium text-base;
-    }
-    div.sidebar > ul > li > header > h1 + p {
-        @apply font-normal text-sm italic;
-    }
-    div.sidebar > ul > li > footer.action {
-        @apply flex items-center justify-end;
-    }
-
-
-
-
-    .goalDescription {
-        @apply rounded-3xl relative bg-white;
-    }
-    .goalDescription div img {
-        @apply w-64 h-48 rounded-3xl;
-    }
-    .goalDescription h1 {
-        @apply text-2xl font-bold;
-    }
-    .goalDescription div.action {
-        @apply flex flex-row justify-end;
-    }
-    
-
+    /* 首页Overview部分的图标摇晃效果 */
     .shake {
         transition: all 1s;
     }
@@ -607,26 +572,11 @@
     }
 
 
-
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
+    /* 输入框和底部nav栏的过渡动画 */
     input,
-    ul li,
-    nav,
-    nav *,
-    /* .navigation, */
-    .eventsSurface,
-    .events,
-    .event {
+    nav {
         transition: all .15s;
     }
-
     .noTransition {
         transition: all none !important;
     }
