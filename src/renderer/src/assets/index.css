@@ -501,10 +501,6 @@
         @apply z-10 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
         transition: none;
     }
-    header.topBar input {
-        @apply max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl w-full mx-2 outline-none rounded-lg focus:ring pl-4 py-2;
-        background-color: var(--md-sys-color-surface-container-high) !important;
-    }
 
 
     /* 用于显示最顶层的元素的容器，搭配.fullScreen实现全覆盖的窗口 */
