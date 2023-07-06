@@ -480,28 +480,7 @@
     .page {
         @apply px-4 -mt-10;
     }
-
-
-
-
-
-    /* md-dialog窗口下的h1标题字体大小 */
-    md-dialog h1 {
-        @apply text-2xl;
-    }
-    md-dialog h1 + p {
-        @apply text-xl;
-    }
-    
-    
-
-
-
-    header.topBar {
-        @apply z-10 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16;
-        transition: none;
-    }
-
+        
 
     /* 用于显示最顶层的元素的容器，搭配.fullScreen实现全覆盖的窗口 */
     div.fixedWindow {

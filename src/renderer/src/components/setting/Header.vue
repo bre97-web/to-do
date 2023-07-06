@@ -1,5 +1,5 @@
 <template>
-    <header class="topBar bg-background">
+    <header class="z-10 border-b dark:border-none fixed top-0 right-0 w-screen max-h-16 bg-background">
         <div class="px-2 md:px-4 py-1 flex flex-row items-center justify-between w-full">
             <!-- Web Title -->
             <Title></Title>
