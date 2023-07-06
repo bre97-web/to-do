@@ -1,4 +1,4 @@
-appId: com.github.To-Do.bre97-web
+appId: io.github.To-Do.bre97-web
 productName: To-Do
 directories:
   buildResources: build

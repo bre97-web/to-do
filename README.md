@@ -43,15 +43,15 @@ You can make suggestions in issues.
 |Event Snackbars Actions|✅|✅|❌|
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
-|Startup Settings|✅|🟡|❌|
+|Startup Settings|✅|✅|❌|
 |Notify|✅|❌|❌|
 |Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
 |Startup Animation|✅|✅|❌|
 |~~First Launch~~|⚫|⚫|⚫|
 |Tag|✅|✅|❌|
-|Sort|✅|🟡|❌|
-|To_day's Tasks|✅|🟡|❌|
+|Sort|✅|✅|❌|
+|To_day's Tasks|✅|✅|❌|
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|

@@ -20,16 +20,27 @@ export default defineConfig({
             vue({
                 template: {
                     compilerOptions: {
-                        isCustomElement: (tag) =>
-                            tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja')
+                        isCustomElement: (tag: string): boolean =>
+                            tag.startsWith('md') || tag.startsWith('lit') || tag.startsWith('ninja') || tag.startsWith('lottie-player')
                     }
                 }
             }),
-            vueJsx()
+            vueJsx({
+                isCustomElement: (tag: string): boolean =>
+                    tag.startsWith('md-') || tag.startsWith('lit')
+            })
         ],
-        base: './',
+        root: './src/renderer/',
+        base: '/',
         build: {
-            outDir: './docs'
+            outDir: './docs',
+            emptyOutDir: true,
+            assetsDir: 'assets',
+            assetsInlineLimit: 4096,
+            sourcemap: true,
+            manifest: true,
+            minify: 'esbuild',
+            chunkSizeWarningLimit: 500
         }
     }
 })

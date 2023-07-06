@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="./src/assets/resources/img/to-do.png" type="image/icon type">
+    <link rel="icon" href="/To-Do/assets/to-do-16667960.png" type="image/icon type">
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do</title>
@@ -10,7 +10,9 @@
       #loading {
         background-color: white;
         pointer-events: none;
-        user-select: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+                user-select: none;
         position: fixed;
         width: 100vw;
         height: 100vh;
@@ -60,8 +62,11 @@
         }
       }
     </style>
-    <script type="module" src="./src/assets/material-web.js"></script>
+    
     <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+  <script type="module" crossorigin src="/To-Do/assets/index-00162306.js"></script>
+  <link rel="stylesheet" href="/To-Do/assets/index-6647d0f1.css">
+
   <body>
     <div id="loading">
       <div>
@@ -80,7 +85,7 @@
       </div>
     </div>
     <div id="app"></div>
-    <script type="module" src="./src/main.ts"></script>
+    
     <script>
       window.addEventListener('load', () => {
         setTimeout(() => {

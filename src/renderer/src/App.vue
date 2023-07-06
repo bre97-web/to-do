@@ -9,9 +9,9 @@
         ></ninja-keys>
 
         <!-- 启动后/重定向到/home -->
-        <router-view v-slot="{ Component }">
+        <RouterView v-slot="{ Component }">
             <component :is="Component"></component>
-        </router-view>
+        </RouterView>
 
         <EventSnackbar></EventSnackbar>
     </div>

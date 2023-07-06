@@ -1,6 +1,6 @@
 {
   "name": "to-do",
-  "version": "1.0.0-pre.2",
+  "version": "1.0.0-pre.3",
   "author": "bre97-web",
   "description": "Written by Vue 3 and Electron with Vite.",
   "private": true,
@@ -8,7 +8,7 @@
   "scripts": {
     "type-check": "vue-tsc --noEmit",
     "dev:web": "vite",
-    "build:web": "run-p type-check build-only",
+    "build:web": "npm run build-only",
     "preview:web": "vite preview",
     "dev:electron": "electron-vite dev",
     "preview:electron": "electron-vite preview",

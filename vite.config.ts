@@ -29,7 +29,7 @@ export default defineConfig({
     clearScreen: true,
     base: '/To-Do',
     build: {
-        outDir: '../../docs',
+        outDir: './docs',
         emptyOutDir: true,
         assetsDir: 'assets',
         assetsInlineLimit: 4096,
