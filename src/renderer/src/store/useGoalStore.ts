@@ -1,7 +1,7 @@
 import { Goals } from '@/hooks/useGoal'
 import moment from 'moment'
 import { defineStore } from 'pinia'
-import { useEventStore } from './useEventstore'
+import { useEventStore } from '@/store/useEventStore'
 
 const useGoalStore = defineStore('goal_store', {
     state: () => ({

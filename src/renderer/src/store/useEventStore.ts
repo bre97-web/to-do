@@ -34,6 +34,9 @@ const useEventStore = defineStore('event_store', {
             this.timer = setTimeout(() => {
                 this.currentEvent = null
             }, 3000)
+        },
+        clear() {
+            this.currentEvent = null
         }
     }
 })

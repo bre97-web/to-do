@@ -1,6 +1,6 @@
 import { Item, Items } from '@/hooks/useItem'
 import { defineStore } from 'pinia'
-import { useEventStore } from './useEventstore'
+import { useEventStore } from '@/store/useEventStore'
 
 enum TASKS_TYPE {
     FOCUS = 0,
