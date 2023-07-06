@@ -25,8 +25,8 @@
 
 <script setup lang="ts">
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
-import Result from './Result.vue'
-import Overview from './Overview.vue'
+import Result from '@/components/TaskFiltedShower.vue'
+import Overview from '@/components/TaskOverview.vue'
 import { Items } from '@/hooks/useItem'
 
 enum TaskType {

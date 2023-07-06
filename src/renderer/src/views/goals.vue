@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import Creator from '@/components/creator/Creator.vue'
-import GoalsList from './lib/GoalsList.vue'
+import GoalsList from '@/components/GoalsList.vue'
 import { reactive } from 'vue'
 
 /**
