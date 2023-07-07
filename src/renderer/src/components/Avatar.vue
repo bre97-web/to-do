@@ -1,9 +1,6 @@
 <template>
-    <div class="space-y-4">
-        <div class="w-64 h-64 rounded-full flex items-center justify-center border">
-            <p class="text-8xl font-black">{{ userStore.getName[0] }}</p>
-        </div>
-        <h1 class="text-right text-gray-500">{{ userStore.getName }}</h1>
+    <div class="rounded-full bg-[var(--md-sys-color-surface-container-high)] grid place-items-center">
+        <p class="text-center font-black">{{ userStore.getName[0] }}</p>
     </div>
 </template>
 
