@@ -4,7 +4,7 @@
     "src": "../../node_modules/material-symbols/material-symbols-outlined.woff2"
   },
   "index.css": {
-    "file": "assets/index-0f281780.css",
+    "file": "assets/index-5f354083.css",
     "src": "index.css"
   },
   "index.html": {
@@ -15,9 +15,9 @@
       "assets/material-symbols-outlined-9d62d361.woff2"
     ],
     "css": [
-      "assets/index-0f281780.css"
+      "assets/index-5f354083.css"
     ],
-    "file": "assets/index-221c74ca.js",
+    "file": "assets/index-9839e49a.js",
     "isEntry": true,
     "src": "index.html"
   },
