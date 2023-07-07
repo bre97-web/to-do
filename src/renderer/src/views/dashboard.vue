@@ -1,6 +1,6 @@
 <template>
-    <div class="relative w-full bg-background">
-        <div class="relative flex flex-col md:flex-row h-screen">
+    <div class="relative bg-background">
+        <div class="relative flex flex-col md:flex-row md:container h-screen">
             <div
                 class="relative border dark:border-none w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8"
             >
