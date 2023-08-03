@@ -1,7 +1,7 @@
 <template>
     <div class="max-h-screen overflow-auto max-w-min">
         <div class="p-2">
-            <div class="flex flex-col items-center justify-start gap-2">
+            <div class="flex flex-col items-start justify-start gap-2">
                 <div
                     v-for="e in routerList"
                     :key="e.url"
@@ -14,7 +14,12 @@
                         <p class="hidden lg:block" :class="{'font-bold': currentUrl == e.url}">{{ e.label }}</p>
                     </div>
                 </div>
-                <CreatorFabButton></CreatorFabButton>
+                <div class="block lg:hidden">
+                    <CreatorFabButton></CreatorFabButton>
+                </div>
+                <div class="hidden lg:block">
+                    <CreatorFabButton label="Create"></CreatorFabButton>
+                </div>
             </div>
         </div>
     </div>
