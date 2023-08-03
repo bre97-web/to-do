@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <PageLayout>
         <div>
             <SearchResult></SearchResult>
         </div>
@@ -20,7 +20,7 @@
             :clear-current-filter="clearCurrentFilter"
             :get-tags="getTags.getString"
         ></Chips>
-    </div>
+    </PageLayout>
 </template>
 
 <script lang="ts" setup>
@@ -31,6 +31,7 @@ import Chips from '@/components/TaskTagChips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
 import { Item } from '@/hooks/useItem'
+import PageLayout from '@/layouts/PageLayout.vue'
 
 const store = useTaskStore()
 

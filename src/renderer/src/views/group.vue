@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <PageLayout>
         <template v-if="tags.size !== 0">
-            <main
-                class="p-8 relative w-full flex flex-col md:flex-row flex-wrap rounded-xl gap-2 md:items-start md:justify-evenly"
+            <div
+                class="m-8 relative flex flex-col md:flex-row flex-wrap gap-2 md:items-start md:justify-evenly"
             >
                 <Card
                     v-for="(map, index) in tags"
@@ -34,18 +34,19 @@
                         </li>
                     </ul>
                 </Card>
-            </main>
+            </div>
         </template>
         <template v-else>
             <AllDone></AllDone>
         </template>
-    </div>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
 import AllDone from '@/components/AllDone.vue';
 import Card from '@/components/Card.vue'
 import { useTags } from '@/hooks/useTags'
+import PageLayout from '@/layouts/PageLayout.vue';
 import { useTaskStore } from '@/store/useTaskStore'
 import { useRouter } from 'vue-router'
 
