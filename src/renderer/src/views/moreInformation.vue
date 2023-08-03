@@ -1,15 +1,9 @@
 <template>
-    <div class="fixedWindow fullScreen bg-background withBackButton overflow-y-scroll">
-        <nav class="mb-8 relative w-full border-b dark:border-none py-2">
-            <div class="max-w-lg px-2 mx-auto">
-                <md-text-button @click="router.back">
-                    <md-icon slot="icon">arrow_back</md-icon>
-                    Back
-                </md-text-button>
-            </div>
-        </nav>
+    <div>
+        <PageWithBackLayout name="PageWithBack">
 
-        <div class="panel px-8 bg-surface flex flex-col gap-2 items-start max-w-xl mx-auto">
+
+        <div class="panel px-8 flex flex-col gap-2 items-start mx-auto">
             <!-- Title -->
             <div>
                 <md-icon>title</md-icon>
@@ -92,6 +86,8 @@
                 </div>
             </div>
         </div>
+    </PageWithBackLayout>
+
     </div>
 </template>
 
@@ -100,6 +96,7 @@ import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Item, useStep } from '@/hooks/useItem'
 import { useTaskStore } from '@/store/useTaskStore'
+import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 
 const store = useTaskStore()
 

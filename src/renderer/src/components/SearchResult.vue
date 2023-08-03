@@ -1,8 +1,8 @@
 <template>
     <div v-show="hasInput" class="px-4 py-2">
         <header class="flex flex-row items-end justify-start gap-2">
-            <h1 class="text-onBackground">Search</h1>
-            <h1 class="text-onBackground underline underline-offset-1">
+            <h1>Search</h1>
+            <h1 class="underline underline-offset-1">
                 <mark>{{ searchStore.getKeyword }}</mark>
             </h1>
         </header>
@@ -45,7 +45,7 @@
                 </Task>
             </template>
             <template v-else>
-                <p class="text-right font-bold text-onBackground">
+                <p class="text-right font-bold">
                     {{ searchStore.getKeyword }} is not found
                 </p>
                 <div class="flex justify-end items-center gap-2">

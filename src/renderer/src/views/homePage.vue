@@ -12,9 +12,6 @@
             :tasks="store.tasks"
         ></Content>
 
-        <!-- Create button -->
-        <CreatorFabButton></CreatorFabButton>
-
         <!-- ChipSet -->
         <Chips
             v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0"
@@ -34,7 +31,6 @@ import Chips from '@/components/TaskTagChips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
 import { Item } from '@/hooks/useItem'
-import CreatorFabButton from '@/components/CreatorFabButton.vue'
 
 const store = useTaskStore()
 
