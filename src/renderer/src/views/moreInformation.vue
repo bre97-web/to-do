@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <PageWithBackLayout name="PageWithBack">
+    <PageWithBackLayout name="PageWithBack">
 
 
         <div class="panel px-8 flex flex-col gap-2 items-start mx-auto">
@@ -87,8 +86,6 @@
             </div>
         </div>
     </PageWithBackLayout>
-
-    </div>
 </template>
 
 <script lang="ts" setup>
