@@ -2,18 +2,24 @@ import { Item, Items } from '@/hooks/useItem'
 import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 
-enum TASKS_TYPE {
+export enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
     RECYCLE
 }
+export type CustomTasks = {
+    label: string
+    items: Items
+}
 
-const useTaskStore = defineStore('task_store', {
+
+export const useTaskStore = defineStore('task_store', {
     state: () => ({
         tasks: {
             focus: [] as Items,
             normal: [] as Items,
-            recycle: [] as Items
+            recycle: [] as Items,
+            custom: {} as CustomTasks,
         }
     }),
     getters: {
@@ -116,5 +122,3 @@ const useTaskStore = defineStore('task_store', {
     },
     persist: true
 })
-
-export { useTaskStore, TASKS_TYPE }
