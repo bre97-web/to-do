@@ -19,11 +19,12 @@ export const useTaskStore = defineStore('task_store', {
             focus: [] as Items,
             normal: [] as Items,
             recycle: [] as Items,
-            custom: {} as CustomTasks,
+            custom: [] as CustomTasks[],
         }
     }),
     getters: {
         getAll: (state) => state.tasks,
+        getCustom: (state) => state.tasks.custom,
         getFocus: (state): Items => state.tasks.focus,
         getNormal: (state): Items => state.tasks.normal,
         getRecycle: (state): Items => state.tasks.recycle
@@ -118,7 +119,24 @@ export const useTaskStore = defineStore('task_store', {
                 return this.tasks.recycle.includes(e)
             }
             return false
-        }
+        },
+        /**
+         * 在custom中创建一个集合，默认items为空数组
+         */
+        createCollection(label: string, items = [] as Items) {
+            this.tasks.custom.push({
+                label,
+                items
+            })
+        },
+        insertToCollection(label: string, items: Items) {
+            this.tasks.custom.map(e => {
+                if(e.label === label) {
+                    e.items.push(...items)
+                }
+                return e
+            })
+        },
     },
     persist: true
 })
