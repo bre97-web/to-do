@@ -14,6 +14,7 @@
                         <p class="hidden lg:block" :class="{'font-bold': currentUrl == e.url}">{{ e.label }}</p>
                     </div>
                 </div>
+                <CreatorFabButton></CreatorFabButton>
             </div>
         </div>
     </div>
@@ -22,6 +23,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import CreatorFabButton from './CreatorFabButton.vue';
 
 const router = useRouter()
 const currentUrl = computed(() => router.currentRoute.value.path)

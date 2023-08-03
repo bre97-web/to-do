@@ -7,7 +7,6 @@
                     <router-view v-slot="{ Component }" name="MainView">
                         <component :is="Component"></component>
                     </router-view>
-                    <div class="h-[1000px]"></div>
                 </main>
 
                 <!-- Bottom Navigation -->
@@ -18,6 +17,10 @@
                     <div class="hidden md:block">
                         <NavigationLeftBar></NavigationLeftBar>
                     </div>
+                    <div :class="{'bottom-44 md:bottom-24': !isNullEvent}" class="block md:hidden fixed right-4 bottom-24">
+                        <!-- Create button -->
+                        <CreatorFabButton></CreatorFabButton>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -25,6 +28,15 @@
 </template>
 
 <script lang="tsx" setup>
+import CreatorFabButton from '@/components/CreatorFabButton.vue';
 import NavigationBottomBar from '@/components/NavigationBottomBar.vue';
 import NavigationLeftBar from '@/components/NavigationLeftBar.vue';
+import { useEventStore } from '@/store/useEventStore';
+import { computed } from 'vue';
+
+/**
+ * 控制类，当event不为空时需要将元素偏移，保证元素不被EventSnackbar遮挡
+ */
+ const event = useEventStore()
+const isNullEvent = computed<boolean>(() => event.getEvent === null)
 </script>
