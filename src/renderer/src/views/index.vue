@@ -1,8 +1,13 @@
 <template>
-    <div class="relative bg-[var(--md-sys-color-background)]">
+    <div class="relative bg-[var(--md-sys-color-surface-container)]">
 
         <div class="relative container mx-auto h-screen">
             <div class="flex flex-col md:flex-row-reverse h-screen max-h-screen">
+                
+                <!-- <aside class="hidden lg:block w-64 rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+
+                </aside> -->
+
                 <main class="flex-grow relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
                     <router-view v-slot="{ Component }" name="MainView">
                         <component :is="Component"></component>

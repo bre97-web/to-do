@@ -5,10 +5,11 @@
             :key="index"
             :label="e.toUpperCase()"
             @click="() =>
-                    theme.set({
-                        color: e
-                    })
-        ">
+                theme.set({
+                    color: e
+                })
+            "
+        >
         </md-outlined-segmented-button>
     </md-outlined-segmented-button-set>
 </template>

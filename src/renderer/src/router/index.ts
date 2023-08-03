@@ -6,10 +6,6 @@ import Info from '@/views/moreInformation.vue'
 import Me from '@/views/me.vue'
 import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
-import Profile from '@/views/dashboard/profile.vue'
-import System from '@/views/dashboard/system.vue'
-import Theme from '@/views/dashboard/theme.vue'
-import ShortcutMap from '@/views/dashboard/shortcutMap.vue'
 import Group from '@/views/group.vue'
 import StartupSetting from '@/views/startupSetting.vue'
 
@@ -40,7 +36,7 @@ const routes: RouteRecordRaw[] = [
              * 关于我
              */
             {
-                name: 'Me',
+                name: 'Profile',
                 path: '/me',
                 components: {
                     MainView: Me
@@ -76,6 +72,16 @@ const routes: RouteRecordRaw[] = [
                     MainView: Info
                 }
             },
+            /**
+             * 控制中心
+             */
+            {
+                path: '/dashboard',
+                name: 'Dashboard',
+                components: {
+                    MainView: Dashboard
+                },
+            },
         ]
     },
     /**
@@ -85,40 +91,6 @@ const routes: RouteRecordRaw[] = [
         name: 'startupSetting',
         path: '/startupSetting',
         component: StartupSetting
-    },
-    /**
-     * 控制中心
-     */
-    {
-        path: '/dashboard',
-        component: Dashboard,
-        redirect: '/dashboard/profile',
-        children: [
-            {
-                path: '/dashboard/profile',
-                components: {
-                    DashboardView: Profile
-                }
-            },
-            {
-                path: '/dashboard/theme',
-                components: {
-                    DashboardView: Theme
-                }
-            },
-            {
-                path: '/dashboard/system',
-                components: {
-                    DashboardView: System
-                }
-            },
-            {
-                path: '/dashboard/shortcutMap',
-                components: {
-                    DashboardView: ShortcutMap
-                }
-            }
-        ]
     },
 ]
 
