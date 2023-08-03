@@ -4,9 +4,6 @@ import Index from '@/views/index.vue'
 import HomePage from '@/views/homePage.vue'
 import Info from '@/views/moreInformation.vue'
 import Me from '@/views/me.vue'
-import ChooseGoal from '@/views/chooseGoal.vue'
-import Template from '@/views/chooseGoal/template.vue'
-import TemplateDesc from '@/views/chooseGoal/templateDesc.vue'
 import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
 import Profile from '@/views/dashboard/profile.vue'
@@ -69,34 +66,6 @@ const routes: RouteRecordRaw[] = [
                     MainView: Goals
                 }
             },
-        ]
-    },
-    /**
-     * Goal模板选择面板
-     */
-    {
-        path: '/chooseGoal',
-        name: 'ChooseGoal',
-        component: ChooseGoal,
-        redirect: '/chooseGoal/goalTemplate',
-        /**
-         * 子元素显示在MainView
-         */
-        children: [
-            {
-                path: '/chooseGoal/goalTemplate',
-                name: 'Template',
-                components: {
-                    ChooseGoalView: Template
-                }
-            },
-            {
-                path: '/chooseGoal/templateDesc',
-                name: 'TemplateDesc',
-                components: {
-                    ChooseGoalView: TemplateDesc
-                }
-            }
         ]
     },
     /**
