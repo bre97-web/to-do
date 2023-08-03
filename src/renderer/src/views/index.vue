@@ -1,25 +1,30 @@
 <template>
     <div class="relative bg-background">
-        <Header></Header>
 
-        <main class="main border-x dark:border-none relative">
-            <Sidebar></Sidebar>
-            <router-view v-slot="{ Component }" name="MainView">
-                <component :is="Component"></component>
-            </router-view>
-        </main>
+        <div class="relative container mx-auto h-screen">
+            <div class="flex flex-col md:flex-row-reverse h-screen max-h-screen">
+                <main class="flex-grow border-x dark:border-none relative overflow-scroll">
+                    <router-view v-slot="{ Component }" name="MainView">
+                        <component :is="Component"></component>
+                    </router-view>
+                    <div class="h-[1000px]"></div>
+                </main>
 
-        <!-- Bottom Navigation -->
-        <nav class="fixed bottom-0 lg:bottom-4 w-full">
-            <div class="lg:rounded-3xl lg:mx-auto lg:max-w-lg overflow-clip">
-                <NavigationBar></NavigationBar>
+                <!-- Bottom Navigation -->
+                <nav>
+                    <div class="block md:hidden lg:rounded-3xl overflow-clip">
+                        <NavigationBottomBar></NavigationBottomBar>
+                    </div>
+                    <div class="hidden md:block">
+                        <NavigationLeftBar></NavigationLeftBar>
+                    </div>
+                </nav>
             </div>
-        </nav>
+        </div>
     </div>
 </template>
 
 <script lang="tsx" setup>
-import Header from '@/components/Header.vue'
-import Sidebar from '@/components/Sidebar.vue'
-import NavigationBar from '@/components/NavigationBar.vue';
+import NavigationBottomBar from '@/components/NavigationBottomBar.vue';
+import NavigationLeftBar from '@/components/NavigationLeftBar.vue';
 </script>
