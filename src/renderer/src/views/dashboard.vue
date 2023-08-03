@@ -1,48 +1,37 @@
 <template>
     <PageLayout>
-        1223
-        <div class="relative flex flex-col md:flex-row">
-            <div
-                class="relative border dark:border-none w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8"
-            >
-                <nav class="flex justify-end md:absolute md:bottom-4">
-                    <md-text-button @click="router.push('/me')">
-                        back
-                        <md-icon slot="icon">arrow_back</md-icon>
-                    </md-text-button>
-                </nav>
-
-                <div class="hidden md:flex gap-2 items-center justify-start mb-8">
-                    <span class="material-symbols-outlined">dashboard</span>
-                    <h1 class="text-2xl">Dashboard</h1>
-                </div>
-
-                <div class="flex flex-row md:flex-col gap-1">
-                    <md-text-button @click="router.push('/dashboard/profile')"
-                        >Account</md-text-button
-                    >
-                    <md-text-button @click="router.push('/dashboard/theme')">Theme</md-text-button>
-                    <md-text-button @click="router.push('/dashboard/system')"
-                        >System</md-text-button
-                    >
-                    <md-text-button @click="router.push('/dashboard/shortcutMap')"
-                        >Shortcut Map</md-text-button
-                    >
-                </div>
-            </div>
-
-            <!-- <main class="relative flex flex-col p-2 md:p-8">
-                <router-view v-slot="{ Component }" name="DashboardView">
-                    <component :is="Component"></component>
-                </router-view>
-            </main> -->
+        <div>
+            <TabGroup>
+                <TabList as="md-tabs" class="w-full">
+                    <Tab as="md-tab">Profile</Tab>
+                    <Tab as="md-tab">Theme</Tab>
+                    <Tab as="md-tab">System</Tab>
+                    <Tab as="md-tab">Shortcut</Tab>
+                </TabList>
+                <TabPanels class="m-8">
+                    <TabPanel>
+                        <ProfilePanel></ProfilePanel>
+                    </TabPanel>
+                    <TabPanel>
+                        <ThemePanel></ThemePanel>
+                    </TabPanel>
+                    <TabPanel>
+                        <SystemPanel></SystemPanel>
+                    </TabPanel>
+                    <TabPanel>
+                        <ShortcutPanel></ShortcutPanel>
+                    </TabPanel>
+                </TabPanels>
+            </TabGroup>
         </div>
     </PageLayout>
 </template>
 
 <script setup lang="ts">
-import PageLayout from '@/layouts/PageLayout.vue';
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
+import ProfilePanel from '@/components/ProfilePanel.vue'
+import SystemPanel from '@/components/SystemPanel.vue'
+import ThemePanel from '@/components/ThemePanel.vue'
+import ShortcutPanel from '@/components/ShortcutPanel.vue'
+import PageLayout from '@/layouts/PageLayout.vue'
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 </script>
