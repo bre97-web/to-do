@@ -5,12 +5,12 @@
         <main class="mt-12 relative space-y-4">
             <div class="p-4 rounded-xl">
                 <ul class="flex flex-wrap gap-2">
-                    <li class="elevation surfaceContainer">
+                    <li class="hover:elevation relative bg-[var(--md-sys-color-surface-container-low)]">
                         <md-elevation></md-elevation>
                         <h1 class="text-onSurface">Dashboard</h1>
-                        <md-text-button @click="router.push('/dashboard')"
-                            ><p>Open</p></md-text-button
-                        >
+                        <md-text-button @click="router.push('/dashboard')">
+                            <p>Open</p>
+                        </md-text-button>
                     </li>
                 </ul>
             </div>

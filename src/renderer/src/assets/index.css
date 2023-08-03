@@ -394,7 +394,7 @@
 @layer components {
 
     .elevation {
-        @apply relative;
+        --md-elevation-level: 1;
         transition-duration: 250ms;
         transition-timing-function: ease-in-out;
     }

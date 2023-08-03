@@ -1,14 +1,14 @@
 <template>
     <div class="mx-4 mt-4 mb-12">
-        <ul class="space-y-8">
-            <li class="p-4 w-full border rounded-3xl">
+        <ul class="flex flex-col md:flex-row flex-wrap gap-2">
+            <li class="p-4 border rounded-3xl">
                 <Title
                     :title="`Today ${useDate()}, you need to do`"
                     :subtitle="`${targetDateTasks.length} current todos`"
                 ></Title>
                 <NeedDoTasks></NeedDoTasks>
             </li>
-            <li class="p-4 w-full border rounded-3xl">
+            <li class="p-4 border rounded-3xl">
                 <Title :title="`You need to do`" :subtitle="`${tasks.length} todos`"></Title>
                 <AllTasks></AllTasks>
             </li>
@@ -37,8 +37,7 @@ const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
 )
 
 const Task = ({ item }: { item: Item }) => (
-    <li class="elevation p-4 rounded-3xl">
-        <md-elevation></md-elevation>
+    <li class="p-4 rounded-3xl">
         <header>
             <h1>{item.title}</h1>
             <p class="text-xs">Created in {item.createdDate}</p>
@@ -48,7 +47,7 @@ const Task = ({ item }: { item: Item }) => (
 
 const TasksList = ({ element }: { element: Items }) => (
     <div>
-        <ul class="rounded-3xl flex gap-2 flex-col xl:flex-row xl:items-start xl:justify-start w-full h-full">
+        <ul class="rounded-3xl flex gap-1 flex-col w-full h-full">
             {element.slice(0, 5).map((e) => (
                 <Task item={e}></Task>
             ))}

@@ -7,7 +7,7 @@
                 <Card
                     v-for="(map, index) in tags"
                     :key="index"
-                    class="rounded-xl p-4 md:w-1/4 md:h-48 elevation surfaceContainer md:flex-grow md:flex-shrink"
+                    class="rounded-xl p-4 md:w-1/4 md:h-48 md:flex-grow md:flex-shrink"
                 >
                     <template #header>
                         <h1 class="text-onSurface">{{ map[0] }}</h1>
@@ -16,7 +16,7 @@
                         <li
                             v-for="e in map[1].slice(0, 5)"
                             :key="e.index"
-                            class="p-4 surfaceContainerHigh text-onSurface rounded-xl"
+                            class="p-4 relative rounded-xl"
                             @click="
                                 router.push({
                                     path: '/info',
@@ -26,22 +26,24 @@
                                 })
                             "
                         >
-                            {{ e.title }}
+                            <md-ripple></md-ripple>
+                            <md-evelation></md-evelation>
+                            <p>
+                                {{ e.title }}
+                            </p>
                         </li>
                     </ul>
                 </Card>
             </main>
         </template>
         <template v-else>
-            <div class="space-y-4 pt-24 text-center">
-                <md-icon class="scale-[4] text-secondary">done_all</md-icon>
-                <p class="text-center italic text-secondary">All done</p>
-            </div>
+            <AllDone></AllDone>
         </template>
     </div>
 </template>
 
 <script setup lang="ts">
+import AllDone from '@/components/AllDone.vue';
 import Card from '@/components/Card.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'

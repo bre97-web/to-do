@@ -1,5 +1,5 @@
 <template>
-    <div class="elevation focus">
+    <div class="hover:elevation bg-[var(--md-sys-color-surface-container-low)] relative">
         <md-ripple></md-ripple>
         <md-elevation></md-elevation>
 
