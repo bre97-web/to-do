@@ -1,5 +1,5 @@
 <template>
-    <div class="relative bg-[var(--md-sys-color-background)]">
+    <div class="relative bg-[var(--md-sys-color-surface-container)]">
 
         <div class="relative container mx-auto h-screen">
             <div class="flex flex-col md:flex-row-reverse h-screen max-h-screen">

@@ -1,8 +1,8 @@
 <template>
-    <PageLayout>
+    <PageWithBackLayout>
         <div>
             <TabGroup>
-                <TabList as="md-tabs" class="w-full">
+                <TabList as="md-tabs" class="w-full sticky top-14 z-30">
                     <Tab as="md-tab">Profile</Tab>
                     <Tab as="md-tab">Theme</Tab>
                     <Tab as="md-tab">System</Tab>
@@ -24,7 +24,7 @@
                 </TabPanels>
             </TabGroup>
         </div>
-    </PageLayout>
+    </PageWithBackLayout>
 </template>
 
 <script setup lang="ts">
@@ -32,6 +32,6 @@ import ProfilePanel from '@/components/ProfilePanel.vue'
 import SystemPanel from '@/components/SystemPanel.vue'
 import ThemePanel from '@/components/ThemePanel.vue'
 import ShortcutPanel from '@/components/ShortcutPanel.vue'
-import PageLayout from '@/layouts/PageLayout.vue'
+import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 </script>

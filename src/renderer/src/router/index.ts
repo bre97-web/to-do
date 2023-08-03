@@ -36,7 +36,7 @@ const routes: RouteRecordRaw[] = [
              * 关于我
              */
             {
-                name: 'Me',
+                name: 'Profile',
                 path: '/me',
                 components: {
                     MainView: Me
@@ -77,6 +77,7 @@ const routes: RouteRecordRaw[] = [
              */
             {
                 path: '/dashboard',
+                name: 'Dashboard',
                 components: {
                     MainView: Dashboard
                 },
