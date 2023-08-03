@@ -10,8 +10,8 @@
                 >
                     <md-ripple></md-ripple>
                     <div class="flex gap-2 items-center justify-center lg:justify-start w-14 h-14 lg:w-full lg:px-4">
-                        <md-icon :class="{'icon-filled': currentUrl === e.url}">{{ e.icon }}</md-icon>
-                        <p class="hidden lg:block" :class="{'font-bold': currentUrl == e.url}">{{ e.label }}</p>
+                        <md-icon :class="{'icon-filled': router.currentRoute.value.path === e.url}">{{ e.icon }}</md-icon>
+                        <p class="hidden lg:block" :class="{'font-bold': router.currentRoute.value.path == e.url}">{{ e.label }}</p>
                     </div>
                 </div>
                 <div class="block lg:hidden">
@@ -26,34 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import CreatorFabButton from './CreatorFabButton.vue';
+import CreatorFabButton from './CreatorFabButton.vue'
+import { getRouterList } from '@/scripts/navigation'
+import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const currentUrl = computed(() => router.currentRoute.value.path)
-const routerList = [
-    {
-        url: '/home',
-        label: 'Home',
-        icon: 'home'
-    },
-    {
-        url: '/goals',
-        label: 'Goals',
-        icon: 'flag'
-    },
-    {
-        url: '/group',
-        label: 'Group',
-        icon: 'workspaces'
-    },
-    {
-        url: '/me',
-        label: 'Profile',
-        icon: 'person'
-    },
-]
+
+const routerList = getRouterList()
 </script>
 
 <style scoped></style>

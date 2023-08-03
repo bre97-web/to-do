@@ -12,7 +12,7 @@ import { reactive } from 'vue'
 import Creator from '@/components/creator/Creator.vue'
 
 const props = withDefaults(defineProps<{
-    label: string
+    label?: string
 }>(), {
     label: () => ''
 })

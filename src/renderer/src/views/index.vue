@@ -3,7 +3,7 @@
 
         <div class="relative container mx-auto h-screen">
             <div class="flex flex-col md:flex-row-reverse h-screen max-h-screen">
-                <main class="flex-grow relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+                <main class="flex-grow relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
                     <router-view v-slot="{ Component }" name="MainView">
                         <component :is="Component"></component>
                     </router-view>

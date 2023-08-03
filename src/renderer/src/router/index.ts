@@ -66,15 +66,17 @@ const routes: RouteRecordRaw[] = [
                     MainView: Goals
                 }
             },
+            /**
+             * 用于编辑Task的面板
+             */
+            {
+                path: '/info',
+                name: 'Info',
+                components: {
+                    MainView: Info
+                }
+            },
         ]
-    },
-    /**
-     * 用于编辑Task的面板
-     */
-    {
-        path: '/info',
-        name: 'Info',
-        component: Info
     },
     /**
      * OOBE阶段的设置面板
