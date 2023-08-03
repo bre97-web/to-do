@@ -5,10 +5,11 @@ export type Navigation = {
     icon: string
 }
 
-export function useNavigate(url: string, label: string, icon: string) {
+export function useNavigate(url: string, label: string, icon: string, showInSmallScreen = true) {
     return ({
         url,
         label,
-        icon
+        icon,
+        showInSmallScreen,
     }) as Navigation
 }

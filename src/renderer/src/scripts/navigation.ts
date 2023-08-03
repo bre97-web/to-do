@@ -6,6 +6,7 @@ const routerList = [
     useNavigate('/goals', 'Goals', 'flag'),
     useNavigate('/group', 'Group', 'workspaces'),
     useNavigate('/me', 'Profile', 'person'),
+    useNavigate('/dashboard', 'Dashboard', 'dashboard', false),
 ]
 
 export const currentIndex = () => {
