@@ -1,8 +1,12 @@
 <template>
     <md-navigation-bar :active-index="currentIndex()">
-        <template v-for="e in routerList" :key="e.url">
-            <md-navigation-tab v-if="e.showInSmallScreen" :label="e.label" @click="router.push(e.url)"></md-navigation-tab>
-        </template>
+        <md-navigation-tab
+            v-for="e in routerList"
+            v-show="e.showInSmallScreen"
+            :key="e.url"
+            :label="e.label"
+            @click="router.push(e.url)"
+        ></md-navigation-tab>
     </md-navigation-bar>
 </template>
 

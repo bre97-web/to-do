@@ -76,6 +76,41 @@ const routes: RouteRecordRaw[] = [
                     MainView: Info
                 }
             },
+            /**
+             * 控制中心
+             */
+            {
+                path: '/dashboard',
+                components: {
+                    MainView: Dashboard
+                },
+                children: [
+                    {
+                        path: '/dashboard/profile',
+                        components: {
+                            DashboardView: Profile
+                        }
+                    },
+                    {
+                        path: '/dashboard/theme',
+                        components: {
+                            DashboardView: Theme
+                        }
+                    },
+                    {
+                        path: '/dashboard/system',
+                        components: {
+                            DashboardView: System
+                        }
+                    },
+                    {
+                        path: '/dashboard/shortcutMap',
+                        components: {
+                            DashboardView: ShortcutMap
+                        }
+                    }
+                ]
+            },
         ]
     },
     /**
@@ -85,40 +120,6 @@ const routes: RouteRecordRaw[] = [
         name: 'startupSetting',
         path: '/startupSetting',
         component: StartupSetting
-    },
-    /**
-     * 控制中心
-     */
-    {
-        path: '/dashboard',
-        component: Dashboard,
-        redirect: '/dashboard/profile',
-        children: [
-            {
-                path: '/dashboard/profile',
-                components: {
-                    DashboardView: Profile
-                }
-            },
-            {
-                path: '/dashboard/theme',
-                components: {
-                    DashboardView: Theme
-                }
-            },
-            {
-                path: '/dashboard/system',
-                components: {
-                    DashboardView: System
-                }
-            },
-            {
-                path: '/dashboard/shortcutMap',
-                components: {
-                    DashboardView: ShortcutMap
-                }
-            }
-        ]
     },
 ]
 

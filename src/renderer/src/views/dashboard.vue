@@ -1,6 +1,7 @@
 <template>
-    <div class="relative bg-background">
-        <div class="relative flex flex-col md:flex-row md:container h-screen">
+    <PageLayout>
+        1223
+        <div class="relative flex flex-col md:flex-row">
             <div
                 class="relative border dark:border-none w-full md:max-w-xs h-auto md:h-screen p-2 md:p-8"
             >
@@ -30,16 +31,17 @@
                 </div>
             </div>
 
-            <main class="relative flex flex-col p-2 md:p-8">
+            <!-- <main class="relative flex flex-col p-2 md:p-8">
                 <router-view v-slot="{ Component }" name="DashboardView">
                     <component :is="Component"></component>
                 </router-view>
-            </main>
+            </main> -->
         </div>
-    </div>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
+import PageLayout from '@/layouts/PageLayout.vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
