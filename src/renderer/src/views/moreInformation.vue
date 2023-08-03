@@ -1,7 +1,5 @@
 <template>
-    <PageWithBackLayout name="PageWithBack">
-
-
+    <PageWithBackLayout>
         <div class="panel px-8 flex flex-col gap-2 items-start mx-auto">
             <!-- Title -->
             <div>

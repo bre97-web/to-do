@@ -1,6 +1,6 @@
 <template>
     <div class="max-h-screen overflow-auto max-w-min">
-        <div class="p-2">
+        <div class="px-2 my-4">
             <div class="flex flex-col items-start justify-start gap-2">
                 <div
                     v-for="e in routerList"
