@@ -393,65 +393,10 @@
 
 @layer components {
 
-    .text-primary {
-        color: var(--md-sys-color-primary) !important;
-    }
-    .bg-primary {
-        background-color: var(--md-sys-color-primary) !important;
-    }
-    .text-onPrimary {
-        color: var(--md-sys-color-on-primary) !important;
-    }
-    .bg-onPrimary {
-        background-color: var(--md-sys-color-on-primary) !important;
-    }
-    .text-secondary {
-        color: var(--md-sys-color-secondary) !important;
-    }
-    .bg-secondary {
-        background-color: var(--md-sys-color-secondary) !important;
-    }
-    .text-onSecondary {
-        color: var(--md-sys-color-on-secondary) !important;
-    }
-    .bg-onSecondary {
-        background-color: var(--md-sys-color-on-secondary) !important;
-    }
-    .bg-background {
-        background-color: var(--md-sys-color-background) !important;
-    }
-    .text-onBackground {
-        color: var(--md-sys-color-on-background) !important;
-    }
-    .bg-surface {
-        color: var(--md-sys-color-surface) !important;
-    }
-    .text-onSurface {
-        color: var(--md-sys-color-on-surface) !important;
-    }
-    .bg-onSurface {
-        background-color: var(--md-sys-color-on-surface) !important;
-    }
-    .surfaceContainer {
-        background-color: var(--md-sys-color-surface-container) !important;
-    }
-    .surfaceContainerHigh {
-        background-color: var(--md-sys-color-surface-container-high) !important;
-    }
     .elevation {
         @apply relative;
         transition-duration: 250ms;
         transition-timing-function: ease-in-out;
-    }
-    .elevation:hover {
-        --md-elevation-level: 2;
-    }
-    .elevation:active {
-        --md-elevation-level: 0;
-    }
-    .focus {
-        @apply relative;
-        --md-focus-ring-shape: 1.5rem;
     }
 
     .icon-filled {
