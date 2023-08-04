@@ -3,7 +3,7 @@ import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from 'vue-
 import Index from '@/views/index.vue'
 import HomePage from '@/views/homePage.vue'
 import Info from '@/views/moreInformation.vue'
-import Me from '@/views/me.vue'
+import Profile from '@/views/profile.vue'
 import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
 import Group from '@/views/group.vue'
@@ -37,17 +37,17 @@ const routes: RouteRecordRaw[] = [
              */
             {
                 name: 'Profile',
-                path: '/me',
+                path: '/profile',
                 components: {
-                    MainView: Me
+                    MainView: Profile
                 }
             },
             /**
              * 分组
              */
             {
-                name: 'Group',
-                path: '/group',
+                name: 'Collections',
+                path: '/collection',
                 components: {
                     MainView: Group
                 }
