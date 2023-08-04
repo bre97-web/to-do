@@ -59,6 +59,14 @@
                         @input="target.goalConfig.goalCount = $event.target.value"
                     ></md-filled-text-field>
                 </template>
+
+                <!-- Collection -->
+                <template v-if="target.type.value === 'collection'">
+                    <md-filled-text-field
+                        v-model="target.collection.label"
+                        label="Collection Name"
+                    ></md-filled-text-field>
+                </template>
             </form>
 
             <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
@@ -82,9 +90,11 @@ const props = defineProps<{
     closeDialog: () => void
 }>()
 
+type TargetType = Type | 'collection'
+
 // target的默认值，在clear函数中使用initTarget对象初始化target对象
 const initTarget = {
-    type: ref<Type>('task'),
+    type: ref<TargetType>('task'),
     task: {
         title: '',
         subtitle: '',
@@ -99,11 +109,14 @@ const initTarget = {
     goal: {
         title: '',
         description: ''
-    }
+    },
+    collection: {
+        label: ''
+    },
 }
 const target = {
     // 将要创建的目标类型
-    type: ref<Type>('task'),
+    type: ref<TargetType>('task'),
 
     // 目标类型为task时，当需要使用store的push方法时请使用useItem方法创建Item作为参数
     task: {
@@ -123,7 +136,12 @@ const target = {
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
         goalCount: 1 as number
-    }
+    },
+
+    // 目标类型为collection
+    collection: {
+        label: ''
+    },
 }
 
 const taskStore = useTaskStore()
@@ -137,6 +155,8 @@ const submit = () => {
         createTask()
     } else if (target.type.value === 'goal') {
         createGoal()
+    } else if (target.type.value === 'collection') {
+        createCollection()
     }
     clear()
     props.closeDialog()
@@ -159,6 +179,10 @@ const createGoal = () => {
 
     goalStore.push(goals)
 }
+const createCollection = () => {
+    taskStore.createCollection(target.collection.label)
+}
+
 const cancel = () => {
     clear()
     props.closeDialog()

@@ -9,7 +9,7 @@ import { customElement, property } from 'lit/decorators.js'
 export default class TargetType extends LitElement {
     @property() setType: any
 
-    private _setType(e: Type) {
+    private _setType(e: Type | 'collection') {
         this.setType(e)
     }
 
@@ -30,6 +30,13 @@ export default class TargetType extends LitElement {
                     }}
                     value="goal"
                     headline="Goal"
+                ></md-select-option>
+                <md-select-option
+                    @click=${() => {
+                        this._setType('collection')
+                    }}
+                    value="collection"
+                    headline="Collection"
                 ></md-select-option>
             </md-outlined-select>
         `

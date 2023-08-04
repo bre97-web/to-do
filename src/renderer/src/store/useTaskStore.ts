@@ -2,22 +2,29 @@ import { Item, Items } from '@/hooks/useItem'
 import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 
-enum TASKS_TYPE {
+export enum TASKS_TYPE {
     FOCUS = 0,
     NORMAL,
     RECYCLE
 }
+export type CustomTasks = {
+    label: string
+    items: Items
+}
 
-const useTaskStore = defineStore('task_store', {
+
+export const useTaskStore = defineStore('task_store', {
     state: () => ({
         tasks: {
             focus: [] as Items,
             normal: [] as Items,
-            recycle: [] as Items
+            recycle: [] as Items,
+            custom: [] as CustomTasks[],
         }
     }),
     getters: {
         getAll: (state) => state.tasks,
+        getCustom: (state) => state.tasks.custom,
         getFocus: (state): Items => state.tasks.focus,
         getNormal: (state): Items => state.tasks.normal,
         getRecycle: (state): Items => state.tasks.recycle
@@ -112,9 +119,24 @@ const useTaskStore = defineStore('task_store', {
                 return this.tasks.recycle.includes(e)
             }
             return false
-        }
+        },
+        /**
+         * 在custom中创建一个集合，默认items为空数组
+         */
+        createCollection(label: string, items = [] as Items) {
+            this.tasks.custom.push({
+                label,
+                items
+            })
+        },
+        insertToCollection(label: string, items: Items) {
+            this.tasks.custom.map(e => {
+                if(e.label === label) {
+                    e.items.push(...items)
+                }
+                return e
+            })
+        },
     },
     persist: true
 })
-
-export { useTaskStore, TASKS_TYPE }
