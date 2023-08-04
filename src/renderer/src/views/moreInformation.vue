@@ -92,7 +92,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { Task } from '@/hooks/useItem'
+import { Task, useStep } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 import PageContentLayout from '@/layouts/PageContentLayout.vue'
@@ -107,7 +107,7 @@ const router = useRouter()
 /**
  * 用于Info组件，用于修改元素
  */
-const task = reactive<Item>(JSON.parse(router.currentRoute.value.query.task as string))
+const task = reactive<Task>(JSON.parse(router.currentRoute.value.query.task as string))
 
 /**
  * 用于创建新的step元素
@@ -121,7 +121,7 @@ const createStep = () => {
     )
 }
 
-const updateStoreValue = (e: Item): Item => {
+const updateStoreValue = (e: Task): Task => {
     if (e.index === task.index) {
         return {
             ...task
@@ -130,9 +130,12 @@ const updateStoreValue = (e: Item): Item => {
         return e
     }
 }
+
+/**
+ * Bug
+ */
 watch(task, () => {
-    store.tasks.normal = store.getNormal.map(updateStoreValue)
-    store.tasks.focus = store.getFocus.map(updateStoreValue)
+    // store.tasks = store.getAll.map(updateStoreValue)
     /**
      * 没有给Recycle中的元素提供编辑功能
      */

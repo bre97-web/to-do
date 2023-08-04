@@ -28,7 +28,7 @@
             <template #action>
                 <md-text-button
                     @click="tasks.insertToCollection(e.label, [
-                        useItem({title: 'Edit this', subtitle: 'This is a template.'})
+                        useCollection({title: 'Edit this', subtitle: 'This is a template.', fromCollection: e.label})
                     ])"
                 >Insert a blank task</md-text-button>
             </template>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { useItem } from '@/hooks/useItem'
+import { useCollection } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useRouter } from 'vue-router'
 import ListLayout from '@/layouts/ListLayout.vue'
