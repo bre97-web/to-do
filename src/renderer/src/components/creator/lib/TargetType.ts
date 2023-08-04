@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Type } from '@/hooks/useItem'
+import { Type } from '@/hooks/useTask'
 import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
 import { LitElement, html } from 'lit'
@@ -9,7 +9,7 @@ import { customElement, property } from 'lit/decorators.js'
 export default class TargetType extends LitElement {
     @property() setType: any
 
-    private _setType(e: Type | 'collection') {
+    private _setType(e: Type) {
         this.setType(e)
     }
 

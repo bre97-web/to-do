@@ -5,12 +5,10 @@
                 
                 <CustomCollections></CustomCollections>
         </PageContentLayout>
-        <!-- <AllDone></AllDone> -->
     </PageLayout>
 </template>
 
 <script setup lang="ts">
-import AllDone from '@/components/AllDone.vue';
 import CustomCollections from '@/components/CustomCollections.vue';
 import TagCollections from '@/components/TagCollections.vue';
 import PageContentLayout from '@/layouts/PageContentLayout.vue';

@@ -42,7 +42,7 @@ import { useTaskStore } from '@/store/useTaskStore'
 
 const tasks = useTaskStore()
 const router = useRouter()
-const tags = useTags(Array.from([...tasks.getNormal, ...tasks.getFocus, ...tasks.getRecycle]))
+const tags = useTags(tasks.getAll)
 </script>
 
 <style scoped>

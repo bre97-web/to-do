@@ -14,6 +14,11 @@
                 <template v-if="target.type.value === 'task'">
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
+                    <label>
+                        <h1>Collection</h1>
+                        <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
+                    </label>
+                    <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <md-filled-text-field
                         :value="target.task.tags.toString()"
                         label="Tag"
@@ -63,7 +68,7 @@
                 <!-- Collection -->
                 <template v-if="target.type.value === 'collection'">
                     <md-filled-text-field
-                        v-model="target.collection.label"
+                        v-model="target.collectionConfig.label"
                         label="Collection Name"
                     ></md-filled-text-field>
                 </template>
@@ -77,11 +82,12 @@
 
 <script lang="ts" setup>
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useGoal'
-import { Type, useItem, Date, Tags } from '@/hooks/useItem'
 import './lib/TargetType'
-import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
+import './lib/SelectTargetCollection'
+import { useTaskStore } from '@/store/useTaskStore'
 import { useGoalStore } from '@/store/useGoalStore.ts'
 import { ref } from 'vue'
+import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
 
 const props = defineProps<{
     dialog: {
@@ -90,8 +96,9 @@ const props = defineProps<{
     closeDialog: () => void
 }>()
 
-type TargetType = Type | 'collection'
+const tasks = useTaskStore()
 
+type TargetType = Type
 // target的默认值，在clear函数中使用initTarget对象初始化target对象
 const initTarget = {
     type: ref<TargetType>('task'),
@@ -100,7 +107,8 @@ const initTarget = {
         subtitle: '',
         tags: [] as Tags,
         note: '',
-        targetDate: '' as Date | null
+        targetDate: '' as Date | null,
+        fromCollection: '' as FromCollection,
     },
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
@@ -110,8 +118,9 @@ const initTarget = {
         title: '',
         description: ''
     },
-    collection: {
-        label: ''
+    collectionConfig: {
+        label: '',
+        isGroup: ref(false),
     },
 }
 const target = {
@@ -124,7 +133,8 @@ const target = {
         subtitle: '',
         tags: [] as Tags,
         note: '',
-        targetDate: '' as Date | null
+        targetDate: '' as Date | null,
+        fromCollection: '' as FromCollection
     },
 
     // 目标类型为goal
@@ -139,29 +149,21 @@ const target = {
     },
 
     // 目标类型为collection
-    collection: {
-        label: ''
+    collectionConfig: {
+        label: '',
+        isGroup: ref<boolean>(false),
     },
 }
 
 const taskStore = useTaskStore()
 const goalStore = useGoalStore()
 
-/**
- * 将用户输入的信息推送到store中，关闭对话框时清空输入数据
- */
-const submit = () => {
-    if (target.type.value === 'task') {
-        createTask()
-    } else if (target.type.value === 'goal') {
-        createGoal()
-    } else if (target.type.value === 'collection') {
-        createCollection()
+const createTask = () => {
+    if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
+        taskStore.insertToCollection(target.task.fromCollection, [useCollection(target.task)])
     }
-    clear()
-    props.closeDialog()
+    taskStore.push([useTask(target.task)])
 }
-const createTask = () => taskStore.push(useItem(target.task), TASKS_TYPE.NORMAL)
 const createGoal = () => {
     let goalsList: Goal[] = []
     for (let i = 0; i < target.goalConfig.goalCount; i++) {
@@ -180,18 +182,29 @@ const createGoal = () => {
     goalStore.push(goals)
 }
 const createCollection = () => {
-    taskStore.createCollection(target.collection.label)
+    taskStore.createCollection(target.collectionConfig.label)
 }
 
-const cancel = () => {
-    clear()
-    props.closeDialog()
-}
 
 /**
  * 初始化target对象
  */
 const clear = () => {
     Object.assign(target, initTarget)
+}
+const cancel = () => {
+    clear()
+    props.closeDialog()
+}
+const submit = () => {
+    if (target.type.value === 'task') {
+        createTask()
+    } else if (target.type.value === 'goal') {
+        createGoal()
+    } else if (target.type.value === 'collection') {
+        createCollection()
+    }
+    clear()
+    props.closeDialog()
 }
 </script>

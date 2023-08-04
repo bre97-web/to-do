@@ -64,8 +64,8 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Task from '@/components/Task.vue'
-import { Items, useItem } from '@/hooks/useItem'
-import { useTaskStore, TASKS_TYPE } from '@/store/useTaskStore'
+import { Tasks, useTask } from '@/hooks/useTask'
+import { useTaskStore } from '@/store/useTaskStore'
 import searchTemplate from '@/assets/resources/json/searchTarget.json'
 import { useSearchStore } from '@/store/useSearchStore'
 
@@ -90,18 +90,13 @@ const hasInput = computed(() => searchStore.getKeyword.length !== 0)
 /**
  * 获取所有的Task元素
  */
-const getTasks = computed<Items>(() => {
-    var results: Items = []
-    var lists: Items = [
-        ...taskStore.tasks.focus,
-        ...taskStore.tasks.normal,
-        ...taskStore.tasks.recycle
-    ]
+const getTasks = computed<Tasks>(() => {
+    var results: Tasks = []
 
     /**
-     * 现在所有的lists获取完毕，将所有的lists中的元素与input进行比较得出最终结果
+     * 与input进行比较得出最终结果
      */
-    lists.forEach((e) => {
+    taskStore.getAll.forEach((e) => {
         if (e.title.toLowerCase().includes(searchStore.getKeyword.toLowerCase())) {
             results.push(e)
         }
@@ -109,13 +104,10 @@ const getTasks = computed<Items>(() => {
 
     return results
 })
-const add = (): any => {
-    taskStore.push(
-        useItem({
-            title: searchStore.getKeyword
-        }),
-        TASKS_TYPE.NORMAL
-    )
+const add = () => {
+    taskStore.push([
+        useTask({ title: searchStore.getKeyword })
+    ])
 }
 
 /**

@@ -9,7 +9,7 @@
                 <NeedDoTasks></NeedDoTasks>
             </li>
             <li class="p-4 border rounded-3xl">
-                <Title :title="`You need to do`" :subtitle="`${tasks.length} todos`"></Title>
+                <Title :title="`You need to do`" :subtitle="`${store.getAll.length} todos`"></Title>
                 <AllTasks></AllTasks>
             </li>
         </ul>
@@ -18,15 +18,14 @@
 
 <script setup lang="tsx">
 import { useDate } from '@/hooks/useDate'
-import { Item, Items } from '@/hooks/useItem'
+import { Task, Tasks } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import { computed } from 'vue'
 
 const store = useTaskStore()
-const tasks = computed(() => [...store.getNormal, ...store.getFocus])
 const targetDateTasks = computed(() => {
     const today = useDate()
-    return tasks.value.filter((e) => e.targetDate === today)
+    return store.getAll.filter((e) => e.targetDate === today)
 })
 
 const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
@@ -36,7 +35,7 @@ const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
     </header>
 )
 
-const Task = ({ item }: { item: Item }) => (
+const TaskItem = ({ item }: { item: Task }) => (
     <li class="p-4 rounded-3xl">
         <header>
             <h1>{item.title}</h1>
@@ -45,11 +44,11 @@ const Task = ({ item }: { item: Item }) => (
     </li>
 )
 
-const TasksList = ({ element }: { element: Items }) => (
+const TasksList = ({ element }: { element: Tasks }) => (
     <div>
         <ul class="rounded-3xl flex gap-1 flex-col w-full h-full">
             {element.slice(0, 5).map((e) => (
-                <Task item={e}></Task>
+                <TaskItem item={e}></TaskItem>
             ))}
         </ul>
         {element.length === 0 && (
@@ -61,6 +60,6 @@ const TasksList = ({ element }: { element: Items }) => (
     </div>
 )
 
-const AllTasks = () => <TasksList element={tasks.value}></TasksList>
+const AllTasks = () => <TasksList element={store.getAll}></TasksList>
 const NeedDoTasks = () => <TasksList element={targetDateTasks.value}></TasksList>
 </script>
