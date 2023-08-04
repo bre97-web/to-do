@@ -4,61 +4,6 @@
 @tailwind variants;
 
 @layer base {
-    /* 默认字体 */
-    body {
-        font-family: "Roboto", "Noto Sans SC";
-    }
-
-
-    /* 全局聚焦配色 */
-    * {
-        @apply ring-black/50 dark:ring-white/50 dark:border-white/25;
-    }
-
-
-    /* 不显示滚动条 */
-    ::-webkit-scrollbar {
-        @apply hidden;
-    }
-
-
-    /* label默认针对checkbox、radio、switch组件 */
-    label {
-        @apply flex flex-row items-center justify-between gap-2;
-    }
-
-
-    /* h1 ~ h6的字体宽度 */
-    h1
-    h2,
-    h3 {
-        @apply font-bold;
-    }
-    p {
-        @apply font-normal;
-    }
-    /* 字体颜色 */
-    h1,
-    h2,
-    h3,
-    p,
-    b,
-    i,
-    mark {
-        color: var(--md-sys-color-primary);
-    }
-    mark {
-        @apply bg-green-200/50 px-2;
-        color: var(--md-sys-color-primary);
-    }
-    header > h1 {
-        @apply text-2xl;
-    }
-
-    md-icon {
-        color: var(--md-sys-color-primary);
-    }
-
     /* 
      * Material Web Components Baseline color scheme tokens
      * https://m3.material.io/styles/color/the-color-system/tokens#7fd4440e-986d-443f-8b3a-4933bff16646
@@ -387,6 +332,64 @@
         --md-sys-color-error-container: #93000a;
         --md-sys-color-on-error-container: #ffdad6;
     }
+
+    body {
+        background-color: var(--md-sys-color-background);
+        font-family: "Roboto", "Noto Sans SC";
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 700;
+        color: var(--md-sys-color-primary);
+    }
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
+        color: var(--md-sys-color-on-secondary);
+    }
+    p,
+    a {
+        color: var(--md-sys-color-on-surface);
+    }
+    label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    label > p,
+    label > h1 {
+        color: var(--md-sys-color-on-surface);
+        font-weight: 400;
+    }
+
+    md-icon {
+        color: var(--md-sys-color-primary);
+    }
+    
+    * {
+        @apply ring-black/50 dark:ring-white/50 dark:border-white/25;
+    }
+    
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+    header > h1 {
+        @apply text-2xl;
+    }
+
+    input {
+        transition: all .15s;
+    }
 }
 
 @layer components {
@@ -402,61 +405,6 @@
         animation: icon-fill 0.15s ease-in;
     }
 
-
-
-    body {
-        background-color: var(--md-sys-color-background);
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply text-[var(--md-sys-color-on-surface)] font-bold;
-    }
-    p,
-    a {
-        @apply text-[var(--md-sys-color-on-surface)];
-    }
-    th,
-    td {
-        @apply text-[var(--md-sys-color-on-surface)] text-sm;
-    }
-
-    label {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.25rem;
-    }
-    label > p {
-        color: var(--md-sys-color-on-surface);
-    }
-
-    md-icon {
-        @apply select-none text-[var(--md-sys-color-primary)];
-    }
-
-    
-    /* 手动定义的根节点样式 */
-    #root > div > main.main {
-        @apply w-full md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-4xl mx-auto min-h-screen mt-[3rem];
-    }
-
-
-    /* 用于显示最顶层的元素的容器，搭配.fullScreen实现全覆盖的窗口 */
-    div.fixedWindow {
-        @apply fixed z-[999];
-    }
-    div.fullScreen {
-        @apply w-full h-full min-h-screen;
-    }
-    div.fixdWindow.fullScreen {
-        @apply top-0 right-0;
-    }
-
-
     /* 首页Overview部分的图标摇晃效果 */
     .shake {
         transition: all 1s;
@@ -464,23 +412,7 @@
     .shake:hover {
         animation: shakingHand infinite 1s;
     }
-    @keyframes shakingHand {
-        from {
-            transform: rotate(0deg);
-        } 50% {
-            transform: rotate(12deg);
-        } to {
-            transform: rotate(0deg);
-            
-        }
-    }
 
-
-    /* 输入框和底部nav栏的过渡动画 */
-    input,
-    nav {
-        transition: all .15s;
-    }
     .noTransition {
         transition: all none !important;
     }
@@ -492,6 +424,16 @@
             font-variation-settings: 'FILL' 0;
         } to {
             font-variation-settings: 'FILL' 1;
+        }
+    }
+    @keyframes shakingHand {
+        from {
+            transform: rotate(0deg);
+        } 50% {
+            transform: rotate(12deg);
+        } to {
+            transform: rotate(0deg);
+            
         }
     }
 }
