@@ -34,6 +34,10 @@ export const useTaskStore = defineStore('task_store', {
             if(state.tasks.filter(e => e.progressStatus === 'done').length === 0) return []
             return state.tasks.filter(e => e.progressStatus === 'done').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
         },
+        getAllLabels: (state) => {
+            if(state.custom.length === 0) return []
+            return state.custom.map(e => e.label)
+        },
     },
     actions: {
         /** 

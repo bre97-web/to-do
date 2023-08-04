@@ -9,7 +9,7 @@ import { customElement, property } from 'lit/decorators.js'
 export default class TargetType extends LitElement {
     @property() setType: any
 
-    private _setType(e: Type | 'collection') {
+    private _setType(e: Type) {
         this.setType(e)
     }
 
