@@ -1,4 +1,4 @@
-import { Item, Items } from '@/hooks/useItem'
+import { Item, Items } from '@/hooks/useTask'
 import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 

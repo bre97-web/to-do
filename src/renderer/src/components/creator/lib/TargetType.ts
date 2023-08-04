@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Type } from '@/hooks/useItem'
+import { Type } from '@/hooks/useTask'
 import '@material/web/select/outlined-select'
 import '@material/web/select/select-option'
 import { LitElement, html } from 'lit'

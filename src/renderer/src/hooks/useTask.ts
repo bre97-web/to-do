@@ -1,24 +1,24 @@
 import { useDate } from '@/hooks/useDate'
 import { useIndex } from '@/hooks/useIndex'
 
-type Title = string
-type Subtitle = string
-type Note = string
-type Tags = string[]
-type Step = {
+export type Title = string
+export type Subtitle = string
+export type Note = string
+export type Tags = string[]
+export type Step = {
     text: string
     done: boolean
 }
-type Steps = Step[]
-type Index = number
-type Date = string
-type Type = 'task' | 'goal'
+export type Steps = Step[]
+export type Index = number
+export type Date = string
+export type Type = 'task' | 'goal' | 'collection'
 
 /**
  * 一个Item相当于一个Todo（或Goal）
  * 请使用useItem(...)来创建一个Item类型的对象，useItem已经提供了部分缺省参数
  */
-interface Item {
+export interface Task {
     // Item最终显示的标题
     title: Title
 
@@ -71,7 +71,7 @@ interface Item {
      */
     type: Type
 }
-type Items = Item[]
+export type Tasks = Task[]
 
 /**
  * 使用moment().format('x')时间戳作为每个元素的index
@@ -88,7 +88,7 @@ const createDate = (): string => useDate()
  * 返回一个Item类型的对象
  * 需要指定title,剩余参数提供了缺省值
  */
-function useItem({
+export function useTask({
     title,
     subtitle = '',
     note = '',
@@ -104,7 +104,7 @@ function useItem({
     steps?: Steps
     targetDate?: Date | null
     type?: Type
-}): Item {
+}): Task {
     return {
         title: title,
         subtitle: subtitle,
@@ -117,12 +117,10 @@ function useItem({
         type: type
     }
 }
-function useStep({ text, done = false }: { text: string; done?: boolean }): Step {
+
+export function useStep({ text, done = false }: { text: string; done?: boolean }): Step {
     return {
         text: text,
         done: done
     }
 }
-
-export type { Item, Items, Title, Subtitle, Note, Tags, Step, Steps, Index, Date, Type }
-export { useItem, useStep }
