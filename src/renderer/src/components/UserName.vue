@@ -1,5 +1,5 @@
 <template>
-    <subtitle1 class="text-center text-primary">{{ userStore.getName }}</subtitle1>
+    <subtitle1 class="text-center">{{ userStore.getName }}</subtitle1>
 </template>
 
 <script setup lang="ts">

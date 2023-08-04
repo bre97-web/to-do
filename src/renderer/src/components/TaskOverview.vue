@@ -1,14 +1,14 @@
 <template>
     <div class="mx-4 mt-4 mb-12">
         <ul class="flex flex-col md:flex-row flex-wrap gap-2">
-            <li class="p-4 border rounded-3xl">
+            <li class="p-4 rounded-3xl bg-[var(--md-sys-color-surface-container-low)]">
                 <Title
                     :title="`Today ${useDate()}, you need to do`"
                     :subtitle="`${targetDateTasks.length} current todos`"
                 ></Title>
                 <NeedDoTasks></NeedDoTasks>
             </li>
-            <li class="p-4 border rounded-3xl">
+            <li class="p-4 rounded-3xl bg-[var(--md-sys-color-surface-container-low)]">
                 <Title :title="`You need to do`" :subtitle="`${store.getAll.length} todos`"></Title>
                 <AllTasks></AllTasks>
             </li>
@@ -25,7 +25,7 @@ import { computed } from 'vue'
 const store = useTaskStore()
 const targetDateTasks = computed(() => {
     const today = useDate()
-    return store.getAll.filter((e) => e.targetDate === today)
+    return [...store.getPinned, ...store.getProcessing].filter((e) => e.targetDate === today)
 })
 
 const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
@@ -36,7 +36,8 @@ const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
 )
 
 const TaskItem = ({ item }: { item: Task }) => (
-    <li class="p-4 rounded-3xl">
+    <li class="p-4 rounded-3xl relative">
+        <md-ripple></md-ripple>
         <header>
             <subtitle1>{item.title}</subtitle1>
             <overline>Created in {item.createdDate}</overline>
@@ -60,6 +61,6 @@ const TasksList = ({ element }: { element: Tasks }) => (
     </div>
 )
 
-const AllTasks = () => <TasksList element={store.getAll}></TasksList>
+const AllTasks = () => <TasksList element={[...store.getPinned, ...store.getProcessing]}></TasksList>
 const NeedDoTasks = () => <TasksList element={targetDateTasks.value}></TasksList>
 </script>

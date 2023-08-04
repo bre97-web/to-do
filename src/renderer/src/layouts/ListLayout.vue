@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full relative rounded-3xl overflow-clip border">
+    <div class="w-full relative rounded-3xl overflow-clip bg-[var(--md-sys-color-surface-container-low)]">
         <div class="flex px-4 py-2 items-center">
             <header class="w-2/3">
                 <slot name="header"></slot>
@@ -15,7 +15,7 @@
             <main class="mb-4 px-4 max-h-96 overflow-auto">
                 <slot></slot>
             </main>
-            <nav v-show="!props.noAction" class="bg-[var(--md-sys-color-surface)] flex items-center justify-end gap-2 px-4 py-2">
+            <nav v-show="!props.noAction" class="bg-[var(--md-sys-color-surface-container)] flex items-center justify-end gap-2 px-4 py-2">
                 <slot name="action"></slot>
             </nav>
         </div>

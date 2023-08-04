@@ -432,7 +432,8 @@
     a,
     overline,
     body1,
-    body2 {
+    body2,
+    overline {
         color: var(--md-sys-color-on-surface);
     }
     label {
