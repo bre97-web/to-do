@@ -1,33 +1,33 @@
 <template>
-    <div class="relative bg-[var(--md-sys-color-surface-container)]">
+    <div class="relative container mx-auto h-screen">
 
-        <div class="relative container mx-auto h-screen">
-            <div class="flex flex-col md:flex-row-reverse h-screen max-h-screen">
-                
-                <!-- <aside class="hidden lg:block w-64 rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+        <div class="flex flex-col md:flex-row-reverse h-full">
+            
+            <!-- <aside class="hidden lg:block w-64 rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
 
-                </aside> -->
+            </aside> -->
 
-                <main class="flex-grow pb-28 relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+            <main class="flex-grow relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+                <div class="pb-28">
                     <router-view v-slot="{ Component }" name="MainView">
                         <component :is="Component"></component>
                     </router-view>
-                </main>
+                </div>
+            </main>
 
-                <!-- Bottom Navigation -->
-                <nav>
-                    <div class="block md:hidden lg:rounded-3xl overflow-clip">
-                        <NavigationBottomBar></NavigationBottomBar>
-                    </div>
-                    <div class="hidden md:block">
-                        <NavigationLeftBar></NavigationLeftBar>
-                    </div>
-                    <div :class="{'bottom-44 md:bottom-24': !isNullEvent}" class="block md:hidden fixed right-4 bottom-24">
-                        <!-- Create button -->
-                        <CreatorFabButton></CreatorFabButton>
-                    </div>
-                </nav>
-            </div>
+            <!-- Bottom Navigation -->
+            <nav>
+                <div class="block md:hidden lg:rounded-3xl overflow-clip">
+                    <NavigationBottomBar></NavigationBottomBar>
+                </div>
+                <div class="hidden md:block">
+                    <NavigationLeftBar></NavigationLeftBar>
+                </div>
+                <div :class="{'bottom-44 md:bottom-24': !isNullEvent}" class="block md:hidden fixed right-4 bottom-24">
+                    <!-- Create button -->
+                    <CreatorFabButton></CreatorFabButton>
+                </div>
+            </nav>
         </div>
     </div>
 </template>
