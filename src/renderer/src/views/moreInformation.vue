@@ -92,7 +92,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { Item, useStep } from '@/hooks/useItem'
+import { Task } from '@/hooks/useItem'
 import { useTaskStore } from '@/store/useTaskStore'
 import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 import PageContentLayout from '@/layouts/PageContentLayout.vue'

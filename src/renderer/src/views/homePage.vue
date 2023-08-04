@@ -5,8 +5,8 @@
         </div>
 
         <Content
-            :target-type="targetType"
-            :set-target-type="setTargetType"
+            :current-page="currentPage"
+            :set-current-page="setCurrentPage"
             :current-filter="currentFilter"
             :clear-current-filter="clearCurrentFilter"
             :tasks="store.tasks"
@@ -14,7 +14,7 @@
 
         <!-- ChipSet -->
         <Chips
-            v-if="targetType !== TaskType.NONE && getTags.getString.length !== 0"
+            v-if="currentPage !== 'overview' && getTags.getString.length !== 0"
             :current-filter="currentFilter"
             :push-current-filter="pushCurrentFilter"
             :clear-current-filter="clearCurrentFilter"
@@ -30,23 +30,22 @@ import { computed, ref, watch } from 'vue'
 import Chips from '@/components/TaskTagChips.vue'
 import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
-import { Item } from '@/hooks/useItem'
 import PageLayout from '@/layouts/PageLayout.vue'
+import { ProgressStatus, Tasks } from '@/hooks/useTask'
 
 const store = useTaskStore()
 
 /**
- * 当前显示的Task类型（Overview，Focus，Recycle）
+ * 当前显式的页面名称
+ *  overview
+ *  processing
+ *  pinned
+ *  done
  */
-enum TaskType {
-    NONE = 0,
-    NORMAL,
-    FOCUS,
-    RECYCLE
-}
-const targetType = ref<TaskType>(TaskType.NONE)
-const setTargetType = (e: TaskType) => {
-    targetType.value = e
+type PageName = ProgressStatus | 'overview'
+const currentPage = ref<PageName>('processing')
+const setCurrentPage = (e: PageName) => {
+    currentPage.value = e
 }
 
 /**
@@ -92,20 +91,14 @@ watch(store.tasks, () => {
  */
 const getTags = computed(() => {
     let result: string[] = []
-    let iterable = useTags(store.getAll.normal)
-
-    if (targetType.value === TaskType.FOCUS) {
-        iterable = useTags(store.getAll.focus)
-    } else if (targetType.value === TaskType.RECYCLE) {
-        iterable = useTags(store.getAll.recycle)
-    }
+    let iterable = useTags(store.getAll)
 
     for (const e of iterable.keys()) {
         result.push(e)
     }
 
     return {
-        map: iterable as Map<string, Item[]>,
+        map: iterable as Map<string, Tasks[]>,
         getString: result
     }
 })

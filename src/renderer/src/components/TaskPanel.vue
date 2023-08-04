@@ -1,23 +1,23 @@
 <template>
     <TabGroup as="div" class="relative w-full">
         <TabList as="md-tabs" class="sticky top-[0px] z-50">
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NONE)">Overview</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.NORMAL)">Todo</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.FOCUS)">Focus</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter(TaskType.RECYCLE)">Recycle</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('overview')">Overview</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('processing')">Processing</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('pinned')">Pinned</Tab>
+            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('done')">Done</Tab>
         </TabList>
         <TabPanels>
             <TabPanel>
                 <Overview></Overview>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks.normal"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks.focus"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks.recycle"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
             </TabPanel>
         </TabPanels>
     </TabGroup>
@@ -27,31 +27,22 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Result from '@/components/TaskFiltedShower.vue'
 import Overview from '@/components/TaskOverview.vue'
-import { Items } from '@/hooks/useItem'
+import { ProgressStatus, Tasks } from '@/hooks/useTask';
 
-enum TaskType {
-    NONE = 0,
-    NORMAL,
-    FOCUS,
-    RECYCLE
-}
+type PageName = ProgressStatus | 'overview'
 const props = defineProps<{
-    targetType: TaskType
-    setTargetType: (e: TaskType) => void
+    currentPage: PageName
+    setCurrentPage: (e: PageName) => void
     currentFilter: string[]
     clearCurrentFilter: () => void
-    tasks: {
-        focus: Items
-        normal: Items
-        recycle: Items
-    }
+    tasks: Tasks
 }>()
 
 /**
  * 当当前显示的Task类型变化后，清空currentFilter
  */
-const setTargetTypeWithResetFilter = (e: TaskType) => {
-    props.setTargetType(e)
+const setTargetTypeWithResetFilter = (e: PageName) => {
+    props.setCurrentPage(e)
     props.clearCurrentFilter()
 }
 </script>
