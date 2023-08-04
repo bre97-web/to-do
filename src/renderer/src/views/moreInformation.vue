@@ -126,20 +126,21 @@ const updateStoreValue = (e: Task): Task => {
         return {
             ...task
         }
-    } else {
-        return e
     }
+    return e
 }
 
-/**
- * Bug
- */
 watch(task, () => {
-    // store.tasks = store.getAll.map(updateStoreValue)
-    /**
-     * 没有给Recycle中的元素提供编辑功能
-     */
-    // store.tasks.recycle = store.getRecycle.map(updateStoreValue)
+    if(task.fromCollection !== undefined && task.fromCollection !== '') {
+        store.custom = store.custom.map(e => {
+            if(e.label === task.fromCollection) {
+                e.items = e.items.map(updateStoreValue)
+            }
+            return e
+        })
+    } else {
+        store.tasks = store.getAll.map(updateStoreValue)
+    }
 })
 </script>
 

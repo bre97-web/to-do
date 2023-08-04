@@ -5,7 +5,6 @@
                 
                 <CustomCollections></CustomCollections>
         </PageContentLayout>
-        <!-- <AllDone></AllDone> -->
     </PageLayout>
 </template>
 

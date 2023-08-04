@@ -18,7 +18,7 @@
                         <h1>Group</h1>
                         <md-switch @click="target.collectionConfig.isGroup.value = !target.collectionConfig.isGroup.value"></md-switch>
                     </label>
-                    <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.collectionConfig.label = e"></lit-select-target-collection>
+                    <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <md-filled-text-field
                         :value="target.task.tags.toString()"
                         label="Tag"
@@ -87,7 +87,7 @@ import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useGoalStore } from '@/store/useGoalStore.ts'
 import { ref } from 'vue'
-import { Tags, Type, Date, FromCollection, useTask } from '@/hooks/useTask'
+import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
 
 const props = defineProps<{
     dialog: {
@@ -132,7 +132,8 @@ const target = {
         subtitle: '',
         tags: [] as Tags,
         note: '',
-        targetDate: '' as Date | null
+        targetDate: '' as Date | null,
+        fromCollection: '' as FromCollection
     },
 
     // 目标类型为goal
@@ -161,8 +162,8 @@ const goalStore = useGoalStore()
  * Bug
  */
 const createTask = () => {
-    if(target.collectionConfig.isGroup && target.collectionConfig.label !== '') {
-        taskStore.insertToCollection(target.collectionConfig.label, [useTask(target.task)])
+    if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
+        taskStore.insertToCollection(target.task.fromCollection, [useCollection(target.task)])
     }
     taskStore.push([useTask(target.task)])
 }
