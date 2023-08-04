@@ -1,11 +1,11 @@
 <template>
     <PageLayout>
-        <div class="m-8 relative flex flex-col md:flex-row flex-wrap gap-2 md:items-start md:justify-evenly">
-            <TagCollections></TagCollections>
-
-            <CustomCollections></CustomCollections>
-        </div>
-        <AllDone></AllDone>
+        <PageContentLayout>
+                <TagCollections></TagCollections>
+                
+                <CustomCollections></CustomCollections>
+        </PageContentLayout>
+        <!-- <AllDone></AllDone> -->
     </PageLayout>
 </template>
 
@@ -13,6 +13,7 @@
 import AllDone from '@/components/AllDone.vue';
 import CustomCollections from '@/components/CustomCollections.vue';
 import TagCollections from '@/components/TagCollections.vue';
+import PageContentLayout from '@/layouts/PageContentLayout.vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 
 </script>

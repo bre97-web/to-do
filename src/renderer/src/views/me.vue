@@ -1,6 +1,6 @@
 <template>
     <PageLayout>
-        <div class="m-8">
+        <PageContentLayout>
             <ProfileCard></ProfileCard>
             
             <main class="mt-12 relative space-y-4">
@@ -20,7 +20,7 @@
                     <component :is="Component"></component>
                 </router-view>
             </main>
-        </div>
+        </PageContentLayout>
     </PageLayout>
 </template>
 
@@ -28,6 +28,7 @@
 import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/ProfileCard.vue'
 import PageLayout from '@/layouts/PageLayout.vue';
+import PageContentLayout from '@/layouts/PageContentLayout.vue'
 
 /**
  * 路由
