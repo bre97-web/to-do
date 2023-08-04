@@ -7,7 +7,7 @@ export type CustomTasks = {
     items: Tasks
 }
 
-export const useTaskStore = defineStore('task_store', {
+export const useTaskStore = defineStore('task_store_eb3fe8', {
     state: () => ({
         tasks: [] as Tasks,
         custom: [] as CustomTasks[],
