@@ -338,13 +338,37 @@
         font-family: "Roboto", "Noto Sans SC";
     }
 
+    h1 {
+        font-size: 96px;
+        font-weight: 300;
+    }
+    h2 {
+        font-size: 60px;
+        font-weight: 300;
+    }
+    h3 {
+        font-size: 48px;
+        font-weight: 500;
+    }
+    h4 {
+        font-size: 34px;
+        font-weight: 500;
+    }
+    h5 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+    h6 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-        font-weight: 700;
         color: var(--md-sys-color-primary);
     }
     h1 + p,
@@ -353,7 +377,7 @@
     h4 + p,
     h5 + p,
     h6 + p {
-        color: var(--md-sys-color-on-secondary);
+        color: var(--md-sys-color-secondary);
     }
     p,
     a {

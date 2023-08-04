@@ -1,89 +1,143 @@
 <template>
     <PageWithBackLayout>
         <PageContentLayout>
-            <div class="panel px-8 flex flex-col gap-2 items-start mx-auto">
-                <!-- Title -->
-                <div>
-                    <md-icon>title</md-icon>
-                    <md-outlined-text-field v-model="task.title" label="Title" type="text"></md-outlined-text-field>
-                </div>
+        
+            <!-- Title -->
+            <!-- Subtitle-->
+            <ContentWithDescriptionLayout>
+                <template #desc>
+                    <h1>Title</h1>
+                    <p>The title should be concise and clear, it is displayed directly in the container.</p>
+                </template>
+                <template #default>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>title</md-icon>
+                        </template>
+                        <md-outlined-text-field v-model="task.title" label="Title" type="text"></md-outlined-text-field>
+                    </InputWithIconLayout>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>subtitles</md-icon>
+                        </template>
+                        <md-outlined-text-field v-model="task.subtitle" label="Subtitle" type="text"></md-outlined-text-field>
+                    </InputWithIconLayout>
+                </template>
+            </ContentWithDescriptionLayout>
 
-                <!-- Subtitle-->
-                <div>
-                    <md-icon>subtitles</md-icon>
-                    <md-outlined-text-field v-model="task.subtitle" label="Subtitle" type="text"></md-outlined-text-field>
-                </div>
+            <md-divider></md-divider>
 
-                <!-- Note  -->
-                <div>
-                    <md-icon>description</md-icon>
+            <!-- Note  -->
+            <ContentWithDescriptionLayout>
+                <template #desc>
+                    <h1>Note</h1>
+                    <p>This attribute describes the details of this element.</p>
+                </template>
+                <InputWithIconLayout>
+                    <template #icon>
+                        <md-icon>description</md-icon>
+                    </template>
                     <md-outlined-text-field v-model="task.note" label="Note" type="text"></md-outlined-text-field>
-                </div>
+                </InputWithIconLayout>
+            </ContentWithDescriptionLayout>
 
-                <!-- CreatedTime -->
-                <div>
-                    <md-icon>calendar_month</md-icon>
-                    <md-outlined-text-field v-model="task.createdDate" label="Created time" type="date"></md-outlined-text-field>
-                </div>
+            <md-divider></md-divider>
 
-                <!-- TargetTime -->
-                <div>
-                    <md-icon>event</md-icon>
-                    <md-outlined-text-field v-model="task.targetDate" label="Target time" type="date"></md-outlined-text-field>
-                </div>
+            <!-- CreatedTime -->
+            <!-- TargetTime -->
+            <ContentWithDescriptionLayout>
+                <template #desc>
+                    <h1>Time</h1>
+                    <p>The creation time is automatically generated and should not be modified in most cases. The target time is when this element is scheduled to be completed.</p>
+                </template>
+                <template #default>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>calendar_month</md-icon>
+                        </template>
+                        <md-outlined-text-field v-model="task.createdDate" label="Created time" type="date"></md-outlined-text-field>
+                    </InputWithIconLayout>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>event</md-icon>
+                        </template>
+                        <md-outlined-text-field v-model="task.targetDate" label="Target time" type="date"></md-outlined-text-field>
+                    </InputWithIconLayout>
+                </template>
+            </ContentWithDescriptionLayout>
 
-                <!-- Tags -->
-                <div>
-                    <md-icon>tag</md-icon>
-                    <div>
+            <md-divider></md-divider>
+
+            <!-- Tags -->
+            <ContentWithDescriptionLayout>
+                <template #desc>
+                    <h1>Tag</h1>
+                    <p>tag is the tag of this element, each tag should be as simple as possible, and each tag is separated by a comma.</p>
+                </template>
+                <template #default>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>tag</md-icon>
+                        </template>
                         <md-outlined-text-field
                             label="Tags"
                             supportingText="Tags中每一个Tag使用逗号分隔"
                             type="text"
                             :value="task.tags"
                             @input="(e: InputEvent) => task.tags = (e.target as HTMLInputElement).value.split(/[,，]/)"
-                        >
-                        </md-outlined-text-field>
-                        <ul class="flex items-center justify-start gap-2 flex-wrap">
-                            <md-filled-field v-for="(e, index) in task.tags" :key="index">{{ e }}</md-filled-field>
-                        </ul>
-                    </div>
-                </div>
+                        ></md-outlined-text-field>
+                    </InputWithIconLayout>
+                    <ul class="flex items-center justify-start gap-2 flex-wrap">
+                        <md-filled-field v-for="(e, index) in task.tags" :key="index">{{ e }}</md-filled-field>
+                    </ul>
+                </template>
+            </ContentWithDescriptionLayout>
 
-                <!-- Steps -->
-                <div>
-                    <md-icon>checklist</md-icon>
-                    <div>
+            <md-divider></md-divider>
+
+            <!-- Steps -->
+            <ContentWithDescriptionLayout>
+                <template #desc>
+                    <h1>Steps</h1>
+                    <p>step contains the detailed steps of this element.</p>
+                </template>
+                <template #default>
+                    <InputWithIconLayout>
+                        <template #icon>
+                            <md-icon>checklist</md-icon>
+                        </template>
                         <div class="flex items-center gap-2">
                             <md-outlined-text-field
-                                v-model="newStepValue"
-                                label="Step"
+                            v-model="newStepValue"
+                            label="Step"
                             ></md-outlined-text-field>
                             <md-standard-icon-button @click="createStep">
                                 <md-icon>add</md-icon>
                             </md-standard-icon-button>
                         </div>
-                        <md-list>
-                            <div v-for="(e, index) in task.steps" :key="index">
-                                <md-list-item :headline="e.text">
-                                    <md-checkbox
-                                        slot="start"
-                                        :checked="e.done"
-                                        @click="() => (e.done = !e.done)"
-                                    ></md-checkbox>
-                                    <md-standard-icon-button
-                                        slot="end"
-                                        @click="() => task.steps.splice(index, 1)"
-                                    >
-                                        <md-icon>delete_outlined</md-icon>
-                                    </md-standard-icon-button>
-                                </md-list-item>
-                                <md-divider></md-divider>
-                            </div>
-                        </md-list>
-                    </div>
-                </div>
-            </div>
+                    </InputWithIconLayout>
+
+                    <md-list>
+                        <div v-for="(e, index) in task.steps" :key="index">
+                            <md-list-item :headline="e.text">
+                                <md-checkbox
+                                    slot="start"
+                                    :checked="e.done"
+                                    @click="() => (e.done = !e.done)"
+                                ></md-checkbox>
+                                <md-standard-icon-button
+                                    slot="end"
+                                    @click="() => task.steps.splice(index, 1)"
+                                >
+                                    <md-icon>delete_outlined</md-icon>
+                                </md-standard-icon-button>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                        </div>
+                    </md-list>
+                </template>
+            </ContentWithDescriptionLayout>
+
         </PageContentLayout>
 
     </PageWithBackLayout>
@@ -96,6 +150,8 @@ import { Task, useStep } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 import PageContentLayout from '@/layouts/PageContentLayout.vue'
+import ContentWithDescriptionLayout from '@/layouts/ContentWithDescriptionLayout.vue'
+import InputWithIconLayout from '@/layouts/InputWithIconLayout.vue'
 
 const store = useTaskStore()
 
@@ -145,10 +201,4 @@ watch(task, () => {
 </script>
 
 <style scoped lang="css">
-.panel > div {
-    @apply flex items-start gap-4;
-}
-.panel > div > md-icon {
-    @apply mt-4;
-}
 </style>

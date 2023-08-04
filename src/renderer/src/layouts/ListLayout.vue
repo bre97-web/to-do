@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full relative rounded-md border">
+    <div class="w-full relative rounded-3xl border">
         <div class="flex px-4 py-2 items-center">
             <header class="w-2/3">
                 <slot name="header"></slot>
