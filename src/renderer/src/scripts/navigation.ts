@@ -4,8 +4,8 @@ import { useRouter } from "vue-router";
 const routerList = [
     useNavigate('/home', 'Home', 'home'),
     useNavigate('/goals', 'Goals', 'flag'),
-    useNavigate('/group', 'Group', 'workspaces'),
-    useNavigate('/me', 'Profile', 'person'),
+    useNavigate('/collection', 'Collections', 'workspaces'),
+    useNavigate('/profile', 'Profile', 'person'),
     useNavigate('/dashboard', 'Dashboard', 'dashboard', false),
 ]
 
