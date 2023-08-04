@@ -30,5 +30,3 @@ pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
 app.use(pinia).use(Router).mount('#app')
-
-app.config.performance = true

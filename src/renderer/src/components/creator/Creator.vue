@@ -5,7 +5,7 @@
                 <h1>Create</h1>
             </div>
 
-            <form class="flex flex-col gap-2 min-h-screen overflow-scroll pt-2">
+            <FlexColLayout class="gap-2">
                 <lit-target-type
                     :setType="(value: Type) => target.type.value = value"
                 ></lit-target-type>
@@ -19,17 +19,22 @@
                         <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
                     </label>
                     <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
-                    <md-filled-text-field
-                        :value="target.task.tags.toString()"
-                        label="Tag"
-                        @input="target.task.tags = $event.target.value.split(/[,，]/)"
-                    />
-                    <md-filled-text-field v-model="target.task.note" label="Note" />
-                    <md-filled-text-field
-                        v-model="target.task.targetDate"
-                        type="date"
-                        label="Target Date"
-                    />
+                    <ExpandLayout>
+                        <FlexColLayout class="gap-2">
+                            <md-filled-text-field
+                                :value="target.task.tags.toString()"
+                                label="Tag"
+                                @input="target.task.tags = $event.target.value.split(/[,，]/)"
+                            />
+                            <md-filled-text-field v-model="target.task.note" label="Note" />
+                            <md-filled-text-field
+                                v-model="target.task.targetDate"
+                                type="date"
+                                label="Target Date"
+                            />
+                        </FlexColLayout>
+                    </ExpandLayout>
+
                 </template>
 
                 <!-- Goal -->
@@ -72,7 +77,7 @@
                         label="Collection Name"
                     ></md-filled-text-field>
                 </template>
-            </form>
+            </FlexColLayout>
 
             <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
             <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
@@ -88,6 +93,8 @@ import { useTaskStore } from '@/store/useTaskStore'
 import { useGoalStore } from '@/store/useGoalStore.ts'
 import { ref } from 'vue'
 import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
+import ExpandLayout from '@/layouts/ExpandLayout.vue'
+import FlexColLayout from '@/layouts/FlexColLayout.vue'
 
 const props = defineProps<{
     dialog: {

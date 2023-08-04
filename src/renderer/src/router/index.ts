@@ -6,7 +6,7 @@ import Info from '@/views/moreInformation.vue'
 import Profile from '@/views/profile.vue'
 import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
-import Group from '@/views/group.vue'
+import Collection from '@/views/collection.vue'
 import StartupSetting from '@/views/startupSetting.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'Collections',
                 path: '/collection',
                 components: {
-                    MainView: Group
+                    MainView: Collection
                 }
             },
             /**

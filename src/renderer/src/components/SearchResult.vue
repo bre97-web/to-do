@@ -29,7 +29,7 @@
             </div>
 
             <template v-if="getTasks.length !== 0">
-                <Task>
+                <div>
                     <md-list class="tasks">
                         <div v-for="e in getTasks" :key="e.index">
                             <md-list-item :headline="e.title" :supportting-text="e.subtitle">
@@ -42,7 +42,7 @@
                             <md-divider></md-divider>
                         </div>
                     </md-list>
-                </Task>
+                </div>
             </template>
             <template v-else>
                 <p class="text-right font-bold">
@@ -63,7 +63,6 @@
 <script lang="tsx" setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import Task from '@/components/Task.vue'
 import { Tasks, useTask } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import searchTemplate from '@/assets/resources/json/searchTarget.json'
