@@ -8,7 +8,7 @@
 
                 </aside> -->
 
-                <main class="flex-grow relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
+                <main class="flex-grow pb-28 relative rounded-none md:rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
                     <router-view v-slot="{ Component }" name="MainView">
                         <component :is="Component"></component>
                     </router-view>

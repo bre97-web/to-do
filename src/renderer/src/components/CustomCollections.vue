@@ -1,10 +1,10 @@
 <template>
-    <div class="space-y-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-start gap-4">
         <ListLayout v-for="e in tasks.getCustom" :key="e.label">
             <template #header>
                 <TextLayout class="font-bold">{{ e.label }}</TextLayout>
             </template>
-            <div>
+            <div class="space-y-2">
                 <ListItemLayout v-for="item in e.items" :key="item.index">
                     <TextLayout class="font-bold">{{ item.title }}</TextLayout>
                     <TextLayout>{{ item.subtitle }}</TextLayout>
