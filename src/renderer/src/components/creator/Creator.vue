@@ -15,8 +15,8 @@
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
                     <label>
-                        <h1>Group</h1>
-                        <md-switch @click="target.collectionConfig.isGroup.value = !target.collectionConfig.isGroup.value"></md-switch>
+                        <h1>Collection</h1>
+                        <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
                     </label>
                     <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <md-filled-text-field
@@ -107,7 +107,8 @@ const initTarget = {
         subtitle: '',
         tags: [] as Tags,
         note: '',
-        targetDate: '' as Date | null
+        targetDate: '' as Date | null,
+        fromCollection: '' as FromCollection,
     },
     goalConfig: {
         goalSchedule: 'daily' as Schedule,
@@ -119,7 +120,7 @@ const initTarget = {
     },
     collectionConfig: {
         label: '',
-        isGroup: false,
+        isGroup: ref(false),
     },
 }
 const target = {
@@ -157,10 +158,6 @@ const target = {
 const taskStore = useTaskStore()
 const goalStore = useGoalStore()
 
-
-/**
- * Bug
- */
 const createTask = () => {
     if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
         taskStore.insertToCollection(target.task.fromCollection, [useCollection(target.task)])
