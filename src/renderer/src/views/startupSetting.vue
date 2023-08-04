@@ -1,12 +1,12 @@
 <template>
-    <div class="fixedWindow fullScreen overflow-y-scroll bg-background">
+    <div class="overflow-auto grid place-content-center h-full w-full">
 
         <!-- background colors -->
-        <div class="fixed top-0 right-0 w-screen h-screen blur-3xl -z-50 overflow-clip">
+        <div class="fixed top-0 right-0 w-screen h-screen blur-[128px] -z-50 overflow-clip">
             <img src="@/assets/resources/img/oobe-background.jpg" :class="{'invert': isDark}" class="opacity-50 w-full h-full noTransition">
         </div>
 
-        <div class="transition container mx-auto max-w-3xl grid place-items-center h-full relative">
+        <div class="transition h-full">
             <Transition mode="out-in">
                 <!-- Animate -->
                 <div v-if="isAnimated.pedding">
@@ -19,7 +19,7 @@
                     ></lottie-player>
                 </div>
                 <!-- OOBE Context -->
-                <div v-else class="m-2 relative backdrop-blur-3xl rounded-md shadow-md bg-white dark:bg-black bg-opacity-50">
+                <div v-else class="p-2 md:p-4 m-4 max-w-3xl relative backdrop-blur-3xl rounded-md shadow-md bg-white dark:bg-black bg-opacity-50">
                     <div class="grid grid-cols-1 md:grid-cols-2 m-4 md:m-8">
                         <div class="mx-auto md:mx-0">
                             <template v-for="(e, index) in ContentList">
@@ -47,7 +47,6 @@
                     </div>
                 </div>
             </Transition>
-
         </div>
     </div>
 </template>
