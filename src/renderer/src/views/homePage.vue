@@ -1,8 +1,5 @@
 <template>
     <PageLayout>
-        <div>
-            <SearchResult></SearchResult>
-        </div>
 
         <Content
             :current-page="currentPage"
@@ -14,24 +11,22 @@
 
         <!-- ChipSet -->
         <Chips
-            v-if="currentPage !== 'overview' && getTags.getString.length !== 0"
+            v-if="currentPage !== 'overview' && tags.length !== 0"
             :current-filter="currentFilter"
             :push-current-filter="pushCurrentFilter"
             :clear-current-filter="clearCurrentFilter"
-            :get-tags="getTags.getString"
+            :get-tags="tags"
         ></Chips>
     </PageLayout>
 </template>
 
 <script lang="ts" setup>
-import SearchResult from '@/components/SearchResult.vue'
 import Content from '@/components/TaskPanel.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import Chips from '@/components/TaskTagChips.vue'
-import { useTags } from '@/hooks/useTags'
 import { useTaskStore } from '@/store/useTaskStore'
 import PageLayout from '@/layouts/PageLayout.vue'
-import { ProgressStatus, Tasks } from '@/hooks/useTask'
+import { ProgressStatus } from '@/hooks/useTask'
 
 const store = useTaskStore()
 
@@ -43,7 +38,7 @@ const store = useTaskStore()
  *  done
  */
 type PageName = ProgressStatus | 'overview'
-const currentPage = ref<PageName>('processing')
+const currentPage = ref<PageName>('overview')
 const setCurrentPage = (e: PageName) => {
     currentPage.value = e
 }
@@ -52,16 +47,9 @@ const setCurrentPage = (e: PageName) => {
  * 当前选择的过滤标签
  */
 const currentFilter = ref<string[]>([])
-
-/**
- * 清除currentFilter对象的元素
- */
 const clearCurrentFilter = () => {
     currentFilter.value = []
 }
-/**
- * 向currentFilter对象toggle一个元素e
- */
 const pushCurrentFilter = (e: string) => {
     if (currentFilter.value.includes(e)) {
         currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
@@ -71,35 +59,17 @@ const pushCurrentFilter = (e: string) => {
 }
 
 /**
- * 此监视器将在store中tasks发生变化时更新currentFilter
+ * 可供选择的标签数组
  */
-watch(store.tasks, () => {
-    let map = getTags.value.map
-
-    let found: string[] = []
-    map.forEach((_, k) => {
-        if (currentFilter.value.includes(k)) {
-            found.push(k)
-        }
-    })
-
-    currentFilter.value = found
+const tags = computed<string[]>(() => {
+    if(currentPage.value === 'processing') {
+        return store.getProcessingTags || []
+    } else if(currentPage.value === 'pinned') {
+        return store.getPinnedTags || []
+    } else if(currentPage.value === 'done') {
+        return store.getDoneTags || []
+    }
+    return []
 })
 
-/**
- * 取得所有Item的tags，返回值作为过滤标签，用于过滤器
- */
-const getTags = computed(() => {
-    let result: string[] = []
-    let iterable = useTags(store.getAll)
-
-    for (const e of iterable.keys()) {
-        result.push(e)
-    }
-
-    return {
-        map: iterable as Map<string, Tasks[]>,
-        getString: result
-    }
-})
 </script>

@@ -18,6 +18,22 @@ export const useTaskStore = defineStore('task_store', {
         getPinned: (state): Tasks => state.tasks.filter(e => e.progressStatus === 'pinned'),
         getProcessing: (state): Tasks => state.tasks.filter(e => e.progressStatus === 'processing'),
         getDone: (state): Tasks => state.tasks.filter(e => e.progressStatus === 'done'),
+        getAllTags: (state) => {
+            if(state.tasks.length === 0) return []
+            return state.tasks.map(e => e.tags)?.reduce((prev, next) => [...prev, ...next])
+        },
+        getProcessingTags: (state) => {
+            if(state.tasks.filter(e => e.progressStatus === 'processing').length === 0) return []
+            return state.tasks.filter(e => e.progressStatus === 'processing').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
+        },
+        getPinnedTags: (state) => {
+            if(state.tasks.filter(e => e.progressStatus === 'pinned').length === 0) return []
+            return state.tasks.filter(e => e.progressStatus === 'pinned').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
+        },
+        getDoneTags: (state) => {
+            if(state.tasks.filter(e => e.progressStatus === 'done').length === 0) return []
+            return state.tasks.filter(e => e.progressStatus === 'done').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
+        },
     },
     actions: {
         /** 

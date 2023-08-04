@@ -11,13 +11,13 @@
                 <Overview></Overview>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="tasks.getProcessing"></Result>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="tasks.getPinned"></Result>
             </TabPanel>
             <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="props.tasks"></Result>
+                <Result :itemsFilted="props.currentFilter" :items="tasks.getDone"></Result>
             </TabPanel>
         </TabPanels>
     </TabGroup>
@@ -27,7 +27,8 @@
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import Result from '@/components/TaskFiltedShower.vue'
 import Overview from '@/components/TaskOverview.vue'
-import { ProgressStatus, Tasks } from '@/hooks/useTask';
+import { ProgressStatus } from '@/hooks/useTask';
+import { useTaskStore } from '@/store/useTaskStore';
 
 type PageName = ProgressStatus | 'overview'
 const props = defineProps<{
@@ -35,8 +36,9 @@ const props = defineProps<{
     setCurrentPage: (e: PageName) => void
     currentFilter: string[]
     clearCurrentFilter: () => void
-    tasks: Tasks
 }>()
+
+const tasks = useTaskStore()
 
 /**
  * 当当前显示的Task类型变化后，清空currentFilter
