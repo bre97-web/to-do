@@ -28,13 +28,13 @@
 
                     <!-- 删除按钮 -->
                     <div slot="end" class="flex gap-2 items-center justify-end">
-                        <h1>
+                        <subtitle1>
                             {{
                                 !goals.compelete
                                     ? `${goals.currentIndex + 1} / ${goals.maxIndex + 1}`
                                     : `Compeleted`
                             }}
-                        </h1>
+                        </subtitle1>
                         <md-standard-icon-button @click="goalStore.removeGoals(goals)">
                             <md-icon>delete</md-icon>
                         </md-standard-icon-button>

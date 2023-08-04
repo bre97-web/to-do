@@ -1,17 +1,17 @@
 <template>
     <div>
         <header>
-            <h1>Theme</h1>
+            <h5>Theme</h5>
         </header>
         <main class="space-y-4 mt-8">
             <div>
-                <h1>Dark mode</h1>
+                <subtitle1>Dark mode</subtitle1>
+                <overline class="italic text-gray-500">深色模式将会禁用部分效果。</overline>
                 <DarkSwitch></DarkSwitch>
-                <p class="italic text-gray-500">深色模式将会禁用部分效果。</p>
             </div>
 
             <div>
-                <h1>Primary color</h1>
+                <subtitle1>Primary color</subtitle1>
                 <ThemePicker></ThemePicker>
             </div>
         </main>

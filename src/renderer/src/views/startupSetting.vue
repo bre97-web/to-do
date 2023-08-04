@@ -113,10 +113,10 @@ const ContentList = [
 const Content = () => (
     <div class="space-y-4">
         <header>
-            <h1>{ContentList[currentIndex.value].title}</h1>
+            <h5>{ContentList[currentIndex.value].title}</h5>
         </header>
         <div class="space-y-2">
-            <h1>{ContentList[currentIndex.value].descript}</h1>
+            <body1>{ContentList[currentIndex.value].descript}</body1>
             <div>
                 {ContentList[currentIndex.value].component}
             </div>

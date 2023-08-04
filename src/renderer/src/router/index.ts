@@ -8,6 +8,7 @@ import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
 import Collection from '@/views/collection.vue'
 import StartupSetting from '@/views/startupSetting.vue'
+import Test from '@/views/test.vue'
 
 const routes: RouteRecordRaw[] = [
     /**
@@ -88,9 +89,14 @@ const routes: RouteRecordRaw[] = [
      * OOBE阶段的设置面板
      */
     {
-        name: 'startupSetting',
+        name: 'StartupSetting',
         path: '/startupSetting',
         component: StartupSetting
+    },
+    {
+        name: 'test',
+        path: '/test',
+        component: Test
     },
 ]
 

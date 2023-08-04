@@ -2,8 +2,8 @@
     <div class="fixed bottom-24 md:left-0 lg:bottom-5 w-full md:w-64">
         <div class="mx-4">
             <Transition>
-                <div v-if="eventStore.getEvent !== null" class="p-2 w-full flex justify-between items-center border dark:border-white/25 rounded-md bg-[var(--md-sys-color-primary-container)]">
-                    <h1 class="text-[var(--md-sys-color-primary-on-container)]">{{ eventStore.getEvent?.name }}</h1>
+                <div v-if="eventStore.getEvent !== null" class="p-2 w-full flex justify-between items-center rounded-md bg-[var(--md-sys-color-surface-container)]">
+                    <subtitle2>{{ eventStore.getEvent?.name }}</subtitle2>
                     <md-text-button v-if="eventStore.getEvent?.isRollback" @click.once="run">Undo</md-text-button>
                 </div>
             </Transition>

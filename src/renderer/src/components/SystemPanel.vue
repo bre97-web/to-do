@@ -1,13 +1,13 @@
 <template>
     <div>
         <header>
-            <h1>System</h1>
+            <h5>System</h5>
         </header>
         <main class="space-y-8 mt-8">
             <div>
-                <h1>移除本地数据</h1>
+                <subtitle1>移除本地数据</subtitle1>
+                <overline class="italic text-gray-500">这可能需要手动刷新页面</overline>
                 <md-tonal-button @click="clear">Reset</md-tonal-button>
-                <p class="italic text-gray-500">这可能需要手动刷新页面</p>
             </div>
         </main>
     </div>

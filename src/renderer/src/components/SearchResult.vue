@@ -1,10 +1,10 @@
 <template>
     <div v-show="hasInput" class="px-4 py-2">
         <header class="flex flex-row items-end justify-start gap-2">
-            <h1>Search</h1>
-            <h1 class="underline underline-offset-1">
+            <h5>Search</h5>
+            <body1 class="underline underline-offset-1">
                 <mark>{{ searchStore.getKeyword }}</mark>
-            </h1>
+            </body1>
         </header>
 
         <main>
@@ -20,9 +20,9 @@
                             @click="router.push(e.path)"
                         >
                             <md-elevation></md-elevation>
-                            <h1 class="text-onBackground">
+                            <subtitle1 class="text-onBackground">
                                 {{ e.title }}
-                            </h1>
+                            </subtitle1>
                         </li>
                     </template>
                 </ul>
@@ -45,9 +45,9 @@
                 </div>
             </template>
             <template v-else>
-                <p class="text-right font-bold">
+                <body1 class="text-right font-bold">
                     {{ searchStore.getKeyword }} is not found
-                </p>
+                </body1>
                 <div class="flex justify-end items-center gap-2">
                     <md-tonal-button @click="add">Create</md-tonal-button>
                 </div>
@@ -55,7 +55,7 @@
         </main>
 
         <footer>
-            <p class="text-right text-onBackground">Accumulate {{ getTasks.length }} results</p>
+            <body1 class="text-right text-onBackground">Accumulate {{ getTasks.length }} results</body1>
         </footer>
     </div>
 </template>

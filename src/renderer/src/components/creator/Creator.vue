@@ -2,7 +2,7 @@
     <teleport to="#app">
         <md-dialog :open="props.dialog.open" modeless draggable transition="grow">
             <div slot="header">
-                <h1>Create</h1>
+                <h5>Create</h5>
             </div>
 
             <FlexColLayout class="gap-2">
@@ -15,7 +15,7 @@
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
                     <label>
-                        <h1>Collection</h1>
+                        <subtitle1>Collection</subtitle1>
                         <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
                     </label>
                     <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>

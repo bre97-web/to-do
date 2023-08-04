@@ -1,6 +1,6 @@
 <template>
-    <div class="text-ellipsis overflow-clip">
-        <slot></slot>
+    <div>
+
     </div>
 </template>
 
