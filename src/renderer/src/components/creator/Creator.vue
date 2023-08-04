@@ -77,11 +77,11 @@
 
 <script lang="ts" setup>
 import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useGoal'
-import { Type, useItem, Date, Tags } from '@/hooks/useItem'
 import './lib/TargetType'
 import { TASKS_TYPE, useTaskStore } from '@/store/useTaskStore'
 import { useGoalStore } from '@/store/useGoalStore.ts'
 import { ref } from 'vue'
+import { useTask } from '@/hooks/useTask'
 
 const props = defineProps<{
     dialog: {
@@ -161,7 +161,9 @@ const submit = () => {
     clear()
     props.closeDialog()
 }
-const createTask = () => taskStore.push(useItem(target.task), TASKS_TYPE.NORMAL)
+const createTask = () => {
+    // taskStore.push(useTask(target.task), TASKS_TYPE.NORMAL)
+}
 const createGoal = () => {
     let goalsList: Goal[] = []
     for (let i = 0; i < target.goalConfig.goalCount; i++) {
