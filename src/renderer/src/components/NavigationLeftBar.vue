@@ -11,7 +11,7 @@
                     <md-ripple></md-ripple>
                     <div class="flex gap-2 items-center justify-center lg:justify-start w-14 h-14 lg:w-full lg:px-4">
                         <md-icon :class="{'icon-filled': router.currentRoute.value.path === e.url}">{{ e.icon }}</md-icon>
-                        <p class="hidden lg:block" :class="{'font-bold': router.currentRoute.value.path == e.url}">{{ e.label }}</p>
+                        <subtitle1 class="hidden lg:block" :class="{'font-bold': router.currentRoute.value.path == e.url}">{{ e.label }}</subtitle1>
                     </div>
                 </div>
                 <div class="block lg:hidden">

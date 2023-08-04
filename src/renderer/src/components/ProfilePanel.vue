@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <h1>Profile</h1>
+            <h5>Profile</h5>
         </header>
         <main class="space-y-8 mt-8 w-full">
             <div class="rounded-xl p-4 bg-[var(--md-sys-color-surface-container-low)]">
@@ -20,7 +20,7 @@
                 <Teleport to="#app">
                     <md-dialog :open="dialogOpen" modeless draggable transition="grow">
                         <div slot="header">
-                            <h1 slot="headline">Your Info</h1>
+                            <h5 slot="headline">Your Info</h5>
                         </div>
 
                         <div class="mt-2">

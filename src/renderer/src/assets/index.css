@@ -342,54 +342,71 @@
         font-size: 6rem;
         font-weight: 300;
         letter-spacing: -0.0938rem;
+        line-height: 1;
     }
     h2 {
         font-size: 3.75rem;
         font-weight: 300;
         letter-spacing: -0.0313rem;
+        line-height: 1;
     }
     h3 {
         font-size: 3rem;
         font-weight: 400;
         letter-spacing: 0rem;
+        line-height: 1;
     }
     h4 {
-        font-size: 2.125rem;
+        font-size: 2.25rem;
         font-weight: 400;
         letter-spacing: .0156rem;
+        line-height: 2.5rem;
     }
     h5 {
         font-size: 1.5rem;
         font-weight: 400;
         letter-spacing: 0rem;
+        line-height: 2rem;
     }
     h6 {
         font-size: 1.25rem;
         font-weight: 500;
         letter-spacing: .0094rem;
+        line-height: 1.75rem;
     }
     subtitle1 {
         font-size: 1rem;
         font-weight: 400;
         letter-spacing: .0094rem;
+        line-height: 1.5rem;
         display: block;
     }
     subtitle2 {
         font-size: .875rem;
         font-weight: 500;
         letter-spacing: .0063rem;
+        line-height: 1.25rem;
         display: block;
     }
     body1 {
         font-size: 1rem;
         font-weight: 400;
         letter-spacing: .0313rem;
+        line-height: 1.5rem;
         display: block;
     }
     body2 {
         font-size: .875rem;
         font-weight: 400;
         letter-spacing: .0156rem;
+        line-height: 1.25rem;
+        display: block;
+    }
+    overline {
+        font-size: .75rem;
+        font-weight: 400;
+        letter-spacing: .0338rem;
+        line-height: 1rem;
         display: block;
     }
 
@@ -406,11 +423,16 @@
     h3 + p,
     h4 + p,
     h5 + p,
-    h6 + p {
+    h6 + p,
+    subtitle1,
+    subtitle2 {
         color: var(--md-sys-color-secondary);
     }
     p,
-    a {
+    a,
+    overline,
+    body1,
+    body2 {
         color: var(--md-sys-color-on-surface);
     }
     label {

@@ -1,7 +1,7 @@
 <template>
-    <p class="text-ellipsis overflow-clip">
+    <div class="text-ellipsis overflow-clip">
         <slot></slot>
-    </p>
+    </div>
 </template>
 
 <script setup lang="ts">

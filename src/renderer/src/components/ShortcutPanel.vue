@@ -1,17 +1,22 @@
 <template>
     <div class="flex flex-col">
-        <div class="line">
-            <b>Open Dashboard(Settings)</b>
-            <p>Alt + s</p>
-        </div>
-        <div class="line">
-            <b>Open Navigate</b>
-            <p>Ctrl + k</p>
-        </div>
-        <div class="line">
-            <b>Open Shortcut Map</b>
-            <p>Alt + m</p>
-        </div>
+        <header>
+            <h5>System</h5>
+        </header>
+        <main class="mt-8">
+            <div class="line">
+                <subtitle2>Open Dashboard(Settings)</subtitle2>
+                <subtitle2>Alt + s</subtitle2>
+            </div>
+            <div class="line">
+                <subtitle2>Open Navigate</subtitle2>
+                <subtitle2>Ctrl + k</subtitle2>
+            </div>
+            <div class="line">
+                <subtitle2>Open Shortcut Map</subtitle2>
+                <subtitle2>Alt + m</subtitle2>
+            </div>
+        </main>
     </div>
 </template>
 

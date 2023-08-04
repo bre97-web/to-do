@@ -1,43 +1,45 @@
 <template>
-    <div v-if="tags.size !== 0">
-        <Card
-            v-for="(map, index) in tags"
-            :key="index"
-            class="rounded-xl p-4 md:w-1/4 md:h-48 md:flex-grow md:flex-shrink"
-        >
+    <div v-if="tags.size !== 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-start gap-4">
+        <ListLayout v-for="(map, index) in tags" :key="index" :no-action="true">
             <template #header>
-                <h1 class="text-onSurface">{{ map[0] }}</h1>
+                <TextLayout>
+                    <h6>{{ map[0] }}</h6>
+                </TextLayout>
             </template>
-            <ul class="rounded-xl flex flex-row flex-wrap items-start gap-2">
-                <li
-                    v-for="e in map[1].slice(0, 5)"
-                    :key="e.index"
-                    class="p-4 relative rounded-xl"
-                    @click="
-                        router.push({
-                            path: '/info',
-                            query: {
-                                task: JSON.stringify(e)
-                            }
-                        })
-                    "
-                >
-                    <md-ripple></md-ripple>
-                    <md-evelation></md-evelation>
-                    <p>
-                        {{ e.title }}
-                    </p>
-                </li>
-            </ul>
-        </Card>
+            <div class="space-y-2">
+                <ListItemLayout v-for="e in map[1].slice(0, 5)" :key="e.index">
+                    <TextLayout>
+                        <subtitle1>
+                            {{ e.title }}
+                        </subtitle1>
+                    </TextLayout>
+                    <template #action>
+                        <md-standard-icon-button
+                            @click="
+                                router.push({
+                                    path: '/info',
+                                    query: {
+                                        task: JSON.stringify(e)
+                                    }
+                                })
+                            "
+                            >
+                            <md-icon>more</md-icon>
+                        </md-standard-icon-button>
+                    </template>
+                </ListItemLayout>
+            </div>
+        </ListLayout>
     </div>
 </template>
 
 <script setup lang="ts">
-import Card from '@/components/Card.vue'
+import ListLayout from '@/layouts/ListLayout.vue'
 import { useTags } from '@/hooks/useTags';
 import { useRouter } from 'vue-router'
 import { useTaskStore } from '@/store/useTaskStore'
+import TextLayout from '@/layouts/TextLayout.vue';
+import ListItemLayout from '@/layouts/ListItemLayout.vue';
 
 
 const tasks = useTaskStore()

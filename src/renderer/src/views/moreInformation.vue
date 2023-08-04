@@ -6,8 +6,8 @@
             <!-- Subtitle-->
             <ContentWithDescriptionLayout>
                 <template #desc>
-                    <h1>Title</h1>
-                    <p>The title should be concise and clear, it is displayed directly in the container.</p>
+                    <h3>Title</h3>
+                    <subtitle1>The title should be concise and clear, it is displayed directly in the container.</subtitle1>
                 </template>
                 <template #default>
                     <InputWithIconLayout>
@@ -30,8 +30,8 @@
             <!-- Note  -->
             <ContentWithDescriptionLayout>
                 <template #desc>
-                    <h1>Note</h1>
-                    <p>This attribute describes the details of this element.</p>
+                    <h3>Note</h3>
+                    <subtitle1>This attribute describes the details of this element.</subtitle1>
                 </template>
                 <InputWithIconLayout>
                     <template #icon>
@@ -47,8 +47,8 @@
             <!-- TargetTime -->
             <ContentWithDescriptionLayout>
                 <template #desc>
-                    <h1>Time</h1>
-                    <p>The creation time is automatically generated and should not be modified in most cases. The target time is when this element is scheduled to be completed.</p>
+                    <h3>Time</h3>
+                    <subtitle1>The creation time is automatically generated and should not be modified in most cases. The target time is when this element is scheduled to be completed.</subtitle1>
                 </template>
                 <template #default>
                     <InputWithIconLayout>
@@ -71,8 +71,8 @@
             <!-- Tags -->
             <ContentWithDescriptionLayout>
                 <template #desc>
-                    <h1>Tag</h1>
-                    <p>tag is the tag of this element, each tag should be as simple as possible, and each tag is separated by a comma.</p>
+                    <h3>Tag</h3>
+                    <subtitle1>tag is the tag of this element, each tag should be as simple as possible, and each tag is separated by a comma.</subtitle1>
                 </template>
                 <template #default>
                     <InputWithIconLayout>
@@ -98,8 +98,8 @@
             <!-- Steps -->
             <ContentWithDescriptionLayout>
                 <template #desc>
-                    <h1>Steps</h1>
-                    <p>step contains the detailed steps of this element.</p>
+                    <h3>Steps</h3>
+                    <subtitle1>step contains the detailed steps of this element.</subtitle1>
                 </template>
                 <template #default>
                     <InputWithIconLayout>

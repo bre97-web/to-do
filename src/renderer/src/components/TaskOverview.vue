@@ -30,16 +30,16 @@ const targetDateTasks = computed(() => {
 
 const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
     <header>
-        <p class="text-xs">{title}</p>
-        <h1 class="font-medium">{subtitle}</h1>
+        <overline>{title}</overline>
+        <h6 class="font-medium">{subtitle}</h6>
     </header>
 )
 
 const TaskItem = ({ item }: { item: Task }) => (
     <li class="p-4 rounded-3xl">
         <header>
-            <h1>{item.title}</h1>
-            <p class="text-xs">Created in {item.createdDate}</p>
+            <subtitle1>{item.title}</subtitle1>
+            <overline>Created in {item.createdDate}</overline>
         </header>
     </li>
 )
@@ -54,7 +54,7 @@ const TasksList = ({ element }: { element: Tasks }) => (
         {element.length === 0 && (
             <div class="m-4 text-center">
                 <md-icon class="text-8xl font-bold shake">waving_hand</md-icon>
-                <p>You compeleted all todos</p>
+                <subtitle1>You compeleted all todos</subtitle1>
             </div>
         )}
     </div>
