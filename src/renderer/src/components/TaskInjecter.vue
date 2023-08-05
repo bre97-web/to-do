@@ -1,17 +1,15 @@
 <template>
-    <FlexColLayout v-if="task !== null" class="gap-8">
-        <template v-if="task.type === 'task'">
+    <div v-if="task !== null">
+        <template v-if="['task', 'collection'].includes(task.type)">
             <TaskAsideInjectPage :task="task"></TaskAsideInjectPage>
         </template>
         <template v-if="task.type === 'goal'">
             <GoalAsideInjectPage :goal="task"></GoalAsideInjectPage>
         </template>
-
-    </FlexColLayout>
+    </div>
 </template>
 
 <script setup lang="ts">
-import FlexColLayout from '@/layouts/FlexColLayout.vue';
 import { getShareItem } from '@/scripts/taskProvider';
 import TaskAsideInjectPage from './TaskAsideInjectPage.vue';
 import GoalAsideInjectPage from './GoalAsideInjectPage.vue';

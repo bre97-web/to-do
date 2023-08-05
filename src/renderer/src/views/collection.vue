@@ -1,6 +1,6 @@
 <template>
     <PageLayout>
-        <template v-if="tags.size !== 0">
+        <template v-if="tags.size !== 0 || tasks.getCustom.length !== 0">
             <PageContentLayout>
                 <TagCollections></TagCollections>
                 <CustomCollections></CustomCollections>

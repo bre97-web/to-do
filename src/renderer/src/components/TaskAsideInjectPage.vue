@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <FlexColLayout class="gap-4">
         <div :class="{ 'line-through': props.task.progressStatus === 'done' }">
             <TitleLarge>{{ props.task.title }}</TitleLarge>
             <TitleMedium>{{ props.task.subtitle }}</TitleMedium>
@@ -27,10 +27,11 @@
         <md-chip-set>
             <md-assist-chip v-for="(tag, index) in props.task.tags" :key="index" :label="tag"></md-assist-chip>
         </md-chip-set>
-    </div>
+    </FlexColLayout>
 </template>
 
 <script setup lang="ts">
+import FlexColLayout from '@/layouts/FlexColLayout.vue';
 import ListContentLayout from '@/layouts/ListContentLayout.vue';
 import ListItemLayout from '@/layouts/ListItemLayout.vue';
 import ListLayout from '@/layouts/ListLayout.vue';
