@@ -13,8 +13,10 @@ function useNotice(e: NotificationInterface) {
     const notification = new Notification(e.title, {
         body: e.option?.body,
     })
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    notification.addEventListener('click', () => e.option?.handler)
+    
+    if(e.option?.handler !== undefined) {
+        notification.addEventListener('click', e.option?.handler)
+    }
 }
 
 function checkPermission() {
