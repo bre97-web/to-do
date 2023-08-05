@@ -1,9 +1,14 @@
 <template>
-    <div>
+    <PageLayout>
         <template v-if="props.items.length !== 0">
             <md-list>
                 <template v-for="e in props.items">
-                    <md-list-item v-if="props.itemsFilted.length === 0 || tagIncludes(props.itemsFilted, e)" :key="e.index" :headline="e.title" :supporting-text="e.subtitle">
+                    <md-list-item
+                        v-if="props.itemsFilted.length === 0 || tagIncludes(props.itemsFilted, e)"
+                        :key="e.index" :headline="e.title"
+                        :supporting-text="e.subtitle"
+                        @click="setShareItem(e)"
+                    >
                         <!-- 完成按钮, 应该注意当前e在哪个容器中 -->
                         <template v-if="e.progressStatus !== 'done'">
                             <md-checkbox slot="start" @click="store.setProgressStatus(e, 'done')"></md-checkbox>
@@ -39,7 +44,7 @@
         <template v-else>
             <AllDone></AllDone>
         </template>
-    </div>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
@@ -47,6 +52,8 @@ import { Task, Tasks } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useRouter } from 'vue-router'
 import AllDone from './AllDone.vue'
+import { setShareItem } from '@/scripts/taskProvider';
+import PageLayout from '@/layouts/PageLayout.vue';
 
 const props = defineProps<{
     itemsFilted: string[]

@@ -55,7 +55,7 @@ You can make suggestions in issues.
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|
-|~~Sidebar~~|⚫|⚫|⚫|
+|Sidepanel|⚫|❌|❌|
 |Tabs|✅|✅|❌|
 |Goals|✅|✅|❌|
 |Element Slide|❌|❌|❌|

@@ -14,13 +14,13 @@
                         <template #icon>
                             <md-icon>title</md-icon>
                         </template>
-                        <md-outlined-text-field v-model="task.title" label="Title" type="text"></md-outlined-text-field>
+                        <md-outlined-text-field v-model="task.title" label="Title" type="textarea"></md-outlined-text-field>
                     </InputWithIconLayout>
                     <InputWithIconLayout>
                         <template #icon>
                             <md-icon>subtitles</md-icon>
                         </template>
-                        <md-outlined-text-field v-model="task.subtitle" label="Subtitle" type="text"></md-outlined-text-field>
+                        <md-outlined-text-field v-model="task.subtitle" label="Subtitle" type="textarea"></md-outlined-text-field>
                     </InputWithIconLayout>
                 </template>
             </ContentWithDescriptionLayout>
@@ -37,7 +37,7 @@
                     <template #icon>
                         <md-icon>description</md-icon>
                     </template>
-                    <md-outlined-text-field v-model="task.note" label="Note" type="text"></md-outlined-text-field>
+                    <md-outlined-text-field v-model="task.note" label="Note" type="textarea"></md-outlined-text-field>
                 </InputWithIconLayout>
             </ContentWithDescriptionLayout>
 
@@ -82,7 +82,7 @@
                         <md-outlined-text-field
                             label="Tags"
                             supportingText="Tags中每一个Tag使用逗号分隔"
-                            type="text"
+                            type="textarea"
                             :value="task.tags"
                             @input="(e: InputEvent) => task.tags = (e.target as HTMLInputElement).value.split(/[,，]/)"
                         ></md-outlined-text-field>
@@ -108,8 +108,9 @@
                         </template>
                         <div class="flex items-center gap-2">
                             <md-outlined-text-field
-                            v-model="newStepValue"
-                            label="Step"
+                                v-model="newStepValue"
+                                label="Step"
+                                type="textarea"
                             ></md-outlined-text-field>
                             <md-standard-icon-button @click="createStep">
                                 <md-icon>add</md-icon>
