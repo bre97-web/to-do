@@ -2,7 +2,9 @@
 
 Welcome!
 
-To Do is a task management app that helps you easily keep track of your daily tasks. It helps you create task lists, provide future reminders, add notes and attachments, and share lists with others. You can use To Do on any device, including desktop, web. We will provide an Android version in the future.
+To Do is a task management app that helps you easily keep track of your daily tasks. It helps you create task lists, provide future reminders, add notes and attachments, and share lists with others. You can use To Do on any device, including desktop, web.
+
+
 
 <div align="center">
 
@@ -20,6 +22,7 @@ _Unfortunately, the web version and the Windows platform application are the sam
 
 ## Code
 
+This project is built using Vue + Vite, in line with Material Design design.
 If you want to contribute code, please refer to the form below:
 
 |Language|Position|
@@ -55,7 +58,7 @@ You can make suggestions in issues.
 |Task Step|✅|✅|❌|
 |Search Advanced|✅|✅|❌|
 |PWA Support|❌|❌|❌|
-|~~Sidebar~~|⚫|⚫|⚫|
+|SidePanel|✅|🟡|❌|
 |Tabs|✅|✅|❌|
 |Goals|✅|✅|❌|
 |Element Slide|❌|❌|❌|

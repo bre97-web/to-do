@@ -8,7 +8,7 @@
                     <ul class="flex flex-wrap gap-2">
                         <li class="hover:elevation relative bg-[var(--md-sys-color-surface-container-low)]">
                             <md-elevation></md-elevation>
-                            <subtitle1 class="text-onSurface">Dashboard</subtitle1>
+                            <LabelLarge class="text-onSurface">Dashboard</LabelLarge>
                             <md-text-button @click="router.push('/dashboard')">Open</md-text-button>
                         </li>
                     </ul>
