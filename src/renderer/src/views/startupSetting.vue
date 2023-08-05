@@ -55,6 +55,7 @@
 import DarkSwitch from '@/components/DarkSwitch.vue'
 import EditAccountName from '@/components/EditAccountName.vue'
 import ThemePicker from '@/components/ThemePicker.vue'
+import { useNotice } from '@/hooks/useNotice'
 import useTheme from '@/hooks/useTheme'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router';
@@ -75,6 +76,13 @@ onMounted(() => {
     setTimeout(() => {
         isAnimated.pedding = false
     }, 3500)
+
+    /**
+     * Send a notify
+     */
+    useNotice({
+        title: 'Welcome to To-Do',
+    })
 })
 
 const currentIndex = ref<number>(0)

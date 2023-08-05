@@ -2,8 +2,6 @@ interface NotificationInterface {
     title: string
     option?: {
         body: string
-        // 图标已被固定
-        // icon: string
     }
 }
 
@@ -13,7 +11,7 @@ function useNotice({ title, option }: NotificationInterface) {
     }
     const notification = new Notification(title, {
         body: option?.body,
-        icon: './src/renderer/src/assets/img/icon.png'
+        // icon: '@/assets/img/to-do.png'
     })
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     notification.addEventListener('show', () => {})
