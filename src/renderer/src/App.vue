@@ -15,9 +15,7 @@
 
         <EventSnackbar></EventSnackbar>
 
-        /**
-         * Creator Provide a ref: creatorDialog
-         */
+        <!-- Creator Provide a ref: creatorDialog -->
         <Creator></Creator>
     </div>
 </template>

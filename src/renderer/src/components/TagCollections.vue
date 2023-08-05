@@ -50,7 +50,7 @@ import ListContentLayout from '@/layouts/ListContentLayout.vue';
 
 const tasks = useTaskStore()
 const router = useRouter()
-const tags = useTags(tasks.getAll)
+const tags = useTags(tasks.getTasks)
 </script>
 
 <style scoped>

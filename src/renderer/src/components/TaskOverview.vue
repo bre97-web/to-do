@@ -6,7 +6,7 @@
                 <NeedDoTasks></NeedDoTasks>
             </li>
             <li class="p-4 rounded-3xl bg-[var(--md-sys-color-surface-container-low)]">
-                <TitleLarge>{{ `${store.getAll.length} todos` }}</TitleLarge>
+                <TitleLarge>{{ `${store.getTasks.length} todos` }}</TitleLarge>
                 <AllTasks></AllTasks>
             </li>
         </ul>

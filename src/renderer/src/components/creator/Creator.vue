@@ -86,7 +86,6 @@ import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useTask'
 import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
-import { useGoalStore } from '@/store/useGoalStore.ts'
 import { onMounted, ref } from 'vue'
 import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
 import ExpandLayout from '@/layouts/ExpandLayout.vue'
@@ -161,7 +160,6 @@ const target = {
 }
 
 const taskStore = useTaskStore()
-const goalStore = useGoalStore()
 
 const createTask = () => {
     if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
@@ -184,7 +182,7 @@ const createGoal = () => {
         schedule: target.goalConfig.goalSchedule
     })
 
-    goalStore.push(goals)
+    taskStore.push([goals])
 }
 const createCollection = () => {
     taskStore.createCollection(target.collectionConfig.label)
@@ -213,4 +211,3 @@ const submit = () => {
     (creatorDialog as MDDialog).open = false
 }
 </script>
-@/types/MDDialog

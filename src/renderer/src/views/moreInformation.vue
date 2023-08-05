@@ -188,6 +188,7 @@ const updateStoreValue = (e: Task): Task => {
 }
 
 watch(task, () => {
+    // in custom
     if(task.fromCollection !== undefined && task.fromCollection !== '') {
         store.custom = store.custom.map(e => {
             if(e.label === task.fromCollection) {
@@ -195,6 +196,7 @@ watch(task, () => {
             }
             return e
         })
+    // in tasks
     } else {
         store.tasks = store.getAll.map(updateStoreValue)
     }
