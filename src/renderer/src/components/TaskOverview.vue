@@ -16,6 +16,7 @@
 <script setup lang="tsx">
 import { useDate } from '@/hooks/useDate'
 import { Task, Tasks } from '@/hooks/useTask'
+import { setShareItem } from '@/scripts/taskProvider';
 import { useTaskStore } from '@/store/useTaskStore'
 import { computed } from 'vue'
 
@@ -26,7 +27,7 @@ const targetDateTasks = computed(() => {
 })
 
 const TaskItem = ({ item }: { item: Task }) => (
-    <li class="p-4 rounded-3xl relative">
+    <li class="p-4 rounded-3xl relative" onClick={() => setShareItem(item)}>
         <md-ripple></md-ripple>
         <header>
             <p class="label-large">{item.title}</p>
