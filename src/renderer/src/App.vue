@@ -1,6 +1,6 @@
 <template>
     <!-- 首屏 -->
-    <div id="root" class="overflow-x-hidden overflow-y-auto relative h-screen">
+    <div id="root" class="overflow-x-auto overflow-y-auto relative">
 
         <ninja-keys
             class="z-50"

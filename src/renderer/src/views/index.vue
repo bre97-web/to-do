@@ -1,7 +1,7 @@
 <template>
-    <div class="relative container mx-auto h-screen">
+    <div class="relative container mx-auto">
 
-        <div class="flex flex-col md:flex-row-reverse h-full">
+        <div class="flex flex-col md:flex-row-reverse h-screen">
             
             <!-- <aside class="hidden lg:block w-64 rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
 
