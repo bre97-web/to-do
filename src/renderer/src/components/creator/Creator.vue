@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useGoal'
+import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useTask'
 import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
