@@ -1,7 +1,7 @@
 <template>
     <div class="w-full relative rounded-3xl overflow-clip bg-[var(--md-sys-color-surface-container-low)]">
         <div class="flex px-4 py-2 items-center">
-            <header class="w-2/3">
+            <header class="w-2/3 pl-2">
                 <slot name="header"></slot>
             </header>
             <nav class="flex-grow flex items-start justify-end">

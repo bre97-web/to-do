@@ -442,7 +442,13 @@
     h3,
     h4,
     h5,
-    h6 {
+    h6,
+    .display-large,
+    .display-medium,
+    .display-small,
+    .headline-large,
+    .headline-medium,
+    .headline-small {
         color: var(--md-sys-color-primary);
     }
     h1 + p,
@@ -450,12 +456,21 @@
     h3 + p,
     h4 + p,
     h5 + p,
-    h6 + p {
+    h6 + p,
+    .title-large,
+    .title-medium,
+    .title-small,
+    .label-large,
+    .label-medium,
+    .label-small {
         color: var(--md-sys-color-secondary);
     }
     p,
-    a {
-        color: var(--md-sys-color-on-surface);
+    a,
+    .body-large,
+    .body-medium,
+    .body-small {
+        color: var(--md-sys-color-on-surface-variant);
     }
     label {
         display: flex;

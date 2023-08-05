@@ -1,19 +1,24 @@
 <template>
-    <div>
-        <header>
-            <h5>System</h5>
-        </header>
-        <main class="space-y-8 mt-8">
+    <PageLayout>
+        <TextLayout>
+            <TitleLarge>System</TitleLarge>
+        </TextLayout>
+        <PageContentLayout>
             <div>
-                <subtitle1>移除本地数据</subtitle1>
-                <overline class="italic text-gray-500">这可能需要手动刷新页面</overline>
+                <LabelLarge>移除本地数据</LabelLarge>
+                <BodySmall class="italic text-gray-500">这可能需要手动刷新页面</BodySmall>
                 <md-tonal-button @click="clear">Reset</md-tonal-button>
             </div>
-        </main>
-    </div>
+        </PageContentLayout>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
+import PageContentLayout from '@/layouts/PageContentLayout.vue';
+import PageLayout from '@/layouts/PageLayout.vue';
+import TextLayout from '@/layouts/TextLayout.vue';
+
+
 const clear = () => {
     localStorage.clear()
 }

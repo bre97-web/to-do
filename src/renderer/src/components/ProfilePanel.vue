@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <header>
-            <h5>Profile</h5>
-        </header>
-        <main class="space-y-8 mt-8 w-full">
+    <PageLayout>
+        <TextLayout>
+            <TitleLarge>Profile</TitleLarge>
+        </TextLayout>
+        <PageContentLayout>
             <div class="rounded-xl p-4 bg-[var(--md-sys-color-surface-container-low)]">
                 <ProfileCard>
                     <template #editName>
@@ -19,13 +19,10 @@
                 </ProfileCard>
                 <Teleport to="#app">
                     <md-dialog :open="dialogOpen" modeless draggable transition="grow">
-                        <div slot="header">
-                            <h5 slot="headline">Your Info</h5>
-                        </div>
-
-                        <div class="mt-2">
+                        <p slot="header">Your Info</p>
+                        <FlexColLayout>
                             <EditAccountName></EditAccountName>
-                        </div>
+                        </FlexColLayout>
 
                         <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
                         <md-filled-button slot="footer" @click="submit">Apply</md-filled-button>
@@ -33,13 +30,17 @@
                 </Teleport>
             </div>
 
-        </main>
-    </div>
+        </PageContentLayout>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
 import EditAccountName from '@/components/EditAccountName.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
+import FlexColLayout from '@/layouts/FlexColLayout.vue';
+import PageContentLayout from '@/layouts/PageContentLayout.vue';
+import PageLayout from '@/layouts/PageLayout.vue';
+import TextLayout from '@/layouts/TextLayout.vue';
 import { useUserStore } from '@/store/useUserStore'
 import { ref } from 'vue'
 const userStore = useUserStore()

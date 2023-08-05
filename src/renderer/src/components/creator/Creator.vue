@@ -1,21 +1,17 @@
 <template>
     <teleport to="#app">
         <md-dialog :open="props.dialog.open" modeless draggable transition="grow">
-            <div slot="header">
-                <h5>Create</h5>
-            </div>
+            <p slot="header">Create</p>
 
             <FlexColLayout class="gap-2">
-                <lit-target-type
-                    :setType="(value: Type) => target.type.value = value"
-                ></lit-target-type>
+                <lit-target-type :setType="(value: Type) => target.type.value = value"></lit-target-type>
 
                 <!-- Task -->
                 <template v-if="target.type.value === 'task'">
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
                     <label>
-                        <subtitle1>Collection</subtitle1>
+                        <BodyLarge>Collection</BodyLarge>
                         <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
                     </label>
                     <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>

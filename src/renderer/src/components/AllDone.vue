@@ -1,7 +1,7 @@
 <template>
     <div class="space-y-4 pt-24 text-center">
         <md-icon class="scale-[4]">done_all</md-icon>
-        <subtitle1 class="text-center italic">All done</subtitle1>
+        <BodyMedium class="text-center italic">All done</BodyMedium>
     </div>
 </template>
 

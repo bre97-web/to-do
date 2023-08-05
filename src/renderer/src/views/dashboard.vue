@@ -1,29 +1,27 @@
 <template>
     <PageWithBackLayout>
-        <div>
-            <TabGroup>
-                <TabList as="md-tabs" class="w-full sticky top-14 z-30">
-                    <Tab as="md-tab">Profile</Tab>
-                    <Tab as="md-tab">Theme</Tab>
-                    <Tab as="md-tab">System</Tab>
-                    <Tab as="md-tab">Shortcut</Tab>
-                </TabList>
-                <TabPanels class="m-8">
-                    <TabPanel>
-                        <ProfilePanel></ProfilePanel>
-                    </TabPanel>
-                    <TabPanel>
-                        <ThemePanel></ThemePanel>
-                    </TabPanel>
-                    <TabPanel>
-                        <SystemPanel></SystemPanel>
-                    </TabPanel>
-                    <TabPanel>
-                        <ShortcutPanel></ShortcutPanel>
-                    </TabPanel>
-                </TabPanels>
-            </TabGroup>
-        </div>
+        <TabGroup>
+            <TabList as="md-tabs" class="w-full sticky top-14 z-30">
+                <Tab as="md-tab">Profile</Tab>
+                <Tab as="md-tab">Theme</Tab>
+                <Tab as="md-tab">System</Tab>
+                <Tab as="md-tab">Shortcut</Tab>
+            </TabList>
+            <TabPanels class="m-8">
+                <TabPanel>
+                    <ProfilePanel></ProfilePanel>
+                </TabPanel>
+                <TabPanel>
+                    <ThemePanel></ThemePanel>
+                </TabPanel>
+                <TabPanel>
+                    <SystemPanel></SystemPanel>
+                </TabPanel>
+                <TabPanel>
+                    <ShortcutPanel></ShortcutPanel>
+                </TabPanel>
+            </TabPanels>
+        </TabGroup>
     </PageWithBackLayout>
 </template>
 

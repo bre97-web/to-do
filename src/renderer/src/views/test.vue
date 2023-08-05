@@ -28,21 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import DisplayLarge from '@/typography/DisplayLarge.vue'
-import DisplayMedium from '@/typography/DisplayMedium.vue'
-import DisplaySmall from '@/typography/DisplaySmall.vue'
-import HeadlineLarge from '@/typography/HeadlineLarge.vue'
-import HeadlineMedium from '@/typography/HeadlineMedium.vue'
-import HeadlineSmall from '@/typography/HeadlineSmall.vue'
-import TitleLarge from '@/typography/TitleLarge.vue'
-import TitleMedium from '@/typography/TitleMedium.vue'
-import TitleSmall from '@/typography/TitleSmall.vue'
-import LabelLarge from '@/typography/LabelLarge.vue'
-import LabelMedium from '@/typography/LabelMedium.vue'
-import LabelSmall from '@/typography/LabelSmall.vue'
-import BodyLarge from '@/typography/BodyLarge.vue'
-import BodyMedium from '@/typography/BodyMedium.vue'
-import BodySmall from '@/typography/BodySmall.vue'
 </script>
 
 <style scoped>

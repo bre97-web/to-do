@@ -3,7 +3,7 @@
         <PageContentLayout>
             <ProfileCard></ProfileCard>
             
-            <main class="mt-12 relative space-y-4">
+            <ListContentLayout>
                 <div class="rounded-xl">
                     <ul class="flex flex-wrap gap-2">
                         <li class="hover:elevation relative bg-[var(--md-sys-color-surface-container-low)]">
@@ -13,11 +13,7 @@
                         </li>
                     </ul>
                 </div>
-                
-                <router-view v-slot="{ Component }" name="MeInnerBoard">
-                    <component :is="Component"></component>
-                </router-view>
-            </main>
+            </ListContentLayout>
         </PageContentLayout>
     </PageLayout>
 </template>
@@ -27,6 +23,7 @@ import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/ProfileCard.vue'
 import PageLayout from '@/layouts/PageLayout.vue';
 import PageContentLayout from '@/layouts/PageContentLayout.vue'
+import ListContentLayout from '@/layouts/ListContentLayout.vue';
 
 /**
  * 路由
