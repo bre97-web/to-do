@@ -3,7 +3,7 @@
         <ListLayout v-for="(map, index) in tags" :key="index" :no-action="true">
             <template #header>
                 <TextLayout>
-                    <TitleLarge>{{ map[0] }}</TitleLarge>
+                    <TitleMedium>{{ map[0] }}</TitleMedium>
                 </TextLayout>
             </template>
             <ListContentLayout>

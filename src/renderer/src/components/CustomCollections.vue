@@ -3,9 +3,9 @@
         <ListLayout v-for="e in tasks.getCustom" :key="e.label">
             <template #header>
                 <TextLayout class="font-bold">
-                    <TitleLarge>
+                    <TitleMedium>
                         {{ e.label }}
-                    </TitleLarge>
+                    </TitleMedium>
                 </TextLayout>
             </template>
             <ListContentLayout>
