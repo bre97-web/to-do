@@ -13,6 +13,7 @@
                     :supporting-text="
                         goals.compelete ? '' : 'Next times ' + goalStore.geuCurrentDate(goals)
                     "
+                    @click="setShareItem(goals)"
                 >
                     <!-- 下一步按钮 -->
                     <div slot="start" class="ml-2">
@@ -51,6 +52,7 @@
 <script lang="ts" setup>
 import { useGoalStore } from '@/store/useGoalStore.ts'
 import AllDone from './AllDone.vue';
+import { setShareItem } from '@/scripts/taskProvider';
 
 const goalStore = useGoalStore()
 </script>
