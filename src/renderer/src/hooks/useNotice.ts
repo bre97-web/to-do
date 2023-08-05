@@ -1,22 +1,22 @@
 interface NotificationInterface {
     title: string
     option?: {
-        body: string
-        // 图标已被固定
-        // icon: string
+        body?: string
+        handler?: () => void
     }
 }
 
-function useNotice({ title, option }: NotificationInterface) {
+function useNotice(e: NotificationInterface) {
     if (!('Notification' in window) || Notification.permission !== 'granted') {
         return undefined
     }
-    const notification = new Notification(title, {
-        body: option?.body,
-        icon: './src/renderer/src/assets/img/icon.png'
+    const notification = new Notification(e.title, {
+        body: e.option?.body,
     })
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    notification.addEventListener('show', () => {})
+    
+    if(e.option?.handler !== undefined) {
+        notification.addEventListener('click', e.option?.handler)
+    }
 }
 
 function checkPermission() {

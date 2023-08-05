@@ -14,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+import { useNotice } from '@/hooks/useNotice';
 import PageContentLayout from '@/layouts/PageContentLayout.vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import TextLayout from '@/layouts/TextLayout.vue';
@@ -21,6 +22,16 @@ import TextLayout from '@/layouts/TextLayout.vue';
 
 const clear = () => {
     localStorage.clear()
+
+    useNotice({
+        title: 'The Local Storage has been deleted.',
+        option: {
+            body: 'Click me to reload.',
+            handler: () => {
+                location.reload()
+            }
+        }
+    })
 }
 </script>
 

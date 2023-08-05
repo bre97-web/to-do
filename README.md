@@ -47,7 +47,7 @@ You can make suggestions in issues.
 |Notes|✅|✅|❌|
 |Sugguest|❌|❌|❌|
 |Startup Settings|✅|✅|❌|
-|Notify|✅|❌|❌|
+|Notify|✅|🟡|❌|
 |Avatar|✅|✅|❌|
 |DIY Avatar|❌|❌|❌|
 |Startup Animation|✅|✅|❌|
