@@ -83,7 +83,7 @@ const ContentList = [
         title: 'Welcome',
         descript: 'Add your goals and use our To-Do to easily complete your tasks!',
         src: 'https://assets8.lottiefiles.com/packages/lf20_qbab96r3.json',
-        component: <div>We very much welcome everyone to help us on GitHub, give us suggestions or criticism. If you have time, you can visit our GitHub page To-Do.</div>
+        component: <p class="body-medium">We very much welcome everyone to help us on GitHub, give us suggestions or criticism. If you have time, you can visit our GitHub page To-Do.</p>
     },
     {
         title: 'Theme',
@@ -113,10 +113,10 @@ const ContentList = [
 const Content = () => (
     <div class="space-y-4">
         <header>
-            <h5>{ContentList[currentIndex.value].title}</h5>
+            <p class="title-large">{ContentList[currentIndex.value].title}</p>
         </header>
         <div class="space-y-2">
-            <body1>{ContentList[currentIndex.value].descript}</body1>
+            <p class="body-medium">{ContentList[currentIndex.value].descript}</p>
             <div>
                 {ContentList[currentIndex.value].component}
             </div>

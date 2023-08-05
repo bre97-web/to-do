@@ -1,26 +1,35 @@
 <template>
-    <div class="flex flex-col">
-        <header>
-            <h5>System</h5>
-        </header>
-        <main class="mt-8">
-            <div class="line">
-                <subtitle2>Open Dashboard(Settings)</subtitle2>
-                <subtitle2>Alt + s</subtitle2>
-            </div>
-            <div class="line">
-                <subtitle2>Open Navigate</subtitle2>
-                <subtitle2>Ctrl + k</subtitle2>
-            </div>
-            <div class="line">
-                <subtitle2>Open Shortcut Map</subtitle2>
-                <subtitle2>Alt + m</subtitle2>
-            </div>
-        </main>
-    </div>
+    <PageLayout>
+        <TextLayout>
+            <TitleLarge>Shortcut</TitleLarge>
+        </TextLayout>
+        <PageContentLayout>
+            <main>
+                <div class="line">
+                    <BodyMedium>Open Dashboard(Settings)</BodyMedium>
+                    <BodyMedium>Alt + s</BodyMedium>
+                </div>
+                <div class="line">
+                    <BodyMedium>Open Navigate</BodyMedium>
+                    <BodyMedium>Ctrl + k</BodyMedium>
+                </div>
+                <div class="line">
+                    <BodyMedium>Open Shortcut Map</BodyMedium>
+                    <BodyMedium>Alt + m</BodyMedium>
+                </div>
+            </main>
+        </PageContentLayout>
+
+    </PageLayout>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PageContentLayout from '@/layouts/PageContentLayout.vue';
+import PageLayout from '@/layouts/PageLayout.vue';
+import TextLayout from '@/layouts/TextLayout.vue';
+
+
+</script>
 
 <style scoped>
 div.line {

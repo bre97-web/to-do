@@ -1,26 +1,30 @@
 <template>
-    <div>
-        <header>
-            <h5>Theme</h5>
-        </header>
-        <main class="space-y-4 mt-8">
+    <PageLayout>
+        <TextLayout>
+            <TitleLarge>Theme</TitleLarge>
+        </TextLayout>
+        <PageContentLayout>
             <div>
-                <subtitle1>Dark mode</subtitle1>
-                <overline class="italic text-gray-500">深色模式将会禁用部分效果。</overline>
+                <LabelLarge>Dark mode</LabelLarge>
+                <BodySmall class="italic text-gray-500">深色模式将会禁用部分效果。</BodySmall>
                 <DarkSwitch></DarkSwitch>
             </div>
 
             <div>
-                <subtitle1>Primary color</subtitle1>
+                <LabelLarge>Primary color</LabelLarge>
                 <ThemePicker></ThemePicker>
             </div>
-        </main>
-    </div>
+        </PageContentLayout>
+    </PageLayout>
 </template>
 
 <script setup lang="ts">
 import DarkSwitch from '@/components/DarkSwitch.vue'
 import ThemePicker from '@/components/ThemePicker.vue'
+import PageContentLayout from '@/layouts/PageContentLayout.vue';
+import PageLayout from '@/layouts/PageLayout.vue';
+import TextLayout from '@/layouts/TextLayout.vue';
+import TitleLarge from '@/typography/TitleLarge.vue';
 
 </script>
 

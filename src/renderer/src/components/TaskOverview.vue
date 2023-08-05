@@ -2,14 +2,11 @@
     <div class="mx-4 mt-4 mb-12">
         <ul class="flex flex-col md:flex-row flex-wrap gap-2">
             <li class="p-4 rounded-3xl bg-[var(--md-sys-color-surface-container-low)]">
-                <Title
-                    :title="`Today ${useDate()}, you need to do`"
-                    :subtitle="`${targetDateTasks.length} current todos`"
-                ></Title>
+                <TitleLarge>{{ `${targetDateTasks.length} target todos` }}</TitleLarge>
                 <NeedDoTasks></NeedDoTasks>
             </li>
             <li class="p-4 rounded-3xl bg-[var(--md-sys-color-surface-container-low)]">
-                <Title :title="`You need to do`" :subtitle="`${store.getAll.length} todos`"></Title>
+                <TitleLarge>{{ `${store.getAll.length} todos` }}</TitleLarge>
                 <AllTasks></AllTasks>
             </li>
         </ul>
@@ -28,19 +25,12 @@ const targetDateTasks = computed(() => {
     return [...store.getPinned, ...store.getProcessing].filter((e) => e.targetDate === today)
 })
 
-const Title = ({ title, subtitle }: { title: string; subtitle: string }) => (
-    <header>
-        <overline>{title}</overline>
-        <h6 class="font-medium">{subtitle}</h6>
-    </header>
-)
-
 const TaskItem = ({ item }: { item: Task }) => (
     <li class="p-4 rounded-3xl relative">
         <md-ripple></md-ripple>
         <header>
-            <subtitle1>{item.title}</subtitle1>
-            <overline>Created in {item.createdDate}</overline>
+            <p class="label-large">{item.title}</p>
+            <p class="body-small">Created in {item.createdDate}</p>
         </header>
     </li>
 )
@@ -55,7 +45,7 @@ const TasksList = ({ element }: { element: Tasks }) => (
         {element.length === 0 && (
             <div class="m-4 text-center">
                 <md-icon class="text-8xl font-bold shake">waving_hand</md-icon>
-                <subtitle1>You compeleted all todos</subtitle1>
+                <p class="body-medium italic">You compeleted all todos</p>
             </div>
         )}
     </div>

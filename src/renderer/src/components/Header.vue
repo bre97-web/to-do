@@ -22,8 +22,8 @@ import SearchInput from '@/components/SearchInput.vue'
 
 const Title = () => (
     <div class="flex flex-col flex-none">
-        <h6 class="text-base font-black text-onBackground">To-Do</h6>
-        <overline class="text-xs text-onBackground">Preview</overline>
+        <h1 class="text-base font-black text-onBackground">To-Do</h1>
+        <p class="text-xs text-onBackground">Preview</p>
     </div>
 )
 

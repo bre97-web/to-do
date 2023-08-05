@@ -3,15 +3,20 @@
         <ListLayout v-for="(map, index) in tags" :key="index" :no-action="true">
             <template #header>
                 <TextLayout>
-                    <h6>{{ map[0] }}</h6>
+                    <TitleLarge>{{ map[0] }}</TitleLarge>
                 </TextLayout>
             </template>
-            <div class="space-y-2">
+            <ListContentLayout>
                 <ListItemLayout v-for="e in map[1].slice(0, 5)" :key="e.index">
                     <TextLayout>
-                        <subtitle1>
+                        <LabelLarge>
                             {{ e.title }}
-                        </subtitle1>
+                        </LabelLarge>
+                    </TextLayout>
+                    <TextLayout>
+                        <BodyMedium>
+                            {{ e.subtitle }}
+                        </BodyMedium>
                     </TextLayout>
                     <template #action>
                         <md-standard-icon-button
@@ -28,7 +33,7 @@
                         </md-standard-icon-button>
                     </template>
                 </ListItemLayout>
-            </div>
+            </ListContentLayout>
         </ListLayout>
     </div>
 </template>
@@ -40,6 +45,7 @@ import { useRouter } from 'vue-router'
 import { useTaskStore } from '@/store/useTaskStore'
 import TextLayout from '@/layouts/TextLayout.vue';
 import ListItemLayout from '@/layouts/ListItemLayout.vue';
+import ListContentLayout from '@/layouts/ListContentLayout.vue';
 
 
 const tasks = useTaskStore()

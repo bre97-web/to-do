@@ -3,22 +3,22 @@
         <ListLayout v-for="e in tasks.getCustom" :key="e.label">
             <template #header>
                 <TextLayout class="font-bold">
-                    <h6>
+                    <TitleLarge>
                         {{ e.label }}
-                    </h6>
+                    </TitleLarge>
                 </TextLayout>
             </template>
-            <div class="space-y-2">
+            <ListContentLayout>
                 <ListItemLayout v-for="item in e.items" :key="item.index">
                     <TextLayout>
-                        <subtitle1>
+                        <LabelLarge>
                             {{ item.title }}
-                        </subtitle1>
+                        </LabelLarge>
                     </TextLayout>
                     <TextLayout>
-                        <overline>
+                        <BodyMedium>
                             {{ item.subtitle }}
-                        </overline>
+                        </BodyMedium>
                     </TextLayout>
                     <template #action>
                         <md-standard-icon-button
@@ -35,7 +35,7 @@
                         </md-standard-icon-button>
                     </template>
                 </ListItemLayout>
-            </div>
+            </ListContentLayout>
 
             <template #action>
                 <md-text-button
@@ -55,6 +55,7 @@ import { useRouter } from 'vue-router'
 import ListLayout from '@/layouts/ListLayout.vue'
 import ListItemLayout from '@/layouts/ListItemLayout.vue'
 import TextLayout from '@/layouts/TextLayout.vue'
+import ListContentLayout from '@/layouts/ListContentLayout.vue'
 
 const tasks = useTaskStore()
 const router = useRouter()
