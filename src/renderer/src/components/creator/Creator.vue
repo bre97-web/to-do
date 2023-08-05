@@ -4,17 +4,17 @@
             <p slot="header">Create</p>
 
             <FlexColLayout class="gap-2">
-                <lit-target-type :setType="(value: Type) => target.type.value = value"></lit-target-type>
+                <lit-target-type :type="target.type" :setType="(value: Type) => target.type = value"></lit-target-type>
 
                 <!-- Task -->
-                <template v-if="target.type.value === 'task'">
+                <template v-if="target.type === 'task'">
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
                     <label>
                         <BodyLarge>Collection</BodyLarge>
-                        <md-switch unselected @click="target.collectionConfig.isGroup.value = $event.target.selected"></md-switch>
+                        <md-switch @click="target.collectionConfig.isGroup = $event.target.selected"></md-switch>
                     </label>
-                    <lit-select-target-collection v-show="target.collectionConfig.isGroup.value" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
+                    <lit-select-target-collection v-show="target.collectionConfig.isGroup" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <ExpandLayout>
                         <FlexColLayout class="gap-2">
                             <md-filled-text-field
@@ -34,7 +34,7 @@
                 </template>
 
                 <!-- Goal -->
-                <template v-if="target.type.value === 'goal'">
+                <template v-if="target.type === 'goal'">
                     <md-filled-text-field
                         v-model="target.goal.title"
                         label="Title"
@@ -67,7 +67,7 @@
                 </template>
 
                 <!-- Collection -->
-                <template v-if="target.type.value === 'collection'">
+                <template v-if="target.type === 'collection'">
                     <md-filled-text-field
                         v-model="target.collectionConfig.label"
                         label="Collection Name"
@@ -86,7 +86,7 @@ import { Goal, Schedule, useGoal, useGoals } from '@/hooks/useTask'
 import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
 import ExpandLayout from '@/layouts/ExpandLayout.vue'
 import FlexColLayout from '@/layouts/FlexColLayout.vue'
@@ -102,34 +102,10 @@ onMounted(() => {
 
 const tasks = useTaskStore()
 
-type TargetType = Type
-// target的默认值，在clear函数中使用initTarget对象初始化target对象
-const initTarget = {
-    type: ref<TargetType>('task'),
-    task: {
-        title: '',
-        subtitle: '',
-        tags: [] as Tags,
-        note: '',
-        targetDate: '' as Date | null,
-        fromCollection: '' as FromCollection,
-    },
-    goalConfig: {
-        goalSchedule: 'daily' as Schedule,
-        goalCount: 1
-    },
-    goal: {
-        title: '',
-        description: ''
-    },
-    collectionConfig: {
-        label: '',
-        isGroup: ref(false),
-    },
-}
-const target = {
+
+var target = reactive({
     // 将要创建的目标类型
-    type: ref<TargetType>('task'),
+    type: 'task' as Type,
 
     // 目标类型为task时，当需要使用store的push方法时请使用useItem方法创建Item作为参数
     task: {
@@ -155,9 +131,9 @@ const target = {
     // 目标类型为collection
     collectionConfig: {
         label: '',
-        isGroup: ref<boolean>(false),
+        isGroup: false,
     },
-}
+})
 
 const taskStore = useTaskStore()
 
@@ -191,20 +167,44 @@ const createCollection = () => {
 
 /**
  * 初始化target对象
+ * 同时关闭dialog中的所有switch
  */
 const clear = () => {
-    Object.assign(target, initTarget)
+    (document.querySelector('#creatorDialog md-switch') as HTMLElement & {selected: boolean}).selected = false;
+    Object.assign(target, {
+        type: 'task',
+        task: {
+            title: '',
+            subtitle: '',
+            tags: [] as Tags,
+            note: '',
+            targetDate: '' as Date | null,
+            fromCollection: '' as FromCollection
+        },
+        goal: {
+            title: '',
+            description: ''
+        },
+        goalConfig: {
+            goalSchedule: 'daily' as Schedule,
+            goalCount: 1 as number
+        },
+        collectionConfig: {
+            label: '',
+            isGroup: false,
+        },
+    })
 }
 const cancel = () => {
     clear();
     (creatorDialog as MDDialog).open = false
 }
 const submit = () => {
-    if (target.type.value === 'task') {
+    if (target.type === 'task') {
         createTask()
-    } else if (target.type.value === 'goal') {
+    } else if (target.type === 'goal') {
         createGoal()
-    } else if (target.type.value === 'collection') {
+    } else if (target.type === 'collection') {
         createCollection()
     }
     clear();
