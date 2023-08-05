@@ -1,15 +1,13 @@
 <template>
     <div class="z-50">
-        <md-fab lowered variant="primary" :label="props.label" @click="dialog.open = true">
+        <md-fab lowered variant="primary" :label="props.label" @click="() => creatorDialog.open = true">
             <md-icon slot="icon" class="text-[var(--md-sys-color-on-primary)]">add</md-icon>
         </md-fab>
-        <Creator :dialog="dialog" :close-dialog="closeDialog"></Creator>
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import Creator from '@/components/creator/Creator.vue'
+import { MDDialog } from '@/types/MDDialog';
 
 const props = withDefaults(defineProps<{
     label?: string
@@ -17,13 +15,5 @@ const props = withDefaults(defineProps<{
     label: () => ''
 })
 
-/**
- * 控制fab按钮点击后显示的dialog窗口
- */
-const dialog = reactive<{
-    open: boolean
-}>({
-    open: false
-})
-const closeDialog = () => (dialog.open = false)
+const creatorDialog = document.querySelector('#creatorDialog') as MDDialog
 </script>

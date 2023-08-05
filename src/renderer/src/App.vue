@@ -14,6 +14,11 @@
         </RouterView>
 
         <EventSnackbar></EventSnackbar>
+
+        /**
+         * Creator Provide a ref: creatorDialog
+         */
+        <Creator></Creator>
     </div>
 </template>
 
@@ -23,6 +28,9 @@ import EventSnackbar from '@/components/EventSnackbar.vue'
 import { useRouter } from 'vue-router'
 import useTheme from '@/hooks/useTheme'
 import { onBeforeMount } from 'vue'
+import Creator from '@/components/creator/Creator.vue'
+
+
 
 const router = useRouter()
 

@@ -1,6 +1,6 @@
 <template>
     <teleport to="#app">
-        <md-dialog :open="props.dialog.open" modeless draggable transition="grow">
+        <md-dialog id="creatorDialog" modeless draggable transition="grow">
             <p slot="header">Create</p>
 
             <FlexColLayout class="gap-2">
@@ -87,17 +87,19 @@ import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useGoalStore } from '@/store/useGoalStore.ts'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
 import ExpandLayout from '@/layouts/ExpandLayout.vue'
 import FlexColLayout from '@/layouts/FlexColLayout.vue'
+import { MDDialog } from '@/types/MDDialog'
 
-const props = defineProps<{
-    dialog: {
-        open: boolean
-    }
-    closeDialog: () => void
-}>()
+/**
+ * 此组件内的dialog使用id选择器共享#creatorDialog
+ */
+var creatorDialog: null | MDDialog
+onMounted(() => {
+    creatorDialog = document.querySelector('#creatorDialog')
+})
 
 const tasks = useTaskStore()
 
@@ -196,8 +198,8 @@ const clear = () => {
     Object.assign(target, initTarget)
 }
 const cancel = () => {
-    clear()
-    props.closeDialog()
+    clear();
+    (creatorDialog as MDDialog).open = false
 }
 const submit = () => {
     if (target.type.value === 'task') {
@@ -207,7 +209,8 @@ const submit = () => {
     } else if (target.type.value === 'collection') {
         createCollection()
     }
-    clear()
-    props.closeDialog()
+    clear();
+    (creatorDialog as MDDialog).open = false
 }
 </script>
+@/types/MDDialog
