@@ -6,7 +6,7 @@
             :set-current-page="setCurrentPage"
             :current-filter="currentFilter"
             :clear-current-filter="clearCurrentFilter"
-            :tasks="store.tasks"
+            :tasks="store.getTasks"
         ></Content>
 
         <!-- ChipSet -->

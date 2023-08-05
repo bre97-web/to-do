@@ -9,7 +9,7 @@
                 </TextLayout>
             </template>
             <ListContentLayout>
-                <ListItemLayout v-for="item in e.items" :key="item.index">
+                <ListItemLayout v-for="item in e.items" :key="item.index" @click="setShareItem(item)">
                     <TextLayout>
                         <LabelLarge>
                             {{ item.title }}
@@ -56,6 +56,7 @@ import ListLayout from '@/layouts/ListLayout.vue'
 import ListItemLayout from '@/layouts/ListItemLayout.vue'
 import TextLayout from '@/layouts/TextLayout.vue'
 import ListContentLayout from '@/layouts/ListContentLayout.vue'
+import { setShareItem } from '@/scripts/taskProvider'
 
 const tasks = useTaskStore()
 const router = useRouter()

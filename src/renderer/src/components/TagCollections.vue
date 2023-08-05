@@ -7,7 +7,7 @@
                 </TextLayout>
             </template>
             <ListContentLayout>
-                <ListItemLayout v-for="e in map[1].slice(0, 5)" :key="e.index">
+                <ListItemLayout v-for="e in map[1].slice(0, 5)" :key="e.index" @click="setShareItem(e)">
                     <TextLayout>
                         <LabelLarge>
                             {{ e.title }}
@@ -46,11 +46,12 @@ import { useTaskStore } from '@/store/useTaskStore'
 import TextLayout from '@/layouts/TextLayout.vue';
 import ListItemLayout from '@/layouts/ListItemLayout.vue';
 import ListContentLayout from '@/layouts/ListContentLayout.vue';
+import { setShareItem } from '@/scripts/taskProvider';
 
 
 const tasks = useTaskStore()
 const router = useRouter()
-const tags = useTags(tasks.getAll)
+const tags = useTags(tasks.getTasks)
 </script>
 
 <style scoped>

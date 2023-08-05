@@ -45,7 +45,7 @@ You can make suggestions in issues.
 |Event Snackbars|✅|✅|❌|
 |Event Snackbars Actions|✅|✅|❌|
 |Notes|✅|✅|❌|
-|Sugguest|❌|❌|❌|
+|~~Sugguest~~|⚫|⚫|❌|
 |Startup Settings|✅|✅|❌|
 |Notify|✅|🟡|❌|
 |Avatar|✅|✅|❌|

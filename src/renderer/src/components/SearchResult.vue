@@ -95,7 +95,7 @@ const getTasks = computed<Tasks>(() => {
     /**
      * 与input进行比较得出最终结果
      */
-    taskStore.getAll.forEach((e) => {
+    taskStore.getTasks.forEach((e) => {
         if (e.title.toLowerCase().includes(searchStore.getKeyword.toLowerCase())) {
             results.push(e)
         }
