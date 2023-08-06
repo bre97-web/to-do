@@ -170,7 +170,9 @@ const createCollection = () => {
  * 同时关闭dialog中的所有switch
  */
 const clear = () => {
-    (document.querySelector('#creatorDialog md-switch') as HTMLElement & {selected: boolean}).selected = false;
+    if(document.querySelector('#creatorDialog md-switch')) {
+        (document.querySelector('#creatorDialog md-switch') as HTMLElement & {selected: boolean}).selected = false;
+    }
     Object.assign(target, {
         type: 'task',
         task: {
