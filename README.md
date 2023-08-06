@@ -10,7 +10,7 @@ To Do is a task management app that helps you easily keep track of your daily ta
 
 ![To-Do](./resources/todo-1280x640.png?raw=true)
 
-![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.3/total)
+![](https://img.shields.io/github/downloads/bre97-web/To-Do/v1.0.0-pre.4/total)
 
 ![](https://img.shields.io/github/last-commit/bre97-web/To-Do)
 
