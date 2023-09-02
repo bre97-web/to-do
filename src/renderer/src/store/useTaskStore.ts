@@ -3,21 +3,14 @@ import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 import moment from 'moment'
 
-export type CustomTasks = {
-    label: string
-    items: Tasks
-}
-
 export const useTaskStore = defineStore('task_store_eb3fe8', {
     state: () => ({
         tasks: [] as Tasks,
-        custom: [] as CustomTasks[],
     }),
     getters: {
         getAll: (state) => state.tasks,
         getTasks: (state) => state.tasks.filter(e => e.type === 'task'),
         getTasksIncludingGoals: (state) => state.tasks.filter(e => e.type === 'goal'),
-        getCustom: (state) => state.custom,
         getPinned: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'pinned'),
         getProcessing: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'processing'),
         getDone: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'done'),
@@ -38,8 +31,6 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
             return state.tasks.filter(e => e.progressStatus === 'done').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
         },
         getAllLabels: (state) => {
-            if(state.custom.length === 0) return []
-            return state.custom.map(e => e.label)
         },
     },
     actions: {
@@ -77,28 +68,6 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
          */
         setFromCollection(e: Task, fromCollection: FromCollection) {
             e.fromCollection = fromCollection
-        },
-
-        /**
-         * 在custom中创建一个集合，默认items为空数组
-         */
-        createCollection(label: string, items = [] as Tasks) {
-            this.custom.push({
-                label,
-                items
-            })
-        },
-
-        /**
-         * 向custom添加元素
-         */
-        insertToCollection(label: string, items: Tasks) {
-            this.custom.map(e => {
-                if(e.label === label) {
-                    e.items.push(...items)
-                }
-                return e
-            })
         },
 
         /**
