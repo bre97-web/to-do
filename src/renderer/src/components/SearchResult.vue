@@ -104,9 +104,9 @@ const getTasks = computed<Tasks>(() => {
     return results
 })
 const add = () => {
-    taskStore.push([
+    taskStore.push(
         useTask({ title: searchStore.getKeyword })
-    ])
+    )
 }
 
 /**
