@@ -155,7 +155,7 @@ const createGoal = () => {
     taskStore.push(useGoals({
         goalList: goalsList,
         schedule: target.goalConfig.goalSchedule
-    })·)
+    }))
 }
 
 
