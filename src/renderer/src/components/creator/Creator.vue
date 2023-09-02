@@ -65,14 +65,6 @@
                         @input="target.goalConfig.goalCount = $event.target.value"
                     ></md-filled-text-field>
                 </template>
-
-                <!-- Collection -->
-                <template v-if="target.type === 'collection'">
-                    <md-filled-text-field
-                        v-model="target.collectionConfig.label"
-                        label="Collection Name"
-                    ></md-filled-text-field>
-                </template>
             </FlexColLayout>
 
             <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
@@ -87,7 +79,7 @@ import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
 import { onMounted, reactive } from 'vue'
-import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
+import { Tags, Type, Date, FromCollection, useTask } from '@/hooks/useTask'
 import ExpandLayout from '@/layouts/ExpandLayout.vue'
 import FlexColLayout from '@/layouts/FlexColLayout.vue'
 import { MDDialog } from '@/types/MDDialog'
@@ -137,11 +129,17 @@ var target = reactive({
 
 const taskStore = useTaskStore()
 
+/**
+ * 向taskStore插入新的数据
+ */
 const createTask = () => {
     if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
-        taskStore.insertToCollection(target.task.fromCollection, [useCollection(target.task)])
+        /**
+         * 如果目标集合不为默认且不为空字符串，则作为用户自定义集合的元素
+         */
+        // do something
     }
-    taskStore.push([useTask(target.task)])
+    taskStore.push(useTask(target.task))
 }
 const createGoal = () => {
     let goalsList: Goal[] = []
@@ -153,15 +151,11 @@ const createGoal = () => {
             })
         )
     }
-    let goals = useGoals({
+
+    taskStore.push(useGoals({
         goalList: goalsList,
         schedule: target.goalConfig.goalSchedule
-    })
-
-    taskStore.push([goals])
-}
-const createCollection = () => {
-    taskStore.createCollection(target.collectionConfig.label)
+    })·)
 }
 
 
@@ -206,8 +200,6 @@ const submit = () => {
         createTask()
     } else if (target.type === 'goal') {
         createGoal()
-    } else if (target.type === 'collection') {
-        createCollection()
     }
     clear();
     (creatorDialog as MDDialog).open = false

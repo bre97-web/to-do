@@ -37,8 +37,8 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
         /** 
          * 向tasks数组添加元素
          */
-        push(e: Tasks) {
-            this.tasks.push(...e)
+        push(e: Task) {
+            this.tasks.push(e)
         },
 
         /**
