@@ -14,7 +14,7 @@
                         <BodyLarge>Collection</BodyLarge>
                         <md-switch @click="target.collectionConfig.isGroup = $event.target.selected"></md-switch>
                     </label>
-                    <lit-select-target-collection v-show="target.collectionConfig.isGroup" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
+                    <lit-select-target-collection v-show="target.collectionConfig.isGroup" :collections="[]" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <ExpandLayout>
                         <FlexColLayout class="gap-2">
                             <md-filled-text-field
