@@ -13,6 +13,7 @@ export type Steps = Step[]
 export type Index = number
 export type Date = string
 export type Type = 'task' | 'goal' | 'collection'
+export type DefaultCollection = 'processing' | 'pinned' | 'done'
 export type FromCollection = string
 export type ProgressStatus = 'processing' | 'pinned' | 'done'
 /**
@@ -149,7 +150,7 @@ export interface Task {
     /**
      * 如果type为collection，fromCollection应该不为null
      */
-    fromCollection?: FromCollection
+    fromCollection?:  DefaultCollection | FromCollection
 
     /**
      * 如果type为goal，goalSteps应该不为null
@@ -186,6 +187,7 @@ export function useTask({
     tags = [],
     steps = [],
     targetDate = null,
+    fromCollection = 'processing',
 }: {
     title: string
     subtitle?: string
@@ -193,6 +195,7 @@ export function useTask({
     tags?: Tags
     steps?: Steps
     targetDate?: Date | null
+    fromCollection?: DefaultCollection | FromCollection
 }): Task {
     return {
         title: title,
@@ -205,6 +208,7 @@ export function useTask({
         targetDate: targetDate,
         type: 'task',
         progressStatus: 'processing',
+        fromCollection: fromCollection
     }
 }
 
