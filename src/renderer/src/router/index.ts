@@ -6,7 +6,6 @@ import Info from '@/views/moreInformation.vue'
 import Profile from '@/views/profile.vue'
 import Goals from '@/views/goals.vue'
 import Dashboard from '@/views/dashboard.vue'
-import Collection from '@/views/collection.vue'
 import StartupSetting from '@/views/startupSetting.vue'
 import Test from '@/views/test.vue'
 
@@ -41,16 +40,6 @@ const routes: RouteRecordRaw[] = [
                 path: '/profile',
                 components: {
                     MainView: Profile
-                }
-            },
-            /**
-             * 分组
-             */
-            {
-                name: 'Collections',
-                path: '/collection',
-                components: {
-                    MainView: Collection
                 }
             },
             /**
