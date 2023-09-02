@@ -12,7 +12,7 @@ export type Step = {
 export type Steps = Step[]
 export type Index = number
 export type Date = string
-export type Type = 'task' | 'goal' | 'collection'
+export type Type = 'task' | 'goal'
 export type DefaultCollection = 'processing' | 'pinned' | 'done'
 export type FromCollection = string
 export type ProgressStatus = 'processing' | 'pinned' | 'done'
@@ -209,38 +209,6 @@ export function useTask({
         type: 'task',
         progressStatus: 'processing',
         fromCollection: fromCollection
-    }
-}
-
-export function useCollection({
-    fromCollection,
-    title,
-    subtitle = '',
-    note = '',
-    tags = [],
-    steps = [],
-    targetDate = null,
-}: {
-    fromCollection: string
-    title: string
-    subtitle?: string
-    note?: string
-    tags?: Tags
-    steps?: Steps
-    targetDate?: Date | null
-}): Task {
-    return {
-        title: title,
-        subtitle: subtitle,
-        note: note,
-        tags: tags,
-        steps: steps,
-        index: createIndex(),
-        createdDate: createDate(),
-        targetDate: targetDate,
-        type: 'collection',
-        progressStatus: 'processing',
-        fromCollection: fromCollection,
     }
 }
 
