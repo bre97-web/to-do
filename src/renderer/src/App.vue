@@ -27,9 +27,7 @@ import { useRouter } from 'vue-router'
 import useTheme from '@/hooks/useTheme'
 import { onBeforeMount } from 'vue'
 import CreateTaskDialog from '@/components/dialog/create-task-dialog/CreateTaskDialog.vue'
-
-
-
+    
 const router = useRouter()
 
 onBeforeMount(() => {
