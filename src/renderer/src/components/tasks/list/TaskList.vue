@@ -92,8 +92,6 @@ const props = defineProps<{
 const router = useRouter()
 
 const store = useTaskStore()
-
 </script>
 
 <style scoped></style>
-@/components/aside/taskProvider
