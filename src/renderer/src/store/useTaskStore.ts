@@ -78,16 +78,16 @@ export const useTaskStore = defineStore('task_store_eb3eb8', {
             })
         },
         setCompelete(e: Task) {
-            if(e.goalSteps === undefined) return
+            if(e.goalSteps === undefined || e.goalSteps === null) return
             e.goalSteps.currentIndex = e.goalSteps.maxIndex
             e.goalSteps.compelete = true
         },
         geuCurrentDate(e: Task): string {
-            return e.goalSteps !== undefined ? moment(e.createdDate, 'YYYY-MM-DD')
+            if(e.goalSteps === undefined || e.goalSteps === null) return moment().format('YYYY-MM-DD')
+
+            return moment(e.createdDate, 'YYYY-MM-DD')
                 .add((e.goalSteps.currentIndex + 1) * (e.goalSteps.schedule === 'daily' ? 1 : e.goalSteps.schedule === 'monthly' ? 30 : 7), 'd')
                 .format('YYYY-MM-DD')
-                :
-                moment().format('YYYY-MM-DD')
         },
 
         getTasksByCollection(collection: string) {
