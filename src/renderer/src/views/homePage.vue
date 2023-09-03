@@ -14,8 +14,7 @@
 
             <div>
                 <Overview v-if="currentCollection === 'overview'"></Overview>
-                <TaskList v-else :tasks="tasks.getTasksByCollection(currentCollection)">
-                </TaskList>
+                <TaskList v-else :tasks="tasks.getTasksByCollection(currentCollection)"></TaskList>
             </div>
 
             <Teleport to="#app">
@@ -72,22 +71,4 @@ const submitDialog = async () => {
     }))
     closeDialog()
 }
-
-
-/**
- * 当前选择的过滤标签
- */
-const currentFilter = ref<string[]>([])
-const clearCurrentFilter = () => {
-    currentFilter.value = []
-}
-const pushCurrentFilter = (e: string) => {
-    if (currentFilter.value.includes(e)) {
-        currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
-    } else {
-        currentFilter.value.push(e)
-    }
-}
-
-
 </script>
