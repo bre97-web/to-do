@@ -13,6 +13,4 @@ import TaskInjecter from './TaskInjecter.vue';
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
