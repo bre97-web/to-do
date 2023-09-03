@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 import moment from 'moment'
 
-export const useTaskStore = defineStore('task_store_eb3fe8', {
+export const useTaskStore = defineStore('task_store_eb3eb8', {
     state: () => ({
         tasks: [] as Tasks,
     }),
