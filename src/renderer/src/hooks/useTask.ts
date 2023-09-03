@@ -155,7 +155,7 @@ export interface Task {
     /**
      * 如果type为goal，goalSteps应该不为null
      */
-    goalSteps?: Goals
+    goalSteps: Goals | null
 
     /**
      * 任务的处理进度
@@ -206,6 +206,7 @@ export function useTask({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
+        goalSteps: [],
         type: 'task',
         progressStatus: 'processing',
         fromCollection: fromCollection
@@ -223,7 +224,7 @@ export function useStep({ text, done = false }: { text: string; done?: boolean }
  * 创建一个Goal类型的对象
  * Goal需要添加到Goals类型的对象中
  */
-export function useGoal({ title, description = '' }: { title: string; description?: string }): Goal {
+export function useGoal({ title = '', description = '' }: { title?: string; description?: string }): Goal {
     return {
         index: useIndex(),
         title: title,
@@ -259,7 +260,7 @@ export function useGoals({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
-        fromCollection: 'undefined',
+        fromCollection: 'undefined in goal',
         type: 'goal',
         progressStatus: 'processing',
         goalSteps: {

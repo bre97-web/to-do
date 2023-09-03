@@ -21,10 +21,14 @@
                     <p slot="header">New Collection</p>
 
                     <form id="createCollectionDialogForm" action="dialog">
-                        <md-filled-text-field label="Collection Name"></md-filled-text-field>
+                        <md-filled-text-field
+                            autofocus
+                            label="Collection Name"
+                            supportingText="The collection will be removed if there is nothing there in the collection."
+                        ></md-filled-text-field>
                     </form>
 
-                    <div slot="footer" class="gap-2">
+                    <div slot="footer" class="flex gap-2">
                         <md-text-button @click="closeDialog">Cancle</md-text-button>
                         <md-tonal-button @click="submitDialog">Apply</md-tonal-button>
                     </div>
@@ -57,6 +61,7 @@ const openDialog = async () => {
     await setDialogOpen(true)
 }
 const closeDialog = async () => {
+    (document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value = ''
     await setDialogOpen(false)
 }
 const submitDialog = async () => {    
@@ -65,5 +70,6 @@ const submitDialog = async () => {
         fromCollection: (document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value
     }))
     closeDialog()
+    setCurrentCollection((document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value)
 }
 </script>

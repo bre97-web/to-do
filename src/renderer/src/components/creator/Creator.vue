@@ -88,9 +88,6 @@ onMounted(() => {
     creatorDialog = document.querySelector('#creatorDialog')
 })
 
-const tasks = useTaskStore()
-
-
 var target = reactive({
     // 将要创建的目标类型
     type: 'task' as Type,
