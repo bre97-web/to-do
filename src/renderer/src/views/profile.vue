@@ -20,14 +20,11 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import ProfileCard from '@/components/ProfileCard.vue'
+import ProfileCard from '@/components/profile/ProfileCard.vue'
 import PageLayout from '@/layouts/PageLayout.vue';
 import PageContentLayout from '@/layouts/PageContentLayout.vue'
 import ListContentLayout from '@/layouts/ListContentLayout.vue';
 
-/**
- * 路由
- */
 const router = useRouter()
 </script>
 

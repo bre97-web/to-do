@@ -16,20 +16,18 @@
         <EventSnackbar></EventSnackbar>
 
         <!-- Creator Provide a ref: creatorDialog -->
-        <Creator></Creator>
+        <CreateTaskDialog></CreateTaskDialog>
     </div>
 </template>
 
 <script lang="ts" setup>
 import 'ninja-keys'
-import EventSnackbar from '@/components/EventSnackbar.vue'
+import EventSnackbar from '@/components/snackbar/EventSnackbar.vue'
 import { useRouter } from 'vue-router'
 import useTheme from '@/hooks/useTheme'
 import { onBeforeMount } from 'vue'
-import Creator from '@/components/creator/Creator.vue'
-
-
-
+import CreateTaskDialog from '@/components/dialog/create-task-dialog/CreateTaskDialog.vue'
+    
 const router = useRouter()
 
 onBeforeMount(() => {

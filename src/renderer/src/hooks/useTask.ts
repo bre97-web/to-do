@@ -16,6 +16,7 @@ export type Type = 'task' | 'goal'
 export type DefaultCollection = 'processing' | 'pinned' | 'done'
 export type FromCollection = string
 export type ProgressStatus = 'processing' | 'pinned' | 'done'
+
 /**
  * Goal类型的对象应该被存储在Goals类型的容器中
  * 通过useGoal()来创建一个Goal类型的对象,将其装载至useGoals()
@@ -36,10 +37,12 @@ export type Goal = {
      */
     description?: string
 }
+
 /**
  * Goals中的每个Goal相隔的距离
  */
 export type Schedule = 'daily' | 'weekly' | 'monthly'
+
 /**
  * Goals类型的对象存储Goal类型的对象
  */
@@ -163,6 +166,7 @@ export interface Task {
      */
     progressStatus: ProgressStatus
 }
+
 export type Tasks = Task[]
 
 /**
@@ -206,7 +210,7 @@ export function useTask({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
-        goalSteps: [],
+        goalSteps: null,
         type: 'task',
         progressStatus: 'processing',
         fromCollection: fromCollection

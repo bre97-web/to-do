@@ -26,10 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import ProfilePanel from '@/components/ProfilePanel.vue'
-import SystemPanel from '@/components/SystemPanel.vue'
-import ThemePanel from '@/components/ThemePanel.vue'
-import ShortcutPanel from '@/components/ShortcutPanel.vue'
+import ProfilePanel from '@/components/dashboard/ProfilePanel.vue'
+import SystemPanel from '@/components/dashboard/SystemPanel.vue'
+import ThemePanel from '@/components/dashboard/ThemePanel.vue'
+import ShortcutPanel from '@/components/dashboard/ShortcutPanel.vue'
 import PageWithBackLayout from '@/layouts/PageWithBackLayout.vue'
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 </script>
