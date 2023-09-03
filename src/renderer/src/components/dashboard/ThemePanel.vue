@@ -9,7 +9,6 @@
                 <BodySmall class="italic text-gray-500">深色模式将会禁用部分效果。</BodySmall>
                 <DarkSwitch></DarkSwitch>
             </div>
-
             <div>
                 <LabelLarge>Primary color</LabelLarge>
                 <ThemePicker></ThemePicker>
