@@ -31,8 +31,7 @@ import { getRouterList } from './navigation'
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-
 const routerList = getRouterList()
 </script>
 
-<style scoped></style>@/components/navigation/navigation
+<style scoped></style>
