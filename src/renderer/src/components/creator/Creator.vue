@@ -106,7 +106,7 @@ var target = reactive({
         tags: [] as Tags,
         note: '',
         targetDate: '' as Date | null,
-        fromCollection: '' as FromCollection
+        fromCollection: 'processing' as FromCollection
     },
 
     // 目标类型为goal
@@ -175,7 +175,7 @@ const clear = () => {
             tags: [] as Tags,
             note: '',
             targetDate: '' as Date | null,
-            fromCollection: '' as FromCollection
+            fromCollection: 'processing' as FromCollection
         },
         goal: {
             title: '',

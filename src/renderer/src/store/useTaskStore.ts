@@ -8,28 +8,7 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
         tasks: [] as Tasks,
     }),
     getters: {
-        getAll: (state) => state.tasks,
-        getTasks: (state) => state.tasks.filter(e => e.type === 'task'),
-        getTasksIncludingGoals: (state) => state.tasks.filter(e => e.type === 'goal'),
-        getPinned: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'pinned'),
-        getProcessing: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'processing'),
-        getDone: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'done'),
-        getAllTags: (state) => {
-            if(state.tasks.length === 0) return []
-            return state.tasks.map(e => e.tags)?.reduce((prev, next) => [...prev, ...next])
-        },
-        getProcessingTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'processing').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'processing').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
-        getPinnedTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'pinned').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'pinned').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
-        getDoneTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'done').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'done').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
+        getAllTasks: (state) => state.tasks,
     },
     actions: {
         /** 
@@ -107,7 +86,11 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
                 .format('YYYY-MM-DD')
                 :
                 moment().format('YYYY-MM-DD')
-        }
+        },
+
+        getTasksByCollection(collection: string) {
+            return this.tasks.filter(e => e.fromCollection === collection)
+        },
     },
     persist: true
 })

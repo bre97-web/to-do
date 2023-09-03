@@ -26,7 +26,7 @@ import { computed, ref } from 'vue'
 import Chips from '@/components/TaskTagChips.vue'
 import { useTaskStore } from '@/store/useTaskStore'
 import PageLayout from '@/layouts/PageLayout.vue'
-import { ProgressStatus } from '@/hooks/useTask'
+import { DefaultCollection, ProgressStatus } from '@/hooks/useTask'
 
 const store = useTaskStore()
 
@@ -37,7 +37,7 @@ const store = useTaskStore()
  *  pinned
  *  done
  */
-type PageName = ProgressStatus | 'overview'
+type PageName = DefaultCollection | 'overview'
 const currentPage = ref<PageName>('overview')
 const setCurrentPage = (e: PageName) => {
     currentPage.value = e

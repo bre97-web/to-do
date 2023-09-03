@@ -1,52 +1,71 @@
 <template>
-    <TabGroup as="div" class="relative w-full">
-        <TabList as="md-tabs" class="sticky top-[0px] z-50">
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('overview')">Overview</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('processing')">Processing</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('pinned')">Pinned</Tab>
-            <Tab as="md-tab" @click="setTargetTypeWithResetFilter('done')">Done</Tab>
-        </TabList>
-        <TabPanels>
-            <TabPanel>
-                <Overview></Overview>
-            </TabPanel>
-            <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="tasks.getProcessing"></Result>
-            </TabPanel>
-            <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="tasks.getPinned"></Result>
-            </TabPanel>
-            <TabPanel>
-                <Result :itemsFilted="props.currentFilter" :items="tasks.getDone"></Result>
-            </TabPanel>
-        </TabPanels>
-    </TabGroup>
+    <div class="relative w-full">
+        <md-tabs class="sticky top-[0px] z-50">
+            <md-tab>Overview</md-tab>
+            <md-tab v-for="(e, index) in collections" :key="index" @click="setCurrentCollection(e)">{{ e }}</md-tab>
+            <md-tab inline-icon @click="openDialog">
+                <md-icon slot="icon">add</md-icon>
+                New
+            </md-tab>
+        </md-tabs>
+
+        <div>
+            <Overview></Overview>
+            <ul>
+                <li v-for="e in tasks.getTasksByCollection(currentCollection)" :key="e.index">
+                    {{ e.title }}
+                    {{ e.index }}
+                </li>
+            </ul>
+            <!-- <Result :itemsFilted="props.currentFilter" :items="tasks.getDone"></Result> -->
+        </div>
+
+        <Teleport to="#app">
+            <md-dialog id="createCollectionDialog" draggable modeless transition="grow">
+                <p slot="header">New Collection</p>
+
+                <form id="qwe" action="dialog">
+                    <md-filled-text-field label="Collection Name"></md-filled-text-field>
+                </form>
+
+                <div slot="footer" class="gap-2">
+                    <md-text-button @click="closeDialog">Cancle</md-text-button>
+                    <md-tonal-button @click="closeDialog">Cancle</md-tonal-button>
+                </div>
+            </md-dialog>
+        </Teleport>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
-import Result from '@/components/TaskFiltedShower.vue'
 import Overview from '@/components/TaskOverview.vue'
-import { ProgressStatus } from '@/hooks/useTask';
 import { useTaskStore } from '@/store/useTaskStore';
+import { onMounted, ref, watch } from 'vue';
 
-type PageName = ProgressStatus | 'overview'
-const props = defineProps<{
-    currentPage: PageName
-    setCurrentPage: (e: PageName) => void
-    currentFilter: string[]
-    clearCurrentFilter: () => void
-}>()
 
 const tasks = useTaskStore()
 
 /**
- * 当当前显示的Task类型变化后，清空currentFilter
+ * 
  */
-const setTargetTypeWithResetFilter = (e: PageName) => {
-    props.setCurrentPage(e)
-    props.clearCurrentFilter()
+const collections = ref([
+    'processing',
+    'pinned',
+    'done',
+])
+const currentCollection = ref(collections.value[0])
+const setCurrentCollection = (e: string) => currentCollection.value = e
+
+const setDialogOpen = async (e: boolean) => {
+    (document.getElementById('createCollectionDialog') as HTMLElement & { show: () => void, close: () => void })[e ? 'show' : 'close']()
 }
+const openDialog = async () => {
+    await setDialogOpen(true)
+}
+const closeDialog = async () => {
+    await setDialogOpen(false)
+}
+
 </script>
 
 <style scoped></style>

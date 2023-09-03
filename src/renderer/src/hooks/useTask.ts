@@ -150,7 +150,7 @@ export interface Task {
     /**
      * 如果type为collection，fromCollection应该不为null
      */
-    fromCollection?:  DefaultCollection | FromCollection
+    fromCollection:  DefaultCollection | FromCollection
 
     /**
      * 如果type为goal，goalSteps应该不为null
@@ -195,7 +195,7 @@ export function useTask({
     tags?: Tags
     steps?: Steps
     targetDate?: Date | null
-    fromCollection?: DefaultCollection | FromCollection
+    fromCollection: DefaultCollection | FromCollection
 }): Task {
     return {
         title: title,
