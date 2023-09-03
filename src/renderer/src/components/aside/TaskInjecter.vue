@@ -7,9 +7,7 @@
             <GoalAsideInjectPage :goal="task"></GoalAsideInjectPage>
         </template>
     </div>
-    <div v-else>
-        <AllDone></AllDone>
-    </div>
+    <AllDone v-else></AllDone>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +19,4 @@ import AllDone from '@/components/tasks/list/internal/AllDone.vue';
 const task = getShareItem()
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
