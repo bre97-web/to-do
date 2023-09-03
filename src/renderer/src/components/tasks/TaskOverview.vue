@@ -55,4 +55,3 @@ const TasksList = ({ element }: { element: Tasks }) => (
 const AllTasks = () => <TasksList element={[...store.getTasks.filter(e => e.progressStatus === 'pinned'), ...store.getTasks.filter(e => e.progressStatus === 'processing')]}></TasksList>
 const NeedDoTasks = () => <TasksList element={targetDateTasks.value}></TasksList>
 </script>
-@/components/aside/taskProvider
