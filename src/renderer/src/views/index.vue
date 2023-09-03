@@ -1,8 +1,6 @@
 <template>
     <div class="relative container mx-auto">
-
         <div class="flex flex-col md:flex-row-reverse h-screen">
-            
             <aside class="hidden lg:block w-64 rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] m-0 md:m-4 overflow-scroll">
                 <Aside></Aside>
             </aside>
@@ -43,6 +41,6 @@ import { computed } from 'vue';
 /**
  * 控制类，当event不为空时需要将元素偏移，保证元素不被EventSnackbar遮挡
  */
- const event = useEventStore()
+const event = useEventStore()
 const isNullEvent = computed<boolean>(() => event.getEvent === null)
 </script>
