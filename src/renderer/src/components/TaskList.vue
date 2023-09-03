@@ -3,7 +3,8 @@
         <template v-if="props.tasks.length !== 0">
 
             <!-- PINNED -->
-            <md-list>
+            <md-list v-show="props.tasks.filter(e => e.progressStatus === 'pinned').length !== 0">
+                <LabelLarge class="ml-4">Pinned</LabelLarge>
                 <md-list-item 
                     v-for="e in props.tasks.filter(e => e.progressStatus === 'pinned')" 
                     :key="e.index"
@@ -27,7 +28,8 @@
             </md-list>
 
             <!-- PROCESSING -->
-            <md-list>
+            <md-list v-show="props.tasks.filter(e => e.progressStatus === 'processing').length !== 0">
+                <LabelLarge class="ml-4">Processing</LabelLarge>
                 <md-list-item 
                     v-for="e in props.tasks.filter(e => e.progressStatus === 'processing')" 
                     :key="e.index"
@@ -51,7 +53,8 @@
             </md-list>
 
             <!-- DONE -->
-            <md-list>
+            <md-list v-show="props.tasks.filter(e => e.progressStatus === 'done').length !== 0">
+                <LabelLarge class="ml-4">Completed</LabelLarge>
                 <md-list-item
                     v-for="e in props.tasks.filter(e => e.progressStatus === 'done')" 
                     :key="e.index"
