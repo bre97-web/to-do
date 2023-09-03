@@ -14,7 +14,7 @@
                 "
                 @click="setShareItem(e)"
             >
-                <!-- 下一步按钮 -->
+                <!-- Next Step Button -->
                 <div slot="start" class="ml-2">
                     <md-standard-icon-button
                         slot="start"
@@ -26,7 +26,7 @@
                     </md-standard-icon-button>
                 </div>
 
-                <!-- 删除按钮 -->
+                <!-- Remove Button -->
                 <div slot="end" class="flex gap-2 items-center justify-end">
                     <LabelLarge>
                         {{
@@ -52,5 +52,3 @@ import { setShareItem } from '@/components/aside/taskProvider';
 
 const tasks = useTaskStore()
 </script>
-
-@/components/aside/taskProvider
