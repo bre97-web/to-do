@@ -24,6 +24,7 @@ const Title = () => (
 )
 
 const userStore = useUserStore()
+    
 const Avatar = () => (
     <div class="flex-none rounded-full overflow-clip border w-10 h-10 flex items-center justify-center">
         <h1>{userStore.getName[0]}</h1>
