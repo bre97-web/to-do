@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import { MDDialog } from '@/types/MDDialog';
 
-
 const creatorDialog = document.querySelector('#creatorDialog') as MDDialog
 </script>
 
