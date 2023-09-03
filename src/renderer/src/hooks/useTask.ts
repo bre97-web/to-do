@@ -259,6 +259,7 @@ export function useGoals({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
+        fromCollection: 'undefined',
         type: 'goal',
         progressStatus: 'processing',
         goalSteps: {

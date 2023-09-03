@@ -191,7 +191,7 @@ const updateStoreValue = (e: Task): Task => {
  * 同步获取tasks数据的tags元素
  */
 watch(task, () => {
-    store.tasks = store.getAll.map(updateStoreValue)
+    store.tasks = store.getTasks.map(updateStoreValue)
 })
 </script>
 

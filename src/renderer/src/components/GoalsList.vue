@@ -1,8 +1,8 @@
 <template>
     <div>
-        <template v-if="tasks.getTasksIncludingGoals.length !== 0">
+        <template v-if="tasks.getGoals.length !== 0">
             <md-item>
-                <template v-for="e in tasks.getTasksIncludingGoals">
+                <template v-for="e in tasks.getGoals">
                     <md-list-item
                         v-if="e.type === 'goal' && e.goalSteps !== undefined"
                         :key="e.index"
