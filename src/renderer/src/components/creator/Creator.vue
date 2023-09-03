@@ -10,11 +10,7 @@
                 <template v-if="target.type === 'task'">
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
-                    <label>
-                        <BodyLarge>Collection</BodyLarge>
-                        <md-switch @click="target.collectionConfig.isGroup = $event.target.selected"></md-switch>
-                    </label>
-                    <lit-select-target-collection v-show="target.collectionConfig.isGroup" :collections="[]" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
+                    <lit-select-target-collection :collections="taskStore.getCollections" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <ExpandLayout>
                         <FlexColLayout class="gap-2">
                             <md-filled-text-field
@@ -133,12 +129,6 @@ const taskStore = useTaskStore()
  * 向taskStore插入新的数据
  */
 const createTask = () => {
-    if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
-        /**
-         * 如果目标集合不为默认且不为空字符串，则作为用户自定义集合的元素
-         */
-        // do something
-    }
     taskStore.push(useTask(target.task))
 }
 const createGoal = () => {

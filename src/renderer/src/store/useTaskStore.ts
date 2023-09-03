@@ -10,7 +10,7 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
     getters: {
         getTasks: (state) => state.tasks.filter(e => e.type === 'task'),
         getGoals: (state) => state.tasks.filter(e => e.type === 'goal'),
-        getCollections: (state) => state.tasks.filter(e => e.type === 'task').map(e => e.fromCollection),
+        getCollections: (state) => [...new Set(state.tasks.filter(e => e.type === 'task').map(e => e.fromCollection))],
     },
     actions: {
         /** 

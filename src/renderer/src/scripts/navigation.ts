@@ -8,11 +8,6 @@ const routerList = [
     useNavigate('/dashboard', 'Dashboard', 'dashboard', false),
 ]
 
-const showCreatorFabAllowRouterList = [
-    '/home',
-    '/goals',
-]
-
 export const currentIndex = () => {
     const router = useRouter()
     const currentUrl = router.currentRoute.value.path
@@ -24,4 +19,3 @@ export const currentIndex = () => {
     return 0
 }
 export const getRouterList = () => routerList
-export const getCreatorFabAllowRouterList = () => showCreatorFabAllowRouterList

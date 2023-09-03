@@ -1,6 +1,5 @@
 <template>
     <PageLayout>
-
         <div class="relative w-full">
             <md-tabs class="sticky top-[0px] z-50">
                 <md-tab @click="setCurrentCollection('overview')">Overview</md-tab>
@@ -32,9 +31,6 @@
                 </md-dialog>
             </Teleport>
         </div>
-
-
-        <!-- ChipSet -->
     </PageLayout>
 </template>
 
@@ -51,7 +47,6 @@ const tasks = useTaskStore()
 /**
  * overview是一个特殊的集合，它不做为tasks中的fromCollection过滤目标
  */
-// const collections = 
 const currentCollection = ref('overview')
 const setCurrentCollection = (e: string) => currentCollection.value = e
 
