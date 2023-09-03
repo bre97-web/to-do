@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { getShareItem } from '@/scripts/taskProvider';
+import { getShareItem } from './taskProvider';
 import TaskAsideInjectPage from './TaskAsideInjectPage.vue';
 import GoalAsideInjectPage from './GoalAsideInjectPage.vue';
 import AllDone from '@/components/tasks/list/internal/AllDone.vue';

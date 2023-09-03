@@ -82,7 +82,7 @@ import { Tasks } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useRouter } from 'vue-router'
 import AllDone from '@/components/tasks/list/internal/AllDone.vue'
-import { setShareItem } from '@/scripts/taskProvider';
+import { setShareItem } from '@/components/aside/taskProvider';
 import PageLayout from '@/layouts/PageLayout.vue';
 
 const props = defineProps<{
@@ -96,3 +96,4 @@ const store = useTaskStore()
 </script>
 
 <style scoped></style>
+@/components/aside/taskProvider

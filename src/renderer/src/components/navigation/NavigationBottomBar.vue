@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { getRouterList, currentIndex } from '@/scripts/navigation'
+import { getRouterList, currentIndex } from './navigation'
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -19,4 +19,4 @@ const router = useRouter()
 const routerList = getRouterList()
 </script>
 
-<style scoped></style>
+<style scoped></style>@/components/navigation/navigation

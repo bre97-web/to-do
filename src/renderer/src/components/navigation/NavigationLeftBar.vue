@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import CreateTaskDialogOpenButton from '@/components/dialog/create-task-dialog/CreateTaskDialogOpenButton.vue'
-import { getRouterList } from '@/scripts/navigation'
+import { getRouterList } from './navigation'
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -35,4 +35,4 @@ const router = useRouter()
 const routerList = getRouterList()
 </script>
 
-<style scoped></style>
+<style scoped></style>@/components/navigation/navigation

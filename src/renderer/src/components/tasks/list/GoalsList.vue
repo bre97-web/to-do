@@ -48,8 +48,9 @@
 <script lang="ts" setup>
 import AllDone from '@/components/tasks/list/internal/AllDone.vue';
 import { useTaskStore } from '@/store/useTaskStore'
-import { setShareItem } from '@/scripts/taskProvider';
+import { setShareItem } from '@/components/aside/taskProvider';
 
 const tasks = useTaskStore()
 </script>
 
+@/components/aside/taskProvider

@@ -16,7 +16,7 @@
 <script setup lang="tsx">
 import { useDate } from '@/hooks/useDate'
 import { Task, Tasks } from '@/hooks/useTask'
-import { setShareItem } from '@/scripts/taskProvider';
+import { setShareItem } from '@/components/aside/taskProvider';
 import { useTaskStore } from '@/store/useTaskStore'
 import { computed } from 'vue'
 
@@ -55,3 +55,4 @@ const TasksList = ({ element }: { element: Tasks }) => (
 const AllTasks = () => <TasksList element={[...store.getTasks.filter(e => e.progressStatus === 'pinned'), ...store.getTasks.filter(e => e.progressStatus === 'processing')]}></TasksList>
 const NeedDoTasks = () => <TasksList element={targetDateTasks.value}></TasksList>
 </script>
+@/components/aside/taskProvider
