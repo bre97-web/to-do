@@ -18,7 +18,7 @@ export default class extends LitElement {
     public override render(): TemplateResult<1> {
         return html`
             <md-outlined-select label="Collection" id="selector">
-                <md-select-option disabled value="none" headline="Select a Collection"></md-select-option>
+                <md-select-option disabled value="none" headline="processing (default)"></md-select-option>
                 ${this.collections.map(e => html`
                     <md-select-option
                         @click=${() => this.setCurrentCollection(e)}

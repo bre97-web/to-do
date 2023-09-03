@@ -4,15 +4,8 @@ import { useRouter } from "vue-router";
 const routerList = [
     useNavigate('/home', 'Home', 'home'),
     useNavigate('/goals', 'Goals', 'flag'),
-    useNavigate('/collection', 'Collections', 'workspaces'),
     useNavigate('/profile', 'Profile', 'person'),
     useNavigate('/dashboard', 'Dashboard', 'dashboard', false),
-]
-
-const showCreatorFabAllowRouterList = [
-    '/home',
-    '/goals',
-    '/collection',
 ]
 
 export const currentIndex = () => {
@@ -26,4 +19,3 @@ export const currentIndex = () => {
     return 0
 }
 export const getRouterList = () => routerList
-export const getCreatorFabAllowRouterList = () => showCreatorFabAllowRouterList

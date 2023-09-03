@@ -12,7 +12,8 @@ export type Step = {
 export type Steps = Step[]
 export type Index = number
 export type Date = string
-export type Type = 'task' | 'goal' | 'collection'
+export type Type = 'task' | 'goal'
+export type DefaultCollection = 'processing' | 'pinned' | 'done'
 export type FromCollection = string
 export type ProgressStatus = 'processing' | 'pinned' | 'done'
 /**
@@ -149,12 +150,12 @@ export interface Task {
     /**
      * 如果type为collection，fromCollection应该不为null
      */
-    fromCollection?: FromCollection
+    fromCollection:  DefaultCollection | FromCollection
 
     /**
      * 如果type为goal，goalSteps应该不为null
      */
-    goalSteps?: Goals
+    goalSteps: Goals | null
 
     /**
      * 任务的处理进度
@@ -186,6 +187,7 @@ export function useTask({
     tags = [],
     steps = [],
     targetDate = null,
+    fromCollection = 'processing',
 }: {
     title: string
     subtitle?: string
@@ -193,6 +195,7 @@ export function useTask({
     tags?: Tags
     steps?: Steps
     targetDate?: Date | null
+    fromCollection: DefaultCollection | FromCollection
 }): Task {
     return {
         title: title,
@@ -203,40 +206,10 @@ export function useTask({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
+        goalSteps: [],
         type: 'task',
         progressStatus: 'processing',
-    }
-}
-
-export function useCollection({
-    fromCollection,
-    title,
-    subtitle = '',
-    note = '',
-    tags = [],
-    steps = [],
-    targetDate = null,
-}: {
-    fromCollection: string
-    title: string
-    subtitle?: string
-    note?: string
-    tags?: Tags
-    steps?: Steps
-    targetDate?: Date | null
-}): Task {
-    return {
-        title: title,
-        subtitle: subtitle,
-        note: note,
-        tags: tags,
-        steps: steps,
-        index: createIndex(),
-        createdDate: createDate(),
-        targetDate: targetDate,
-        type: 'collection',
-        progressStatus: 'processing',
-        fromCollection: fromCollection,
+        fromCollection: fromCollection
     }
 }
 
@@ -251,7 +224,7 @@ export function useStep({ text, done = false }: { text: string; done?: boolean }
  * 创建一个Goal类型的对象
  * Goal需要添加到Goals类型的对象中
  */
-export function useGoal({ title, description = '' }: { title: string; description?: string }): Goal {
+export function useGoal({ title = '', description = '' }: { title?: string; description?: string }): Goal {
     return {
         index: useIndex(),
         title: title,
@@ -287,6 +260,7 @@ export function useGoals({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
+        fromCollection: 'undefined in goal',
         type: 'goal',
         progressStatus: 'processing',
         goalSteps: {

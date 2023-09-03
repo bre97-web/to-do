@@ -23,7 +23,7 @@ import { computed } from 'vue'
 const store = useTaskStore()
 const targetDateTasks = computed(() => {
     const today = useDate()
-    return [...store.getPinned, ...store.getProcessing].filter((e) => e.targetDate === today)
+    return [...store.getTasks.filter(e => e.progressStatus === 'pinned'), ...store.getTasks.filter(e => e.progressStatus === 'processing')].filter((e) => e.targetDate === today)
 })
 
 const TaskItem = ({ item }: { item: Task }) => (
@@ -52,6 +52,6 @@ const TasksList = ({ element }: { element: Tasks }) => (
     </div>
 )
 
-const AllTasks = () => <TasksList element={[...store.getPinned, ...store.getProcessing]}></TasksList>
+const AllTasks = () => <TasksList element={[...store.getTasks.filter(e => e.progressStatus === 'pinned'), ...store.getTasks.filter(e => e.progressStatus === 'processing')]}></TasksList>
 const NeedDoTasks = () => <TasksList element={targetDateTasks.value}></TasksList>
 </script>

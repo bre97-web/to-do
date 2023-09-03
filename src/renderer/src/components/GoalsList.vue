@@ -1,18 +1,16 @@
 <template>
     <div>
-        <template v-if="tasks.getTasksIncludingGoals.length !== 0">
-            <md-item>
-                <template v-for="e in tasks.getTasksIncludingGoals">
+            <md-item v-if="tasks.getGoals.length !== 0">
                     <md-list-item
-                        v-if="e.type === 'goal' && e.goalSteps !== undefined"
+                        v-for="e in tasks.getGoals"
                         :key="e.index"
                         :headline="
-                            e.goalSteps.compelete
-                                ? e.goalSteps.goals[e.goalSteps.maxIndex !== 0 ? e.goalSteps.maxIndex - 1 : 0].title
-                                : e.goalSteps.goals[e.goalSteps.currentIndex].title
+                            e?.goalSteps?.compelete
+                                ? e?.goalSteps?.goals[e.goalSteps.maxIndex !== 0 ? e.goalSteps.maxIndex - 1 : 0].title
+                                : e?.goalSteps?.goals[e.goalSteps.currentIndex].title
                         "
                         :supporting-text="
-                            e.goalSteps.compelete ? '' : 'Next times ' + tasks.geuCurrentDate(e)
+                            e?.goalSteps?.compelete ? '' : 'Next times ' + tasks.geuCurrentDate(e)
                         "
                         @click="setShareItem(e)"
                     >
@@ -20,10 +18,10 @@
                         <div slot="start" class="ml-2">
                             <md-standard-icon-button
                                 slot="start"
-                                :disabled="e.goalSteps.compelete"
+                                :disabled="e?.goalSteps?.compelete"
                                 @click="tasks.nextGoal(e)"
                             >
-                                <md-icon v-if="!e.goalSteps.compelete">radio_button_unchecked</md-icon>
+                                <md-icon v-if="!e?.goalSteps?.compelete">radio_button_unchecked</md-icon>
                                 <md-icon v-else>check</md-icon>
                             </md-standard-icon-button>
                         </div>
@@ -32,8 +30,8 @@
                         <div slot="end" class="flex gap-2 items-center justify-end">
                             <LabelLarge>
                                 {{
-                                    !e.goalSteps.compelete
-                                        ? `${e.goalSteps.currentIndex + 1} / ${e.goalSteps.maxIndex + 1}`
+                                    !e?.goalSteps?.compelete
+                                        ? `${e?.goalSteps?.currentIndex || 0 + 1} / ${e?.goalSteps?.maxIndex || 0 + 1}`
                                         : `Compeleted`
                                 }}
                             </LabelLarge>
@@ -42,9 +40,7 @@
                             </md-standard-icon-button>
                         </div>
                     </md-list-item>
-                </template>
                 </md-item>
-        </template>
         <template v-else>
             <AllDone></AllDone>
         </template>

@@ -1,75 +1,75 @@
 <template>
     <PageLayout>
+        <div class="relative w-full">
+            <md-tabs class="sticky top-[0px] z-50">
+                <md-tab @click="setCurrentCollection('overview')">Overview</md-tab>
+                <md-tab v-for="(e, index) in tasks.getCollections" :key="index" @click="setCurrentCollection(e)">{{ e
+                }}</md-tab>
+                <md-tab inline-icon @click="openDialog">
+                    <md-icon slot="icon">add</md-icon>
+                    New
+                </md-tab>
+            </md-tabs>
 
-        <Content
-            :current-page="currentPage"
-            :set-current-page="setCurrentPage"
-            :current-filter="currentFilter"
-            :clear-current-filter="clearCurrentFilter"
-            :tasks="store.getTasks"
-        ></Content>
+            <div>
+                <Overview v-if="currentCollection === 'overview'"></Overview>
+                <TaskList v-else :tasks="tasks.getTasksByCollection(currentCollection)"></TaskList>
+            </div>
 
-        <!-- ChipSet -->
-        <Chips
-            v-if="currentPage !== 'overview' && tags.length !== 0"
-            :current-filter="currentFilter"
-            :push-current-filter="pushCurrentFilter"
-            :clear-current-filter="clearCurrentFilter"
-            :get-tags="tags"
-        ></Chips>
+            <Teleport to="#app">
+                <md-dialog id="createCollectionDialog" draggable modeless transition="grow">
+                    <p slot="header">New Collection</p>
+
+                    <form id="createCollectionDialogForm" action="dialog">
+                        <md-filled-text-field
+                            autofocus
+                            label="Collection Name"
+                            supportingText="The collection will be removed if there is nothing there in the collection."
+                        ></md-filled-text-field>
+                    </form>
+
+                    <div slot="footer" class="flex gap-2">
+                        <md-text-button @click="closeDialog">Cancle</md-text-button>
+                        <md-tonal-button @click="submitDialog">Apply</md-tonal-button>
+                    </div>
+                </md-dialog>
+            </Teleport>
+        </div>
     </PageLayout>
 </template>
 
 <script lang="ts" setup>
-import Content from '@/components/TaskPanel.vue'
-import { computed, ref } from 'vue'
-import Chips from '@/components/TaskTagChips.vue'
-import { useTaskStore } from '@/store/useTaskStore'
-import PageLayout from '@/layouts/PageLayout.vue'
-import { ProgressStatus } from '@/hooks/useTask'
+import Overview from '@/components/TaskOverview.vue'
+import { useTaskStore } from '@/store/useTaskStore';
+import { ref } from 'vue';
+import TaskList from '@/components/TaskList.vue';
+import { useTask } from '@/hooks/useTask';
 
-const store = useTaskStore()
 
-/**
- * 当前显式的页面名称
- *  overview
- *  processing
- *  pinned
- *  done
- */
-type PageName = ProgressStatus | 'overview'
-const currentPage = ref<PageName>('overview')
-const setCurrentPage = (e: PageName) => {
-    currentPage.value = e
-}
+const tasks = useTaskStore()
 
 /**
- * 当前选择的过滤标签
+ * overview是一个特殊的集合，它不做为tasks中的fromCollection过滤目标
  */
-const currentFilter = ref<string[]>([])
-const clearCurrentFilter = () => {
-    currentFilter.value = []
-}
-const pushCurrentFilter = (e: string) => {
-    if (currentFilter.value.includes(e)) {
-        currentFilter.value.splice(currentFilter.value.indexOf(e), 1)
-    } else {
-        currentFilter.value.push(e)
-    }
-}
+const currentCollection = ref('overview')
+const setCurrentCollection = (e: string) => currentCollection.value = e
 
-/**
- * 可供选择的标签数组
- */
-const tags = computed<string[]>(() => {
-    if(currentPage.value === 'processing') {
-        return store.getProcessingTags || []
-    } else if(currentPage.value === 'pinned') {
-        return store.getPinnedTags || []
-    } else if(currentPage.value === 'done') {
-        return store.getDoneTags || []
-    }
-    return []
-})
-
+const setDialogOpen = async (e: boolean) => {
+    (document.getElementById('createCollectionDialog') as HTMLElement & { show: () => void, close: () => void })[e ? 'show' : 'close']()
+}
+const openDialog = async () => {
+    await setDialogOpen(true)
+}
+const closeDialog = async () => {
+    (document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value = ''
+    await setDialogOpen(false)
+}
+const submitDialog = async () => {    
+    tasks.push(useTask({
+        title: 'Template',
+        fromCollection: (document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value
+    }))
+    closeDialog()
+    setCurrentCollection((document.getElementById('createCollectionDialogForm')?.children.item(0) as HTMLElement & { value: string }).value)
+}
 </script>

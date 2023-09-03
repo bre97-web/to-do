@@ -10,11 +10,7 @@
                 <template v-if="target.type === 'task'">
                     <md-filled-text-field v-model="target.task.title" label="Title" />
                     <md-filled-text-field v-model="target.task.subtitle" label="Subtitle" />
-                    <label>
-                        <BodyLarge>Collection</BodyLarge>
-                        <md-switch @click="target.collectionConfig.isGroup = $event.target.selected"></md-switch>
-                    </label>
-                    <lit-select-target-collection v-show="target.collectionConfig.isGroup" :collections="tasks.getAllLabels" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
+                    <lit-select-target-collection :collections="taskStore.getCollections" :setCurrentCollection="(e: FromCollection) => target.task.fromCollection = e"></lit-select-target-collection>
                     <ExpandLayout>
                         <FlexColLayout class="gap-2">
                             <md-filled-text-field
@@ -65,14 +61,6 @@
                         @input="target.goalConfig.goalCount = $event.target.value"
                     ></md-filled-text-field>
                 </template>
-
-                <!-- Collection -->
-                <template v-if="target.type === 'collection'">
-                    <md-filled-text-field
-                        v-model="target.collectionConfig.label"
-                        label="Collection Name"
-                    ></md-filled-text-field>
-                </template>
             </FlexColLayout>
 
             <md-text-button slot="footer" @click="cancel">Cancel</md-text-button>
@@ -87,7 +75,7 @@ import './lib/TargetType'
 import './lib/SelectTargetCollection'
 import { useTaskStore } from '@/store/useTaskStore'
 import { onMounted, reactive } from 'vue'
-import { Tags, Type, Date, FromCollection, useTask, useCollection } from '@/hooks/useTask'
+import { Tags, Type, Date, FromCollection, useTask } from '@/hooks/useTask'
 import ExpandLayout from '@/layouts/ExpandLayout.vue'
 import FlexColLayout from '@/layouts/FlexColLayout.vue'
 import { MDDialog } from '@/types/MDDialog'
@@ -100,9 +88,6 @@ onMounted(() => {
     creatorDialog = document.querySelector('#creatorDialog')
 })
 
-const tasks = useTaskStore()
-
-
 var target = reactive({
     // 将要创建的目标类型
     type: 'task' as Type,
@@ -114,7 +99,7 @@ var target = reactive({
         tags: [] as Tags,
         note: '',
         targetDate: '' as Date | null,
-        fromCollection: '' as FromCollection
+        fromCollection: 'processing' as FromCollection
     },
 
     // 目标类型为goal
@@ -137,11 +122,11 @@ var target = reactive({
 
 const taskStore = useTaskStore()
 
+/**
+ * 向taskStore插入新的数据
+ */
 const createTask = () => {
-    if(target.collectionConfig.isGroup && target.task.fromCollection !== '') {
-        taskStore.insertToCollection(target.task.fromCollection, [useCollection(target.task)])
-    }
-    taskStore.push([useTask(target.task)])
+    taskStore.push(useTask(target.task))
 }
 const createGoal = () => {
     let goalsList: Goal[] = []
@@ -153,15 +138,11 @@ const createGoal = () => {
             })
         )
     }
-    let goals = useGoals({
+
+    taskStore.push(useGoals({
         goalList: goalsList,
         schedule: target.goalConfig.goalSchedule
-    })
-
-    taskStore.push([goals])
-}
-const createCollection = () => {
-    taskStore.createCollection(target.collectionConfig.label)
+    }))
 }
 
 
@@ -181,7 +162,7 @@ const clear = () => {
             tags: [] as Tags,
             note: '',
             targetDate: '' as Date | null,
-            fromCollection: '' as FromCollection
+            fromCollection: 'processing' as FromCollection
         },
         goal: {
             title: '',
@@ -206,8 +187,6 @@ const submit = () => {
         createTask()
     } else if (target.type === 'goal') {
         createGoal()
-    } else if (target.type === 'collection') {
-        createCollection()
     }
     clear();
     (creatorDialog as MDDialog).open = false

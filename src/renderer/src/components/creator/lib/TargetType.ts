@@ -44,13 +44,6 @@ export default class TargetType extends LitElement {
                     value="goal"
                     headline="Goal"
                 ></md-select-option>
-                <md-select-option
-                    @click=${() => {
-                        this._setType('collection')
-                    }}
-                    value="collection"
-                    headline="Collection"
-                ></md-select-option>
             </md-outlined-select>
         `
     }

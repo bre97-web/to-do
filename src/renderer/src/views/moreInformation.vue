@@ -187,19 +187,11 @@ const updateStoreValue = (e: Task): Task => {
     return e
 }
 
+/**
+ * 同步获取tasks数据的tags元素
+ */
 watch(task, () => {
-    // in custom
-    if(task.fromCollection !== undefined && task.fromCollection !== '') {
-        store.custom = store.custom.map(e => {
-            if(e.label === task.fromCollection) {
-                e.items = e.items.map(updateStoreValue)
-            }
-            return e
-        })
-    // in tasks
-    } else {
-        store.tasks = store.getAll.map(updateStoreValue)
-    }
+    store.tasks = store.getTasks.map(updateStoreValue)
 })
 </script>
 

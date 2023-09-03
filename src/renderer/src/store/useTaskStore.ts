@@ -3,51 +3,21 @@ import { defineStore } from 'pinia'
 import { useEventStore } from '@/store/useEventStore'
 import moment from 'moment'
 
-export type CustomTasks = {
-    label: string
-    items: Tasks
-}
-
-export const useTaskStore = defineStore('task_store_eb3fe8', {
+export const useTaskStore = defineStore('task_store_eb3eb8', {
     state: () => ({
         tasks: [] as Tasks,
-        custom: [] as CustomTasks[],
     }),
     getters: {
-        getAll: (state) => state.tasks,
         getTasks: (state) => state.tasks.filter(e => e.type === 'task'),
-        getTasksIncludingGoals: (state) => state.tasks.filter(e => e.type === 'goal'),
-        getCustom: (state) => state.custom,
-        getPinned: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'pinned'),
-        getProcessing: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'processing'),
-        getDone: (state): Tasks => state.tasks.filter(e => e.type === 'task' && e.progressStatus === 'done'),
-        getAllTags: (state) => {
-            if(state.tasks.length === 0) return []
-            return state.tasks.map(e => e.tags)?.reduce((prev, next) => [...prev, ...next])
-        },
-        getProcessingTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'processing').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'processing').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
-        getPinnedTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'pinned').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'pinned').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
-        getDoneTags: (state) => {
-            if(state.tasks.filter(e => e.progressStatus === 'done').length === 0) return []
-            return state.tasks.filter(e => e.progressStatus === 'done').map(e => e.tags).reduce((prev, next) => [...prev, ...next])
-        },
-        getAllLabels: (state) => {
-            if(state.custom.length === 0) return []
-            return state.custom.map(e => e.label)
-        },
+        getGoals: (state) => state.tasks.filter(e => e.type === 'goal'),
+        getCollections: (state) => [...new Set(state.tasks.filter(e => e.type === 'task').map(e => e.fromCollection))],
     },
     actions: {
         /** 
          * 向tasks数组添加元素
          */
-        push(e: Tasks) {
-            this.tasks.push(...e)
+        push(e: Task) {
+            this.tasks.push(e)
         },
 
         /**
@@ -77,28 +47,6 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
          */
         setFromCollection(e: Task, fromCollection: FromCollection) {
             e.fromCollection = fromCollection
-        },
-
-        /**
-         * 在custom中创建一个集合，默认items为空数组
-         */
-        createCollection(label: string, items = [] as Tasks) {
-            this.custom.push({
-                label,
-                items
-            })
-        },
-
-        /**
-         * 向custom添加元素
-         */
-        insertToCollection(label: string, items: Tasks) {
-            this.custom.map(e => {
-                if(e.label === label) {
-                    e.items.push(...items)
-                }
-                return e
-            })
         },
 
         /**
@@ -140,7 +88,11 @@ export const useTaskStore = defineStore('task_store_eb3fe8', {
                 .format('YYYY-MM-DD')
                 :
                 moment().format('YYYY-MM-DD')
-        }
+        },
+
+        getTasksByCollection(collection: string) {
+            return this.tasks.filter(e => e.fromCollection === collection)
+        },
     },
     persist: true
 })
