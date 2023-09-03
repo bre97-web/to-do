@@ -19,7 +19,6 @@
                 </div>
             </main>
         </PageContentLayout>
-
     </PageLayout>
 </template>
 
@@ -27,8 +26,7 @@
 import PageContentLayout from '@/layouts/PageContentLayout.vue';
 import PageLayout from '@/layouts/PageLayout.vue';
 import TextLayout from '@/layouts/TextLayout.vue';
-
-
+    
 </script>
 
 <style scoped>
