@@ -29,7 +29,6 @@
                     </md-dialog>
                 </Teleport>
             </div>
-
         </PageContentLayout>
     </PageLayout>
 </template>
