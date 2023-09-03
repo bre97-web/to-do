@@ -45,7 +45,6 @@ import { ref } from 'vue';
 import TaskList from '@/components/tasks/list/TaskList.vue';
 import { useTask } from '@/hooks/useTask';
 
-
 const tasks = useTaskStore()
 
 /**
