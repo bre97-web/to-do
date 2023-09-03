@@ -25,9 +25,6 @@ import PageLayout from '@/layouts/PageLayout.vue';
 import PageContentLayout from '@/layouts/PageContentLayout.vue'
 import ListContentLayout from '@/layouts/ListContentLayout.vue';
 
-/**
- * 路由
- */
 const router = useRouter()
 </script>
 
