@@ -3,7 +3,8 @@
         label="Name"
         type="text"
         :value="userStore.getName"
-        @input="newName = $event.target.value">
+        @input="newName = $event.target.value"
+    >
     </md-outlined-text-field>
 </template>
 
@@ -17,7 +18,6 @@ const newName = ref('')
 watch(newName, () => {
     userStore.setName(newName.value)
 })
-
 </script>
 
 <style scoped></style>
