@@ -8,6 +8,4 @@ import { useUserStore } from '@/store/useUserStore'
 const userStore = useUserStore()
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
