@@ -14,8 +14,8 @@
 
             <div>
                 <Overview v-if="currentCollection === 'overview'"></Overview>
-                <TaskFiltedShower v-else :itemsFilted="[]" :items="tasks.getTasksByCollection(currentCollection)">
-                </TaskFiltedShower>
+                <TaskList v-else :tasks="tasks.getTasksByCollection(currentCollection)">
+                </TaskList>
             </div>
 
             <Teleport to="#app">
@@ -43,7 +43,7 @@
 import Overview from '@/components/TaskOverview.vue'
 import { useTaskStore } from '@/store/useTaskStore';
 import { ref } from 'vue';
-import TaskFiltedShower from '@/components/TaskFiltedShower.vue';
+import TaskList from '@/components/TaskList.vue';
 import { useTask } from '@/hooks/useTask';
 
 
