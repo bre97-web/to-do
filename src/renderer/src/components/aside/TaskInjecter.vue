@@ -16,7 +16,7 @@
 import { getShareItem } from '@/scripts/taskProvider';
 import TaskAsideInjectPage from './TaskAsideInjectPage.vue';
 import GoalAsideInjectPage from './GoalAsideInjectPage.vue';
-import AllDone from './AllDone.vue';
+import AllDone from '@/components/tasks/list/internal/AllDone.vue';
 
 const task = getShareItem()
 </script>

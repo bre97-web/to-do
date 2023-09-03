@@ -206,7 +206,7 @@ export function useTask({
         index: createIndex(),
         createdDate: createDate(),
         targetDate: targetDate,
-        goalSteps: [],
+        goalSteps: null,
         type: 'task',
         progressStatus: 'processing',
         fromCollection: fromCollection

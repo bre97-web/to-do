@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import EditAccountName from '@/components/EditAccountName.vue'
-import ProfileCard from '@/components/ProfileCard.vue'
+import EditAccountName from '@/components/profile/EditAccountName.vue'
+import ProfileCard from '@/components/profile/ProfileCard.vue'
 import FlexColLayout from '@/layouts/FlexColLayout.vue';
 import PageContentLayout from '@/layouts/PageContentLayout.vue';
 import PageLayout from '@/layouts/PageLayout.vue';

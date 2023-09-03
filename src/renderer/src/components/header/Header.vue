@@ -4,9 +4,6 @@
             <!-- Web Title -->
             <Title></Title>
 
-            <!-- Search input -->
-            <SearchInput></SearchInput>
-
             <div class="flex-none">
                 <router-link to="/me">
                     <Avatar></Avatar>
@@ -18,7 +15,6 @@
 
 <script lang="tsx" setup>
 import { useUserStore } from '@/store/useUserStore'
-import SearchInput from '@/components/SearchInput.vue'
 
 const Title = () => (
     <div class="flex flex-col flex-none">

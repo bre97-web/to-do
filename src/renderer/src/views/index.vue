@@ -33,10 +33,10 @@
 </template>
 
 <script lang="tsx" setup>
-import CreatorFabButton from '@/components/CreatorFabButton.vue';
-import NavigationBottomBar from '@/components/NavigationBottomBar.vue';
-import NavigationLeftBar from '@/components/NavigationLeftBar.vue';
-import Aside from '@/components/Aside.vue';
+import CreatorFabButton from '@/components/dialog/create-task-dialog/CreateTaskDialogOpenButton.vue';
+import NavigationBottomBar from '@/components/navigation/NavigationBottomBar.vue';
+import NavigationLeftBar from '@/components/navigation/NavigationLeftBar.vue';
+import Aside from '@/components/aside/Aside.vue';
 import { useEventStore } from '@/store/useEventStore';
 import { computed } from 'vue';
 

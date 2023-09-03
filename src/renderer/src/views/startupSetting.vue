@@ -52,9 +52,9 @@
 </template>
 
 <script setup lang="tsx">
-import DarkSwitch from '@/components/DarkSwitch.vue'
-import EditAccountName from '@/components/EditAccountName.vue'
-import ThemePicker from '@/components/ThemePicker.vue'
+import DarkSwitch from '@/components/theme/DarkSwitch.vue'
+import EditAccountName from '@/components/profile/EditAccountName.vue'
+import ThemePicker from '@/components/theme/ThemePicker.vue'
 import { useNotice } from '@/hooks/useNotice'
 import useTheme from '@/hooks/useTheme'
 import { computed, onMounted, reactive, ref } from 'vue'

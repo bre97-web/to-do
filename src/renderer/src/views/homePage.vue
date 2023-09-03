@@ -39,10 +39,10 @@
 </template>
 
 <script lang="ts" setup>
-import Overview from '@/components/TaskOverview.vue'
+import Overview from '@/components/tasks/TaskOverview.vue'
 import { useTaskStore } from '@/store/useTaskStore';
 import { ref } from 'vue';
-import TaskList from '@/components/TaskList.vue';
+import TaskList from '@/components/tasks/list/TaskList.vue';
 import { useTask } from '@/hooks/useTask';
 
 

@@ -73,9 +73,7 @@
                 </md-list-item>
             </md-list>
         </template>
-        <template v-else>
-            <AllDone></AllDone>
-        </template>
+        <AllDone v-else></AllDone>
     </PageLayout>
 </template>
 
@@ -83,7 +81,7 @@
 import { Tasks } from '@/hooks/useTask'
 import { useTaskStore } from '@/store/useTaskStore'
 import { useRouter } from 'vue-router'
-import AllDone from './AllDone.vue'
+import AllDone from '@/components/tasks/list/internal/AllDone.vue'
 import { setShareItem } from '@/scripts/taskProvider';
 import PageLayout from '@/layouts/PageLayout.vue';
 

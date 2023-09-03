@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="block lg:hidden">
-                    <CreatorFabButton></CreatorFabButton>
+                    <CreateTaskDialogOpenButton></CreateTaskDialogOpenButton>
                 </div>
                 <div class="hidden lg:block">
-                    <CreatorFabButton label="Create"></CreatorFabButton>
+                    <CreateTaskDialogOpenButton label="Create"></CreateTaskDialogOpenButton>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import CreatorFabButton from './CreatorFabButton.vue'
+import CreateTaskDialogOpenButton from '@/components/dialog/create-task-dialog/CreateTaskDialogOpenButton.vue'
 import { getRouterList } from '@/scripts/navigation'
 import { useRouter } from 'vue-router';
 
