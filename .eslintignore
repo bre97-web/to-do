@@ -1,11 +1,1 @@
-node_modules
-dist
-out
-.gitignore
-tsconfig.json
-tsconfig.node.json
-*.ttf
-*.woff
-*.woff2
-bin
-index.html
+docs/
