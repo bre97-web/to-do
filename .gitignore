@@ -8,30 +8,20 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-.DS_Store
+.output
 dist
 dist-ssr
-coverage
+!docs
 *.local
-
-/cypress/videos/
-/cypress/screenshots/
+test-report
+package-lock.json
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-/test
-
-# Material Web
-bundle.js
-src/assetsrenderer/assets/bundle.js
-
-# Electron
-web-application
