@@ -1,4 +1,4 @@
-import {MaterialTokens} from '@glare-labs/tailwindcss-material-tokens/build/index'
+import {MaterialTokens, TypographyTokens} from '@glare-labs/tailwindcss-material-tokens/build/index'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,5 +18,6 @@ export default {
     },
     plugins: [
         ...MaterialTokens.FullTokens,
+        ...TypographyTokens.FullTokens,
     ]
 }
