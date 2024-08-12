@@ -32,6 +32,11 @@
             :current-category="currentCategory"
             @create-todo="createTodo"
         ></CreateTodoFab>
+
+        <Snackbar
+            :rollable="true"
+            
+        ></Snackbar>
     </DataProvider>
 </template>
 
@@ -45,6 +50,7 @@ import { ITodo, TodoManager } from '../store/Todo'
 import CreateTodoFab from '../components/todo/CreateTodoFab.vue';
 import { useTodo } from '../store/Todo';
 import Header from '../components/header/Header.vue';
+import Snackbar from '../components/snackbar/Snackbar.vue'
 
 
 const currentCategory = ref<string>('All')

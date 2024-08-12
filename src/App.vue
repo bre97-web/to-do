@@ -10,10 +10,6 @@
             <component :is="Component"></component>
         </RouterView>
 
-        <!-- <EventSnackbar></EventSnackbar> -->
-
-        <!-- Creator Provide a ref: creatorDialog -->
-        <!-- <CreateTaskDialog></CreateTaskDialog> -->
     </ThemeProvider>
 </template>
 

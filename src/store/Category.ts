@@ -1,4 +1,4 @@
-import { Ref, ref, toRef } from "vue"
+import { Ref, ref } from "vue"
 
 export type TCategory = string
 export interface ICategories {
@@ -33,10 +33,10 @@ class CCategories extends ACRollableCategories {
         let v = JSON.parse(localStorage.getItem('material-todo-categories') ?? JSON.stringify(['Important', 'All']))
         this.categories = ref(v)
         this.value = v
-        if(!this.categories.value.includes('Important')) {
+        if (!this.categories.value.includes('Important')) {
             this.push('Important')
         }
-        if(!this.categories.value.includes('All')) {
+        if (!this.categories.value.includes('All')) {
             this.push('All')
         }
         this.saveToLocalStorage()
@@ -46,11 +46,11 @@ class CCategories extends ACRollableCategories {
         return this.categories
     }
     public push(e: string): void {
-        if(DefaultCategories.includes(e)) return
+        if (DefaultCategories.includes(e)) return
         this.categories.value.push(e)
     }
     public remove(e: string): void {
-        if(DefaultCategories.includes(e)) return
+        if (DefaultCategories.includes(e)) return
         this.categories.value.splice(this.categories.value.indexOf(e), 1)
     }
 

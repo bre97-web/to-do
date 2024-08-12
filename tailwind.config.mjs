@@ -1,9 +1,9 @@
-import {MaterialTokens, TypographyTokens} from '@glare-labs/tailwindcss-material-tokens/build/index'
+import { ColorTokens, TypographyTokens, ElevationTokens, ShapeTokens } from '@glare-labs/tailwindcss-material-tokens/build/index'
 
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './index.html', 
+        './index.html',
         './src/**/*.{jsx,tsx,vue}'
     ],
     theme: {
@@ -17,7 +17,9 @@ export default {
         },
     },
     plugins: [
-        ...MaterialTokens.FullTokens,
+        ...ColorTokens.FullTokens,
         ...TypographyTokens.FullTokens,
-    ]
+        ...ElevationTokens.FullTokens,
+        ...ShapeTokens.FullTokens,
+    ],
 }
