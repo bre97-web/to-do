@@ -1,8 +1,8 @@
-import { computed, defineComponent, Teleport, type PropType } from 'vue'
+import { defineComponent, Teleport, type PropType } from 'vue'
+import { RouterLink } from 'vue-router'
 import { MediaQueryServiceSymbol } from '../../services/media-query.service'
-import css from './navigation-drawer.module.css'
 import type { NavLinkType } from '../../services/navigation.service'
-import { RouterLink, useRouter } from 'vue-router'
+import css from './navigation-drawer.module.css'
 
 export class NavigationDrawerComponent {
 
@@ -35,7 +35,7 @@ export class NavigationDrawerComponent {
         data: () => ({
         }),
         render() {
-            const renderLinks = this.navLinks.map(link => (
+            const renderLinks = this.navLinks!.map(link => (
                 <RouterLink to={link.url} class={css['nav-button']} activeClass={css.active} exactActiveClass={css['extra-active']}>
                     <md-icon class={css.start}>{link.iconString}</md-icon>
                     <span class={css.label}>{link.label}</span>

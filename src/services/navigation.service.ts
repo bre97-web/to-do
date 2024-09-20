@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 
 export type NavLinkType = {
     label: string
@@ -25,6 +26,8 @@ export class NavigationService implements INavigationService {
             url: '/settings'
         },
     ]
+
+    public readonly open = ref(false)
 
     constructor() {
 
