@@ -5,29 +5,42 @@ import App from './App.vue'
 /**
  * Vue-Router
  */
-import Router from './router/index'
+import { globalRouter } from './router/index'
 
 /**
  * Tailwindcss
  */
-import './assets/index.css'
+import './styles/scrollbar.css'
+import './styles/tailwind.css'
 
 /**
  * Google's Material Design
  */
-import 'material-symbols/outlined.css'
 import '@fontsource/noto-sans'
 import '@material/web/all'
+import 'material-symbols/outlined.css'
 
 /**
  * Pinia
  */
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { MaterialThemeConfigurationService, MaterialThemeConfigurationServiceSymbol } from './services/material-theme-configuration.service'
+import { MediaQueryService, MediaQueryServiceSymbol } from './services/media-query.service'
+import { NavigationService, NavigationServiceSymbol } from './services/navigation.service'
+import { TodoListService, TodoListServiceSymbol } from './services/todo-list.service'
+import { TodoTabsService, TodoTabsServiceSymbol } from './services/todo-tabs.service'
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App)
-app.use(pinia).use(Router)
-app.mount('#app')
+app
+    .use(pinia)
+    .use(globalRouter)
+    .provide(TodoListServiceSymbol, new TodoListService(TodoListService.loadChanges()))
+    .provide(TodoTabsServiceSymbol, new TodoTabsService(TodoTabsService.loadChanges()))
+    .provide(MaterialThemeConfigurationServiceSymbol, new MaterialThemeConfigurationService(MaterialThemeConfigurationService.loadChanges()))
+    .provide(NavigationServiceSymbol, new NavigationService())
+    .provide(MediaQueryServiceSymbol, new MediaQueryService())
+    .mount('#app')

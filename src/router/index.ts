@@ -1,4 +1,4 @@
-import { RouteRecordRaw, Router, createRouter, createWebHashHistory } from 'vue-router'
+import { type RouteRecordRaw, type Router, createRouter, createWebHashHistory } from 'vue-router'
 
 import Index from '../pages/index.vue'
 import Settings from '../pages/settings.vue'
@@ -14,10 +14,9 @@ const routes: RouteRecordRaw[] = [
     }
 ]
 
-const Router: Router = createRouter({
+export const globalRouter: Router = createRouter({
     history: createWebHashHistory(),
     routes,
-    linkExactActiveClass: 'active'
+    linkActiveClass: 'active',
+    linkExactActiveClass: 'extra-active'
 })
-
-export default Router

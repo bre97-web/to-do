@@ -1,25 +1,36 @@
 <template>
-    <ThemeProvider 
-        :source-color="theme.sourceColor" 
-        :contrast-level="theme.contrastLevel" 
-        :variant="theme.variant" 
-        :is-dark="theme.isDark"
+    <MaterialThemeProvider 
+        :hctToInt="mdConfig.hct.toInt()" 
+        :contrast-level="mdConfig.contrastLevel" 
+        :variant="mdConfig.variant" 
+        :is-dark="mdConfig.isDark"
     >
 
         <RouterView v-slot="{ Component }">
             <component :is="Component"></component>
         </RouterView>
 
-        <!-- <EventSnackbar></EventSnackbar> -->
-
-        <!-- Creator Provide a ref: creatorDialog -->
-        <!-- <CreateTaskDialog></CreateTaskDialog> -->
-    </ThemeProvider>
+    </MaterialThemeProvider>
 </template>
 
 <script lang="ts" setup>
-import ThemeProvider from './components/theme-provider/ThemeProvider.vue';
-import {useThemeStore} from './store/useThemeStore'
+import { inject, onBeforeUnmount, onMounted } from 'vue';
+import {MaterialThemeProvider} from './components/material-provider/material-theme-provider';
+import { type IMaterialThemeConfigurationService, MaterialThemeConfigurationServiceSymbol } from './services/material-theme-configuration.service'
+import { MediaQueryService, MediaQueryServiceSymbol } from './services/media-query.service';
 
-const theme = useThemeStore()
+const mdConfig = inject<IMaterialThemeConfigurationService>(MaterialThemeConfigurationServiceSymbol)!
+const mediaQuery = inject<MediaQueryService>(MediaQueryServiceSymbol)!
+
+const onWindowResize = () => {
+    mediaQuery.onWindowResize(window, document.body)
+}
+
+onMounted(() => {
+    onWindowResize()
+    window.addEventListener('resize', onWindowResize)
+})
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', onWindowResize)
+})
 </script>
