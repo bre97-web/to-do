@@ -1,0 +1,26 @@
+@layer material-design-scrollbar {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {}
+
+    ::-webkit-scrollbar-track:hover {
+        background: var(--md-sys-color-surface-dim);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--md-sys-color-inverse-primary);
+        border-radius: 9999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover,
+    ::-webkit-scrollbar-thumb:active {
+        background: var(--md-sys-color-primary);
+    }
+}
