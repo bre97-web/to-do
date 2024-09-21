@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { fileURLToPath } from 'url'
+import { defineConfig, type UserConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,14 +9,12 @@ export default defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag: string): boolean =>
-                        tag.startsWith('md') || tag.startsWith('lottie-player')
+                    isCustomElement: (tag: string): boolean => tag.startsWith('md') || tag.startsWith('lottie-player')
                 }
             }
         }),
         vueJsx({
-            isCustomElement: (tag: string): boolean =>
-                tag.startsWith('md-') || tag.startsWith('lottie-player')
+            isCustomElement: (tag: string): boolean => tag.startsWith('md-') || tag.startsWith('lottie-player')
         })
     ],
     base: '/to-do',
@@ -26,5 +25,13 @@ export default defineConfig({
         assetsInlineLimit: 4096,
         sourcemap: true,
         manifest: true,
-    }
-})
+    },
+    resolve: {
+        alias: [
+            {
+                find: '@',
+                replacement: fileURLToPath(new URL('./src/', import.meta.url))
+            },
+        ],
+    },
+}) satisfies UserConfig as UserConfig
