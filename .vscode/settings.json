@@ -1,37 +1,26 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib",
-    "files.exclude": {
-        "**/node_modules": true
-    },
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit",
+        "source.addMissingImports.ts": "always",
+        "source.organizeImports": "always",
+        "source.removeUnusedImports": "always",
+        "source.sortImports": "always",
     },
-    "eslint.validate": [
-        "javascript",
-        "typescript",
-        "jsx",
-        "tsx",
-    ],
     "editor.formatOnSave": true,
-    "eslint.format.enable": true,
-    "prettier.enable": false,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "typescript.format.semicolons": "remove",
-    "typescript.autoClosingTags": true,
+    "javascript.format.semicolons": "remove",
     "typescript.format.indentSwitchCase": true,
     "typescript.preferences.quoteStyle": "single",
-    "html.format.preserveNewLines": true,
     "files.insertFinalNewline": true,
+    "html.format.preserveNewLines": true,
     "editor.indentSize": 4,
     "editor.tabSize": 4,
     "files.eol": "\n",
-    "testing.automaticallyOpenPeekView": "never",
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
     "[vue]": {
         "editor.defaultFormatter": "Vue.volar",
-        "editor.formatOnSave": false
     },
     "html.format.wrapAttributes": "force-expand-multiline",
     "files.encoding": "utf8",
