@@ -21,22 +21,16 @@ import '@material/web/all'
 import 'material-symbols/outlined.css'
 
 /**
- * Pinia
+ * Services
  */
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { MaterialThemeConfigurationService, MaterialThemeConfigurationServiceSymbol } from './services/material-theme-configuration.service'
 import { MediaQueryService, MediaQueryServiceSymbol } from './services/media-query.service'
 import { NavigationService, NavigationServiceSymbol } from './services/navigation.service'
 import { TodoListService, TodoListServiceSymbol } from './services/todo-list.service'
 import { TodoTabsService, TodoTabsServiceSymbol } from './services/todo-tabs.service'
 
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
-
 const app = createApp(App)
 app
-    .use(pinia)
     .use(globalRouter)
     .provide(TodoListServiceSymbol, new TodoListService(TodoListService.loadChanges()))
     .provide(TodoTabsServiceSymbol, new TodoTabsService(TodoTabsService.loadChanges()))
