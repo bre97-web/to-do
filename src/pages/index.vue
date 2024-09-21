@@ -18,7 +18,7 @@
                     <md-list-item
                         class="todo-list-item"
                         v-for="todo in currentCollectionTodos"
-                        :class="todo.isCompleted && 'completed'"
+                        :class="[todo.isCompleted && 'completed', todo.isPinned && 'pinned']"
                         :key="todo.data.creationTimestamp"
                     >
                         <md-checkbox
@@ -39,6 +39,12 @@
                             @click="() => removeTodoItem(todo)"
                         >
                             <md-icon>delete</md-icon>
+                        </md-icon-button>
+                        <md-icon-button
+                            slot="end"
+                            @click="() => setPinField(todo, !todo.isPinned)"
+                        >
+                            <md-icon class="pin-icon">keep</md-icon>
                         </md-icon-button>
                     </md-list-item>
                 </md-list>
@@ -76,7 +82,10 @@ const todoTabs = inject<TodoTabsService>(TodoTabsServiceSymbol)!
 const todoList = inject<TodoListService>(TodoListServiceSymbol)!
 
 const setCompleteField = (todo: ITodo) => {
-    todoList.setCompleteField(todo, !todo.isCompleted)
+    todoList.completeField(todo, !todo.isCompleted)
+}
+const setPinField = (todo: ITodo, isPinned: boolean) => {
+    todoList.pinField(todo, isPinned)
 }
 const removeTodoItem = (todo: ITodo) => {
     todoList.remove(todo)
@@ -89,7 +98,13 @@ const removeCurrentTab = () => {
 
 const currentCollectionName = ref<string>('All')
 const allTodos = computed(() => todoList.todos.value)
-const currentCollectionTodos = computed(() => allTodos.value.filter(e => e.data.collectionName === currentCollectionName.value))
+const currentCollectionTodos = computed(() =>
+    allTodos.value
+        .filter(e => e.data.collectionName === currentCollectionName.value)
+        .sort((a, b) => a.data.creationTimestamp - b.data.creationTimestamp)
+        .sort((a, _) => a.isPinned ? 1 : -1)
+        .sort((a, _) => a.isCompleted ? 1 : -1)
+)
 
 const tabs = computed(() => todoTabs.tabs.value)
 const tabsRef = ref<MdTabs | null>(null)
@@ -107,21 +122,95 @@ onMounted(() => {
 
 <style scoped>
 .todo-list {
+    padding-left: 8px;
+    padding-right: 8px;
+
+    gap: 4px;
+
     .todo-list-item {
         --md-checkbox-container-shape: 12px;
         --md-checkbox-container-size: 22px;
         --md-checkbox-icon-size: 22px;
 
+        border-radius: 16px;
+
         &.completed>:is(.headline, .description) {
             text-decoration: line-through;
+        }
+
+        &.pinned {
+            & md-icon.pin-icon {
+                font-variation-settings: 'FILL' 1;
+                animation-name: icon-fill;
+                animation-duration: 200ms;
+            }
+        }
+
+        &.pinned {
+            background-color: var(--md-sys-color-primary-container);
+            --md-list-item-label-text-color: var(--md-sys-color-on-primary-container);
+
+            --md-focus-ring-color: var(--md-sys-color-on-primary-container);
+
+            --md-checkbox-outline-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-hover-outline-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-pressed-outline-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-focus-outline-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-selected-container-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-selected-icon-color: var(--md-sys-color-primary-container);
+            --md-checkbox-hover-state-layer-color: var(--md-sys-color-on-primary-container);
+            --md-checkbox-pressed-state-layer-color: var(--md-sys-color-on-primary-container);
+
+            --md-icon-button-hover-state-layer-color: var(--md-sys-color-on-primary-container);
+            --md-icon-button-pressed-state-layer-color: var(--md-sys-color-on-primary-container);
+            --md-icon-button-icon-color: var(--md-sys-color-on-primary-container);
+            --md-icon-button-focus-icon-color: var(--md-sys-color-on-primary-container);
+            --md-icon-button-hover-icon-color: var(--md-sys-color-on-primary-container);
+            --md-icon-button-pressed-icon-color: var(--md-sys-color-on-primary-container);
+        }
+
+        &.pinned.complete {
+            background-color: var(--md-sys-color-surface-container);
+        }
+
+        &:hover {
+            position: relative;
+
+            &::after {
+                content: '';
+                border-radius: inherit;
+                position: absolute;
+                inset: 0;
+                opacity: 0.08;
+                background-color: var(--md-sys-color-primary);
+                pointer-events: none;
+            }
         }
     }
 }
 
+@keyframes icon-fill {
+    from {
+        font-variation-settings: 'FILL' 0;
+    }
+
+    to {
+        font-variation-settings: 'FILL' 1;
+    }
+}
+
 .tabs {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+
     @media (max-width: 600px) {
         --md-primary-tab-container-color: var(--md-sys-color-surface-container);
     }
+}
+
+.tab-panel {
+    overflow: auto;
 }
 
 .create-todo-fab {

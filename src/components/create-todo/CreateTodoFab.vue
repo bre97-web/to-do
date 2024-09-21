@@ -37,12 +37,9 @@
                         <span slot="headline">{{ collection.label }}</span>
                     </md-select-option>
                 </md-outlined-select>
-                <label
-                    name="is-pinned"
-                    class="between"
-                >
+                <label class="between">
                     Pinned
-                    <md-switch></md-switch>
+                    <md-switch name="is-pinned"></md-switch>
                 </label>
             </form>
             <div slot="actions">
@@ -91,11 +88,12 @@ onMounted(() => {
         const form = createTodoDialogRef.value?.querySelector('form')!
         if (createTodoDialogRef.value?.returnValue === 'apply') {
             const formData = {} as Record<'headline' | 'description' | 'collection-name' | 'is-pinned', any>
-            for (const element of form.elements) {
+            for (const element of form.querySelectorAll('[name]')) {
                 if (element.getAttribute('name')) {
                     (formData as Record<string, unknown>)[element.getAttribute('name')!] = (element as HTMLInputElement).value!
                 }
             }
+
             todoList.create(new TodoEntity({
                 isCompleted: false,
                 isPinned: formData['is-pinned'],

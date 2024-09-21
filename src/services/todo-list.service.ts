@@ -98,7 +98,8 @@ export class TodoEntity implements ITodo {
 export interface ITodoService {
     create: (todo: ITodo) => void
     remove: (todo: ITodo) => void
-    setCompleteField: (todo: ITodo, value: boolean) => void
+    completeField: (todo: ITodo, value: boolean) => void
+    pinField: (todo: ITodo, value: boolean) => void
     todos: Ref<Array<ITodo>>
 }
 
@@ -126,8 +127,13 @@ export class TodoListService implements ITodoService {
         this.saveChanges()
     }
 
-    public setCompleteField(todo: ITodo, value: boolean): void {
+    public completeField(todo: ITodo, value: boolean): void {
         todo.isCompleted = value
+        this.saveChanges()
+    }
+
+    public pinField(todo: ITodo, value: boolean): void {
+        todo.isPinned = value
         this.saveChanges()
     }
 
